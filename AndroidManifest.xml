@@ -77,6 +77,31 @@
         
         <activity 
             android:name="com.winwinapp.my.MyProjectCalendarActivity"></activity>
+	            <!-- HZH START -->
+               <activity 
+            android:name="com.winwinapp.about.AboutActivity"></activity>
+               
+               <activity 
+            android:name="com.winwinapp.about.FeedbackActivity"></activity>
+               
+               <activity 
+            android:name="com.winwinapp.about.FuncDescActivity"></activity>
+               
+               <activity 
+            android:name="com.winwinapp.login.LoginPageActivity"></activity>
+               
+               <activity 
+            android:name="com.winwinapp.login.Reg1Activity"></activity>
+               
+               <activity 
+            android:name="com.winwinapp.login.Reg2Activity"></activity>
+               
+               <activity 
+            android:name="com.winwinapp.login.ResetPWD1Activity"></activity>
+               
+               <activity 
+            android:name="com.winwinapp.login.ResetPWD2Activity"></activity>
+       <!-- HZH END -->
     </application>
 
 </manifest>

@@ -31,6 +31,7 @@
 	    android:orientation="vertical" >
     
 		<LinearLayout
+		    android:id="@+id/about_l1"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
 		    android:layout_weight="1"
@@ -54,6 +55,7 @@
         </ImageView>
 		</LinearLayout>
 		<LinearLayout
+		    android:id="@+id/about_l2"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
 		    android:layout_weight="1"
@@ -78,6 +80,7 @@
 		</LinearLayout>
 
 		<LinearLayout
+		    android:id="@+id/about_l3"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
 		    android:layout_weight="1"
