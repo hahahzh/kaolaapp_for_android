@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content">
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical" >
+	    
+	    <LinearLayout 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal">
+	        
+	        <Spinner
+		        android:id="@+id/spinner_calendar_first"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1"
+		        android:entries="@array/Calendar_first"/>
+	        
+	         <Spinner
+		        android:id="@+id/spinner_calendar_second"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1"
+		        android:entries="@array/Calendar_second"/>
+	         
+	          <Spinner
+		        android:id="@+id/spinner_calendar_third"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1"
+		        android:entries="@array/Calendar_third"/>
+	        
+	    </LinearLayout>
+	    
+	    <com.winwinapp.calendar.CalendarView 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical"
+	        android:gravity="center_horizontal">
+	        
+	    </com.winwinapp.calendar.CalendarView>
+	    
+	    <LinearLayout 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical"
+	        android:layout_marginTop="10dp"
+	        android:background="@drawable/icon_curve">
+	          
+		    <LinearLayout 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal">
+		          <TextView 
+		              android:layout_width="wrap_content"
+		              android:layout_height="wrap_content"
+		              android:layout_marginLeft="20dp"
+		              android:layout_marginRight="5dp"
+		              android:textSize="20dp"
+		              android:text="当前项目"/>
+		          
+		          <TextView 
+		              android:layout_width="wrap_content"
+		              android:layout_height="wrap_content"
+		              android:text="4月1日"
+		              android:layout_weight="1"/>
+		          
+		          <TextView 
+		              android:layout_width="wrap_content"
+		              android:layout_height="wrap_content"
+		              android:text="修改"/>
+		        
+		    </LinearLayout>
+		    
+		     <ImageView 
+			        android:layout_width="match_parent"
+			        android:layout_height="1dp"/>
+		     
+		     <LinearLayout 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="10dp"
+		        android:orientation="horizontal"
+		        >
+		          <TextView 
+		              android:layout_width="wrap_content"
+		              android:layout_height="wrap_content"
+		              android:layout_marginLeft="20dp"
+		              android:layout_marginRight="5dp"
+		              android:textSize="20dp"
+		              android:text="施工交底"/>
+		          
+		         <TextView 
+		              android:layout_width="wrap_content"
+		              android:layout_height="wrap_content"
+		              android:layout_marginLeft="20dp"
+		              android:layout_marginRight="5dp"
+		              android:textSize="20dp"
+		              android:text="水电改造"/>
+		          
+		         <TextView 
+		              android:layout_width="wrap_content"
+		              android:layout_height="wrap_content"
+		              android:layout_marginLeft="20dp"
+		              android:layout_marginRight="5dp"
+		              android:textSize="20dp"
+		              android:text="墙砖"/>
+		        
+		    </LinearLayout>
+		    
+		     <TextView 
+	              android:layout_width="wrap_content"
+	              android:layout_height="wrap_content"
+	              android:layout_marginLeft="20dp"
+	              android:layout_marginRight="5dp"
+	              android:textSize="20dp"
+	              android:text="油漆涂料"/>
+	     </LinearLayout>
+	     
+	     <LinearLayout 
+	         android:layout_width="wrap_content"
+	         android:layout_height="wrap_content"
+	         android:layout_gravity="center_horizontal"
+	         android:background="@drawable/icon_button_bg"
+	         android:layout_marginTop="10dp"
+	         android:orientation="horizontal">
+	         <TextView 
+	              android:layout_width="wrap_content"
+	              android:layout_height="wrap_content"
+	              android:textSize="20dp"
+	              android:layout_gravity="center"
+	              android:gravity="center"
+	              android:layout_weight="1"
+	              android:text="温馨提示"/>
+	         <TextView 
+	              android:layout_width="wrap_content"
+	              android:layout_height="wrap_content"
+	              android:gravity="center"
+	              android:layout_gravity="center"
+	              android:layout_weight="1"
+	              android:textSize="20dp"
+	              android:text="备注"/>
+	     </LinearLayout>
+	     
+	     <EditText 
+	         android:layout_width="match_parent"
+	         android:layout_height="wrap_content"
+	         android:minLines="5"
+	         android:hint="暂无提示"/>
+	     
+	     <Button 
+	         android:layout_width="wrap_content"
+	         android:layout_height="wrap_content"
+	         android:text="提交"/>
+	
+	</LinearLayout>
+</ScrollView>

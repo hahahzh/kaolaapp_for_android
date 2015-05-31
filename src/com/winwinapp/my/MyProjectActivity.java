@@ -31,7 +31,8 @@ public class MyProjectActivity extends ActionBarActivity {
 			switch(msg.what){
 			case INDEX_BUTTON_SSET_DATE:
 				int position = msg.arg1;
-				
+				Intent intent = new Intent(MyProjectActivity.this,MyProjectCalendarActivity.class);
+				startActivity(intent);
 				break;
 			case INDEX_OTHERS:
 				break;
