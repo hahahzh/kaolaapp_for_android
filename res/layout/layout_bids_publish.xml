@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginRight="10dp"
+	        android:text="地区" />
+	    <EditText 
+	        android:drawableRight="@drawable/forward"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="上海      上海      闸北区"
+	        android:background="@null"/>
+	    </LinearLayout>
+	    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginRight="10dp"
+	        android:text="小区名称" />
+	    <EditText 
+	        android:drawableRight="@drawable/forward"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="慧芝湖花苑"
+	        android:background="@null"/>
+	    </LinearLayout>
+	    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginRight="10dp"
+	        android:text="房屋面积" />
+	    <EditText 
+	        android:drawableRight="@drawable/forward"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="102m2"
+	        android:background="@null"/>
+	    </LinearLayout>
+	    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp">
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginRight="10dp"
+		        android:text="房屋类型" />
+		    <EditText 
+		        android:drawableRight="@drawable/forward"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="普通住宅"
+		        android:background="@null"/>
+	    </LinearLayout>
+	    
+    <TableRow 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp">
+            
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="客厅"
+                android:layout_weight="1"/>
+            
+            <include 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                layout="@layout/layout_add_sub"/>
+     </TableRow> 
+     
+    <TableRow 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp">
+            
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="卧室"
+                android:layout_weight="1"/>
+            
+            <include 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                layout="@layout/layout_add_sub"/>
+        </TableRow> 
+        
+    <TableRow 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp">
+            
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="阳台"
+                android:layout_weight="1"/>
+            
+            <include 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                layout="@layout/layout_add_sub"/>
+        </TableRow> 
+        
+    <TableRow 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp">
+            
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="厨房"
+                android:layout_weight="1"/>
+            
+            <include 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                layout="@layout/layout_add_sub"/>
+        </TableRow> 
+        
+    <TableRow 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp">
+            
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="卫生间"
+                android:layout_weight="1"/>
+            
+            <include 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                layout="@layout/layout_add_sub"/>
+        </TableRow> 
+        
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp">
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginRight="10dp"
+		        android:text="装修方式" />
+		    <EditText 
+		        android:drawableRight="@drawable/forward"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="全包"
+		        android:background="@null"/>
+	    </LinearLayout>
+
+</LinearLayout>

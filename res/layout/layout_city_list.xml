@@ -1,0 +1,119 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff" >
+
+    <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:id="@+id/city_list_above"
+	    android:orientation="vertical"
+	    android:background="#ffffff" >
+    
+		<TextView 
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginTop="5dp"
+		    android:layout_marginBottom="5dp"
+		    android:layout_marginLeft="5dp"
+		    android:textSize="20sp"
+		    android:text="@string/location_city"/>
+		
+		<LinearLayout 
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal"
+		    android:background="#ffecdebf" >
+		    <TextView 
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:drawableLeft="@drawable/location"
+		        android:id="@+id/location_city_name"
+		        android:layout_marginLeft="10dp"
+		        android:textSize="18sp"
+        		android:textStyle="bold"
+		        android:text="上海"/>
+		    
+		</LinearLayout>
+	
+		<ImageView 
+		    android:layout_width="fill_parent"
+		    android:layout_height="1dp"
+		    android:background="#FFFFFF"/>
+		
+		<TextView 
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginTop="5dp"
+		    android:layout_marginBottom="5dp"
+		    android:layout_marginLeft="5dp"
+		    android:textSize="20sp"
+		    android:text="@string/common_city"/>
+		<LinearLayout 
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:orientation="horizontal" >
+		
+			    <TextView 
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:paddingLeft="10dp"
+			        android:paddingRight="10dp"
+			        android:paddingTop="10dp"
+			        android:paddingBottom="20dp"
+			        android:layout_marginLeft="10dp"
+			        android:layout_marginRight="10dp"
+			        android:textSize="18sp"
+        			android:textStyle="bold"
+			        android:text="上海"/>
+			    
+			    <TextView 
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:paddingLeft="10dp"
+			        android:paddingRight="10dp"
+			        android:paddingTop="10dp"
+			        android:paddingBottom="20dp"
+			        android:layout_marginLeft="10dp"
+			        android:layout_marginRight="10dp"
+			        android:textSize="18sp"
+        			android:textStyle="bold"
+			        android:text="杭州"/>
+			    
+			    <TextView 
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:paddingLeft="10dp"
+			        android:paddingRight="10dp"
+			        android:paddingTop="10dp"
+			        android:paddingBottom="20dp"
+			        android:layout_marginLeft="10dp"
+			        android:layout_marginRight="10dp"
+			        android:textSize="18sp"
+        			android:textStyle="bold"
+			        android:text="苏州"/>
+		</LinearLayout>
+		</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/city_list_above" >
+
+        <com.winwinapp.selectcity.CityListViewImpl
+            android:id="@+id/listview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:cacheColorHint="#00000000"
+            android:divider="@drawable/line"
+            android:fadingEdge="none"
+            android:fastScrollEnabled="false"
+            android:footerDividersEnabled="true"
+            android:headerDividersEnabled="true"
+            android:listSelector="#00000000"
+            android:smoothScrollbar="true" />
+    </LinearLayout>
+
+</RelativeLayout>

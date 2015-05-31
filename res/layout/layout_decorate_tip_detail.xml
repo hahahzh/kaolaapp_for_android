@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+   	 	android:layout_height="wrap_content"
+   	 	android:background="#00FF00"
+    	android:orientation="vertical">
+
+        <TextView 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:id="@+id/tips_detail_title"
+            android:text="【软装】装修中被人坑了也不知道的陷进"/>
+		    <LinearLayout 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginBottom="5dp"
+		        android:layout_marginLeft="10dp"
+		        android:orientation="horizontal"
+		        android:id="@+id/tips_detail_first"
+		        android:layout_below="@id/tips_detail_title">
+		        
+		        <ImageView 
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_marginRight="5dp"
+		            android:src="@drawable/clock"/>
+		        <TextView 
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_marginRight="20dp"
+		            android:text="2015-03-19"
+		            android:id="@+id/tips_item_date"/>
+		        <ImageView 
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_marginRight="5dp"
+		            android:src="@drawable/eye"/>
+		         <TextView 
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_marginRight="20dp"
+		            android:text="166"
+		            android:id="@+id/tips_item_viewed"/>
+		    </LinearLayout>
+    </LinearLayout>
+    
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/tips_detail_image_preview"/>
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="装修是件很麻烦的事情"/>
+
+</LinearLayout>

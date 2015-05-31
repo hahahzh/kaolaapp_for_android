@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/hot_pic_height" >
+	    <android.support.v4.view.ViewPager
+	        android:id="@+id/viewpager"
+	        android:layout_width="fill_parent"
+	        android:layout_height="@dimen/hot_pic_height"
+	        android:paddingTop="0dp"
+	        android:paddingBottom="0dp" />
+	    
+	    <com.winwinapp.koala.PageIndicator
+	        android:id="@+id/page_indicator"
+	        android:layout_width="match_parent"
+	        android:layout_height="@dimen/page_indicator_height"
+	        android:layout_alignParentBottom="true"
+	        android:layout_marginBottom="@dimen/button_bar_height_plus_padding"/>
+    </RelativeLayout>
+
+    <GridView
+        android:id="@+id/grid_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingTop="10dp"
+        android:numColumns="auto_fit"
+        android:horizontalSpacing="15dp"
+        android:verticalSpacing="15dp"
+        android:gravity="center"
+        />
+
+</LinearLayout>

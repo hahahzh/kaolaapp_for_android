@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.winwinapp.koala"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="18" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
+        <activity
+            android:name="com.winwinapp.koala.KLHomePageActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".fragment_homepage"></activity>
+        <activity 
+            android:name="com.winwinapp.selectcity.SelectCityActivity"
+            android:theme="@style/AppTheme"></activity>
+        <activity 
+            android:name="com.winwinapp.koala.MessageListActivity"></activity>
+        
+        <activity 
+            android:name="com.winwinapp.chat.KoalaChatActivity"></activity>
+        
+        <activity 
+            android:name="com.winwinapp.decorate.PreEvaluateActivity"></activity>
+        
+        <activity 
+            android:name="com.winwinapp.decorate.DecoratePriceActivity"></activity>
+        
+        <activity 
+            android:name="com.winwinapp.bids.BidsDistinctActivity"></activity>
+        
+        <activity 
+            android:name="com.winwinapp.bids.BidsPublishBids"></activity>
+        
+        <activity 
+            android:name="com.winwinapp.bids.BidsDetailsActivity"></activity>
+        
+        <activity 
+            android:name="com.winwinapp.decorateTips.DecorateTipsActivity"></activity>
+        
+        <activity 
+            android:name="com.winwinapp.decorateTips.DecorateTipsDetailActivity"></activity>
+        
+        <activity 
+            android:name="com.winwinapp.decorateTips.Decorate_tips_share_window"
+            android:theme="@style/MyDialogStyleBottom"></activity>
+        
+        <activity 
+            android:name="com.winwinapp.designer.ContactDesignerActivity"></activity>
+        
+        <activity 
+            android:name="com.winwinapp.designer.DesignerActivity"></activity>
+        
+        <activity 
+            android:name="com.winwinapp.designer.DesignerProjectActivity"></activity>
+        
+        <activity 
+            android:name="com.winwinapp.bids.BidsListActivity"></activity>
+        
+        <activity 
+            android:name="com.winwinapp.my.MyActivity"></activity>
+    </application>
+
+</manifest>

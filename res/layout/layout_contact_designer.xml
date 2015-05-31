@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+   <TabHost
+        android:id="@+id/contact_designer_tabhost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+       <LinearLayout 
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+	       <TabWidget
+				  android:id="@android:id/tabs"
+				  android:layout_width="match_parent"
+				  android:layout_height="wrap_content" >
+	        </TabWidget>
+	
+	        <FrameLayout
+				  android:id="@android:id/tabcontent"
+				  android:layout_width="match_parent"
+				  android:layout_height="match_parent"
+				  android:layout_gravity="fill" >
+				
+	            <ListView 
+				    android:layout_width="match_parent"
+				    android:layout_height="wrap_content"
+				    android:id="@+id/contact_designer_list">
+				</ListView>
+	            <!--  
+	            <include android:id="@+id/tab_content_01" layout="@layout/layout_decorate_tip_list" />  
+            	<include android:id="@+id/tab_content_02" layout="@layout/layout_decorate_tip_list" /> 
+            	<include android:id="@+id/tab_content_03" layout="@layout/layout_decorate_tip_list" />  
+            	<include android:id="@+id/tab_content_04" layout="@layout/layout_decorate_tip_list" />  
+            	<include android:id="@+id/tab_content_05" layout="@layout/layout_decorate_tip_list" />  
+            	<include android:id="@+id/tab_content_06" layout="@layout/layout_decorate_tip_list" />  
+            	--> 
+	        </FrameLayout>
+        </LinearLayout>
+     
+    </TabHost>
+
+   
+   <TextView 
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="60dp"
+       android:gravity="center"
+       android:text="没有更多数据啦!"/>
+
+</LinearLayout>

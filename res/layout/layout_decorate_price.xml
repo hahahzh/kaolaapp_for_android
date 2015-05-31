@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+<RelativeLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/decorate_price_title1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="板材"/>
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/decorate_price_title1"
+        android:id="@+id/decorate_price1"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="100"/>
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/decorate_price1"
+        android:layout_below="@id/decorate_price_title1"
+        android:id="@+id/decorate_price_unit1"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="元/每张"/>
+    
+    <include 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/layout_add_sub"
+        android:layout_centerInParent="true"/>
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:id="@+id/decorate_price_total_unit1"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="元"/>
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/decorate_price_total_unit1"
+        android:id="@+id/decorate_price_total1"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="100"/>
+</RelativeLayout>
+
+<RelativeLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/decorate_price_title2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="墙砖"/>
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/decorate_price_title2"
+        android:id="@+id/decorate_price2"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="50"/>
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/decorate_price2"
+        android:layout_below="@id/decorate_price_title2"
+        android:id="@+id/decorate_price_unit2"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="元/m2"/>
+    
+    <include 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/layout_add_sub"
+        android:layout_centerInParent="true"/>
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:id="@+id/decorate_price_total_unit2"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="元"/>
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/decorate_price_total_unit2"
+        android:id="@+id/decorate_price_total2"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="50000"/>
+</RelativeLayout>
+
+<RelativeLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/decorate_price_title3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="板材"/>
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/decorate_price_title3"
+        android:id="@+id/decorate_price3"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="100"/>
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/decorate_price3"
+        android:layout_below="@id/decorate_price_title3"
+        android:id="@+id/decorate_price_unit3"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="元/每张"/>
+    
+    <include 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/layout_add_sub"
+        android:layout_centerInParent="true"/>
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:id="@+id/decorate_price_total_unit3"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="元"/>
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/decorate_price_total_unit3"
+        android:id="@+id/decorate_price_total3"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="100"/>
+</RelativeLayout>
+
+<RelativeLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/decorate_price_title4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="板材"/>
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/decorate_price_title4"
+        android:id="@+id/decorate_price4"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="100"/>
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/decorate_price4"
+        android:layout_below="@id/decorate_price_title4"
+        android:id="@+id/decorate_price_unit4"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="元/每张"/>
+    
+    <include 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/layout_add_sub"
+        android:layout_centerInParent="true"/>
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:id="@+id/decorate_price_total_unit4"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="元"/>
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/decorate_price_total_unit4"
+        android:id="@+id/decorate_price_total4"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="100"/>
+</RelativeLayout>
+
+<TextView 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:text="预算结果"
+    android:textStyle="bold"/>
+
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp" >
+  	<TextView 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_centerVertical="true"
+	    android:gravity="center"
+	    android:text="材料合计" />
+  	<TextView 
+  	   	android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentEnd="true"
+	    android:id="@+id/price_main_matirial_total"
+	    android:layout_centerVertical="true"
+	    android:text="元" />
+  	
+  	<EditText 
+  	    android:layout_width="100dp"
+  	    android:layout_height="wrap_content"
+  	    android:layout_toLeftOf="@id/price_main_matirial_total"
+  	    android:layout_centerVertical="true"
+  	    android:text="50300"/>
+  	
+    
+</RelativeLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp" >
+  	<TextView 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_centerVertical="true"
+	    android:gravity="center"
+	    android:text="辅料价格" />
+  	<TextView 
+  	   	android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentEnd="true"
+	    android:id="@+id/price_sub_matirial_total"
+	    android:layout_centerVertical="true"
+	    android:text="元" />
+  	
+  	<EditText 
+  	    android:layout_width="100dp"
+  	    android:layout_height="wrap_content"
+  	    android:layout_toLeftOf="@id/price_sub_matirial_total"
+  	    android:layout_centerVertical="true"
+  	    android:text="4000"/>
+  	
+    
+</RelativeLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp" >
+  	<TextView 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_centerVertical="true"
+	    android:gravity="center"
+	    android:text="人工价格" />
+  	<TextView 
+  	   	android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentEnd="true"
+	    android:id="@+id/price_label_total"
+	    android:layout_centerVertical="true"
+	    android:text="元" />
+  	
+  	<EditText 
+  	    android:layout_width="100dp"
+  	    android:layout_height="wrap_content"
+  	    android:singleLine="true"
+  	    android:layout_toLeftOf="@id/price_label_total"
+  	    android:layout_centerVertical="true"
+  	    android:text="25000"/>
+  	
+    
+</RelativeLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp" >
+  	<TextView 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_centerVertical="true"
+	    android:gravity="center"
+	    android:text="合计工程总价" />
+  	<TextView 
+  	   	android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentEnd="true"
+	    android:id="@+id/price_total"
+	    android:layout_centerVertical="true"
+	    android:text="元" />
+  	
+  	<EditText 
+  	    android:layout_width="100dp"
+  	    android:layout_height="wrap_content"
+  	    android:singleLine="true"
+  	    android:layout_toLeftOf="@id/price_total"
+  	    android:layout_centerVertical="true"
+  	    android:text="79300"/>
+  	
+    
+</RelativeLayout>
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" 
+    android:text="材料合计:表格中各项的汇总\n辅料价格：估算为材料价格×15%\n人工价格：估算按每平方250元，实际情况请与工长协商\n合计工程总价：材料合计+人工价格+辅料价格"/>
+
+<Button 
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:text="保存报价"
+     android:gravity="center"
+     android:id="@+id/decorate_save_price"
+     android:background="@drawable/decorate_yellow_bg"/>
+
+</LinearLayout>

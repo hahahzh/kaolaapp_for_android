@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+    
+    <ImageView 
+        android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_alignParentLeft="true"
+    	android:layout_alignParentTop="true"
+    	android:id="@+id/designer_project_comment_avatar"
+    	android:src="@drawable/avatar1_min"/>
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+    	android:layout_alignParentTop="true"
+    	android:layout_toRightOf="@id/designer_project_comment_avatar"
+    	android:id="@+id/designer_project_comment_name"
+    	android:textStyle="bold"
+    	android:text="长蘑菇的兔子"/>
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/designer_project_comment_avatar"
+    	android:layout_below="@id/designer_project_comment_name"
+    	android:id="@+id/designer_project_comment_content"
+    	android:text="很厉害，空间都很好的利用上了推荐哦 ~"/>
+    
+
+</RelativeLayout>

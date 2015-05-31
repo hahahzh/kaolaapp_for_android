@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp" >
+    
+     <ImageView
+        android:id="@+id/message_list_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/avatar1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" />
+     <LinearLayout 
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_toRightOf="@id/message_list_avatar"
+         android:orientation="horizontal"
+         android:id="@+id/message_list_first"
+         android:paddingLeft="5dp"
+         android:paddingBottom="5dp">
+         <TextView 
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="张澈"
+             android:id="@+id/message_list_name"
+             android:textSize="18sp"
+             android:textStyle="bold"/>
+         <TextView 
+             android:id="@+id/message_list_identity"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="设计师"
+             android:paddingLeft="10dp"/>
+     </LinearLayout>
+     
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_toRightOf="@id/message_list_avatar"
+         android:layout_below="@id/message_list_first"
+         android:id="@+id/message_list_second"
+         android:paddingLeft="5dp"
+         android:paddingBottom="5dp">
+         
+         <ImageView 
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentLeft="true"
+             android:layout_alignParentTop="true"
+             android:src="@drawable/clock"
+             android:paddingRight="5dp"
+             android:id="@+id/message_list_clock"/>
+         <TextView 
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_toRightOf="@id/message_list_clock"
+             android:id="@+id/message_list_date"
+             android:text="2015-03-19"/>
+         <TextView 
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:id="@+id/message_list_message_num"
+             android:text="2"
+             android:gravity="center"
+             android:background="#FF0000"
+             android:layout_alignParentRight="true"
+             android:paddingRight="10dp"/>
+     </RelativeLayout>
+     
+     <TextView
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:id="@+id/message_list_message_content"
+         android:layout_below="@id/message_list_second"
+         android:layout_toRightOf="@id/message_list_avatar"
+         android:text="今天木板已经送到，明天工人来安装，请..."
+         android:singleLine="true" 
+         android:paddingLeft="5dp" />
+
+</RelativeLayout>
