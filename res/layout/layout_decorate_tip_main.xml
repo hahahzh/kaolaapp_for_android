@@ -30,14 +30,14 @@
 				    android:layout_height="wrap_content"
 				    android:id="@+id/decorate_tips_list">
 				</ListView>
-	            <!--  
-	            <include android:id="@+id/tab_content_01" layout="@layout/layout_decorate_tip_list" />  
+	            <include android:id="@+id/tab_content_my_project_calendar" layout="@layout/layout_my_project_calendar" />  
+	            <!-- 
             	<include android:id="@+id/tab_content_02" layout="@layout/layout_decorate_tip_list" /> 
             	<include android:id="@+id/tab_content_03" layout="@layout/layout_decorate_tip_list" />  
             	<include android:id="@+id/tab_content_04" layout="@layout/layout_decorate_tip_list" />  
             	<include android:id="@+id/tab_content_05" layout="@layout/layout_decorate_tip_list" />  
             	<include android:id="@+id/tab_content_06" layout="@layout/layout_decorate_tip_list" />  
-            	--> 
+            	 -->
 	        </FrameLayout>
         </LinearLayout>
      

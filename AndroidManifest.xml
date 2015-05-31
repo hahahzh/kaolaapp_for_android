@@ -74,6 +74,9 @@
         
         <activity 
             android:name="com.winwinapp.my.MyProjectActivity"></activity>
+        
+        <activity 
+            android:name="com.winwinapp.my.MyProjectCalendarActivity"></activity>
     </application>
 
 </manifest>

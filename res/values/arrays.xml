@@ -6,4 +6,25 @@
         <item>项目</item>
         <item>我的</item>
     </string-array>
+    
+    <string-array name="Calendar_first">
+        <item>第一阶段</item>
+        <item>水电改造</item>
+        <item>更换门窗 </item>
+        <item>水电验收</item>
+    </string-array>
+    
+    <string-array name="Calendar_second">
+        <item>第二阶段</item>
+        <item>水电改造</item>
+        <item>更换门窗 </item>
+        <item>水电验收</item>
+    </string-array>
+    
+    <string-array name="Calendar_third">
+        <item>第三阶段</item>
+        <item>水电改造</item>
+        <item>更换门窗 </item>
+        <item>水电验收</item>
+    </string-array>
 </resources>
