@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/feedback_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/reg_bg"
+        android:orientation="vertical" >
+
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_weight="0.61"
+	    android:orientation="horizontal" >
+        
+	<TextView
+	    android:layout_width="wrap_content"
+	    android:layout_height="match_parent"
+	    android:layout_weight="2"
+	    android:ems="20"
+	    android:gravity="right|center"
+	    android:text="邮箱/手机" />
+
+    <EditText
+        android:id="@+id/reg_mailorphone_txt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="left|center"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="" >
+        <requestFocus />
+    </EditText>
+    </LinearLayout>
+    <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_weight="0.61"
+	    android:orientation="horizontal" >
+        
+	<TextView
+	    android:layout_width="wrap_content"
+	    android:layout_height="match_parent"
+	    android:layout_weight="2"
+	    android:ems="20"
+	    android:gravity="right|center"
+	    android:text="用户名(昵称)" />
+
+    <EditText
+        android:id="@+id/reg_username_txt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="left|center"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="" >
+        <requestFocus />
+    </EditText>
+    </LinearLayout>
+    <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_weight="0.61"
+	    android:orientation="horizontal" >
+        
+	<TextView
+	    android:layout_width="wrap_content"
+	    android:layout_height="match_parent"
+	    android:layout_weight="2"
+	    android:ems="20"
+	    android:gravity="right|center"
+	    android:text="密码" />
+
+    <EditText
+        android:id="@+id/reg_pwd_txt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="left|center"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:password="true" >
+        <requestFocus />
+    </EditText>
+    </LinearLayout>
+    <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_weight="0.61"
+	    android:orientation="horizontal" >
+        
+	<TextView
+	    android:layout_width="wrap_content"
+	    android:layout_height="match_parent"
+	    android:layout_weight="2"
+	    android:ems="20"
+	    android:gravity="right|center"
+	    android:text="确认密码" />
+
+    <EditText
+        android:id="@+id/reg_c_pwd_txt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="left|center"
+        android:layout_weight="1"
+        android:ems="10"
+		android:inputType="textPassword"
+        android:password="true" >
+        <requestFocus />
+    </EditText>
+    </LinearLayout>
+    <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_weight="0.61"
+	    android:orientation="horizontal" >
+        
+	<TextView
+	    android:layout_width="wrap_content"
+	    android:layout_height="match_parent"
+	    android:layout_weight="4"
+	    android:ems="20"
+	    android:gravity="right|center"
+	    android:text="验证码" />
+
+    <EditText
+        android:id="@+id/reg_v_code_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="left|center"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="" >
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/reg_vcode_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/font_focus"
+        android:gravity="center"
+        android:text="获取验证码"
+        android:textSize="10dp" />
+
+    </LinearLayout>
+	</LinearLayout>
+    <Button
+        android:id="@+id/reg1_submit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="50dp"
+        android:layout_weight="2"
+        android:background="@drawable/feedback_o"
+        android:text="立即注册" />
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.16"
+        android:textSize="12dp"
+        android:gravity="center"
+        android:text="点击“立即注册”即为同意卡拉小匠的"
+        android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/reg_policy_tv"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:textSize="12dp"
+            android:gravity="center"
+            android:text="  《服务条款》"
+            android:textColor="@color/red" />
+
+</LinearLayout>
+    
+
+
+</LinearLayout>
