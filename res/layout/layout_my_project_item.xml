@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginBottom="10dp" >
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="1"
+            android:gravity="center"
+            android:id="@+id/my_project_item_index"
+            android:background="@drawable/my_project_green_bg_min"/>
+       	<TextView 
+       	    android:layout_width="wrap_content"
+       	    android:layout_height="wrap_content"
+       	    android:textSize="20dp"
+       	    android:layout_marginLeft="10dp"
+       	    android:layout_gravity="center"
+       	    android:layout_weight="1"
+       	    android:text="杨浦小区"/>
+       	
+       	<TextView 
+       	    android:layout_width="wrap_content"
+       	    android:layout_height="wrap_content"
+       	    android:layout_gravity="center"
+       	    android:text="张满满"/>
+       	<ImageView 
+       	    android:layout_width="wrap_content"
+       	    android:layout_height="wrap_content"
+       	    android:layout_marginLeft="5dp"
+       	    android:src="@drawable/avatar2_min"/>
+    </LinearLayout>
+    
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#FFFFFF"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal" >
+       	
+        <TextView 
+       	    android:layout_width="wrap_content"
+       	    android:layout_height="wrap_content"
+       	    android:textSize="18dp"
+       	    android:layout_marginLeft="10dp"
+       	    android:text="面积" />
+         
+        <TextView 
+       	    android:layout_width="wrap_content"
+       	    android:layout_height="wrap_content"
+       	    android:textSize="18dp"
+       	    android:layout_marginLeft="10dp"
+       	    android:layout_weight="1"
+       	    android:textStyle="bold"
+       	    android:text="100m2" />
+       	
+       	<Button 
+       	    android:layout_width="wrap_content"
+       	    android:layout_height="wrap_content"
+       	    android:gravity="center"
+       	    android:text="竣工"
+       	    android:id="@+id/my_project_item_btn_finish"
+       	    android:background="@drawable/my_project_origin_bg"
+       	    />
+       	</LinearLayout>
+       
+     <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal" >
+       	
+         <TextView 
+       	    android:layout_width="wrap_content"
+       	    android:layout_height="wrap_content"
+       	    android:textSize="18dp"
+       	    android:layout_marginLeft="10dp"
+       	    android:text="预算 " />
+         
+        <TextView 
+       	    android:layout_width="wrap_content"
+       	    android:layout_height="wrap_content"
+       	    android:textSize="18dp"
+       	    android:layout_marginLeft="10dp"
+       	    android:layout_weight="1"
+       	    android:textStyle="bold"
+       	    android:text="6～8万" />
+       	
+       	<Button 
+       	    android:layout_width="wrap_content"
+       	    android:layout_height="wrap_content"
+       	    android:gravity="center"
+       	    android:text="设定日期"
+       	    android:id="@+id/my_project_item_btn_set_date"
+       	    android:background="@drawable/my_project_green_bg"/>
+       	</LinearLayout>
+    
+    
+    
+    
+   
+       	
+ 
+    "
+
+</LinearLayout>
+

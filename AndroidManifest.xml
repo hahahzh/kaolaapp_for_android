@@ -71,6 +71,9 @@
         
         <activity 
             android:name="com.winwinapp.my.MyActivity"></activity>
+        
+        <activity 
+            android:name="com.winwinapp.my.MyProjectActivity"></activity>
     </application>
 
 </manifest>
