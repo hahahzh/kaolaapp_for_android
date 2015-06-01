@@ -103,6 +103,9 @@
                <activity 
             android:name="com.winwinapp.login.ResetPWD2Activity"></activity>
        <!-- HZH END -->
+       
+       <activity 
+           android:name="com.winwinapp.my.MyLoveActivity"></activity>
     </application>
 
 </manifest>

@@ -21,6 +21,9 @@ public class MyActivity extends Fragment implements OnClickListener{
 	Activity mActivity;
 	TextView mMyProjectTxt;
 	ImageView mMyProjectImg;
+	
+	TextView mMyLoveText;
+	ImageView mMyLoveImg;
 	TextView mMyAboutTxt;
 	Button mMyLogoutBtn;
 	
@@ -32,11 +35,15 @@ public class MyActivity extends Fragment implements OnClickListener{
 		mMyProjectImg = (ImageView)view.findViewById(R.id.my_project_img);
 		mMyAboutTxt = (TextView)view.findViewById(R.id.my_about_txt);
 		mMyLogoutBtn = (Button)view.findViewById(R.id.my_logout_btn);
+		mMyLoveText = (TextView)view.findViewById(R.id.my_love_text);
+		mMyLoveImg = (ImageView)view.findViewById(R.id.my_love_img);
 		
 		mMyProjectTxt.setOnClickListener(this);
 		mMyProjectImg.setOnClickListener(this);
 		mMyAboutTxt.setOnClickListener(this);
 		mMyLogoutBtn.setOnClickListener(this);
+		mMyLoveText.setOnClickListener(this);
+		mMyLoveImg.setOnClickListener(this);
 		
 		return view;
 	}
@@ -57,6 +64,11 @@ public class MyActivity extends Fragment implements OnClickListener{
 			break;
 		case R.id.my_logout_btn:
 			intent = new Intent(mActivity,LoginPageActivity.class);
+			startActivity(intent);
+			break;
+		case R.id.my_love_img:
+		case R.id.my_love_text:
+			intent = new Intent(mActivity,MyLoveActivity.class);
 			startActivity(intent);
 			break;
 		}
