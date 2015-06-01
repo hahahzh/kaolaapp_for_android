@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.winwinapp.about.AboutActivity;
+import com.winwinapp.about.FuncDescActivity;
 import com.winwinapp.koala.R;
 
 public class Reg1Activity extends Activity {
@@ -37,7 +39,7 @@ public class Reg1Activity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_reg_1);
-		edit_username = (EditText)findViewById(R.id.reg_mailorphone_txt);
+		edit_mailandphone = (EditText)findViewById(R.id.reg_mailorphone_txt);
 		edit_username = (EditText)findViewById(R.id.reg_username_txt);
 		edit_password = (EditText)findViewById(R.id.reg_pwd_txt);
 		edit_repeat_password = (EditText)findViewById(R.id.reg_c_pwd_txt);
@@ -55,7 +57,7 @@ public class Reg1Activity extends Activity {
 			public void onClick(View v) {	
 				//设置点击背景
 //				btn_submit.setBackgroundResource(R.drawable.);
-				layoutProcess.setVisibility(View.VISIBLE);
+//				layoutProcess.setVisibility(View.VISIBLE);
 				//获取用户的登录信息，连接服务器，获取登录状态
 				mailandphone = edit_mailandphone.getText().toString().trim();
 				username = edit_username.getText().toString().trim();
@@ -63,7 +65,7 @@ public class Reg1Activity extends Activity {
 				repeat_password = edit_repeat_password.getText().toString().trim();
 				v_code = edit_v_code.getText().toString().trim();
 				if ("".equals(mailandphone) || "".equals(username) || "".equals(password) || "".equals(repeat_password) || "".equals(v_code)){
-					layoutProcess.setVisibility(View.GONE);
+//					layoutProcess.setVisibility(View.GONE);
 //					Toast.makeText(LoginPageActivity.this, context.getString(R.string.login_emptyname_or_emptypwd) , Toast.LENGTH_SHORT).show();
 				}else {
 					Bundle bundle = new Bundle();
@@ -79,8 +81,8 @@ public class Reg1Activity extends Activity {
 			@Override
 			public void onClick(View v) {	
 				
-					mThread = new Thread(getVCodeRunable);
-					mThread.start();
+//					mThread = new Thread(getVCodeRunable);
+//					mThread.start();
 					
 			}
 		});
@@ -88,14 +90,14 @@ public class Reg1Activity extends Activity {
 	}
 	
 
-	/**
-	 * 获取验证码线程
-	 */
-	Runnable getVCodeRunable = new Runnable() {
-		
-		@Override
-		public void run() {
-		}
-	};
+//	/**
+//	 * 获取验证码线程
+//	 */
+//	Runnable getVCodeRunable = new Runnable() {
+//		
+//		@Override
+//		public void run() {
+//		}
+//	};
 
 }

@@ -1,21 +1,19 @@
 package com.winwinapp.about;
 
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
+import com.winwinapp.koala.ActionBarActivity;
 import com.winwinapp.koala.R;
 
-public class FeedbackActivity extends Activity {
+public class FeedbackActivity extends ActionBarActivity {
 
 	private Context context = FeedbackActivity.this;
 	private EditText edit_content;
@@ -52,6 +50,22 @@ public class FeedbackActivity extends Activity {
 					
 				}
 			}
+		});
+	}
+	
+	public void initActionBar(){
+		ImageView imageView = new ImageView(this);
+		imageView.setImageResource(R.drawable.back);
+		setLeftView(imageView);
+		setTitle("反馈");
+		this.setOnLeftClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO 自动生成的方法存根
+				finish();
+			}
+			
 		});
 	}
 }

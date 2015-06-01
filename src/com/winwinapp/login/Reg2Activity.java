@@ -33,11 +33,11 @@ public class Reg2Activity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.layout_reg_1);
-		btn_customer = (RadioButton)findViewById(R.id.reg2_c_cb);
-		btn_designer = (RadioButton)findViewById(R.id.reg2_d_cb);
-		btn_labor = (RadioButton)findViewById(R.id.reg2_m_cb);
-		btn_suprior = (RadioButton)findViewById(R.id.reg2_v_cb);
+		setContentView(R.layout.layout_reg_2);
+//		btn_customer = (RadioButton)findViewById(R.id.reg2_c_cb);
+//		btn_designer = (RadioButton)findViewById(R.id.reg2_d_cb);
+//		btn_labor = (RadioButton)findViewById(R.id.reg2_m_cb);
+//		btn_suprior = (RadioButton)findViewById(R.id.reg2_v_cb);
 		
 		edit_qq = (EditText)findViewById(R.id.reg2_qq_txt);
 		edit_city = (EditText)findViewById(R.id.reg2_city_txt);
@@ -54,16 +54,11 @@ public class Reg2Activity extends Activity {
 //				btn_submit.setBackgroundResource(R.drawable.);
 				layoutProcess.setVisibility(View.VISIBLE);
 				//获取用户的登录信息，连接服务器，获取登录状态
-				if(btn_designer.isChecked())status = 1;
-				if(btn_labor.isChecked())status = 2;
-				if(btn_suprior.isChecked())status = 3;
-				if(btn_customer.isChecked())status = 4;
-
 				qq = edit_qq.getText().toString().trim();
 				city = edit_city.getText().toString().trim();
 
 				if ("".equals(qq) || "".equals(city)){
-					layoutProcess.setVisibility(View.GONE);
+//					layoutProcess.setVisibility(View.GONE);
 //					Toast.makeText(LoginPageActivity.this, context.getString(R.string.login_emptyname_or_emptypwd) , Toast.LENGTH_SHORT).show();
 				}else {
 //					mThread = new Thread(nextRunable);

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/feedback_bg"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:orientation="vertical" >
 
     <EditText
@@ -12,10 +13,12 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
+        android:background="#FFFFFF"
         android:ems="15"
         android:gravity="top|left"
         android:inputType="textMultiLine"
-        android:text="欢迎给予我们意见或建议" >
+        android:text="欢迎给予我们意见或建议"
+        android:textColor="@color/black" >
 
         <requestFocus />
     </EditText>
@@ -27,7 +30,6 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="50dp"
-        android:layout_weight="1"
         android:background="@drawable/feedback_o"
         android:text="提交" />
 

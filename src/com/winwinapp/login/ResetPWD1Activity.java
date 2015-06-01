@@ -44,18 +44,21 @@ public class ResetPWD1Activity extends Activity {
 			public void onClick(View v) {	
 				//设置点击背景
 //				btn_submit.setBackgroundResource(R.drawable.);
-				layoutProcess.setVisibility(View.VISIBLE);
+//				layoutProcess.setVisibility(View.VISIBLE);
 				//获取用户的登录信息，连接服务器，获取登录状态
 				mailandphone = edit_mailandphone.getText().toString().trim();
 				v_code = edit_v_code.getText().toString().trim();
 				
 				if ("".equals(mailandphone) || "".equals(v_code)){
-					layoutProcess.setVisibility(View.GONE);
+//					layoutProcess.setVisibility(View.GONE);
 //					Toast.makeText(LoginPageActivity.this, context.getString(R.string.login_emptyname_or_emptypwd) , Toast.LENGTH_SHORT).show();
 				}else {
-					//启动登陆线程
-					mThread = new Thread(nextRunable);
-					mThread.start();
+					Bundle bundle = new Bundle();
+					Intent intent = new Intent(ResetPWD1Activity.this, ResetPWD2Activity.class);
+					intent.putExtras(bundle);
+					startActivity(intent);
+//					mThread = new Thread(nextRunable);
+//					mThread.start();
 					
 				}
 			}

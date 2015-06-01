@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:orientation="vertical"
     tools:context=".LinearLayoutActivity" >
@@ -34,7 +34,6 @@
 		    android:id="@+id/about_l1"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
-		    android:layout_weight="1"
 		    android:background="@drawable/rectangular"
 		    android:gravity="center"
 		    android:orientation="horizontal" >
@@ -54,11 +53,11 @@
             android:src="@drawable/arrow" >
         </ImageView>
 		</LinearLayout>
-		<LinearLayout
+
+		<LinearLayout
 		    android:id="@+id/about_l2"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
-		    android:layout_weight="1"
 		    android:background="@drawable/rectangular"
 		    android:gravity="center"
 		    android:orientation="horizontal" >
@@ -83,7 +82,6 @@
 		    android:id="@+id/about_l3"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
-		    android:layout_weight="1"
 		    android:background="@drawable/rectangular"
 		    android:gravity="center"
 		    android:orientation="horizontal" >

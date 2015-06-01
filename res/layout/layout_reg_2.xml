@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@drawable/feedback_bg"
     android:orientation="vertical" >
 
@@ -13,7 +13,7 @@
         android:layout_marginTop="15dp"
         android:gravity="left|center"
         android:text="请选择您的注册角色" />
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,145 +21,148 @@
         android:background="@drawable/reg2_bg_1"
         android:orientation="vertical" >
 
-	    <LinearLayout
-	        android:layout_width="match_parent"
-	        android:layout_height="match_parent"
-	        android:layout_marginTop="20dp"
-	        android:layout_weight="0.25"
-	        android:orientation="horizontal" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_weight="0.25"
+            android:orientation="horizontal" >
 
-		<CheckBox
-		    android:id="@+id/reg2_c_cb"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:background="@drawable/reg2_check_c"
-		    android:text="CheckBox" />
+            <CheckBox
+                android:id="@+id/reg2_c_cb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/reg2_check_c"
+                android:text="CheckBox" />
 
-		<TextView
-		    android:id="@+id/textView1"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:text="普通会员" />
-		
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="普通会员" />
 
-		<CheckBox
-		    android:id="@+id/reg2_d_cb"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:background="@drawable/reg2_check"
-		    android:text="CheckBox" />
+            <CheckBox
+                android:id="@+id/reg2_d_cb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/reg2_check"
+                android:text="CheckBox" />
 
-		<TextView
-		    android:id="@+id/textView2"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:text="设计师" />
-		</LinearLayout>
-		
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_marginTop="20dp"
-      android:layout_weight="1"
-      android:orientation="horizontal" >
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设计师" />
+        </LinearLayout>
 
-		<CheckBox
-		    android:id="@+id/reg2_m_cb"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:background="@drawable/reg2_check_c"
-		    android:text="CheckBox" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
 
-		<TextView
-		    android:id="@+id/textView3"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:text="工       长" />
-		
+            <CheckBox
+                android:id="@+id/reg2_m_cb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/reg2_check_c"
+                android:text="CheckBox" />
 
-		<CheckBox
-		    android:id="@+id/reg2_v_cb"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:background="@drawable/reg2_check"
-		    android:text="CheckBox" />
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="工       长" />
 
-		<TextView
-		    android:id="@+id/textView4"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:text="监    理" />
-		</LinearLayout>
+            <CheckBox
+                android:id="@+id/reg2_v_cb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/reg2_check"
+                android:text="CheckBox" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="监    理" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.61"
+        android:layout_height="wrap_content"
         android:background="@drawable/reg2_bg_2"
         android:orientation="vertical" >
-        
-	<LinearLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	    android:layout_weight="0.61"
-	    android:orientation="horizontal" >
-        
-	<TextView
-	    android:layout_width="wrap_content"
-	    android:layout_height="match_parent"
-	    android:layout_weight="2"
-	    android:ems="20"
-	    android:gravity="right|center"
-	    android:text="QQ" />
 
-    <EditText
-        android:id="@+id/reg2_qq_txt"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="left|center"
-        android:layout_weight="1"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="" >
-        <requestFocus />
-    </EditText>
-    </LinearLayout>
-    <LinearLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	    android:layout_weight="0.61"
-	    android:orientation="horizontal" >
-         
-	<TextView
-	    android:layout_width="wrap_content"
-	    android:layout_height="match_parent"
-	    android:layout_weight="9"
-	    android:ems="20"
-	    android:gravity="right|center"
-	    android:text="选择城市" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.79"
+            android:orientation="horizontal" >
 
-    <EditText
-        android:id="@+id/reg2_city_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="left|center"
-        android:layout_weight="2"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="上海" >
-        <requestFocus />
-    </EditText>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:ems="20"
+                android:gravity="right|center"
+                android:text="QQ" />
 
-    <Button
-        android:id="@+id/reg2_city_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:background="@drawable/arrow2"
-        android:gravity="center" />
+            <EditText
+                android:id="@+id/reg2_qq_txt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:ems="10"
+                android:gravity="left|center"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textColor="@color/black" >
 
-    </LinearLayout>
+                <requestFocus />
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.29"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                android:ems="20"
+                android:gravity="right|center"
+                android:text="选择城市" />
+
+            <EditText
+                android:id="@+id/reg2_city_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@color/white"
+                android:ems="10"
+                android:gravity="left|center"
+                android:inputType="textPersonName"
+                android:text="上海"
+                android:textColor="@color/black" >
+
+                <requestFocus />
+            </EditText>
+
+            <Button
+                android:id="@+id/reg2_city_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@drawable/arrow2"
+                android:gravity="center" />
+        </LinearLayout>
     </LinearLayout>
 
     <Button
@@ -169,11 +172,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="50dp"
-        android:layout_weight="2"
         android:background="@drawable/feedback_o"
         android:text="完成注册" />
-
-    
-
 
 </LinearLayout>
