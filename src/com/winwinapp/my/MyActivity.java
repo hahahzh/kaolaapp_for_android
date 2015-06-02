@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.winwinapp.about.AboutActivity;
@@ -29,6 +30,7 @@ public class MyActivity extends Fragment implements OnClickListener{
 	ImageView mMyBidImg;
 	TextView mMyAboutTxt;
 	Button mMyLogoutBtn;
+	LinearLayout mMyIDAuthenLL;
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		View view = inflater.inflate(R.layout.layout_my, null);
@@ -42,6 +44,7 @@ public class MyActivity extends Fragment implements OnClickListener{
 		mMyLoveImg = (ImageView)view.findViewById(R.id.my_love_img);
 		mMyBidTxt = (TextView)view.findViewById(R.id.my_bid_txt);
 		mMyBidImg = (ImageView)view.findViewById(R.id.my_bid_img);
+		mMyIDAuthenLL = (LinearLayout)view.findViewById(R.id.my_id_cert_layout);
 		
 		mMyProjectTxt.setOnClickListener(this);
 		mMyProjectImg.setOnClickListener(this);
@@ -51,6 +54,7 @@ public class MyActivity extends Fragment implements OnClickListener{
 		mMyLoveImg.setOnClickListener(this);
 		mMyBidTxt.setOnClickListener(this);
 		mMyBidImg.setOnClickListener(this);
+		mMyIDAuthenLL.setOnClickListener(this);
 		
 		return view;
 	}
@@ -81,6 +85,10 @@ public class MyActivity extends Fragment implements OnClickListener{
 		case R.id.my_bid_img:
 		case R.id.my_bid_txt:
 			intent = new Intent(mActivity,BidsListActivity.class);
+			startActivity(intent);
+			break;
+		case R.id.my_id_cert_layout:
+			intent = new Intent(mActivity,MyIDAuthenActivity.class);
 			startActivity(intent);
 			break;
 		}
