@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.winwinapp.about.AboutActivity;
+import com.winwinapp.bids.BidsListActivity;
 import com.winwinapp.koala.R;
 import com.winwinapp.login.LoginPageActivity;
 
@@ -24,6 +25,8 @@ public class MyActivity extends Fragment implements OnClickListener{
 	
 	TextView mMyLoveText;
 	ImageView mMyLoveImg;
+	TextView mMyBidTxt;
+	ImageView mMyBidImg;
 	TextView mMyAboutTxt;
 	Button mMyLogoutBtn;
 	
@@ -37,6 +40,8 @@ public class MyActivity extends Fragment implements OnClickListener{
 		mMyLogoutBtn = (Button)view.findViewById(R.id.my_logout_btn);
 		mMyLoveText = (TextView)view.findViewById(R.id.my_love_text);
 		mMyLoveImg = (ImageView)view.findViewById(R.id.my_love_img);
+		mMyBidTxt = (TextView)view.findViewById(R.id.my_bid_txt);
+		mMyBidImg = (ImageView)view.findViewById(R.id.my_bid_img);
 		
 		mMyProjectTxt.setOnClickListener(this);
 		mMyProjectImg.setOnClickListener(this);
@@ -44,6 +49,8 @@ public class MyActivity extends Fragment implements OnClickListener{
 		mMyLogoutBtn.setOnClickListener(this);
 		mMyLoveText.setOnClickListener(this);
 		mMyLoveImg.setOnClickListener(this);
+		mMyBidTxt.setOnClickListener(this);
+		mMyBidImg.setOnClickListener(this);
 		
 		return view;
 	}
@@ -69,6 +76,11 @@ public class MyActivity extends Fragment implements OnClickListener{
 		case R.id.my_love_img:
 		case R.id.my_love_text:
 			intent = new Intent(mActivity,MyLoveActivity.class);
+			startActivity(intent);
+			break;
+		case R.id.my_bid_img:
+		case R.id.my_bid_txt:
+			intent = new Intent(mActivity,BidsListActivity.class);
 			startActivity(intent);
 			break;
 		}
