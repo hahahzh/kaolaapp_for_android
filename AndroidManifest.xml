@@ -112,6 +112,9 @@
        <activity 
            android:name="com.winwinapp.my.MySelectPicActivity"
            android:theme="@style/MyDialogStyleBottom"></activity>
+       
+       <activity 
+           android:name="com.winwinapp.my.MyContractActivity"></activity>
     </application>
 
 </manifest>

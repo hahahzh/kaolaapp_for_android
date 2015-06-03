@@ -31,6 +31,7 @@ public class MyActivity extends Fragment implements OnClickListener{
 	TextView mMyAboutTxt;
 	Button mMyLogoutBtn;
 	LinearLayout mMyIDAuthenLL;
+	LinearLayout mMyContractLL;
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		View view = inflater.inflate(R.layout.layout_my, null);
@@ -45,6 +46,7 @@ public class MyActivity extends Fragment implements OnClickListener{
 		mMyBidTxt = (TextView)view.findViewById(R.id.my_bid_txt);
 		mMyBidImg = (ImageView)view.findViewById(R.id.my_bid_img);
 		mMyIDAuthenLL = (LinearLayout)view.findViewById(R.id.my_id_cert_layout);
+		mMyContractLL = (LinearLayout)view.findViewById(R.id.my_contract_ll);
 		
 		mMyProjectTxt.setOnClickListener(this);
 		mMyProjectImg.setOnClickListener(this);
@@ -55,6 +57,7 @@ public class MyActivity extends Fragment implements OnClickListener{
 		mMyBidTxt.setOnClickListener(this);
 		mMyBidImg.setOnClickListener(this);
 		mMyIDAuthenLL.setOnClickListener(this);
+		mMyContractLL.setOnClickListener(this);
 		
 		return view;
 	}
@@ -89,6 +92,10 @@ public class MyActivity extends Fragment implements OnClickListener{
 			break;
 		case R.id.my_id_cert_layout:
 			intent = new Intent(mActivity,MyIDAuthenActivity.class);
+			startActivity(intent);
+			break;
+		case R.id.my_contract_ll:
+			intent = new Intent(mActivity,MyContractActivity.class);
 			startActivity(intent);
 			break;
 		}
