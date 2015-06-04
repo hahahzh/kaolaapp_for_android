@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,7 +25,7 @@ import com.winwinapp.my.MyProjectActivity.MyProjectAdapter;
 import com.winwinapp.my.MyProjectActivity.MyProjectItem;
 import com.winwinapp.my.MyProjectActivity.OnItemChildClickListener;
 
-public class MyContractActivity extends ActionBarActivity implements OnClickListener{
+public class MyContractActivity extends ActionBarActivity implements OnClickListener,OnItemClickListener{
 
 	ImageView mIDFront;
 	ImageView mIDBack;
@@ -37,11 +39,10 @@ public class MyContractActivity extends ActionBarActivity implements OnClickList
 		public void handleMessage(Message msg){
 			switch(msg.what){
 			case INDEX_AREA:
-				//int position = msg.arg1;
-				//Intent intent = new Intent(MyProjectActivity.this,MyProjectCalendarActivity.class);
-				//startActivity(intent);
-				break;
 			case INDEX_OTHERS:
+				//int position = msg.arg1;
+				//Intent intent = new Intent(MyContractActivity.this,ContractLaborActivity.class);
+				//startActivity(intent);
 				break;
 			}
 		}
@@ -67,6 +68,7 @@ public class MyContractActivity extends ActionBarActivity implements OnClickList
 		item.bConfirm = false;
 		mArrayList.add(item);
 		mListView.setAdapter(new MyContractAdapter(this));
+		//mListView.setOnItemClickListener(this);
 	}
 	
 	public void initActionBar(){
@@ -93,7 +95,8 @@ public class MyContractActivity extends ActionBarActivity implements OnClickList
 			@Override
 			public void onClick(View arg0) {
 				// TODO 自动生成的方法存根
-				//finish();
+				Intent intent = new Intent(MyContractActivity.this,ContractLaborActivity.class);
+				startActivity(intent);
 			}
 			
 		});
@@ -172,5 +175,12 @@ public class MyContractActivity extends ActionBarActivity implements OnClickList
 			mHandler.sendMessage(msg);
 		}
 		
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		// TODO 自动生成的方法存根
+		Intent intent = new Intent(MyContractActivity.this,ContractLaborActivity.class);
+		startActivity(intent);
 	}
 }
