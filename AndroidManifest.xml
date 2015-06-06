@@ -116,6 +116,7 @@
        <activity 
            android:name="com.winwinapp.my.MyContractActivity"></activity>
        <activity android:name="com.winwinapp.my.ContractLaborActivity"></activity>
+       <activity android:name="com.winwinapp.my.ContractSuperiorActivity"></activity>
     </application>
 
 </manifest>

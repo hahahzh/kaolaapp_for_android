@@ -34,6 +34,7 @@ public class MyContractActivity extends ActionBarActivity implements OnClickList
 	private static final int INDEX_OTHERS = 2;
 	ArrayList<MyContractItem> mArrayList = new ArrayList<MyContractItem>();
 	ListView mListView;
+	int i = 0;
 	
 	private Handler mHandler = new Handler(){
 		public void handleMessage(Message msg){
@@ -95,7 +96,13 @@ public class MyContractActivity extends ActionBarActivity implements OnClickList
 			@Override
 			public void onClick(View arg0) {
 				// TODO 自动生成的方法存根
-				Intent intent = new Intent(MyContractActivity.this,ContractLaborActivity.class);
+				Intent intent;
+				if(i%2 == 0){
+					intent = new Intent(MyContractActivity.this,ContractLaborActivity.class);
+				}else{
+					intent = new Intent(MyContractActivity.this,ContractSuperiorActivity.class);
+				}
+				i++;
 				startActivity(intent);
 			}
 			

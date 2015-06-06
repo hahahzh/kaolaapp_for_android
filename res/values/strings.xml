@@ -10,5 +10,8 @@
     
     <string name="location_city">定位城市</string>
     <string name="common_city">常用城市</string>
-
+	
+    <string name="legal_contract">在施工过程中，如因甲方原因（供货延误、变
+        		更、外出）需推迟施工进度，延误工期超过合同约定的竣工期限时，在工程弹性期间内不加收
+        		监理费，达到逾期收费时间按照逾期收费（每天）的标准进行支付</string>
 </resources>
