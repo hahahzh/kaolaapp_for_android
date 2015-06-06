@@ -117,6 +117,10 @@
            android:name="com.winwinapp.my.MyContractActivity"></activity>
        <activity android:name="com.winwinapp.my.ContractLaborActivity"></activity>
        <activity android:name="com.winwinapp.my.ContractSuperiorActivity"></activity>
+       <activity android:name="com.winwinapp.my.BindCardActivity"></activity>
+       <activity android:name="com.winwinapp.my.BindCardInformationActivity"></activity>
+       <activity android:name="com.winwinapp.my.BindCardPhoneCertActivity"></activity>
+       <activity android:name="com.winwinapp.my.BindCardTypeActivity"></activity>
     </application>
 
 </manifest>

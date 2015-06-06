@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="20dp"
+        android:text="请选择银行卡类型"/>
+    
+    <include layout="@layout/layout_separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>"
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@color/white">
+        
+        <TextView 
+            android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="银行卡类型"/>
+        
+        <EditText 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="工商银行  储蓄卡"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:background="@color/white"
+            android:drawableRight="@drawable/forward"/>
+        
+    </LinearLayout>
+    
+     <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="20dp"
+        android:text="请填写银行卡预留信息"/>
+    
+    <include layout="@layout/layout_separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@color/white">
+        
+        <TextView 
+            android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="姓名"/>
+        
+        <EditText 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="张曼曼"
+            android:background="@color/white"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"/>
+        
+    </LinearLayout>
+    
+    <include layout="@layout/layout_separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@color/white">
+        
+        <TextView 
+            android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="身份证号"/>
+        
+        <EditText 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="513922199102068374"
+            android:background="@color/white"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"/>
+        
+    </LinearLayout>
+    
+    <include layout="@layout/layout_separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@color/white">
+        
+        <TextView 
+            android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="手机号"/>
+        
+        <EditText 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="15821111346"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"
+            android:background="@color/white"/>
+        
+    </LinearLayout>
+    
+    <include layout="@layout/layout_separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <CheckBox
+        android:id="@+id/checkBox_agree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="同意《用户协议》" />
+    
+    <Button 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/my_card_information_next_step"
+        android:layout_marginTop="40dp"
+        android:text="下一步"
+        android:background="@drawable/decorate_yellow_bg"/>
+
+</LinearLayout>

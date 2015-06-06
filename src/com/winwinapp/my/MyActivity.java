@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.winwinapp.about.AboutActivity;
 import com.winwinapp.bids.BidsListActivity;
+import com.winwinapp.koala.MessageListActivity;
 import com.winwinapp.koala.R;
 import com.winwinapp.login.LoginPageActivity;
 
@@ -32,6 +33,9 @@ public class MyActivity extends Fragment implements OnClickListener{
 	Button mMyLogoutBtn;
 	LinearLayout mMyIDAuthenLL;
 	LinearLayout mMyContractLL;
+	LinearLayout mMyMessageLL;
+	LinearLayout mMyCardLL;
+	LinearLayout mMyAccountLL;
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		View view = inflater.inflate(R.layout.layout_my, null);
@@ -47,6 +51,9 @@ public class MyActivity extends Fragment implements OnClickListener{
 		mMyBidImg = (ImageView)view.findViewById(R.id.my_bid_img);
 		mMyIDAuthenLL = (LinearLayout)view.findViewById(R.id.my_id_cert_layout);
 		mMyContractLL = (LinearLayout)view.findViewById(R.id.my_contract_ll);
+		mMyMessageLL = (LinearLayout)view.findViewById(R.id.my_message_ll);
+		mMyCardLL = (LinearLayout)view.findViewById(R.id.my_card_ll);
+		mMyAccountLL = (LinearLayout)view.findViewById(R.id.my_account_ll);
 		
 		mMyProjectTxt.setOnClickListener(this);
 		mMyProjectImg.setOnClickListener(this);
@@ -58,6 +65,9 @@ public class MyActivity extends Fragment implements OnClickListener{
 		mMyBidImg.setOnClickListener(this);
 		mMyIDAuthenLL.setOnClickListener(this);
 		mMyContractLL.setOnClickListener(this);
+		mMyMessageLL.setOnClickListener(this);
+		mMyCardLL.setOnClickListener(this);
+		mMyAccountLL.setOnClickListener(this);
 		
 		return view;
 	}
@@ -96,6 +106,18 @@ public class MyActivity extends Fragment implements OnClickListener{
 			break;
 		case R.id.my_contract_ll:
 			intent = new Intent(mActivity,MyContractActivity.class);
+			startActivity(intent);
+			break;
+		case R.id.my_message_ll:
+			intent = new Intent(mActivity,MessageListActivity.class);
+			startActivity(intent);
+			break;
+		case R.id.my_account_ll:
+			intent = new Intent(mActivity,MyIDAuthenActivity.class);
+			startActivity(intent);
+			break;
+		case R.id.my_card_ll:
+			intent = new Intent(mActivity,BindCardActivity.class);
 			startActivity(intent);
 			break;
 		}
