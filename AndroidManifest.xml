@@ -122,6 +122,7 @@
        <activity android:name="com.winwinapp.my.BindCardPhoneCertActivity"></activity>
        <activity android:name="com.winwinapp.my.BindCardTypeActivity"></activity>
        <activity android:name="com.winwinapp.selectcity.SelectAddressActivity"></activity>
+       <activity android:name="com.winwinapp.my.MyAccountActivity"></activity>
     </application>
 
 </manifest>

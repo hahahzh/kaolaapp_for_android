@@ -113,7 +113,7 @@ public class MyActivity extends Fragment implements OnClickListener{
 			startActivity(intent);
 			break;
 		case R.id.my_account_ll:
-			intent = new Intent(mActivity,MyIDAuthenActivity.class);
+			intent = new Intent(mActivity,MyAccountActivity.class);
 			startActivity(intent);
 			break;
 		case R.id.my_card_ll:
