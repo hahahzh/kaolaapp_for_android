@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true" >
+    
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        layout="@layout/layout_separator" />
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:background="@color/white">
+       
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="省"
+            android:textSize="16dp"
+            android:textColor="@color/gray"
+            android:layout_gravity="center_vertical"/>
+        
+        <Spinner
+	        android:id="@+id/spin_province"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:paddingLeft="20dp"
+	        android:textSize="16dp"
+	        android:background="@null"
+	        android:layout_weight="1"
+	        android:gravity="center"
+	         />
+        
+        <ImageView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/forward"
+            android:layout_gravity="center_vertical"/>
+        
+    </LinearLayout>
+    
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/layout_separator" />
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:background="@color/white">
+       
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="市"
+            android:textSize="16dp"
+            android:textColor="@color/gray"
+            android:layout_gravity="center_vertical"/>
+        
+        <Spinner
+	        android:id="@+id/spin_city"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:paddingLeft="20dp"
+	        android:textSize="16dp"
+	        android:background="@null"
+	        android:layout_weight="1"
+	        android:gravity="center"
+	         />
+        
+        <ImageView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/forward"
+            android:layout_gravity="center_vertical"/>
+        
+    </LinearLayout>
+    
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/layout_separator" />
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:background="@color/white">
+       
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="区/县"
+            android:textSize="16dp"
+            android:textColor="@color/gray"
+            android:layout_gravity="center_vertical"/>
+        
+        <Spinner
+	        android:id="@+id/spin_county"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:paddingLeft="20dp"
+	        android:textSize="16dp"
+	        android:background="@null"
+	        android:layout_weight="1"
+	        android:gravity="center"
+	         />
+        
+        <ImageView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/forward"
+            android:layout_gravity="center_vertical"/>
+        
+    </LinearLayout>
+    
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/layout_separator" />
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:background="@color/white">
+        
+        <EditText 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangular_white"
+            android:text="广中西路"
+            android:textSize="16dp"
+            android:layout_weight="1"/>
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="路"
+            android:textSize="16dp"
+            android:textColor="@color/gray"
+            android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+        
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:background="@color/white">
+        
+        <EditText 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangular_white"
+            android:text=""
+            android:textSize="16dp"
+            android:layout_weight="1"/>
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="弄/村"
+            android:textSize="16dp"
+            android:textColor="@color/gray"
+            android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+        
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:background="@color/white">
+        
+        <EditText 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangular_white"
+            android:text=""
+            android:textSize="16dp"
+            android:layout_weight="1"/>
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="号"
+            android:textSize="16dp"
+            android:textColor="@color/gray"
+            android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+        
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:background="@color/white">
+        
+        <EditText 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangular_white"
+            android:text=""
+            android:textSize="16dp"
+            android:layout_weight="1"/>
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="楼"
+            android:textSize="16dp"
+            android:textColor="@color/gray"
+            android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+        
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:background="@color/white">
+        
+        <EditText 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangular_white"
+            android:text=""
+            android:textSize="16dp"
+            android:layout_weight="1"/>
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="室"
+            android:textSize="16dp"
+            android:textColor="@color/gray"
+            android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+
+</LinearLayout>
+</ScrollView>
