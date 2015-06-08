@@ -55,7 +55,6 @@ public class ResetPWD1Activity extends Activity {
 				}else {
 					Bundle bundle = new Bundle();
 					Intent intent = new Intent(ResetPWD1Activity.this, ResetPWD2Activity.class);
-					intent.putExtras(bundle);
 					startActivity(intent);
 //					mThread = new Thread(nextRunable);
 //					mThread.start();

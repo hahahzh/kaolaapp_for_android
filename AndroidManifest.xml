@@ -102,6 +102,9 @@
                
                <activity 
             android:name="com.winwinapp.login.ResetPWD2Activity"></activity>
+               
+               <activity 
+            android:name="com.winwinapp.login.SettingPageActivity"></activity>
        <!-- HZH END -->
        
        <activity 

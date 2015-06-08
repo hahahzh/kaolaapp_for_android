@@ -18,6 +18,13 @@ import android.widget.ImageView;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
+
+import com.winwinapp.bids.BidsListActivity;
+import com.winwinapp.login.SettingPageActivity;
+import com.winwinapp.my.MyActivity;
+import com.winwinapp.my.MyProjectActivity;
+import com.winwinapp.selectcity.SelectCityActivity;
+import com.winwinapp.util.ActionBarView;
 import android.widget.Toast;
 
 public class KLHomePageActivity extends FragmentActivity {
@@ -120,7 +127,9 @@ public class KLHomePageActivity extends FragmentActivity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO 自动生成的方法存根
-				
+			
+				Intent intent = new Intent(KLHomePageActivity.this,SettingPageActivity.class);
+				startActivity(intent);
 			}
 			
 		});
@@ -129,8 +138,8 @@ public class KLHomePageActivity extends FragmentActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.klhome_page, menu);
-		return true;
+//		getMenuInflater().inflate(R.menu.klhome_page, menu);
+		return false;
 	}
 	
 	private void initView(){
@@ -160,6 +169,18 @@ public class KLHomePageActivity extends FragmentActivity {
 					setActionBarMy();
 				}else if(arg0.equals(mTabContent[0])){
 					setActionBarMain();
+				}else if(arg0.equals(mTabContent[1])){
+//					setActionBarBids();
+					Bundle bundle = new Bundle();
+					Intent intent = new Intent(KLHomePageActivity.this, BidsListActivity.class);
+					intent.putExtras(bundle);
+					startActivity(intent);
+				}else if(arg0.equals(mTabContent[2])){
+//					setActionBarProject();
+					Bundle bundle = new Bundle();
+					Intent intent = new Intent(KLHomePageActivity.this, MyProjectActivity.class);
+					intent.putExtras(bundle);
+					startActivity(intent);
 				}
 			}
 			
