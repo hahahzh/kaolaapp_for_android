@@ -126,6 +126,8 @@
        <activity android:name="com.winwinapp.my.BindCardTypeActivity"></activity>
        <activity android:name="com.winwinapp.selectcity.SelectAddressActivity"></activity>
        <activity android:name="com.winwinapp.my.MyAccountActivity"></activity>
+       <activity android:name="com.winwinapp.designer.LaborActivity"></activity>
+       <activity android:name="com.winwinapp.designer.SupriorActivity"></activity>
     </application>
 
 </manifest>

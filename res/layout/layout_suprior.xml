@@ -10,7 +10,7 @@
     android:focusableInTouchMode="true" >
     
     <FrameLayout
-        android:id="@+id/rl_layout"
+        android:id="@+id/suprior_rl_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -43,7 +43,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="120dp"
             android:paddingLeft="5dp"
-            android:text="张澈  设计师"
+            android:text="张澈  监理"
             android:textColor="@color/white" />
 
     </FrameLayout>
@@ -56,7 +56,7 @@
          <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/designer_skill"
+            android:id="@+id/suprior_skill"
             android:text="9.0"
             android:layout_weight="1"
             android:gravity="center"
@@ -65,26 +65,19 @@
          <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="9"
-            android:layout_weight="1"
-            android:id="@+id/designer_experience"
-            android:gravity="center"/>
-         
-         <TextView 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="9.0"
             android:layout_weight="1"
-            android:id="@+id/designer_atitude"
+            android:id="@+id/suprior_experience"
             android:gravity="center"/>
          
          <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="100"
+            android:text="9"
             android:layout_weight="1"
-            android:id="@+id/designer_price"
+            android:id="@+id/suprior_atitude"
             android:gravity="center"/>
+
          
     </TableRow>
     <TableRow 
@@ -114,13 +107,6 @@
             android:layout_weight="1"
             android:gravity="center"/>
          
-         <TextView 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="收费(元/m2)"
-            android:layout_weight="1"
-            android:gravity="center"/>
-         
     </TableRow>
     
     <LinearLayout
@@ -139,18 +125,18 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:drawableLeft="@drawable/id"
-            android:textColor="#CAD314"
-            android:text="身份证已认证"/>
+            android:drawableLeft="@drawable/certificate_no"
+            android:textColor="#999999"
+            android:text="身份证未认证"/>
         
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:drawableLeft="@drawable/certificate"
-            android:text="证书已认证"
-            android:textColor="#FF0000"/>
+            android:drawableLeft="@drawable/certificate_no"
+            android:text="证书未认证"
+            android:textColor="#999999"/>
     	</TableRow>
        
     </LinearLayout>
@@ -165,7 +151,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:text="设计师介绍"
+            android:text="监理介绍"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"/>
         <ImageView 

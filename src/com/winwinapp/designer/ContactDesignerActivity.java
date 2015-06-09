@@ -9,15 +9,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TabHost;
-import android.widget.AdapterView.OnItemClickListener;
 
-import com.winwinapp.decorateTips.DecorateTipsActivity;
-import com.winwinapp.decorateTips.DecorateTipsDetailActivity;
 import com.winwinapp.koala.ActionBarActivity;
 import com.winwinapp.koala.R;
 import com.winwinapp.koala.fragment_homepage;
@@ -30,7 +27,7 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 	LayoutInflater mInflater;
 	DesignerListAdapter mAdapter = new DesignerListAdapter();
 	String mTitle = null;
-	
+	int type;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_contact_designer);
@@ -38,7 +35,7 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 		getTitleFromIntent(this.getIntent());
 		initActionBar();
 		initTabHost(this.getIntent());
-		initListView();
+		initListView(this.getIntent());
 	}
 	
 	public void getTitleFromIntent(Intent intent){
@@ -64,7 +61,7 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 		mTabHost.addTab(mTabHost.newTabSpec("服务态度").setIndicator("服务态度").setContent(R.id.contact_designer_list));
 		mTabHost.addTab(mTabHost.newTabSpec("案例数").setIndicator("案例数").setContent(R.id.contact_designer_list));
 		
-		int type = intent.getIntExtra("type", fragment_homepage.TYPE_DESIGNER);
+		type = intent.getIntExtra("type", fragment_homepage.TYPE_DESIGNER);
 		switch(type){
 		case fragment_homepage.TYPE_DESIGNER:
 			mTabHost.addTab(mTabHost.newTabSpec("收费标准").setIndicator("收费标准").setContent(R.id.contact_designer_list));
@@ -105,7 +102,7 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 		mTabHost.setCurrentTab(0);
 	}
 	
-	public void initListView(){
+	public void initListView(Intent intent){
 		mInflater = LayoutInflater.from(this);
 		DesignerListItem item = new DesignerListItem();
 		mArrayList.add(item);
@@ -114,14 +111,26 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 		mArrayList.add(item);
 		mListView = (ListView) this.findViewById(R.id.contact_designer_list);
 		mListView.setAdapter(mAdapter);
+		type = intent.getIntExtra("type", fragment_homepage.TYPE_DESIGNER);
 		mListView.setOnItemClickListener(new OnItemClickListener(){
-
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				// TODO 自动生成的方法存根
-				Intent intent = new Intent(ContactDesignerActivity.this,DesignerActivity.class);
-				startActivity(intent);
+				switch(type){
+				case fragment_homepage.TYPE_DESIGNER:
+					// TODO 自动生成的方法存根
+					Intent intent = new Intent(ContactDesignerActivity.this,DesignerActivity.class);
+					startActivity(intent);
+					break;
+				case fragment_homepage.TYPE_LABOR:
+					Intent intentLabor = new Intent(ContactDesignerActivity.this,LaborActivity.class);
+					startActivity(intentLabor);
+					break;
+				case fragment_homepage.TYPE_SUPRIOR:
+					Intent intentSuprior = new Intent(ContactDesignerActivity.this,SupriorActivity.class);
+					startActivity(intentSuprior);
+					break;
+				}
 			}
 			
 		});
