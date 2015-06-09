@@ -37,7 +37,7 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 
 		getTitleFromIntent(this.getIntent());
 		initActionBar();
-		initTabHost();
+		initTabHost(this.getIntent());
 		initListView();
 	}
 	
@@ -57,13 +57,26 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 		setTitle(mTitle);
 	}
 	
-	public void initTabHost(){
+	public void initTabHost(Intent intent){
 		mTabHost = (TabHost) this.findViewById(R.id.contact_designer_tabhost);
 		mTabHost.setup();
 		mTabHost.addTab(mTabHost.newTabSpec("专业水平").setIndicator("专业水平").setContent(R.id.contact_designer_list));
 		mTabHost.addTab(mTabHost.newTabSpec("服务态度").setIndicator("服务态度").setContent(R.id.contact_designer_list));
 		mTabHost.addTab(mTabHost.newTabSpec("案例数").setIndicator("案例数").setContent(R.id.contact_designer_list));
-		mTabHost.addTab(mTabHost.newTabSpec("收费标准").setIndicator("收费标准").setContent(R.id.contact_designer_list));
+		
+		int type = intent.getIntExtra("type", fragment_homepage.TYPE_DESIGNER);
+		switch(type){
+		case fragment_homepage.TYPE_DESIGNER:
+			mTabHost.addTab(mTabHost.newTabSpec("收费标准").setIndicator("收费标准").setContent(R.id.contact_designer_list));
+			break;
+		case fragment_homepage.TYPE_LABOR:
+			mTabHost.addTab(mTabHost.newTabSpec("从业年限").setIndicator("从业年限").setContent(R.id.contact_designer_list));
+			break;
+		case fragment_homepage.TYPE_SUPRIOR:
+			mTabHost.addTab(mTabHost.newTabSpec("从业年限").setIndicator("从业年限").setContent(R.id.contact_designer_list));
+			break;
+		}
+		
 		mTabHost.setOnTabChangedListener(this);
 		
 		onTabChanged("全部");

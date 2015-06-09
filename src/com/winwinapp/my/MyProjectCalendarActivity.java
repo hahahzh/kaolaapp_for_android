@@ -51,7 +51,7 @@ public class MyProjectCalendarActivity extends Activity  implements OnTabChangeL
 				
 			});
 			
-			mActionBar.setTitle("装修宝典");
+			mActionBar.setTitle("项目日历");
 			
 			
 			actionBar.setCustomView(mActionBar,new ActionBar.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
