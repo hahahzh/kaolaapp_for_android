@@ -1,114 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content">
+    
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="20dp"
-    android:orientation="vertical"
+    android:background="#EEEEEE"
     android:focusable="true"
-    android:focusableInTouchMode="true" >
-    
+    android:focusableInTouchMode="true"
+    android:orientation="vertical" >
 
-    <LinearLayout 
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/layout_border"
+        android:orientation="horizontal" >
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="姓名" />
-        
-        <EditText
-             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:layout_marginLeft="10dp"
-            android:textStyle="bold"
-            android:text="张曼曼"/>
-    </LinearLayout>
-    
-    <ImageView 
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
-    
-    <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+            android:gravity="center"
+            android:text="身份认证" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="身份证号" />
-        
-        <EditText
-             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:layout_marginLeft="10dp"
-            android:textStyle="bold"
-            android:text="51392198706017653"/>
+            android:gravity="center"
+            android:text="证书认证" />
     </LinearLayout>
-    
-    <TextView 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+        	android:layout_gravity="center"
+            android:src="@drawable/identity_id2" />
+    </LinearLayout>
+
+   <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/identity_bg_1"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="姓名" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:text="张曼曼"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="身份证号" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:text="51392198706017653"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:text="请上传身份证（正反面）"/>
-    
+        android:layout_marginTop="20dp"
+        android:text="请上传身份证（正反面）" />
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        
-        <ImageView 
+        android:layout_height="120dp"
+        android:background="@drawable/identity_bg_2" >
+
+        <ImageView
+            android:id="@+id/id_authen_id_front"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="50dp"
-            android:id="@+id/id_authen_id_front"
-            android:src="@drawable/icon_add_photo"/>
-        
-        <TextView 
+            android:src="@drawable/icon_add_photo" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="70dp"
             android:layout_below="@id/id_authen_id_front"
+            android:layout_marginLeft="70dp"
             android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:text="正面"/>
-        
-        
-        <ImageView 
+            android:text="正面"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/id_authen_id_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="50dp"
-            android:id="@+id/id_authen_id_back"
-            android:src="@drawable/icon_add_photo"/>
-        
-        <TextView 
+            android:src="@drawable/icon_add_photo" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="70dp"
             android:layout_below="@id/id_authen_id_back"
+            android:layout_marginRight="70dp"
             android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:text="反面"/>
+            android:text="反面"
+            android:textStyle="bold" />
     </RelativeLayout>
-    
-    <TextView 
+     
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:text="请上传相关证书"/>
-    
-    <ImageView 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="50dp"
-            android:src="@drawable/icon_add_photo"
-            android:id="@+id/id_authen_cert"/>
-    
+        android:layout_marginTop="20dp"
+        android:text="请上传相关证书" />
+
+    <ImageView
+        android:id="@+id/id_authen_cert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="50dp"
+        android:src="@drawable/icon_add_photo" />
+ 
+    	<Button
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_marginLeft="15dp"
+	    android:layout_marginRight="15dp"
+	    android:layout_marginTop="50dp"
+	    android:background="@drawable/feedback_o"
+	    android:text="提交" />
+
 </LinearLayout>
+</ScrollView>

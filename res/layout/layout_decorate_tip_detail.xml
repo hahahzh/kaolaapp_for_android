@@ -7,16 +7,18 @@
     <LinearLayout 
         android:layout_width="match_parent"
    	 	android:layout_height="wrap_content"
-   	 	android:background="#00FF00"
+   	 	android:background="#43CD80"
     	android:orientation="vertical">
 
-        <TextView 
+        <TextView
+            android:id="@+id/tips_detail_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:id="@+id/tips_detail_title"
-            android:text="【软装】装修中被人坑了也不知道的陷进"/>
+            android:text="【软装】装修中被人坑了也不知道的陷进"
+            android:textColor="@color/white" />
+
 		    <LinearLayout 
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
@@ -31,23 +33,29 @@
 		            android:layout_height="wrap_content"
 		            android:layout_marginRight="5dp"
 		            android:src="@drawable/clock"/>
-		        <TextView 
+
+		        <TextView
+		            android:id="@+id/tips_item_date"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
 		            android:layout_marginRight="20dp"
 		            android:text="2015-03-19"
-		            android:id="@+id/tips_item_date"/>
+		            android:textColor="@color/white" />
+
 		        <ImageView 
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
 		            android:layout_marginRight="5dp"
 		            android:src="@drawable/eye"/>
-		         <TextView 
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:layout_marginRight="20dp"
-		            android:text="166"
-		            android:id="@+id/tips_item_viewed"/>
+
+		         <TextView
+		             android:id="@+id/tips_item_viewed"
+		             android:layout_width="wrap_content"
+		             android:layout_height="wrap_content"
+		             android:layout_marginRight="20dp"
+		             android:text="166"
+		             android:textColor="@color/white" />
+
 		    </LinearLayout>
     </LinearLayout>
     
@@ -58,6 +66,6 @@
     <TextView 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="装修是件很麻烦的事情"/>
+        android:text="    装修是件很麻烦的事情,装修是件很麻烦的事情,装修是件很麻烦的事情,装修是件很麻烦的事情"/>
 
 </LinearLayout>

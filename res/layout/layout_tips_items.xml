@@ -3,8 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="20dp"
-    android:paddingBottom="20dp" >
+    android:paddingTop="20dp" >
     
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:background="@drawable/canon_bg"
+            android:orientation="vertical" >
+        
     <TextView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -82,5 +88,5 @@
             android:text="装修是件麻烦的事情"/>
         
     </LinearLayout>
-
+</LinearLayout>
 </RelativeLayout>

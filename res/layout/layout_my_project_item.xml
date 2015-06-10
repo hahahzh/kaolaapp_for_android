@@ -1,9 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_marginBottom="10dp" >
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/project_date_bg"
+        android:orientation="vertical" >
+    
     <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,7 +53,7 @@
     <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="40dp"
         android:layout_marginBottom="5dp"
         android:orientation="horizontal" >
        	
@@ -65,14 +73,15 @@
        	    android:textStyle="bold"
        	    android:text="100m2" />
        	
-       	<Button 
+       	<Button
+       	    android:id="@+id/my_project_item_btn_finish"
        	    android:layout_width="wrap_content"
-       	    android:layout_height="wrap_content"
+       	    android:layout_height="35dp"
+       	    android:background="@drawable/my_project_origin_bg"
        	    android:gravity="center"
        	    android:text="竣工"
-       	    android:id="@+id/my_project_item_btn_finish"
-       	    android:background="@drawable/my_project_origin_bg"
-       	    />
+       	    android:textColor="@color/white" />
+
        	</LinearLayout>
        
      <LinearLayout 
@@ -98,22 +107,18 @@
        	    android:textStyle="bold"
        	    android:text="6～8万" />
        	
-       	<Button 
-       	    android:layout_width="wrap_content"
-       	    android:layout_height="wrap_content"
-       	    android:gravity="center"
-       	    android:text="设定日期"
+       	<Button
        	    android:id="@+id/my_project_item_btn_set_date"
-       	    android:background="@drawable/my_project_green_bg"/>
+       	    android:layout_width="wrap_content"
+       	    android:layout_height="35dp"
+       	    android:background="@drawable/my_project_green_bg"
+       	    android:gravity="center"
+       	    android:text="设定工期"
+       	    android:textColor="@color/white" />
+
        	</LinearLayout>
     
-    
-    
-    
-   
-       	
- 
-    "
+</LinearLayout>
 
 </LinearLayout>
 

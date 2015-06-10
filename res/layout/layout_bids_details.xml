@@ -255,12 +255,17 @@
         android:minLines="6"
         android:hint="请填写自荐介绍"/>
     
+   	
    	<Button
-   	    android:layout_width="match_parent"
-   	    android:layout_height="wrap_content"
-   	    android:background="@drawable/decorate_yellow_bg"
-   	    android:text="投标" 
-   	    android:id="@+id/bid_detail_bid"/>
+   	    android:id="@+id/bid_detail_bid" 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="投标"
+            android:gravity="center"
+            android:background="@drawable/decorate_yellow_bg"/>
     
 </LinearLayout>
 

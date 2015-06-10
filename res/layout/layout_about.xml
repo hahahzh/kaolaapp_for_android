@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#EEEEEE"
     android:orientation="vertical"
     tools:context=".LinearLayoutActivity" >
 
@@ -18,7 +18,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal|center_vertical"
+            android:layout_weight="1"
             android:src="@drawable/logo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="-----V1.0-----"
+        android:textSize="15dp" />
 
 	</LinearLayout>
     
@@ -26,15 +35,15 @@
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:layout_weight="1"
-	    android:background="@drawable/bg"
+	    
 	    android:gravity="top"
 	    android:orientation="vertical" >
     
 		<LinearLayout
 		    android:id="@+id/about_l1"
 		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:background="@drawable/rectangular"
+		    android:layout_height="50dp"
+		    android:background="@drawable/layout_border"
 		    android:gravity="center"
 		    android:orientation="horizontal" >
 
@@ -57,8 +66,8 @@
 		<LinearLayout
 		    android:id="@+id/about_l2"
 		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:background="@drawable/rectangular"
+		    android:layout_height="50dp"
+		    android:background="@drawable/layout_border"
 		    android:gravity="center"
 		    android:orientation="horizontal" >
 
@@ -81,8 +90,8 @@
 		<LinearLayout
 		    android:id="@+id/about_l3"
 		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:background="@drawable/rectangular"
+		    android:layout_height="50dp"
+		    android:background="@drawable/layout_border"
 		    android:gravity="center"
 		    android:orientation="horizontal" >
 

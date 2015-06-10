@@ -48,13 +48,14 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/graylight"/>
-    
-    <Button 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/my_card_phone_cer_next"
-        android:layout_marginTop="40dp"
-        android:text="下一步"
-        android:background="@drawable/decorate_yellow_bg"/>
 
+    	<Button
+	    android:id="@+id/my_card_phone_cer_next"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_marginLeft="15dp"
+	    android:layout_marginRight="15dp"
+	    android:layout_marginTop="50dp"
+	    android:background="@drawable/feedback_o"
+	    android:text="下一步" />
 </LinearLayout>

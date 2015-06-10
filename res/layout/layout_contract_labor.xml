@@ -1,31 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="match_parent" 
+    android:layout_height="wrap_content">
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="10dp" >
+    android:background="#EEEEEE"
+    android:orientation="vertical">
     
     <TextView 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:gravity="left"
         android:text="装饰施工项目概况"/>
     
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:background="@drawable/layout_border">
         
         <TextView 
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
+	        android:gravity="center"
 	        android:text="业主姓名"/>
         
         <TextView 
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
 	        android:layout_marginLeft="10dp"
 	        android:textStyle="bold"
 	        android:text="张曼曼"/>
@@ -34,10 +39,11 @@
     
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:background="@drawable/layout_border"
+        android:layout_gravity="center"
+        android:layout_marginTop="-1dp"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         android:id="@+id/contract_address_ll">
         
         <TextView 
@@ -52,7 +58,6 @@
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="10dp"
 	        android:layout_gravity="center"
-	        android:gravity="center"
 	        android:textStyle="bold"
 	        android:text="上海   上海市  闸北区  广中西路"
 	        android:drawableRight="@drawable/forward"/>
@@ -60,11 +65,12 @@
     </LinearLayout>
     
     <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+               android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/layout_border"
+        android:layout_gravity="center"
+        android:layout_marginTop="-1dp"
+        android:orientation="horizontal">
         
         <TextView 
 	        android:layout_width="wrap_content"
@@ -77,7 +83,6 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="10dp"
-	        android:gravity="left"
 	        android:layout_gravity="center"
 	        android:layout_weight="1"
 	        android:textStyle="bold"
@@ -88,15 +93,14 @@
     
     <TextView 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="工程期限"/>
     
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:background="@drawable/layout_border">
         
         <TextView 
 	        android:layout_width="wrap_content"
@@ -119,11 +123,11 @@
     </LinearLayout>
     
     <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+              android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:background="@drawable/layout_border"
+        android:layout_marginTop="-1dp">
         
         <TextView 
 	        android:layout_width="wrap_content"
@@ -147,15 +151,14 @@
     
     <TextView 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="工程价款"/>
     
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:background="@drawable/layout_border">
         
         <TextView 
 	        android:layout_width="wrap_content"
@@ -185,10 +188,10 @@
     
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:background="@drawable/layout_border"
+        android:layout_marginTop="-1dp">
         
         <TextView 
 	        android:layout_width="wrap_content"
@@ -217,10 +220,10 @@
         
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:background="@drawable/layout_border"
+        android:layout_marginTop="-1dp">
         
         <TextView 
 	        android:layout_width="wrap_content"
@@ -249,10 +252,10 @@
         
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:background="@drawable/layout_border"
+        android:layout_marginTop="-1dp">
         
         <TextView 
 	        android:layout_width="wrap_content"
@@ -281,10 +284,10 @@
         
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:background="@drawable/layout_border"
+        android:layout_marginTop="-1dp">
         
         <TextView 
 	        android:layout_width="wrap_content"
@@ -311,9 +314,13 @@
 	        android:gravity="center"/>
         </LinearLayout>
 
-    <Button 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="提交"
-        android:background="@drawable/decorate_yellow_bg"/>
+     <Button
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_marginLeft="15dp"
+	    android:layout_marginRight="15dp"
+	    android:layout_marginTop="50dp"
+	    android:background="@drawable/feedback_o"
+	    android:text="提交" />
 </LinearLayout>
+</ScrollView>

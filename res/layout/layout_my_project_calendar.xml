@@ -5,6 +5,7 @@
 	<LinearLayout
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
+	    android:background="#EEEEEE"
 	    android:orientation="vertical" >
 	    
 	    <LinearLayout 
@@ -126,6 +127,7 @@
 	         android:layout_gravity="center_horizontal"
 	         android:background="@drawable/icon_button_bg"
 	         android:layout_marginTop="10dp"
+	         android:layout_marginBottom="10dp"
 	         android:orientation="horizontal">
 	         <TextView 
 	              android:layout_width="wrap_content"
@@ -149,12 +151,21 @@
 	         android:layout_width="match_parent"
 	         android:layout_height="wrap_content"
 	         android:minLines="5"
+	         android:layout_marginLeft="5dp"
+	         android:layout_marginRight="5dp"
+	         android:layout_marginBottom="10dp"
+	         android:background="#FFFFFF"
 	         android:hint="暂无提示"/>
 	     
-	     <Button 
-	         android:layout_width="wrap_content"
-	         android:layout_height="wrap_content"
-	         android:text="提交"/>
 	
+	             <Button 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="保存"
+            android:gravity="center"
+            android:background="@drawable/decorate_yellow_bg"/>
 	</LinearLayout>
 </ScrollView>

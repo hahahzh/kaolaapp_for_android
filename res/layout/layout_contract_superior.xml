@@ -1,9 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="match_parent" 
+    android:layout_height="wrap_content">
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="10dp" >
+    android:background="#EEEEEE"
+    android:orientation="vertical">
     
     <TextView 
         android:layout_width="match_parent"
@@ -12,19 +15,21 @@
     
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:background="@drawable/layout_border"
+        android:layout_marginTop="10dp">
         
         <TextView 
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
 	        android:text="业主姓名"/>
         
         <TextView 
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
 	        android:layout_marginLeft="10dp"
 	        android:textStyle="bold"
 	        android:text="张曼曼"/>
@@ -33,9 +38,11 @@
     
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:background="@drawable/layout_border"
+        android:layout_gravity="center"
+        android:layout_marginTop="-1dp"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp">
         
         <TextView 
@@ -68,10 +75,10 @@
     
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:background="@drawable/layout_border"
+        android:layout_marginTop="10dp">
         
         <TextView 
 	        android:layout_width="wrap_content"
@@ -101,10 +108,10 @@
     
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:background="@drawable/layout_border"
+        android:layout_marginTop="-1dp">
         
         <TextView 
 	        android:layout_width="wrap_content"
@@ -133,9 +140,10 @@
         
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
+        android:background="@drawable/layout_border"
+        android:layout_marginTop="-1dp"
         android:layout_marginBottom="10dp">
         
         <TextView 
@@ -169,10 +177,10 @@
         android:text="违约责任"/>
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:background="@drawable/layout_border"
+        android:layout_marginTop="-1dp">
         
         <TextView 
 	        android:layout_width="wrap_content"
@@ -200,11 +208,11 @@
         </LinearLayout>
         
     <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+             android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:background="@drawable/layout_border"
+        android:layout_marginTop="-1dp">
         
         <TextView 
 	        android:layout_width="wrap_content"
@@ -239,9 +247,10 @@
 
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
+        android:background="@drawable/layout_border"
+        android:layout_marginTop="-1dp"
         android:layout_marginBottom="10dp">
         
         <TextView 
@@ -280,10 +289,13 @@
         android:layout_height="wrap_content"
         android:singleLine="false"
         android:text="@string/legal_contract"/>
-    <Button 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="提交"
-        android:background="@drawable/decorate_yellow_bg"/>
+    <Button
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_marginLeft="15dp"
+	    android:layout_marginRight="15dp"
+	    android:layout_marginTop="50dp"
+	    android:background="@drawable/feedback_o"
+	    android:text="提交" />
 </LinearLayout>
-
+</ScrollView>
