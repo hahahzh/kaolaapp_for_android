@@ -24,10 +24,10 @@ public class MyIDAuthenActivity extends ActionBarActivity implements OnClickList
 		
 		mIDFront = (ImageView)findViewById(R.id.id_authen_id_front);
 		mIDBack = (ImageView)findViewById(R.id.id_authen_id_back);
-		mCert = (ImageView)findViewById(R.id.id_authen_cert);
+//		mCert = (ImageView)findViewById(R.id.id_authen_cert);
 		mIDFront.setOnClickListener(this);
 		mIDBack.setOnClickListener(this);
-		mCert.setOnClickListener(this);
+//		mCert.setOnClickListener(this);
 	}
 	
 	public void initActionBar(){
@@ -64,7 +64,7 @@ public class MyIDAuthenActivity extends ActionBarActivity implements OnClickList
 	public void onClick(View arg0) {
 		// TODO 自动生成的方法存根
 		switch(arg0.getId()){
-		case R.id.id_authen_cert:
+//		case R.id.id_authen_cert:
 		case R.id.id_authen_id_back:
 		case R.id.id_authen_id_front:
 			Intent intent = new Intent(MyIDAuthenActivity.this,MySelectPicActivity.class);

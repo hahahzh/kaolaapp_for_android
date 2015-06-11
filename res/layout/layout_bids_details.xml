@@ -2,12 +2,11 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android" 
     android:layout_width="fill_parent" 
     android:layout_height="wrap_content">
-    
-<LinearLayout
+   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="#00000000"
+    android:background="#EEEEEE"
     android:focusable="true" 
 	android:focusableInTouchMode="true"  >
     
@@ -19,37 +18,37 @@
         android:background="#FFFFFF" >
 
         <ImageView 
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/image_preview"/>
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/sgj_bg" />
         
-        <TextView 
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="50dp"
             android:text="慧芝湖花苑"
-            android:textSize="20sp"
-            android:textColor="#000000"/>
+            android:textColor="@color/white"
+            android:textSize="20sp" />
         
-        <TextView 
-            android:layout_gravity="center"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:drawableLeft="@drawable/location"
             android:paddingLeft="5dp"
             android:text="上海     上海    闸北区"
-            android:textColor="#000000"/>
+            android:textColor="@color/white" />
         
-        <TextView 
-            android:layout_gravity="center_horizontal"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="120dp"
             android:drawableLeft="@drawable/clock"
             android:paddingLeft="5dp"
             android:text="2015-03-19"
-            android:textColor="#000000"/>
+            android:textColor="@color/white" />
 
     </FrameLayout>
     
@@ -111,14 +110,14 @@
             android:layout_marginRight="20dp"
             android:text="设计风格"/>
     </RelativeLayout>
-    
-    <ImageView 
+ 
+     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:background="#FFFFFF"/>
-    
+        android:layout_height="130dp"
+        android:background="@drawable/layout_border"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
+        
     <LinearLayout 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -179,18 +178,15 @@
             android:textColor="#FF0000"
             android:textStyle="bold"/>
     </LinearLayout>
-
-    <ImageView 
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="5dp"
-        android:background="#FFFFFF"/>
+</LinearLayout>
     
     <LinearLayout 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+		android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/layout_border"
+        android:gravity="left|center"
+        android:layout_marginTop="-1dp"
+        android:orientation="horizontal">
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -201,7 +197,7 @@
             android:layout_marginRight="10dp"
             android:text="设计师"
             android:textStyle="bold"
-            android:background="#0000FF"/>
+            android:background="#98F5FF"/>
         
         <TextView 
             android:layout_width="wrap_content"
@@ -209,26 +205,23 @@
             android:layout_marginRight="10dp"
             android:text="工长"
             android:textStyle="bold"
-            android:background="#0000FF"/>
+            android:background="#98F5FF"/>
         
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="监理"
             android:textStyle="bold"
-            android:background="#0000FF"/>
+            android:background="#98F5FF"/>
         
     </LinearLayout>
-    
-    <ImageView 
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="5dp"
-        android:background="#FFFFFF"/>
+
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:background="@drawable/layout_border"
+        android:gravity="left|top"
+        android:layout_marginTop="-1dp"
         android:orientation="horizontal">
         <TextView 
             android:layout_width="wrap_content"
@@ -245,16 +238,26 @@
     <TextView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="我要投标"/>
     
-    <EditText 
+       <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/layout_border"
+        android:gravity="left|top"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:hint="请填写自荐介绍"
         android:inputType="textMultiLine"
-        android:gravity="top|left"
-        android:minLines="6"
-        android:hint="请填写自荐介绍"/>
-    
+        android:minLines="6" />
    	
    	<Button
    	    android:id="@+id/bid_detail_bid" 
@@ -263,10 +266,11 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
+            android:layout_gravity="center"
             android:text="投标"
             android:gravity="center"
             android:background="@drawable/decorate_yellow_bg"/>
-    
+    </LinearLayout>
 </LinearLayout>
 
 </ScrollView>
