@@ -6,6 +6,7 @@ import com.winwinapp.util.ActionBarView;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
@@ -36,6 +37,7 @@ public class KLHomePageActivity extends FragmentActivity {
 	private int mImageResource[] = {R.drawable.item_homepage,R.drawable.item_bid,R.drawable.item_project,R.drawable.item_my};
 	
 	private ActionBarView mActionBar;
+	private String mCurrentCity = "上海";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +66,13 @@ public class KLHomePageActivity extends FragmentActivity {
 	}
 	
 	public void setActionBarMain(){
-		ImageView imageView = new ImageView(this);
-		imageView.setImageResource(R.drawable.location);
+		TextView textView = new TextView(this);
+		Drawable drawable = this.getResources().getDrawable(R.drawable.location);
+		textView.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
+		textView.setText(mCurrentCity);
+		textView.setTextColor(this.getResources().getColor(R.color.orange));
 		mActionBar.setLeftView(null);
-		mActionBar.setLeftView(imageView);
+		mActionBar.setLeftView(textView);
 		
 		mActionBar.setOnLeftClickListener(new OnClickListener(){
 
@@ -82,7 +87,7 @@ public class KLHomePageActivity extends FragmentActivity {
 		
 		mActionBar.setTitle("考拉小匠");
 		
-		imageView = new ImageView(this);
+		ImageView imageView = new ImageView(this);
 		imageView.setImageResource(R.drawable.message);
 		mActionBar.setRightView(null);
 		mActionBar.setRightView(imageView);

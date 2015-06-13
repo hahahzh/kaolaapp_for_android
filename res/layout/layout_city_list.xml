@@ -23,17 +23,20 @@
 		<LinearLayout 
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
-		    android:orientation="horizontal"
-		    android:background="#ffecdebf" >
+		    android:orientation="horizontal" >
 		    <TextView 
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:drawableLeft="@drawable/location"
 		        android:id="@+id/location_city_name"
 		        android:layout_marginLeft="10dp"
+		        android:gravity="center"
+		        android:paddingLeft="20dp"
 		        android:textSize="18sp"
         		android:textStyle="bold"
-		        android:text="上海"/>
+		        android:text="上海"
+		        android:background="@drawable/rectangular_gray"
+		        />
 		    
 		</LinearLayout>
 	
@@ -53,45 +56,52 @@
 		<LinearLayout 
 		    android:layout_width="match_parent"
 		    android:layout_height="match_parent"
-		    android:orientation="horizontal" >
+		    android:orientation="horizontal"
+		    android:layout_marginBottom="10dp" >
 		
 			    <TextView 
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
-			        android:paddingLeft="10dp"
-			        android:paddingRight="10dp"
-			        android:paddingTop="10dp"
-			        android:paddingBottom="20dp"
+			        android:paddingLeft="5dp"
+			        android:paddingRight="5dp"
+			        android:paddingTop="5dp"
+			        android:paddingBottom="5dp"
 			        android:layout_marginLeft="10dp"
 			        android:layout_marginRight="10dp"
 			        android:textSize="18sp"
         			android:textStyle="bold"
+        			android:gravity="center"
+        			android:background="@drawable/rectangular_gray_min"
 			        android:text="上海"/>
 			    
 			    <TextView 
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
-			        android:paddingLeft="10dp"
-			        android:paddingRight="10dp"
-			        android:paddingTop="10dp"
-			        android:paddingBottom="20dp"
+			        android:paddingLeft="5dp"
+			        android:paddingRight="5dp"
+			        android:paddingTop="5dp"
+			        android:paddingBottom="5dp"
 			        android:layout_marginLeft="10dp"
 			        android:layout_marginRight="10dp"
+			        android:gravity="center"
 			        android:textSize="18sp"
         			android:textStyle="bold"
+        			android:background="@drawable/rectangular_gray_min"
 			        android:text="杭州"/>
 			    
 			    <TextView 
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
-			        android:paddingLeft="10dp"
-			        android:paddingRight="10dp"
-			        android:paddingTop="10dp"
-			        android:paddingBottom="20dp"
+			        android:paddingLeft="5dp"
+			        android:paddingRight="5dp"
+			        android:paddingTop="5dp"
+			        android:paddingBottom="5dp"
 			        android:layout_marginLeft="10dp"
 			        android:layout_marginRight="10dp"
+			        android:gravity="center"
 			        android:textSize="18sp"
         			android:textStyle="bold"
+        			android:background="@drawable/rectangular_gray_min"
 			        android:text="苏州"/>
 		</LinearLayout>
 		</LinearLayout>
