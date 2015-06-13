@@ -11,6 +11,9 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:id="@+id/list_common"/>
+        android:dividerHeight="10dp"
+        android:divider="#00000000"
+        android:id="@+id/list_common"
+        android:scrollbars="none"/>
 
 </LinearLayout>
