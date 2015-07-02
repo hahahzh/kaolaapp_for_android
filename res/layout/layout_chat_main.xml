@@ -2,19 +2,45 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:background="@color/white" >
 
     <FrameLayout
         android:id="@+id/rl_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#FFFFFF" >
+        android:background="#FFFFFF"
+        android:layout_marginBottom="10dp" >
 
         <ImageView 
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/image_preview"/>
+            android:src="@drawable/image_preview"
+            android:scaleType="centerCrop"
+            android:alpha="0.6"/>
+        
+        <LinearLayout 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_marginTop="30dp">
+	        <ImageView 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_horizontal"
+	            android:src="@drawable/avatar1"/>
+	        
+	        <TextView 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_horizontal"
+	            android:layout_marginTop="10dp"
+	            android:textSize="25sp"
+	            android:textColor="@color/white"
+	            android:text="张澈.设计师"/>
+        </LinearLayout>
     </FrameLayout>
 
     <RelativeLayout

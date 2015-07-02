@@ -15,8 +15,10 @@ import android.widget.TextView;
 
 import com.winwinapp.about.AboutActivity;
 import com.winwinapp.bids.BidsListActivity;
+import com.winwinapp.koala.KoalaApplication;
 import com.winwinapp.koala.MessageListActivity;
 import com.winwinapp.koala.R;
+import com.winwinapp.koala.fragment_homepage;
 import com.winwinapp.login.LoginPageActivity;
 
 public class MyActivity extends Fragment implements OnClickListener{
@@ -69,6 +71,12 @@ public class MyActivity extends Fragment implements OnClickListener{
 		mMyCardLL.setOnClickListener(this);
 		mMyAccountLL.setOnClickListener(this);
 		
+		if(KoalaApplication.mUserType == fragment_homepage.TYPE_OWER){
+			mMyBidTxt.setText("我的招标");
+		}else{
+			mMyBidTxt.setText("我的竞标");
+		}
+		
 		return view;
 	}
 
@@ -87,6 +95,8 @@ public class MyActivity extends Fragment implements OnClickListener{
 			startActivity(intent);
 			break;
 		case R.id.my_logout_btn:
+			KoalaApplication app = ((KoalaApplication)mActivity.getApplication());
+			app.clearLoginInformation();
 			intent = new Intent(mActivity,LoginPageActivity.class);
 			startActivity(intent);
 			break;
@@ -97,8 +107,13 @@ public class MyActivity extends Fragment implements OnClickListener{
 			break;
 		case R.id.my_bid_img:
 		case R.id.my_bid_txt:
-			intent = new Intent(mActivity,BidsListActivity.class);
-			startActivity(intent);
+			if(KoalaApplication.mUserType == fragment_homepage.TYPE_OWER){
+				intent = new Intent(mActivity,BidsListActivity.class);//我的招标
+				intent.putExtra("type", 1);//My bid list
+				startActivity(intent);
+			}else{
+				
+			}
 			break;
 		case R.id.my_id_cert_layout:
 			intent = new Intent(mActivity,MyIDAuthenActivity.class);
@@ -110,6 +125,7 @@ public class MyActivity extends Fragment implements OnClickListener{
 			break;
 		case R.id.my_message_ll:
 			intent = new Intent(mActivity,MessageListActivity.class);
+			intent.putExtra("type", 1);
 			startActivity(intent);
 			break;
 		case R.id.my_account_ll:

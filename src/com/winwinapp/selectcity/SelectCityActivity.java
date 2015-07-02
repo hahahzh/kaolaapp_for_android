@@ -5,11 +5,16 @@ import java.util.List;
 
 import com.winwinapp.koala.ActionBarActivity;
 import com.winwinapp.koala.R;
+import com.winwinapp.my.MyProjectActivity;
+import com.winwinapp.my.MyProjectCalendarActivity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -23,7 +28,7 @@ import android.widget.Toast;
 public class SelectCityActivity extends ActionBarActivity implements TextWatcher {
 
 	private Context context_ = SelectCityActivity.this;
-
+	private static final int REFRESH = 1;
 	private CityListViewImpl listview;
 	private Object searchLock = new Object();
 	boolean inSearchMode = false;
@@ -31,20 +36,28 @@ public class SelectCityActivity extends ActionBarActivity implements TextWatcher
 	List<CityItemInterface> contactList;
 	List<CityItemInterface> filterList;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.layout_city_list);
-		
-		initActionBar();
-
-		filterList = new ArrayList<CityItemInterface>();
+	private Handler mHandler = new Handler(){
+		public void handleMessage(Message msg){
+			switch(msg.what){
+			case REFRESH:
+				String error = (String)msg.obj;
+				if("OK".equals(error)){
+					
+				}else{
+					
+				}
+				setListView();
+				break;
+			}
+		}
+	};
+	
+	public void setListView(){
 		contactList = CityData.getSampleContactList();
 
 		CityAdapter adapter = new CityAdapter(this,R.layout.layout_city_item, contactList);
 
-		listview = (CityListViewImpl) this.findViewById(R.id.listview);
+		
 		listview.setFastScrollEnabled(true);
 		listview.setAdapter(adapter);
 
@@ -62,11 +75,44 @@ public class SelectCityActivity extends ActionBarActivity implements TextWatcher
 						Toast.LENGTH_SHORT).show();
 			}
 		});
+	}
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.layout_city_list);
+		
+		initActionBar();
+
+		filterList = new ArrayList<CityItemInterface>();
+		listview = (CityListViewImpl) this.findViewById(R.id.listview);
 
 		//searchBox = (EditText) findViewById(R.id.input_search_query);
 		//searchBox.addTextChangedListener(this);
 	}
 
+	@Override
+	public void onStart(){
+		super.onStart();
+		setListView();
+		/*
+		new Thread(){
+			public void run(){
+				boolean success;
+				
+				Message msg = Message.obtain();
+				msg.what = REFRESH;
+				if(success){
+					msg.obj = "OK";
+				}else{
+					msg.obj = ;
+				}
+				mHandler.sendMessage(msg);
+			}
+		}.start();*/
+	}
+	
 	public void initActionBar(){
 		ImageView imageView = new ImageView(this);
 		imageView.setImageResource(R.drawable.cancel);

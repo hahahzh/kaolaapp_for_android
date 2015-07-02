@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="#EEEEEE"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:scrollbars="none" >
 
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
     android:orientation="vertical"
     android:focusable="true"
     android:focusableInTouchMode="true"
@@ -15,14 +15,17 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_weight="0.09"
-        android:background="@drawable/price_bg_1"
         android:orientation="vertical"
         android:paddingLeft="5dp"
         android:paddingRight="5dp" >
 
+        <ImageView 
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:background="@color/graylight"/>
+        
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content" 
@@ -84,6 +87,11 @@
                 android:text="100" />
         </RelativeLayout>
 
+        <ImageView 
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:background="@color/graylight"/>
+        
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content" 
@@ -145,6 +153,11 @@
                 android:text="50000" />
         </RelativeLayout>
 
+        <ImageView 
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:background="@color/graylight"/>
+        
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content" 
@@ -206,6 +219,11 @@
                 android:text="100" />
         </RelativeLayout>
 
+        <ImageView 
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:background="@color/graylight"/>
+        
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -268,20 +286,29 @@
         </RelativeLayout>
     </LinearLayout>
 
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/graylight"/>
+    
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:text="预算结果"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:textStyle="bold" />
-
+    
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/graylight"/>
+    
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/price_bg_1"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingLeft="5dp"
         android:paddingRight="5dp" >
@@ -318,6 +345,11 @@
                 android:paddingLeft="2dp" />
         </RelativeLayout>
 
+        <ImageView 
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:background="@color/graylight"/>
+        
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -350,6 +382,11 @@
                 android:paddingLeft="2dp" />
         </RelativeLayout>
 
+        <ImageView 
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:background="@color/graylight"/>
+        
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -383,6 +420,11 @@
                 android:paddingLeft="2dp" />
         </RelativeLayout>
 
+        <ImageView 
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:background="@color/graylight"/>
+        
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -416,13 +458,19 @@
                 android:paddingLeft="2dp" />
         </RelativeLayout>
     </LinearLayout>
-
+    
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/graylight"/>
+    
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
+        android:textColor="@color/gray"
         android:text="材料合计:表格中各项的汇总\n辅料价格：估算为材料价格×15%\n人工价格：估算按每平方250元，实际情况请与工长协商\n合计工程总价：材料合计+人工价格+辅料价格" />
 
     <Button

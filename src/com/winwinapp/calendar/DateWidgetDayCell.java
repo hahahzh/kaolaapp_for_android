@@ -5,14 +5,18 @@ import java.util.Calendar;
 import com.winwinapp.koala.R;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
+import android.widget.Toast;
 import android.widget.LinearLayout.LayoutParams;
 
 public class DateWidgetDayCell extends View {
@@ -27,6 +31,7 @@ public class DateWidgetDayCell extends View {
 	private final static int	iMargin				= 1;
 	private final static int iAlphaInactiveMonth = 0x88;
 
+	Context mContext;
 	// fields
 	private int iDateYear = 0;
 	private int iDateMonth = 0;
@@ -36,6 +41,7 @@ public class DateWidgetDayCell extends View {
 	// fields
 	private OnItemClick itemClick = null;
 	private Paint pt = new Paint();
+	private Paint mPtSeparator = new Paint();
 	private RectF rect = new RectF();
 	private String sDate = "";
 
@@ -46,9 +52,21 @@ public class DateWidgetDayCell extends View {
 	private boolean bHoliday = false;
 	private boolean bTouchedDown = false;
 
+	private Bitmap mBitmapSelect;
+	private boolean mFlag_ongoing = true;
+	private int mBitmapWidth;
+	private int mBitmapHeight;
+	private Paint mBackgroundPt = new Paint();
 	// methods
 	public DateWidgetDayCell(Context context, int iWidth, int iHeight) {
 		super(context);
+		mContext = context;
+		mBitmapSelect = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.calendar_select_flag);
+		mBitmapWidth = mBitmapSelect.getWidth();
+		mBitmapHeight = mBitmapSelect.getHeight();
+		//Toast.makeText(mContext, "wid="+mBitmapWidth+",height="+mBitmapHeight, Toast.LENGTH_SHORT).show();
+		mPtSeparator.setColor(0xffcccccc);
+		mBackgroundPt.setColor(0xFF000000);
 		setFocusable(true);
 		setLayoutParams(new LayoutParams(iWidth, iHeight));
 	}
@@ -134,8 +152,13 @@ public class DateWidgetDayCell extends View {
 		// drawing
 		final boolean bFocused = IsViewFocused();
 
+		drawSeparator(canvas);
 		drawDayView(canvas, bFocused);
 		drawDayNumber(canvas, bFocused);
+	}
+	
+	private void drawSeparator(Canvas canvas){
+		canvas.drawLine(0, rect.bottom, rect.right, rect.bottom, mPtSeparator);
 	}
 
 	private void drawDayView(Canvas canvas, boolean bFocused) {
@@ -171,7 +194,7 @@ public class DateWidgetDayCell extends View {
 		
 		if (bToday) {
 			//			canvas.drawBitmap(((BitmapDrawable) getResources().getDrawable(R.drawable.calendar_today)).getBitmap(), 0, 0, pt);
-			this.setBackgroundResource(R.drawable.icon_calendar_today);
+			//this.setBackgroundResource(R.drawable.icon_calendar_today);
 		}
 		if (bSelected) {
 			//this.setBackgroundResource(R.drawable.button_calendar02_click);
@@ -198,6 +221,7 @@ public class DateWidgetDayCell extends View {
 				- ((int) pt.measureText(sDate) >> 1);
 		iTextPosY -= ((int) rect.height() >> 1) - (getTextHeight() >> 1);
 
+		iTextPosY = iTextPosY - (mBitmapHeight + 10)/2;//the below flag
 		// draw text
 		if (bSelected || bFocused) {
 			if (bSelected)
@@ -214,10 +238,22 @@ public class DateWidgetDayCell extends View {
 		
 		if (!bIsActiveMonth)
 			pt.setAlpha(iAlphaInactiveMonth);
+		
+		if (bToday) {//draw background circle
+			canvas.drawCircle(rect.width()/2, (rect.height() - mBitmapHeight - 10)/2, Math.min(rect.width()/2,
+					(rect.height() - mBitmapHeight - 10)/2), mBackgroundPt);
+		}
 
 		canvas.drawText(sDate, iTextPosX, iTextPosY + iMargin, pt);
 
 		pt.setUnderlineText(false);
+		
+		if(mFlag_ongoing){
+			//mBitmapSelect.
+			float left = (rect.width() - mBitmapWidth)/2;
+			float top = rect.height() - mBitmapHeight - 5;
+			canvas.drawBitmap(mBitmapSelect, left, top, null);
+		}
 	}
 
 	public boolean IsViewFocused() {

@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EEEEEE"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:id="@+id/bid_publish_ll" >
 
     <LinearLayout 
         android:layout_width="match_parent"
@@ -26,6 +27,7 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="上海      上海      闸北区"
+	        android:id="@+id/bid_publish_position"
 	        android:background="@null"/>
 	    </LinearLayout>
     <LinearLayout 
@@ -45,6 +47,7 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="慧芝湖花苑"
+	        android:id="@+id/bid_publish_biotope_name"
 	        android:background="@null"/>
 	    </LinearLayout>
 	    
@@ -65,7 +68,8 @@
 	        android:drawableRight="@drawable/forward"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:text="102m2"
+	        android:text="102㎡"
+	        android:id="@+id/bid_publish_area"
 	        android:background="@null"/>
 	    </LinearLayout>
 	    
@@ -85,6 +89,7 @@
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:text="普通住宅"
+		        android:id="@+id/bid_publish_house_type"
 		        android:background="@null"/>
 	    </LinearLayout>
 	    
@@ -101,10 +106,18 @@
                 android:text="客厅"
                 android:layout_weight="1"/>
             
+            <com.winwinapp.util.AddSubLL 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/bid_publish_hall">
+            </com.winwinapp.util.AddSubLL>
+            <!--  
             <include 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 layout="@layout/layout_add_sub"/>
+                -->
      </TableRow> 
      
     <TableRow 
@@ -120,10 +133,12 @@
                 android:text="卧室"
                 android:layout_weight="1"/>
             
-            <include 
+            <com.winwinapp.util.AddSubLL 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                layout="@layout/layout_add_sub"/>
+                android:layout_gravity="center_vertical"
+                android:id="@+id/bid_publish_room">
+            </com.winwinapp.util.AddSubLL>
         </TableRow> 
         
     <TableRow 
@@ -139,10 +154,12 @@
                 android:text="厨房"
                 android:layout_weight="1"/>
             
-            <include 
+            <com.winwinapp.util.AddSubLL 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                layout="@layout/layout_add_sub"/>
+                android:layout_gravity="center_vertical"
+                android:id="@+id/bid_publish_kitchen">
+            </com.winwinapp.util.AddSubLL>
         </TableRow>
         
     <TableRow 
@@ -158,10 +175,12 @@
                 android:text="卫生间"
                 android:layout_weight="1"/>
             
-            <include 
+            <com.winwinapp.util.AddSubLL 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                layout="@layout/layout_add_sub"/>
+                android:layout_gravity="center_vertical"
+                android:id="@+id/bid_publish_toilet">
+            </com.winwinapp.util.AddSubLL>
         </TableRow> 
 
     <TableRow 
@@ -178,10 +197,12 @@
                 android:text="阳台"
                 android:layout_weight="1"/>
             
-            <include 
+           <com.winwinapp.util.AddSubLL 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                layout="@layout/layout_add_sub"/>
+                android:layout_gravity="center_vertical"
+                android:id="@+id/bid_publish_balcony">
+            </com.winwinapp.util.AddSubLL>
         </TableRow> 
     
 	<LinearLayout 
@@ -200,6 +221,7 @@
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:text="全包"
+		        android:id="@+id/bid_publish_decorate_way"
 		        android:background="@null"/>
 	    </LinearLayout>
 	        <LinearLayout 
@@ -219,6 +241,7 @@
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:text="简约"
+		        android:id="@+id/bid_publish_decorate_style"
 		        android:background="@null"/>
 	    </LinearLayout>
 	         <LinearLayout 
@@ -238,6 +261,7 @@
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:text="2万以下"
+		        android:id="@+id/bid_publish_budget"
 		        android:background="@null"/>
 	    </LinearLayout>
 
@@ -263,6 +287,7 @@
         android:gravity="top|left"
         android:minLines="4"
         android:background="#FFFFFF"
+        android:id="@+id/bid_publish_requirement"
         android:hint="请填写装修要求..."/>
      
        <LinearLayout
@@ -286,31 +311,26 @@
             android:layout_marginBottom="40dp"
             android:background="@drawable/budget_bg_2" >
             
-            <RadioGroup 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-	            <RadioButton
-	            android:id="@+id/bids_radioButton1"
+            <RadioButton
+	            android:id="@+id/bid_publish_designer"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:text="设计师" 
 	            android:layout_weight="1"/>
-	            
-	            <RadioButton
-	            android:id="@+id/bids_radioButton2"
+            
+            <RadioButton
+	            android:id="@+id/bid_publish_labor"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_weight="1"
 	            android:text="工长" />
-	            
-	            <RadioButton
-	            android:id="@+id/bids_radioButton3"
+            
+            <RadioButton
+	            android:id="@+id/bid_publish_superior"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_weight="1"
 	            android:text="监理" />
-            </RadioGroup>
         </TableRow>
              <Button 
             android:layout_width="wrap_content"
@@ -320,7 +340,7 @@
             android:layout_marginBottom="20dp"
             android:layout_gravity="center|center"
             android:gravity="center"
-            android:id="@+id/decorate_generate_price"
+            android:id="@+id/bid_publish_publish"
             android:text="发布"
             android:background="@drawable/decorate_yellow_bg"/>
 </LinearLayout>

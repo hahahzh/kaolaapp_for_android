@@ -126,10 +126,11 @@
 	         android:layout_width="wrap_content"
 	         android:layout_height="wrap_content"
 	         android:layout_gravity="center_horizontal"
-	         android:background="@drawable/icon_button_bg"
+	         android:background="@drawable/icon_button_reverse_bg"
 	         android:layout_marginTop="10dp"
 	         android:layout_marginBottom="10dp"
-	         android:orientation="horizontal">
+	         android:orientation="horizontal"
+	         android:id="@+id/project_tips_append_ll">
 	         <TextView 
 	              android:layout_width="wrap_content"
 	              android:layout_height="wrap_content"
@@ -137,6 +138,7 @@
 	              android:layout_gravity="center"
 	              android:gravity="center|center"
 	              android:layout_weight="1"
+	              android:id="@+id/project_calendar_tips"
 	              android:text="温馨提示"/>
 	         <TextView 
 	              android:layout_width="wrap_content"
@@ -145,29 +147,79 @@
 	              android:layout_gravity="center"
 	              android:layout_weight="1"
 	              android:textSize="15dp"
+	              android:id="@+id/project_calendar_append"
 	              android:text="备注"/>
 	     </LinearLayout>
 	     
-	     <EditText 
+	     <FrameLayout 
 	         android:layout_width="match_parent"
-	         android:layout_height="wrap_content"
-	         android:minLines="5"
-	         android:layout_marginLeft="5dp"
-	         android:layout_marginRight="5dp"
-	         android:layout_marginBottom="10dp"
-	         android:background="#FFFFFF"
-	         android:hint="暂无提示"/>
+	         android:layout_height="wrap_content">
+	         <EditText 
+	             android:layout_width="match_parent"
+	             android:layout_height="wrap_content"
+	             android:minLines="5"
+	             android:layout_marginLeft="5dp"
+	             android:layout_marginRight="5dp"
+	             android:layout_marginBottom="10dp"
+	             android:gravity="left"
+	             android:background="#FFFFFF"
+	             android:id="@+id/project_calendar_tips_txt"
+	             android:hint="暂无提示"/>
+	         
+	         <LinearLayout 
+	             android:layout_width="match_parent"
+	             android:layout_height="wrap_content"
+	             android:orientation="vertical"
+	             android:id="@+id/project_calendar_append_ll"
+	             android:visibility="gone">
+		         
+	             <EditText 
+	                 android:layout_width="match_parent"
+	                 android:layout_height="wrap_content"
+	                 android:minLines="5"
+	                 android:layout_marginLeft="5dp"
+	                 android:layout_marginRight="5dp"
+	                 android:layout_marginBottom="10dp"
+	                 android:background="#FFFFFF"
+	                 android:gravity="left"
+	                 android:id="@+id/project_calendar_append_txt"
+	                 android:hint="1.施工速度\r\n2.施工人员\r\n3.施工流程"/>
+	             
+	             <TextView 
+	                 android:layout_width="wrap_content"
+	                 android:layout_height="wrap_content"
+	                 android:drawableLeft="@drawable/clip"
+	                 android:gravity="center"
+	                 android:text="添加附件"/>
+	             <TextView 
+	                 android:layout_width="wrap_content"
+	                 android:layout_height="wrap_content"
+	                 android:layout_marginLeft="40dp"
+	                 android:text="IMG20140407"/>
+	             
+	             <TextView 
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginLeft="40dp"
+                     android:text="IMG20140407"/>
+	             
+	         </LinearLayout>
+	     </FrameLayout>
 	     
+	    <Button 
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="20dp"
+             android:layout_marginRight="20dp"
+             android:layout_marginBottom="20dp"
+             android:layout_gravity="right"
+             android:gravity="center|center"
+             android:background="@color/orange_light"
+             android:paddingLeft="40dp"
+             android:paddingRight="40dp"
+             android:text="提交"
+             /> 
 	
-	             <Button 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="center|center"
-            android:gravity="center|center"
-            android:text="保存"
-            android:background="@drawable/decorate_yellow_bg"/>
+	   
 	</LinearLayout>
 </ScrollView>

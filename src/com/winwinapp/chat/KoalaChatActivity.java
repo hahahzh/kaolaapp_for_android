@@ -6,38 +6,116 @@ import java.util.Date;
 import java.util.List;
 
 import com.winwinapp.koala.ActionBarActivity;
+import com.winwinapp.koala.KoalaApplication;
+import com.winwinapp.koala.MessageItem;
 import com.winwinapp.koala.R;
+import com.winwinapp.network.HTTPPost;
+import com.winwinapp.network.NetworkData;
 import com.winwinapp.util.ActionBarView;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class KoalaChatActivity extends ActionBarActivity implements OnClickListener {
 
+	private static final int MESSAGE_REFRESH_LIST = 1;
 	private Button mBtnSend;// 发送btn
 	private EditText mEditTextContent;
 	private ListView mListView;
 	private ChatMsgViewAdapter mAdapter;// 消息视图的Adapter
 	private List<ChatMsgEntity> mDataArrays = new ArrayList<ChatMsgEntity>();// 消息对象数组
 	private ActionBarView mActionBar;
+	private ArrayList<MessageItem> mMessageItemArray;
+	int type = 0;
+	int msg_id = 0;
+	int is_exist = 0;
+	int topic_id;
+	int rec_id;
+	private NetworkData.PublicMessageInfoData mPublicData;
+	private NetworkData.PublicMessageInfoBack mPublicBack;
+	
+	private NetworkData.PrivateMessageInfoData mPrivateData;
+	private NetworkData.PrivateMessageInfoBack mPrivateBack;
 
+	private Handler mHandler = new Handler(){
+		public void handleMessage(Message msg){
+			switch(msg.what){
+			case MESSAGE_REFRESH_LIST:
+				if("OK".equals(msg.obj)){
+					initData();
+					//Toast.makeText(KoalaChatActivity.this, "OK Received", Toast.LENGTH_LONG).show();
+				}else{
+					Toast.makeText(KoalaChatActivity.this, "获取系统消息出错:"+msg.obj, Toast.LENGTH_LONG).show();
+				}
+				break;
+			}
+		}
+	};
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_chat_main);
 
+		Intent intent = this.getIntent();
+		type = intent.getIntExtra("type", 0);
+		if(type == 0){
+			msg_id = Integer.parseInt(intent.getStringExtra("msg_id"));
+			is_exist = Integer.parseInt(intent.getStringExtra("is_exist"));
+		}else{
+			msg_id = Integer.parseInt(intent.getStringExtra("msg_id"));
+			topic_id = Integer.parseInt(intent.getStringExtra("topic_id"));
+			rec_id = Integer.parseInt(intent.getStringExtra("rec_id"));
+		}
 		initView();// 初始化view
 
 		initActionBar();
-		initData();// 初始化数据
-		mListView.setSelection(mAdapter.getCount() - 1);
+		//initData();// 初始化数据
+		//mListView.setSelection(mAdapter.getCount() - 1);
+		
+		new RquestMsgThread().start();
 	}
 
+	public class RquestMsgThread extends Thread{
+		public void run(){
+			boolean success = false;
+			Message msg = Message.obtain();
+			msg.what = MESSAGE_REFRESH_LIST;
+			if(type == 0){
+				mPublicData = NetworkData.getInstance().getNewPublicMessageInfoData();
+				mPublicData.is_exist = is_exist;
+				mPublicData.msg_id = msg_id;
+				mPublicBack = NetworkData.getInstance().getNewPublicMessageInfoBack();
+				success = HTTPPost.RequestPublicMsgInfo(mPublicData, mPublicBack);
+			}else{
+				mPrivateData = NetworkData.getInstance().getNewPrivateMessageInfoData();
+				mPrivateData.msg_id = msg_id;
+				mPrivateData.rec_id = rec_id;
+				mPrivateData.topic_id = topic_id;
+				mPrivateBack = NetworkData.getInstance().getNewPrivateMessageInfoBack();
+				success = HTTPPost.RequestPrivateMsgInfo(mPrivateData, mPrivateBack);
+			}
+			
+			if(success){
+				msg.obj = (Object)("OK");
+			}else{
+				if(type == 0)
+					msg.obj = mPublicBack.error;
+				else
+					msg.obj = mPrivateBack.error;
+			}
+			mHandler.sendMessage(msg);
+		}
+	}
+	
 	public void initActionBar(){
 		ImageView imageView = new ImageView(this);
 		imageView.setImageResource(R.drawable.back);
@@ -73,7 +151,31 @@ public class KoalaChatActivity extends ActionBarActivity implements OnClickListe
 	 * 模拟加载消息历史，实际开发可以从数据库中读出
 	 */
 	public void initData() {
-		for (int i = 0; i < COUNT; i++) {
+		if(type == 0){
+			ChatMsgEntity entity = new ChatMsgEntity();
+			entity.setDate(mPublicBack.item.send_time);
+			entity.setMsgType(false);
+			entity.setName("系统消息");
+			entity.setMessage(mPublicBack.item.content);
+			mDataArrays.add(entity);
+		}else{
+			for(int i=0;i<mPrivateBack.items.size();i++){
+				
+				ChatMsgEntity entity = new ChatMsgEntity();
+				entity.setDate(mPrivateBack.items.get(i).send_time);
+				if(mPrivateBack.items.get(i).send_name != null && mPrivateBack.items.get(i).send_name.equals(KoalaApplication.loginData.username)){
+					entity.setMsgType(true);
+					entity.setName("我");
+				}else{
+					entity.setMsgType(false);
+					entity.setName(mPrivateBack.items.get(i).send_name);
+				}
+				entity.setMessage(mPrivateBack.items.get(i).content);
+				mDataArrays.add(entity);
+			}
+		}
+		//mAdapter.notifyDataSetChanged();
+		/*for (int i = 0; i < COUNT; i++) {
 			ChatMsgEntity entity = new ChatMsgEntity();
 			entity.setDate(dataArray[0]);
 			if (i % 2 == 0) {
@@ -85,10 +187,10 @@ public class KoalaChatActivity extends ActionBarActivity implements OnClickListe
 			}
 			entity.setMessage(msgArray[i]);
 			mDataArrays.add(entity);
-		}
-
+		}*/
 		mAdapter = new ChatMsgViewAdapter(this, mDataArrays);
 		mListView.setAdapter(mAdapter);
+		mListView.setSelection(mAdapter.getCount() - 1);
 	}
 
 	@Override

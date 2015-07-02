@@ -21,33 +21,39 @@ import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 
 import com.winwinapp.bids.BidsListActivity;
+import com.winwinapp.login.LoginPageActivity;
 import com.winwinapp.login.SettingPageActivity;
-import com.winwinapp.my.MyActivity;
 import com.winwinapp.my.MyProjectActivity;
-import com.winwinapp.selectcity.SelectCityActivity;
-import com.winwinapp.util.ActionBarView;
-import android.widget.Toast;
 
 public class KLHomePageActivity extends FragmentActivity {
 
 	private String mTabContent[];
 	private FragmentTabHost mTabHost;
 	@SuppressWarnings("rawtypes")
-	private Class mFragmentArray[] = {fragment_homepage.class, fragment_homepage.class, fragment_homepage.class, MyActivity.class};
+	private Class mFragmentArray[] = {fragment_homepage.class, fragment_bid.class, fragment_project.class, MyActivity.class};
 	private int mImageResource[] = {R.drawable.item_homepage,R.drawable.item_bid,R.drawable.item_project,R.drawable.item_my};
 	
 	private ActionBarView mActionBar;
 	private String mCurrentCity = "上海";
+	private KoalaApplication mApplication;
+	private int mSwitchPage = 0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		//getActionBar().hide();
 		initActionBar();
+		mApplication = (KoalaApplication) this.getApplication();
+		mApplication.init();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_tabhost_home);
+		getSwitchPageFromIntent(this.getIntent());
 		initView();
 	}
 
+	public void getSwitchPageFromIntent(Intent intent){
+		mSwitchPage = intent.getIntExtra("page", 0 );
+	}
+	
 	private void initActionBar(){
 		ActionBar actionBar = this.getActionBar();
 		if(actionBar != null){
@@ -98,10 +104,26 @@ public class KLHomePageActivity extends FragmentActivity {
 			public void onClick(View arg0) {
 				// TODO 自动生成的方法存根
 				Intent intent = new Intent(KLHomePageActivity.this,MessageListActivity.class);
+				intent.putExtra("type", 0);
 				startActivity(intent);
 			}
 			
 		});
+	}
+	
+	public void setActionBarBids(){
+		//ImageView imageView = new ImageView(this);
+		//imageView.setImageResource(R.drawable.back);
+		//mActionBar.setLeftView(imageView);
+		mActionBar.setTitle("竞标");
+		mActionBar.setLeftView(null);
+		mActionBar.setRightView(null);
+	}
+	
+	public void setActionBarProjects(){
+		mActionBar.setTitle("项目");
+		mActionBar.setLeftView(null);
+		mActionBar.setRightView(null);
 	}
 	
 	public void setActionBarMy(){
@@ -162,6 +184,21 @@ public class KLHomePageActivity extends FragmentActivity {
 			mTabHost.addTab(tabSpec, mFragmentArray[i], null);
 			mTabHost.getTabWidget().getChildAt(i).setBackgroundColor(0x888888);
 		}
+		mTabHost.getTabWidget().getChildAt(3).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO 自动生成的方法存根
+				if(mApplication.getSession() == null || mApplication.getUsername() == null){
+					Intent intent = new Intent(KLHomePageActivity.this, LoginPageActivity.class);
+					startActivity(intent);
+				}else{
+					mSwitchPage = 3;
+					mTabHost.setCurrentTab(mSwitchPage);
+				}
+			}
+			
+		});
 		
 		mTabHost.setOnTabChangedListener(new OnTabChangeListener(){
 
@@ -175,31 +212,37 @@ public class KLHomePageActivity extends FragmentActivity {
 				}else if(arg0.equals(mTabContent[0])){
 					setActionBarMain();
 				}else if(arg0.equals(mTabContent[1])){
-//					setActionBarBids();
-					Bundle bundle = new Bundle();
+					setActionBarBids();
+					/*Bundle bundle = new Bundle();
 					Intent intent = new Intent(KLHomePageActivity.this, BidsListActivity.class);
 					intent.putExtras(bundle);
-					startActivity(intent);
+					startActivity(intent);*/
+					
 				}else if(arg0.equals(mTabContent[2])){
-//					setActionBarProject();
-					Bundle bundle = new Bundle();
+					setActionBarProjects();
+					/*Bundle bundle = new Bundle();
 					Intent intent = new Intent(KLHomePageActivity.this, MyProjectActivity.class);
 					intent.putExtras(bundle);
-					startActivity(intent);
+					startActivity(intent);*/
 				}
 			}
 			
 		});
+		
+		if( (mSwitchPage >= 0) && (mSwitchPage < count)){
+			mTabHost.setCurrentTab(mSwitchPage);
+		}
 	}
 	
 	private View getTabItemView(int index){
-		View view = LayoutInflater.from(this).inflate(R.layout.layout_grid_item, null);
+		View view = LayoutInflater.from(this).inflate(R.layout.layout_grid_item_common, null);
 		
 		ImageView imageView = (ImageView)view.findViewById(R.id.item_image);
 		TextView textView = (TextView)view.findViewById(R.id.item_text);
 		
 		imageView.setImageResource(mImageResource[index]);
 		textView.setText(mTabContent[index]);
+		
 		return view;
 	}
 

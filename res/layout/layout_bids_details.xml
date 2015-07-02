@@ -4,12 +4,15 @@
     android:layout_height="wrap_content"
     android:scrollbars="none">
    <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="#EEEEEE"
-    android:focusable="true" 
-	android:focusableInTouchMode="true"  >
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:background="#EEEEEE"
+	    android:focusable="true" 
+		android:focusableInTouchMode="true"
+		android:id="@+id/bid_detail_ll" 
+		
+		>
     
     <FrameLayout
         android:id="@+id/rl_layout"
@@ -21,6 +24,7 @@
         <ImageView 
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:scaleType="fitXY"
             android:src="@drawable/sgj_bg" />
         
         <TextView
@@ -29,6 +33,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="50dp"
             android:text="慧芝湖花苑"
+            android:id="@+id/bid_detail_biotope_name"
             android:textColor="@color/white"
             android:textSize="20sp" />
         
@@ -38,6 +43,7 @@
             android:layout_gravity="center"
             android:drawableLeft="@drawable/location"
             android:paddingLeft="5dp"
+            android:id="@+id/bid_detail_position"
             android:text="上海     上海    闸北区"
             android:textColor="@color/white" />
         
@@ -48,6 +54,7 @@
             android:layout_marginTop="120dp"
             android:drawableLeft="@drawable/clock"
             android:paddingLeft="5dp"
+            android:id="@+id/bid_detail_publish_time"
             android:text="2015-03-19"
             android:textColor="@color/white" />
 
@@ -62,8 +69,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:id="@+id/bid_detail_area"
             android:text="100m2"
+            android:id="@+id/bid_detail_area"
             android:gravity="center"
             android:layout_marginLeft="20dp"/>
         
@@ -82,13 +89,13 @@
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
             android:text="6~8万"
-            android:id="@+id/bid_detail_price"
+            android:id="@+id/bid_detail_budget"
             android:gravity="center"/>
         
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/bid_detail_price"
+            android:layout_below="@id/bid_detail_budget"
             android:layout_centerHorizontal="true"
             android:text="预算"
             android:gravity="center"
@@ -115,8 +122,8 @@
      <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="130dp"
-        android:background="@drawable/layout_border"
         android:orientation="vertical"
+        android:background="@color/white"
         android:layout_marginTop="10dp">
         
     <LinearLayout 
@@ -130,6 +137,7 @@
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/bid_detail_house_type"
             android:text="普通住宅"
             android:textStyle="bold"/>
     </LinearLayout>
@@ -137,6 +145,7 @@
     <LinearLayout 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:layout_marginTop="10dp">
         <TextView 
             android:layout_width="wrap_content"
@@ -146,6 +155,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2室    2厅    1厨    1卫    2阳台"
+            android:id="@+id/bid_detail_space_type"
             android:textStyle="bold"/>
     </LinearLayout>
     
@@ -160,6 +170,7 @@
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/bid_detail_decorate_way"
             android:text="全包"
             android:textStyle="bold"/>
     </LinearLayout>
@@ -175,18 +186,25 @@
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/bid_detail_bid_number"
             android:text="3人"
             android:textColor="#FF0000"
             android:textStyle="bold"/>
     </LinearLayout>
 </LinearLayout>
     
+     <ImageView 
+         android:layout_width="match_parent"
+         android:layout_height="1dp"
+         android:background="@color/graylight"/>
+     
     <LinearLayout 
 		android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/layout_border"
         android:gravity="left|center"
-        android:layout_marginTop="-1dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:orientation="horizontal">
         <TextView 
             android:layout_width="wrap_content"
@@ -197,6 +215,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:text="设计师"
+            android:id="@+id/bid_detail_designer"
             android:textStyle="bold"
             android:background="#98F5FF"/>
         
@@ -204,6 +223,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
+            android:id="@+id/bid_detail_labor"
             android:text="工长"
             android:textStyle="bold"
             android:background="#98F5FF"/>
@@ -212,6 +232,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="监理"
+            android:id="@+id/bid_detail_superior"
             android:textStyle="bold"
             android:background="#98F5FF"/>
         
@@ -219,10 +240,11 @@
 
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/layout_border"
         android:gravity="left|top"
-        android:layout_marginTop="-1dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:orientation="horizontal">
         <TextView 
             android:layout_width="wrap_content"
@@ -233,45 +255,138 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="false"
+            android:id="@+id/bid_detail_requirement"
             android:text="空间利用率要大一些，空间利用率要大一些，空间利用率要大一些，空间利用率要大一些..."/>
     </LinearLayout>
     
-    <TextView 
+    <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="我要投标"/>
-    
-       <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/layout_border"
         android:gravity="left|top"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
-    <EditText
+        android:orientation="vertical"
+        android:id="@+id/bid_detail_ll_bid">
+	    <TextView 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="10dp"
+	        android:layout_marginBottom="10dp"
+	        android:text="我要投标"/>
+
+	    <LinearLayout 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical"
+	        android:paddingTop="10dp"
+	        android:background="@color/white">
+		    <EditText
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:background="@drawable/layout_border"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginRight="10dp"
+		        android:paddingLeft="10dp"
+		        android:paddingRight="10dp"
+		        android:layout_marginBottom="10dp"
+		        android:layout_gravity="top|left"
+		        android:gravity="top|left"
+		        android:hint="请填写自荐介绍"
+		        android:inputType="textMultiLine"
+		        android:minLines="6" />
+		    
+		    <Button
+		         android:id="@+id/bid_detail_bid" 
+		         android:layout_width="wrap_content"
+		         android:layout_height="wrap_content"
+		         android:layout_marginRight="20dp"
+		         android:paddingTop="5dp"
+		         android:paddingBottom="5dp"
+		         android:paddingLeft="20dp"
+		         android:paddingRight="20dp"
+		         android:layout_gravity="right"
+		         android:text="投标"
+		         android:gravity="center"
+		         android:background="@color/orange"
+		         />
+		</LinearLayout>
+    </LinearLayout>
+    
+    <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
-        android:hint="请填写自荐介绍"
-        android:inputType="textMultiLine"
-        android:minLines="6" />
-   	
-   	<Button
-   	    android:id="@+id/bid_detail_bid" 
-            android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/bid_detail_ll_mybid">
+        <Button 
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="center"
-            android:text="投标"
-            android:gravity="center"
-            android:background="@drawable/decorate_yellow_bg"/>
+            android:background="@drawable/decorate_yellow_bg"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/bid_detail_abort_bid"
+            android:text="中止招标"/>
+        <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/graylight"/>
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="80dp"
+            android:orientation="vertical">
+            
+            <LinearLayout 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center_horizontal">
+                
+                <TextView 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/layout_border_darkgray"
+                    android:textColor="@color/white"
+                    android:id="@+id/bid_detail_title_designer"
+                    android:text="设计师(3)"/>
+                <TextView 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                     android:background="@drawable/layout_border"
+                    android:id="@+id/bid_detail_title_labor"
+                    android:text="工长(3)"/>
+                <TextView 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                     android:background="@drawable/layout_border"
+                    android:layout_gravity="center"
+                    android:id="@+id/bid_detail_title_superior"
+                    android:text="监理(3)"/>
+            </LinearLayout>
+           
+           <ListView 
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/bid_detail_list_bidder">
+               
+           </ListView>
+           
+        </LinearLayout>
     </LinearLayout>
+    
 </LinearLayout>
 
 </ScrollView>

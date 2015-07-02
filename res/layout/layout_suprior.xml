@@ -20,6 +20,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:scaleType="fitXY"
             android:src="@drawable/sgj_bg" />
         
         <ImageView 
@@ -112,13 +113,14 @@
     
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@drawable/designer_d_bg" >
+        android:layout_height="wrap_content"
+        android:background="@color/white" >
 
         <TableRow 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center_vertical"
         android:orientation="horizontal">
      	<TextView 

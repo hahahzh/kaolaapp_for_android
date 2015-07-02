@@ -4,74 +4,104 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/graylight"
+            android:layout_marginTop="10dp"/>
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.03"
-        android:background="@drawable/area_bg"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:orientation="vertical" >
 
+        
+        
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1" >
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="30dp"
+                android:textSize="20sp"
+                android:textColor="@color/gray"
                 android:text="省" />
 
-            <EditText
+            <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@null"
-                android:drawableRight="@drawable/forward"
-                android:text="上海" />
+                android:layout_weight="1"
+                android:id="@+id/distinct_select_province"
+                />
+            
         </LinearLayout>
 
+        <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/graylight"/>
+        
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_weight="1" >
+            android:layout_marginBottom="20dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="30dp"
+                android:textSize="20sp"
+                android:textColor="@color/gray"
                 android:text="市" />
 
-            <EditText
+            <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@null"
-                android:drawableRight="@drawable/forward"
-                android:text="上海" />
+                android:layout_weight="1"
+                android:id="@+id/distinct_select_city"
+                />
         </LinearLayout>
-
+        
+        <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/graylight"/>
+        
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_weight="1" >
+            android:layout_marginBottom="20dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="30dp"
+                android:textSize="20sp"
+                android:textColor="@color/gray"
                 android:text="区/县" />
 
-            <EditText
+            <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@null"
-                android:drawableRight="@drawable/forward"
-                android:text="闸北区" />
+                android:layout_weight="1"
+                android:id="@+id/distinct_select_country"
+                />
         </LinearLayout>
     </LinearLayout>
+    
+    <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/graylight"/>
 
     <Button
         android:id="@+id/distict_invite_bids"
@@ -81,14 +111,5 @@
         android:layout_gravity="center"
         android:background="@drawable/decorate_yellow_bg"
         android:text="我要招标" />
-
-    <Button
-        android:id="@+id/distict_bids"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/decorate_yellow_bg"
-        android:text="我要竞标" />
 
 </LinearLayout>

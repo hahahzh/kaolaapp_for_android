@@ -3,12 +3,16 @@ package com.winwinapp.koala;
 import java.util.ArrayList;
 
 import com.winwinapp.chat.KoalaChatActivity;
+import com.winwinapp.designer.ContactDesignerActivity;
+import com.winwinapp.network.HTTPPost;
+import com.winwinapp.network.NetworkData;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,19 +29,53 @@ public class MessageListActivity extends ActionBarActivity {
 
 	private static final int MESSAGE_ID_AVATRAR = 0;
 	private static final int MESSAGE_ID_OTHERS = 1;
+	private static final int MESSAGE_INVALIDATE_LIST = 2;
 	private ListView mMessageListView;
 	private ArrayList<MessageItem> mMessageItemArray = new ArrayList<MessageItem>();
 	private LayoutInflater mInflater;
 	MessageListAdapter mMessageAdapter;
+	KoalaApplication mApp;
+	public static NetworkData.PublicMessageListData mRequestPublicData;
+	public static NetworkData.PublicMessageListBack mRequestPublicBack;
+	
+	public static NetworkData.PrivateMessageListData mRequestPrivateData;
+	public static NetworkData.PrivateMessageListBack mRequestPrivateBack;
+	
+	private int type = 0;//0.public; 1, private
 	private Handler mHandler = new Handler(){
 		public void handleMessage(Message msg){
+			Intent intent;
 			switch(msg.what){
 			case MESSAGE_ID_AVATRAR:
-				Toast.makeText(MessageListActivity.this, "avatar:"+(int)msg.arg1, Toast.LENGTH_SHORT).show();
+				//Toast.makeText(MessageListActivity.this, "avatar:"+(int)msg.arg1, Toast.LENGTH_SHORT).show();
+				intent = new Intent(MessageListActivity.this,ContactDesignerActivity.class);
+				intent.putExtra("type", fragment_homepage.TYPE_DESIGNER);
+				startActivity(intent);
 				break;
 			case MESSAGE_ID_OTHERS:
-				Intent intent = new Intent(MessageListActivity.this,KoalaChatActivity.class);
+				intent = new Intent(MessageListActivity.this,KoalaChatActivity.class);
+				int position = msg.arg1;
+				intent.putExtra("type", type);//0,系统消息;1,私信
+				if(type == 0){
+					intent.putExtra("msg_id", mRequestPublicBack.items.get(position).msg_id);
+					intent.putExtra("is_exist", mRequestPublicBack.items.get(position).is_exist);
+				}else{
+					intent.putExtra("msg_id", mRequestPrivateBack.items.get(position).msg_id);
+					intent.putExtra("topic_id", mRequestPrivateBack.items.get(position).topic_id);
+					intent.putExtra("rec_id", mRequestPrivateBack.items.get(position).rec_id);
+				}
 				startActivity(intent);
+				break;
+			case MESSAGE_INVALIDATE_LIST:
+				String error = (String)msg.obj;
+				if("OK".equals(error)){
+					//Toast.makeText(MessageListActivity.this, "OK received", Toast.LENGTH_LONG).show();
+					//mMessageListView.invalidate();
+					mMessageAdapter.notifyDataSetChanged();
+				}
+				else{
+					Toast.makeText(MessageListActivity.this, "获取消息列表失败："+error, Toast.LENGTH_LONG).show();
+				}
 				break;
 			}
 		}
@@ -49,6 +87,9 @@ public class MessageListActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_message_list);
 		
+		type = getIntent().getIntExtra("type", 0);
+		
+		mApp = (KoalaApplication) this.getApplication();
 		initActionBar();
 		initMessageList();
 	}
@@ -71,18 +112,78 @@ public class MessageListActivity extends ActionBarActivity {
 	
 	public void initMessageList(){
 		mMessageListView = (ListView)findViewById(R.id.listView_message);
-		MessageItem item = new MessageItem("张澈","设计师","2015-03-19",2,R.drawable.avatar1,"今天木板已经送到，明天工人来安装，请耐心等待");
-		mMessageItemArray.add(item);
-		item = new MessageItem("刘雨鑫","工长","2015-02-23",6,R.drawable.avatar1,"今天木板已经送到，明天工人来安装，请耐心等待");
-		mMessageItemArray.add(item);
-		item = new MessageItem("陈韵","监理","2015-01-23",3,R.drawable.avatar1,"工程进度我会有所把控。");
-		mMessageItemArray.add(item);
-		item = new MessageItem("陈韵","业主","2015-01-23",0,R.drawable.avatar1,"工程进度我会有所把控。");
-		mMessageItemArray.add(item);
-		
 		mInflater = LayoutInflater.from(this);
 		mMessageAdapter = new MessageListAdapter(this);
 		mMessageListView.setAdapter(mMessageAdapter);
+		
+		if(type == 0){
+			mRequestPublicData = NetworkData.getInstance().getNewPublicMessageListData();
+			mRequestPublicData.sessid = mApp.getSession();
+			mRequestPublicBack = NetworkData.getInstance().getNewPublicMessageListBack();
+		}else{
+			mRequestPrivateData = NetworkData.getInstance().getNewPrivateMessageListData();
+			mRequestPrivateData.limit = 5;
+			mRequestPrivateBack = NetworkData.getInstance().getNewPrivateMessageListBack();
+		}
+		
+		if(!TextUtils.isEmpty(mApp.getSession())){
+			new Thread(){
+				public void run(){
+					boolean success = false;
+					Message msg = Message.obtain();
+					msg.what = MESSAGE_INVALIDATE_LIST;
+					if(type == 0){//public message
+						success = HTTPPost.RequestPublicMsgList(mRequestPublicData, mRequestPublicBack);
+						if(success){
+							for(int i=0;i<mRequestPublicBack.total;i++){
+								NetworkData.PublicMessageListItem backItem = mRequestPublicBack.items.get(i);
+								MessageItem item = new MessageItem("张澈","设计师","2015-03-19",2,R.drawable.avatar1,"今天木板已经送到，明天工人来安装，请耐心等待");
+								item.mName = "系统消息";
+								item.mIdentify = fragment_homepage.getIdetifyStringFromID(Integer.parseInt(backItem.user_type));
+								item.mLastUpdateTime = backItem.send_time;
+								item.mSnippet = backItem.content;
+								mMessageItemArray.add(item);
+							}
+							msg.obj = (Object)("OK");
+						}else{
+							msg.obj = mRequestPublicBack.error;
+						}
+					}else{//private message
+						success = HTTPPost.RequestPrivateMsgList(mRequestPrivateData, mRequestPrivateBack);
+						if(success){
+							for(int i=0;i<mRequestPrivateBack.total;i++){
+								NetworkData.PrivateMessageListItem backItem = mRequestPrivateBack.items.get(i);
+								MessageItem item = new MessageItem("张澈","设计师","2015-03-19",2,R.drawable.avatar1,"今天木板已经送到，明天工人来安装，请耐心等待");
+								item.mName = backItem.send_name;
+								item.mIdentify = fragment_homepage.getIdetifyStringFromID(Integer.parseInt(backItem.user_type));
+								item.mLastUpdateTime = backItem.send_time;
+								item.mSnippet = backItem.content;
+								item.mMessageNum = Integer.parseInt(backItem.reply_num);
+								mMessageItemArray.add(item);
+							}
+							msg.obj = (Object)("OK");
+						}else{
+							msg.obj = mRequestPrivateBack.error;
+						}
+					}
+					mHandler.sendMessage(msg);
+					/*
+					MessageItem item = new MessageItem("张澈","设计师","2015-03-19",2,R.drawable.avatar1,"今天木板已经送到，明天工人来安装，请耐心等待");
+					mMessageItemArray.add(item);
+					item = new MessageItem("刘雨鑫","工长","2015-02-23",6,R.drawable.avatar1,"今天木板已经送到，明天工人来安装，请耐心等待");
+					mMessageItemArray.add(item);
+					item = new MessageItem("陈韵","监理","2015-01-23",3,R.drawable.avatar1,"工程进度我会有所把控。");
+					mMessageItemArray.add(item);
+					item = new MessageItem("陈韵","业主","2015-01-23",0,R.drawable.avatar1,"工程进度我会有所把控。");
+					mMessageItemArray.add(item);*/
+				};
+			
+			}.start();
+			
+			//mMessageListView.on
+		}else{
+			Toast.makeText(this, "请先登录再查询系统消息", Toast.LENGTH_LONG).show();
+		}
 	}
 	
 	public class MessageListAdapter extends BaseAdapter{

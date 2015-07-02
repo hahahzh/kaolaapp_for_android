@@ -2,29 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/white"
     android:layout_marginTop="10dp"
     android:orientation="vertical">
 
-         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:background="@drawable/bids_list_bg"
-            android:orientation="vertical" >
+  
     <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal">
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="1"
-            android:background="#00FF00"/>
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:id="@+id/bid_item_index"
+            android:background="#FF00FF00"/>
        	<TextView 
        	    android:layout_width="wrap_content"
        	    android:layout_height="wrap_content"
+       	    android:id="@+id/bid_item_biotope_name"
        	    android:textSize="20dp"
        	    android:layout_marginLeft="10dp"
        	    android:layout_gravity="center"
@@ -35,6 +36,7 @@
        	    android:layout_width="wrap_content"
        	    android:layout_height="wrap_content"
        	    android:layout_gravity="center"
+       	    android:id="@+id/bid_item_name"
        	    android:text="张满满"/>
        	<ImageView 
        	    android:layout_width="wrap_content"
@@ -46,12 +48,13 @@
     <ImageView 
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#FFFFFF"/>
+        android:background="@color/graylight"/>
     
     <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal" >
        	
         <TextView 
@@ -61,64 +64,73 @@
        	    android:layout_marginLeft="10dp"
        	    android:layout_gravity="center"
        	    android:layout_weight="1"
+       	    android:id="@+id/bid_item_area"
        	    android:text="面积  100m2" />
        	
        	<TextView 
        	    android:layout_width="wrap_content"
        	    android:layout_height="wrap_content"
        	    android:layout_gravity="center"
+       	    android:id="@+id/bid_item_budget"
        	    android:text="预算 6～8万"/>
        	</LinearLayout>
        
     <ImageView 
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#FFFFFF"/>
+        android:background="@color/graylight"/>
     
-        <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical" >
-       	
     <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal" >
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical" >
        	
-        <TextView 
-       	    android:layout_width="wrap_content"
-       	    android:layout_height="wrap_content"
-       	    android:textSize="16dp"
-       	    android:layout_marginLeft="10dp"
-       	    android:layout_marginRight="10dp"
-       	    android:layout_gravity="center"
-       	    android:text="人员需求：" />
-       	
-       	<TextView 
-       	    android:layout_width="wrap_content"
-       	    android:layout_height="wrap_content"
-       	    android:layout_gravity="center"
-       	    android:textSize="16dp"
-       	    android:layout_marginRight="10dp"
-       	    android:text="工长"/>
-       	
-       	<TextView 
-       	    android:layout_width="wrap_content"
-       	    android:layout_height="wrap_content"
-       	    android:layout_gravity="center"
-       	    android:textSize="16dp"
-       	    android:layout_marginRight="10dp"
-       	    android:text="监理"/>
-       	
-       	<TextView 
-       	    android:layout_width="wrap_content"
-       	    android:layout_height="wrap_content"
-       	    android:layout_gravity="center"
-       	    android:textSize="16dp"
-       	    android:layout_marginRight="10dp"
-       	    android:text="设计师"/>
+	    <LinearLayout 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:orientation="horizontal" >
+	       	
+	        <TextView 
+	       	    android:layout_width="wrap_content"
+	       	    android:layout_height="wrap_content"
+	       	    android:textSize="16dp"
+	       	    android:layout_marginLeft="10dp"
+	       	    android:layout_marginRight="10dp"
+	       	    android:layout_gravity="center"
+	       	    android:text="人员需求：" />
+	       	
+	       	<TextView 
+	       	    android:layout_width="wrap_content"
+	       	    android:layout_height="wrap_content"
+	       	    android:layout_gravity="center"
+	       	    android:textSize="16dp"
+	       	    android:layout_marginRight="10dp"
+	       	    android:id="@+id/bid_item_labor"
+	       	    android:visibility="gone"
+	       	    android:text="工长"/>
+	       	
+	       	<TextView 
+	       	    android:layout_width="wrap_content"
+	       	    android:layout_height="wrap_content"
+	       	    android:layout_gravity="center"
+	       	    android:textSize="16dp"
+	       	    android:layout_marginRight="10dp"
+	       	    android:id="@+id/bid_item_superior"
+	       	    android:visibility="gone"
+	       	    android:text="监理"/>
+	       	
+	       	<TextView 
+	       	    android:layout_width="wrap_content"
+	       	    android:layout_height="wrap_content"
+	       	    android:layout_gravity="center"
+	       	    android:textSize="16dp"
+	       	    android:layout_marginRight="10dp"
+	       	    android:id="@+id/bid_item_designer"
+	       	    android:visibility="gone"
+	       	    android:text="设计师"/>
        	</LinearLayout>
        	
    <LinearLayout 
@@ -142,6 +154,7 @@
        	    android:layout_gravity="center"
        	    android:textSize="16dp"
        	    android:layout_marginRight="10dp"
+       	    android:id="@+id/bid_item_space_type"
        	    android:text="2室  2厅  1厨  1卫  1阳台"/>
        	
 
@@ -168,10 +181,10 @@
        	    android:layout_gravity="center"
        	    android:textSize="16dp"
        	    android:layout_marginRight="10dp"
+       	    android:id="@+id/bid_item_bid_number"
        	    android:text="3人"/>
        	
 
        	</LinearLayout>
        	</LinearLayout>
-</LinearLayout>
 </LinearLayout>

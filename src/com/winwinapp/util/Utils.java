@@ -48,4 +48,11 @@ public class Utils {
         return BitmapFactory.decodeResource(res, resId,options);
     }
     
+    public static boolean isStringEmpty(String str){
+    	if( (str != null) && (str.length() > 0) ){
+    		return true;
+    	}
+    	return false;
+    }
+    
 }

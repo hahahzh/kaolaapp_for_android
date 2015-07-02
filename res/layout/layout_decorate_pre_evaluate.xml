@@ -9,21 +9,29 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:focusable="true"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    android:background="@color/white"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
     
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="20dp"
     android:orientation="vertical"
-    android:background="@drawable/budget_bg"
     android:focusable="true">
+    
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/graylight"/>
+    
     <TableRow 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp" >
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" >
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,31 +53,42 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:text="平方米"/>
-        </TableRow>
+    </TableRow>
+    
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/graylight"/>
+    
+    <TableRow 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
         
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="客厅"
+            android:layout_weight="1"/>
+        
+        <include 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            layout="@layout/layout_add_sub"/>
+    </TableRow>
+    
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/graylight"/>
+    
         <TableRow 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp">
-            
-            <TextView 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="客厅"
-                android:layout_weight="1"/>
-            
-            <include 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                layout="@layout/layout_add_sub"/>
-        </TableRow>
-        
-        <TableRow 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp">
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
             
             <TextView 
                 android:layout_width="wrap_content"
@@ -84,11 +103,16 @@
                 layout="@layout/layout_add_sub"/>
         </TableRow> 
         
+        <ImageView 
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:background="@color/graylight"/>
+        
         <TableRow 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp">
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
             
             <TextView 
                 android:layout_width="wrap_content"
@@ -103,11 +127,16 @@
                 layout="@layout/layout_add_sub"/>
         </TableRow> 
         
+        <ImageView 
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:background="@color/graylight"/>
+        
         <TableRow 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp">
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
             
             <TextView 
                 android:layout_width="wrap_content"
@@ -122,11 +151,16 @@
                 layout="@layout/layout_add_sub"/>
         </TableRow> 
         
+        <ImageView 
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:background="@color/graylight"/>
+        
         <TableRow 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="20dp">
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
             
             <TextView 
                 android:layout_width="wrap_content"
@@ -141,23 +175,33 @@
                 layout="@layout/layout_add_sub"/>
         </TableRow> 
         </LinearLayout>
+        <ImageView 
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:background="@color/graylight"/>
+        
         <TableRow 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp">
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
             <TextView 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="我需要"/>
         </TableRow>
         
+        <ImageView 
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:background="@color/graylight"/>
+        
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginBottom="40dp"
-            android:background="@drawable/budget_bg_2" >
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp" >
             
             <RadioGroup 
                 android:layout_width="match_parent"
@@ -178,11 +222,15 @@
             </RadioGroup>
         </TableRow>
 
+        <ImageView 
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:background="@color/graylight"/>
+        
         <Button 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
             android:layout_gravity="center"
             android:id="@+id/decorate_generate_price"

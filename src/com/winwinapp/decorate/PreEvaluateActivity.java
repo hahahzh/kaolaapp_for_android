@@ -51,7 +51,7 @@ public class PreEvaluateActivity extends ActionBarActivity {
 		imageView = new ImageView(this);
 		imageView.setImageResource(R.drawable.save);
 		setRightView(imageView);
-		this.setOnLeftClickListener(new OnClickListener(){
+		this.setOnRightClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View arg0) {

@@ -7,17 +7,20 @@
     <FrameLayout 
         android:id="@+id/common_fragment"
         android:layout_width="fill_parent"
+        android:layout_gravity="center"
         android:layout_height="0dip"
         android:layout_weight="1"></FrameLayout>
     <android.support.v4.app.FragmentTabHost
         android:id="@+id/homepage_tabhost"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
         <FrameLayout
             android:id="@+id/homepage_tab_cotent"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="0"/>
+            android:layout_weight="1"
+            android:layout_gravity="center"/>
     </android.support.v4.app.FragmentTabHost>"
 
 </LinearLayout>

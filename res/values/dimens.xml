@@ -5,7 +5,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="page_indicator_padding_left">8dp</dimen>
     <dimen name="page_indicator_height">22dp</dimen>
-    <dimen name="button_bar_height_plus_padding">2dp</dimen>
+    <dimen name="button_bar_height_plus_padding">10dp</dimen>
     
-    <dimen name="hot_pic_height">147dp</dimen>
+    <dimen name="hot_pic_height">187dp</dimen>
 </resources>

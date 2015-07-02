@@ -20,6 +20,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:scaleType="fitXY"
             android:src="@drawable/sgj_bg" />
         
         <ImageView 
@@ -126,30 +127,33 @@
     
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@drawable/designer_d_bg" >
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@color/white" >
 
         <TableRow 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_gravity="center_vertical"
-        android:orientation="horizontal">
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
+            android:orientation="horizontal">
      	<TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
             android:drawableLeft="@drawable/id"
             android:textColor="#CAD314"
+            android:gravity="center_vertical"
             android:text="身份证已认证"/>
         
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
             android:drawableLeft="@drawable/certificate"
+            android:gravity="center_vertical"
             android:text="证书已认证"
             android:textColor="#FF0000"/>
     	</TableRow>
@@ -159,6 +163,8 @@
      <LinearLayout
          android:layout_width="match_parent"
          android:layout_height="wrap_content"
+         android:paddingLeft="10dp"
+         android:paddingRight="10dp"
          android:background="@drawable/background_gray" >
 
         <TextView 
@@ -184,12 +190,16 @@
         android:gravity="top|left"
         android:minLines="4"
         android:background="#FFFFFF"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:hint="Ta 现在还没有介绍哦 ~"/>
 
      <LinearLayout
          android:layout_width="match_parent"
          android:layout_height="wrap_content"
-         android:background="@drawable/background_gray" >
+         android:background="@drawable/background_gray"
+         android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
 
         <TextView 
             android:layout_width="wrap_content"
@@ -213,13 +223,17 @@
     <include 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/layout_project_experience_item"/>
+        layout="@layout/layout_project_experience_item"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"/>
     
     <include
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         layout="@layout/layout_project_experience_item"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:background="#FFFFFF" />
 
 </LinearLayout>

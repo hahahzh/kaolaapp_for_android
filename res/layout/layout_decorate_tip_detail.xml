@@ -14,9 +14,8 @@
             android:id="@+id/tips_detail_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:text="【软装】装修中被人坑了也不知道的陷进"
+            android:text="【软装】装修中被人坑了也不知道的陷阱"
+            android:textSize="20sp"
             android:textColor="@color/white" />
 
 		    <LinearLayout 
@@ -32,7 +31,7 @@
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
 		            android:layout_marginRight="5dp"
-		            android:src="@drawable/clock"/>
+		            android:src="@drawable/clock_white"/>
 
 		        <TextView
 		            android:id="@+id/tips_item_date"
@@ -46,7 +45,8 @@
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
 		            android:layout_marginRight="5dp"
-		            android:src="@drawable/eye"/>
+		            android:src="@drawable/eye_white"
+		            android:layout_gravity="center"/>
 
 		         <TextView
 		             android:id="@+id/tips_item_viewed"

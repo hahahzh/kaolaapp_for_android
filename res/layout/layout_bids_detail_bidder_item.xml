@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/designer_bg"
+    android:orientation="horizontal" >
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/graylight"/>
+    
+   <ImageView 
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignParentLeft="true"
+       android:layout_alignParentTop="true"
+       android:layout_marginTop="10dp"
+       android:id="@+id/bid_detail_bidder_avatar"
+       android:src="@drawable/avatar1"/>
+   
+   <ImageView 
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignParentLeft="true"
+       android:layout_below="@id/bid_detail_bidder_avatar"
+       android:id="@+id/bid_detail_bidder_check"
+       android:layout_marginLeft="15dp"
+       android:layout_marginTop="5dp"
+       android:src="@drawable/reg2_check"/>
+   
+   <TextView 
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="10dp"
+       android:layout_toRightOf="@id/bid_detail_bidder_avatar"
+       android:id="@+id/bid_detail_bidder_avatar_name"
+       android:text="钟晓晓"/>
+   
+   <TextView 
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="10dp"
+       android:layout_toRightOf="@id/bid_detail_bidder_avatar"
+       android:layout_below="@id/bid_detail_bidder_avatar_name"
+       android:id="@+id/bid_detail_bidder_bid_time"
+       android:textColor="@color/gray"
+       android:text="投标于：2015-4-1"/>
+   
+   <TextView 
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="10dp"
+       android:layout_toRightOf="@id/bid_detail_bidder_avatar"
+       android:layout_below="@id/bid_detail_bidder_bid_time"
+       android:id="@+id/bid_detail_bidder_rank"
+       android:text="专业：9.0    服务：9.0"
+       android:textColor="@color/gray"/>
+   
+   <TextView 
+       android:layout_height="wrap_content"
+       android:layout_width="wrap_content"
+       android:layout_marginTop="10dp"
+       android:layout_alignParentRight="true"
+       android:layout_alignParentTop="true"
+       android:background="@drawable/designer_price_bg"
+       android:id="@+id/bid_detail_bidder_special"
+       android:paddingLeft="5dp"
+       android:paddingTop="5dp"
+       android:gravity="center"
+       android:text="10年经验"/>
+   
+   <ImageView 
+       android:layout_height="wrap_content"
+       android:layout_width="wrap_content"
+       android:layout_marginTop="5dp"
+       android:layout_alignParentRight="true"
+       android:src="@drawable/my_love_message"
+       android:layout_below="@id/bid_detail_bidder_special"
+       android:id="@+id/bid_detail_bidder_message"/>
+   
+   <TextView 
+        android:layout_height="wrap_content"
+       android:layout_width="wrap_content"
+       android:layout_marginTop="5dp"
+       android:layout_alignParentRight="true"
+       android:text="留言"
+       android:textColor="@color/gray"
+       android:id="@+id/bid_detail_bidder_leave_message"
+       android:layout_below="@id/bid_detail_bidder_message"/>
+   
+   <ImageView 
+       android:layout_width="match_parent"
+       android:layout_height="1dp"
+       android:layout_below="@id/bid_detail_bidder_leave_message"
+       android:background="@color/graylight"
+       android:layout_marginLeft="20dp"
+       android:layout_marginTop="5dp"
+       android:layout_marginBottom="5dp"
+       android:id="@+id/bid_detail_bidder_separator"/>
+    
+   <TextView 
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginLeft="20dp"
+       android:layout_below="@id/bid_detail_bidder_separator"
+       android:textColor="@color/gray"
+       android:id="@+id/bid_detail_bidder_self_introduce"
+       android:text="自荐介绍:\n本人从事十多年的设计，具有充足的经验，对简约风格尤其擅长."/>
+
+</RelativeLayout>
+
