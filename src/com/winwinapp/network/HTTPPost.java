@@ -171,4 +171,69 @@ public class HTTPPost {
 		}
 		return success;
 	}
+	
+	public static boolean DeletePublicMsg(NetworkData.DeletePublicMsgData data,NetworkData.CommonBack msgBack){
+		boolean success = false;
+		String postData = JsonHandler.createDeletePublicMsgString(data);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_DELETE_PUBLIC_MSG, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseDeletePublicMsg(back, msgBack);
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "网络不可用";
+		}
+		return success;
+	}
+	
+	public static boolean DeletePrivateMsg(NetworkData.DeletePrivateMsgData data,NetworkData.CommonBack msgBack){
+		boolean success = false;
+		String postData = JsonHandler.createDeletePrivateMsgString(data);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_DELETE_PRIVATE_MSG, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseDeletePrivateMsg(back, msgBack);
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "网络不可用";
+		}
+		return success;
+	}
+	
+	public static boolean RegisterUser(NetworkData.RegisterData data,NetworkData.RegisterBack msgBack){
+		boolean success = false;
+		String postData = JsonHandler.createRegisterString(data);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_REGISTER, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseRegister(back, msgBack);
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "网络不可用";
+		}
+		return success;
+	}
+	
+	public static boolean RequestMyContractList(NetworkData.BidListData data,NetworkData.MyContractListBack msgBack){
+		boolean success = false;
+		String postData = JsonHandler.createUserBidListString(data);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_MY_CONTRACT_LIST, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseMyContractList(back, msgBack);
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "网络不可用";
+		}
+		return success;
+	}
+	
+	public static boolean RequestMyContractDetail(NetworkData.BidDetailData data,NetworkData.MyContractDetailBack msgBack){
+		boolean success = false;
+		String postData = JsonHandler.createMyContractDetailString(data);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_MY_CONTRACT_DETAIL, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseMyContractDetail(back, msgBack);
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "网络不可用";
+		}
+		return success;
+	}
 }

@@ -27,6 +27,10 @@ public class NetworkData {
 	public static String URL_BID_PUBLISH = URL_BASE_API + "/BidProj/insert.html";
 	public static String URL_BID_VIE = URL_BASE_API + "/BidProj/vieBid.html";
 	public static String URL_GET_REGIONS = URL_BASE_API +"/BidProj/getRegions.html";
+	public static String URL_DELETE_PUBLIC_MSG = URL_BASE_API + "/Message/publicTruncate.html";
+	public static String URL_DELETE_PRIVATE_MSG = URL_BASE_API + "/Message/privateTruncate.html";
+	public static String URL_MY_CONTRACT_LIST = URL_BASE_API + "/Contract/contractList.html";
+	public static String URL_MY_CONTRACT_DETAIL = URL_BASE_API + "/Contract/contractDetail.html";
 	public static final int USER_TYPE_MEMBER = 1;
 	public static final int USER_TYPE_DESIGNER = 2;
 	public static final int USER_TYPE_SUPERIOR = 3;
@@ -79,25 +83,27 @@ public class NetworkData {
 		}
 	}
 	
+	public RegisterData getNewRegisterData(){
+		return new RegisterData();
+	}
+	
 	public class RegisterData {
-		String username;
-		String password;
-		int type;//1,huiyuan; 2,designer; 3 superior; 4 labor;
-		String email;
-		String mobile;
-		
-		public RegisterData(){
-			username = "test1";
-			password = "123456";
-			type = 1;
-			email = "test1@sina.com";
-			mobile = "12345678901";
-		}
+		public String username;
+		public String password;
+		public int type;//1,huiyuan; 2,designer; 3 superior; 4 labor;
+		public String email;
+		public String mobile;
+	}
+	
+	public RegisterBack getNewRegisterBack(){
+		return new RegisterBack();
 	}
 	
 	public class RegisterBack{
-		String code = "-1";//ie, 0
-		String data = null;//ie, "30", ""
+		public int code = -1;//ie, 0
+		public String error ;
+		public String id;
+		public String sessid;
 	}
 	
 	public class FindMemberData{
@@ -573,5 +579,123 @@ public class NetworkData {
 		public int code;
 		public String error;
 		ArrayList<RegionsItem> regions = new ArrayList<RegionsItem>();
+	}
+	
+	public DeletePrivateMsgData getNewDeletePrivateMsgData(){
+		return new DeletePrivateMsgData();
+	}
+	
+	public class DeletePrivateMsgData{
+		public ArrayList<Integer> mIds = new ArrayList<Integer>();
+	}
+	
+	public DeletePublicMsgData getNewDeletePublicMsgData(){
+		return new DeletePublicMsgData();
+	}
+	
+	public class DeletePublicMsgData{
+		public int id;
+		public int is_exist;
+		public int rec_id;
+	}
+	
+	public MyContractListBack getNewMyContractListBack(){
+		return new MyContractListBack();
+	}
+	
+	public class MyContractListBack{
+		public int code;
+		public int total;
+		public String error;
+		public ArrayList<MyContractListItem> items = new ArrayList<MyContractListItem>();
+	}
+	
+	public MyContractListItem getNewMyContractListItem(){
+		return new MyContractListItem();
+	}
+	
+	public class MyContractListItem{
+		public String c_id;
+		public String bid_id;
+		public String owner_id;
+		public String operate_id;
+		public String contract_type;
+		public String real_name;
+		public String str_build_addr;
+		public build_addr addr = new build_addr(); 
+		public String decorate_way;
+		public String str_start_date;
+		public Date start_date = new Date();
+		public String str_end_date;
+		public Date end_date = new Date();
+		public String total_amount;
+		public String first_pay;
+		public String second_pay;
+		public String third_pay;
+		public String fourth_pay;
+		public String other_pay;
+		public String str_liability;
+		public Liability liability = new Liability();
+		public String guide_num;
+		public String plan;
+		public String free_num;
+		public String draft_day;
+		public String final_day;
+		public String create_time;
+		public String is_confirm;
+		public String is_check;
+		public String is_paid;
+		public String is_complete;
+		public String prov_finish;
+		public String title;
+	}
+	
+	public class build_addr{
+		public String province;
+		public String city;
+		public String district;
+		public String road;
+		public String lane;
+		public String number;
+		public String floor;
+		public String room; 
+	}
+	
+	public class Date{
+		public String year;
+		public String month;
+		public String day;
+	}
+	
+	public class Liability{
+		public String unpaid_percent;
+		public String first_percent;
+		public String second_percent;
+		public String third_percent;
+		public String fourth_percent;
+	}
+	
+	public MyContractDetailBack getNewMyContractDetailBack(){
+		return new MyContractDetailBack();
+	}
+	
+	public class MyContractDetailBack extends MyContractListItem{
+		public int code;
+		public String error;
+		public String province;
+		public String city;
+		public String district;
+		public String road;
+		public String lane;
+		public String number;
+		public String floor;
+		public String room;
+		public String syear;
+		public String smonth;
+		public String sday;
+		public String eyear;
+		public String emonth;
+		public String eday;
+		public String user_type;
 	}
 }

@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EEEEEE"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/my_contract_ll">
     
     <TextView 
         android:layout_width="match_parent"
@@ -34,6 +35,7 @@
 	        android:layout_gravity="center"
 	        android:layout_marginLeft="10dp"
 	        android:textStyle="bold"
+	        android:id="@+id/my_contract_name"
 	        android:text="张曼曼"/>
         
     </LinearLayout>
@@ -61,12 +63,13 @@
 	        android:layout_gravity="center"
 	        android:textStyle="bold"
 	        android:text="上海   上海市  闸北区  广中西路"
+	        android:id="@+id/my_contract_address"
 	        android:drawableRight="@drawable/forward"/>
         
     </LinearLayout>
     
     <LinearLayout 
-               android:layout_width="match_parent"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/layout_border"
         android:layout_gravity="center"
@@ -88,6 +91,7 @@
 	        android:layout_weight="1"
 	        android:textStyle="bold"
 	        android:text="包工包料"
+	        android:id="@+id/my_contract_decoreate_way"
 	        android:drawableRight="@drawable/forward"/>
         
     </LinearLayout>
@@ -118,13 +122,14 @@
 	        android:layout_gravity="center"
 	        android:layout_weight="1"
 	        android:textStyle="bold"
+	        android:id="@+id/my_contract_start_date"
 	        android:text="2015年4月22日"
 	        android:drawableRight="@drawable/forward"/>
         
     </LinearLayout>
     
     <LinearLayout 
-              android:layout_width="match_parent"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
         android:background="@drawable/layout_border"
@@ -145,6 +150,7 @@
 	        android:layout_gravity="center"
 	        android:layout_weight="1"
 	        android:textStyle="bold"
+	        android:id="@+id/my_contract_end_date"
 	        android:text="2015年6月22日"
 	        android:drawableRight="@drawable/forward"/>
         
@@ -176,6 +182,7 @@
 	        android:layout_gravity="center"
 	        android:layout_weight="1"
 	        android:textStyle="bold"
+	        android:id="@+id/my_contract_total_pay"
 	        android:text="90000"/>
         
         <TextView 
@@ -209,6 +216,7 @@
 	        android:layout_gravity="center"
 	        android:layout_weight="1"
 	        android:textStyle="bold"
+	        android:id="@+id/my_contract_first_pay"
 	        android:text="18000"/>
         
         <TextView 
@@ -241,6 +249,7 @@
 	        android:layout_gravity="center"
 	        android:layout_weight="1"
 	        android:textStyle="bold"
+	        android:id="@+id/my_contract_second_pay"
 	        android:text="27000"/>
         
         <TextView 
@@ -273,6 +282,7 @@
 	        android:layout_gravity="center"
 	        android:layout_weight="1"
 	        android:textStyle="bold"
+	        android:id="@+id/my_contract_third_pay"
 	        android:text="27000"/>
         
         <TextView 
@@ -305,6 +315,7 @@
 	        android:layout_gravity="center"
 	        android:layout_weight="1"
 	        android:textStyle="bold"
+	        android:id="@+id/my_contract_fourth_pay"
 	        android:text="18000"/>
         
         <TextView 
@@ -323,6 +334,7 @@
 	    android:layout_marginTop="50dp"
 	    android:layout_gravity="center"
 	    android:background="@drawable/feedback_o"
+	    android:layout_marginBottom="40dp"
 	    android:text="提交" />
 </LinearLayout>
 </ScrollView>

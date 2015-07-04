@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import com.winwinapp.chat.KoalaChatActivity;
 import com.winwinapp.designer.ContactDesignerActivity;
+import com.winwinapp.koala.SlideListView.RemoveDirection;
+import com.winwinapp.koala.SlideListView.RemoveListener;
 import com.winwinapp.network.HTTPPost;
 import com.winwinapp.network.NetworkData;
 
@@ -25,12 +27,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MessageListActivity extends ActionBarActivity {
+public class MessageListActivity extends ActionBarActivity implements RemoveListener{
 
 	private static final int MESSAGE_ID_AVATRAR = 0;
 	private static final int MESSAGE_ID_OTHERS = 1;
 	private static final int MESSAGE_INVALIDATE_LIST = 2;
-	private ListView mMessageListView;
+	private static final int MESSAGE_DELETE_PUBLIC_MSG = 3;
+	private static final int MESSAGE_DELETE_PRIVATE_MSG = 4;
+	private SlideListView mMessageListView;
 	private ArrayList<MessageItem> mMessageItemArray = new ArrayList<MessageItem>();
 	private LayoutInflater mInflater;
 	MessageListAdapter mMessageAdapter;
@@ -45,6 +49,7 @@ public class MessageListActivity extends ActionBarActivity {
 	private Handler mHandler = new Handler(){
 		public void handleMessage(Message msg){
 			Intent intent;
+			String error;
 			switch(msg.what){
 			case MESSAGE_ID_AVATRAR:
 				//Toast.makeText(MessageListActivity.this, "avatar:"+(int)msg.arg1, Toast.LENGTH_SHORT).show();
@@ -67,7 +72,7 @@ public class MessageListActivity extends ActionBarActivity {
 				startActivity(intent);
 				break;
 			case MESSAGE_INVALIDATE_LIST:
-				String error = (String)msg.obj;
+				error = (String)msg.obj;
 				if("OK".equals(error)){
 					//Toast.makeText(MessageListActivity.this, "OK received", Toast.LENGTH_LONG).show();
 					//mMessageListView.invalidate();
@@ -75,6 +80,24 @@ public class MessageListActivity extends ActionBarActivity {
 				}
 				else{
 					Toast.makeText(MessageListActivity.this, "获取消息列表失败："+error, Toast.LENGTH_LONG).show();
+				}
+				break;
+			case MESSAGE_DELETE_PUBLIC_MSG:
+				error = (String)msg.obj;
+				if("OK".equals(error)){
+					Toast.makeText(MessageListActivity.this, "删除公共消息成功", Toast.LENGTH_LONG).show();
+				}
+				else{
+					Toast.makeText(MessageListActivity.this, "删除公共消息失败："+error, Toast.LENGTH_LONG).show();
+				}
+				break;
+			case MESSAGE_DELETE_PRIVATE_MSG:
+				error = (String)msg.obj;
+				if("OK".equals(error)){
+					Toast.makeText(MessageListActivity.this, "删除私有消息成功"+error, Toast.LENGTH_LONG).show();
+				}
+				else{
+					Toast.makeText(MessageListActivity.this, "删除私有消息失败："+error, Toast.LENGTH_LONG).show();
 				}
 				break;
 			}
@@ -85,7 +108,7 @@ public class MessageListActivity extends ActionBarActivity {
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.layout_message_list);
+		setContentView(R.layout.layout_list_slide);
 		
 		type = getIntent().getIntExtra("type", 0);
 		
@@ -111,7 +134,8 @@ public class MessageListActivity extends ActionBarActivity {
 	}
 	
 	public void initMessageList(){
-		mMessageListView = (ListView)findViewById(R.id.listView_message);
+		mMessageListView = (SlideListView)findViewById(R.id.slideCutListView);
+		mMessageListView.setRemoveListener(this);
 		mInflater = LayoutInflater.from(this);
 		mMessageAdapter = new MessageListAdapter(this);
 		mMessageListView.setAdapter(mMessageAdapter);
@@ -280,5 +304,51 @@ public class MessageListActivity extends ActionBarActivity {
 			mHandler.sendMessage(msg);
 		}
 		
+	}
+
+	@Override
+	public void removeItem(RemoveDirection direction, final int position) {
+		// TODO 自动生成的方法存根
+		mMessageItemArray.remove(position);
+		mMessageAdapter.notifyDataSetChanged();
+		if(type == 0){//public 
+			new Thread(){
+				public void run(){
+					NetworkData.DeletePublicMsgData data = NetworkData.getInstance().getNewDeletePublicMsgData();
+					NetworkData.CommonBack back = NetworkData.getInstance().getCommonBack();
+					data.id = Integer.parseInt(mRequestPublicBack.items.get(position).id);
+					data.is_exist = Integer.parseInt(mRequestPublicBack.items.get(position).is_exist);
+					data.rec_id = Integer.parseInt(mRequestPublicBack.items.get(position).rec_id);
+					boolean success = HTTPPost.DeletePublicMsg(data, back);
+					Message msg = Message.obtain();
+					msg.what = MESSAGE_DELETE_PUBLIC_MSG;
+					if(success){
+						msg.obj = (Object)("OK");
+					}else{
+						msg.obj = back.error;
+					}
+					mHandler.sendMessage(msg);
+				}
+			}.start();
+		}else{
+			new Thread(){
+				public void run(){
+					NetworkData.DeletePrivateMsgData data = NetworkData.getInstance().getNewDeletePrivateMsgData();
+					NetworkData.CommonBack back = NetworkData.getInstance().getCommonBack();
+					Integer iMsg =  Integer.valueOf(Integer.parseInt(mRequestPrivateBack.items.get(position).id));
+					data.mIds.add(iMsg);
+					boolean success = HTTPPost.DeletePrivateMsg(data, back);
+					Message msg = Message.obtain();
+					msg.what = MESSAGE_DELETE_PRIVATE_MSG;
+					if(success){
+						msg.obj = (Object)("OK");
+					}else{
+						msg.obj = back.error;
+					}
+					mHandler.sendMessage(msg);
+				}
+			}.start();
+		}
+		//Toast.makeText(this, "delete item " + position, Toast.LENGTH_LONG).show();
 	}
 }

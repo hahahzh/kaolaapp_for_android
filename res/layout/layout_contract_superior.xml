@@ -33,6 +33,7 @@
 	        android:layout_gravity="center"
 	        android:layout_marginLeft="10dp"
 	        android:textStyle="bold"
+	        android:id="@id/my_contract_name"
 	        android:text="张曼曼"/>
         
     </LinearLayout>
@@ -61,6 +62,7 @@
 	        android:ellipsize="end"
 	        android:gravity="center"
 	        android:textStyle="bold"
+	        android:id="@id/my_contract_address"
 	        android:text="上海   上海市  闸北区  广中西路"
 	        android:drawableRight="@drawable/forward"/>
         
@@ -96,6 +98,7 @@
 	        android:layout_gravity="center"
 	        android:layout_weight="1"
 	        android:textStyle="bold"
+	        android:id="@+id/my_contract_superior_total"
 	        android:text="90000"/>
         
         <TextView 

@@ -12,10 +12,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.winwinapp.about.AboutActivity;
 import com.winwinapp.about.FuncDescActivity;
 import com.winwinapp.koala.R;
+import com.winwinapp.util.Utils;
 
 public class Reg1Activity extends Activity {
 
@@ -66,10 +68,23 @@ public class Reg1Activity extends Activity {
 				v_code = edit_v_code.getText().toString().trim();
 				if ("".equals(mailandphone) || "".equals(username) || "".equals(password) || "".equals(repeat_password) || "".equals(v_code)){
 //					layoutProcess.setVisibility(View.GONE);
-//					Toast.makeText(LoginPageActivity.this, context.getString(R.string.login_emptyname_or_emptypwd) , Toast.LENGTH_SHORT).show();
-				}else {
+					Toast.makeText(context, context.getString(R.string.login_emptyname_or_emptypwd) , Toast.LENGTH_SHORT).show();
+				}else if(!Utils.isEmail(mailandphone) && !Utils.isMobilePhone(mailandphone)){
+					Toast.makeText(context, "邮箱或者手机号非法" , Toast.LENGTH_SHORT).show();
+				}else if(!password.equals(repeat_password)){
+					Toast.makeText(context, "两次密码不一致" , Toast.LENGTH_SHORT).show();
+				}else{
 					Bundle bundle = new Bundle();
 					Intent intent = new Intent(Reg1Activity.this, Reg2Activity.class);
+					if(Utils.isEmail(mailandphone)){
+						bundle.putString("mail", mailandphone);
+						bundle.putString("mobile", "");
+					}else{
+						bundle.putString("mobile", mailandphone);
+						bundle.putString("mail", "");
+					}
+					bundle.putString("password", password);
+					bundle.putString("username", username);
 					intent.putExtras(bundle);
 					startActivity(intent);
 				}
@@ -83,6 +98,11 @@ public class Reg1Activity extends Activity {
 				
 //					mThread = new Thread(getVCodeRunable);
 //					mThread.start();
+				if(edit_mailandphone.getText().toString().isEmpty()){
+					Toast.makeText(context, "邮箱或手机不能为空", Toast.LENGTH_LONG).show();
+				}else{
+					
+				}
 					
 			}
 		});

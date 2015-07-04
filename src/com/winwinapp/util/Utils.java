@@ -1,5 +1,8 @@
 package com.winwinapp.util;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -55,4 +58,21 @@ public class Utils {
     	return false;
     }
     
+    public static boolean isEmail(String str){
+    	boolean is = false;
+    	String check = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+        Pattern regex = Pattern.compile(check);
+        Matcher matcher = regex.matcher(str);
+        is = matcher.matches();
+    	return is;
+    }
+    
+    public static boolean isMobilePhone(String str){
+    	boolean is = false;
+    	String check = "^((13[0-9])|(15[^4,\\D])|(18[^1^4,\\D]))\\d{8}";
+        Pattern regex = Pattern.compile(check);
+        Matcher matcher = regex.matcher(str);
+        is = matcher.matches();
+    	return is;
+    }
 }

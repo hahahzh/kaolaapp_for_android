@@ -39,7 +39,7 @@
 	        android:background="@null"
 	        android:layout_weight="1"
 	        android:layout_marginLeft="40dp"
-	        android:text="" >
+	        android:text="aa@aa.com" >
 	        <requestFocus />
 	    </EditText>
 	    </LinearLayout>
@@ -73,7 +73,7 @@
 	        android:background="@null"
 	        android:inputType="textPersonName"
 	        android:layout_marginLeft="5dp"
-	        android:text="" >
+	        android:text="admin1" >
 	        <requestFocus />
 	    </EditText>
 	    </LinearLayout>
@@ -107,6 +107,7 @@
 	        android:background="@null"
 	        android:inputType="textPassword"
 	        android:layout_marginLeft="80dp"
+	        android:text="admin123"
 	        android:password="true" >
 	        <requestFocus />
 	    </EditText>
@@ -141,6 +142,7 @@
 	        android:background="@null"
 			android:inputType="textPassword"
 			android:layout_marginLeft="40dp"
+			android:text="admin123"
 	        android:password="true" >
 	        <requestFocus />
 	    </EditText>
@@ -175,7 +177,7 @@
         android:background="@null"
         android:layout_marginLeft="50dp"
         android:inputType="textPersonName"
-        android:text="" >
+        android:text="1234" >
         <requestFocus />
     </EditText>
     

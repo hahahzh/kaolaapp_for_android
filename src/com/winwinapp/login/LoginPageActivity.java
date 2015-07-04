@@ -132,7 +132,11 @@ public class LoginPageActivity extends ActionBarActivity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO 自动生成的方法存根
-				finish();
+				//finish();
+				Intent intent = new Intent(LoginPageActivity.this,KLHomePageActivity.class);
+				intent.putExtra("page", 0);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(intent);
 			}
 			
 		});
@@ -169,11 +173,21 @@ public class LoginPageActivity extends ActionBarActivity {
 				app.saveSession(mLogBack);
 				Intent intent = new Intent(LoginPageActivity.this,KLHomePageActivity.class);
 				intent.putExtra("page", 3);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
 			}else{
 				mHandler.sendEmptyMessage(MSG_ID_LOGIN_FAIL);
 			}
 		}
 	};
+	@Override
+	public void onBackPressed() {
+		// TODO 自动生成的方法存根
+		//super.onBackPressed();
+		Intent intent = new Intent(LoginPageActivity.this,KLHomePageActivity.class);
+		intent.putExtra("page", 0);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(intent);
+	}
 
 }

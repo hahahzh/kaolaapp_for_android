@@ -2,10 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="10dp"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp" >
-    
+    android:background="@color/red">
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingLeft="10dp"
+	    android:paddingTop="10dp"
+	    android:paddingBottom="10dp">
      <ImageView
         android:id="@+id/message_list_avatar"
         android:layout_width="wrap_content"
@@ -81,5 +85,7 @@
          android:text="今天木板已经送到，明天工人来安装，请..."
          android:singleLine="true" 
          android:paddingLeft="5dp" />
+     
+     </RelativeLayout>
 
 </RelativeLayout>

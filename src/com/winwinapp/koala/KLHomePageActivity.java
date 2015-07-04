@@ -40,18 +40,27 @@ public class KLHomePageActivity extends FragmentActivity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		//getActionBar().hide();
+		setTheme(R.style.AppTheme); 
 		initActionBar();
-		mApplication = (KoalaApplication) this.getApplication();
-		mApplication.init();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_tabhost_home);
 		getSwitchPageFromIntent(this.getIntent());
+		mApplication = (KoalaApplication) this.getApplication();
+		mApplication.init();
 		initView();
 	}
 
+	public void onStart(){
+		super.onStart();
+	}
+	
 	public void getSwitchPageFromIntent(Intent intent){
 		mSwitchPage = intent.getIntExtra("page", 0 );
+		if(mTabHost != null){
+			if( (mSwitchPage >= 0) && (mSwitchPage < mTabHost.getTabWidget().getTabCount())){
+				mTabHost.setCurrentTab(mSwitchPage);
+			}
+		}
 	}
 	
 	private void initActionBar(){
@@ -67,6 +76,7 @@ public class KLHomePageActivity extends FragmentActivity {
 			setActionBarMain();
 			
 			actionBar.setCustomView(mActionBar,new ActionBar.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
+			actionBar.show();
 			
 		}
 	}
@@ -244,6 +254,14 @@ public class KLHomePageActivity extends FragmentActivity {
 		textView.setText(mTabContent[index]);
 		
 		return view;
+	}
+
+	@Override
+	protected void onNewIntent(Intent intent) {
+		// TODO 自动生成的方法存根
+		super.onNewIntent(intent);
+		this.setIntent(intent);
+		getSwitchPageFromIntent(intent);
 	}
 
 }

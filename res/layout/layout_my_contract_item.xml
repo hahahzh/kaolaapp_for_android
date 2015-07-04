@@ -62,7 +62,7 @@
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/my_contract_item_area"
+            android:id="@+id/my_contract_item_user_name"
             android:textSize="20dp"
            	android:text="张满满"
            	android:textStyle="bold"
