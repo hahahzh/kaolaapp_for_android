@@ -16,6 +16,9 @@ public class NetworkData {
 	public static String URL_PUBLIC_MESSAGE_LIST = URL_BASE_API + "/Message/publicList.html";
 	public static String URL_PUBLIC_MESSAGE_INFO = URL_BASE_API + "/Message/publicInfo.html";
 	public static String URL_PRIVATE_MESSAGE_INFO = URL_BASE_API + "/Message/pivateInfo.html";
+	public static String URL_SEND_PUBLIC_MESSAGE = URL_BASE_API + "/Message/insert.html";
+	public static String URL_SEND_PRIVATE_MESSAGE = URL_BASE_API + "/Message/reply.html";
+	
 	public static String URL_SEND_MESSAGE = URL_BASE_API + "/Message/insert.html";
 	public static String URL_DECORATE_TIPS_DETAIL = URL_BASE_API + "/Document/docsDetail.html";
 	public static String URL_DECORATE_TIPS_LIST = URL_BASE_API + "/Document/docsList.html";
@@ -177,6 +180,16 @@ public class NetworkData {
 		String sessid = null;
 	}
 	
+	public SendMessageData getNewSendMessageData(){
+		return new SendMessageData();
+	}
+	
+	public class SendMessageData{
+		public int topic_id;
+		public String content;
+		public int rec_id;
+	}
+	
 	//personal center ---> message, need to login in
 	
 	public PrivateMessageListData getNewPrivateMessageListData(){
@@ -331,11 +344,6 @@ public class NetworkData {
 		public int code = 0;
 		public String error;
 		public PublicMessageInfoItem item = new PublicMessageInfoItem();
-	}
-	
-	public class SendMessageData{
-		String content;//the content of message
-		int rec_id;//the id of receiver，接收信息用户编号
 	}
 	
 	public class checkPrivateMessageData{
@@ -578,7 +586,7 @@ public class NetworkData {
 	public class RegionsBack{
 		public int code;
 		public String error;
-		ArrayList<RegionsItem> regions = new ArrayList<RegionsItem>();
+		public ArrayList<RegionsItem> regions = new ArrayList<RegionsItem>();
 	}
 	
 	public DeletePrivateMsgData getNewDeletePrivateMsgData(){

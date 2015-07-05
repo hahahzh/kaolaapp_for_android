@@ -29,6 +29,8 @@ import android.widget.Toast;
 public class KoalaChatActivity extends ActionBarActivity implements OnClickListener {
 
 	private static final int MESSAGE_REFRESH_LIST = 1;
+	private static final int MESSAGE_SEND_PUBLIC_MSG = 2;
+	private static final int MESSAGE_SEND_PRIVATE_MSG = 3;
 	private Button mBtnSend;// 发送btn
 	private EditText mEditTextContent;
 	private ListView mListView;
@@ -46,6 +48,9 @@ public class KoalaChatActivity extends ActionBarActivity implements OnClickListe
 	
 	private NetworkData.PrivateMessageInfoData mPrivateData;
 	private NetworkData.PrivateMessageInfoBack mPrivateBack;
+	
+	private NetworkData.SendMessageData mSendMsgData;
+	private NetworkData.CommonBack mSendMsgBack;
 
 	private Handler mHandler = new Handler(){
 		public void handleMessage(Message msg){
@@ -58,6 +63,19 @@ public class KoalaChatActivity extends ActionBarActivity implements OnClickListe
 					Toast.makeText(KoalaChatActivity.this, "获取系统消息出错:"+msg.obj, Toast.LENGTH_LONG).show();
 				}
 				break;
+			case MESSAGE_SEND_PUBLIC_MSG:
+				if("OK".equals(msg.obj)){
+					
+				}else{
+					Toast.makeText(KoalaChatActivity.this, "发送系统消息出错:"+msg.obj, Toast.LENGTH_LONG).show();
+				}
+				break;
+			case MESSAGE_SEND_PRIVATE_MSG:
+				if("OK".equals(msg.obj)){
+					
+				}else{
+					Toast.makeText(KoalaChatActivity.this, "回复消息出错:"+msg.obj, Toast.LENGTH_LONG).show();
+				}
 			}
 		}
 	};
@@ -111,6 +129,44 @@ public class KoalaChatActivity extends ActionBarActivity implements OnClickListe
 					msg.obj = mPublicBack.error;
 				else
 					msg.obj = mPrivateBack.error;
+			}
+			mHandler.sendMessage(msg);
+		}
+	}
+	
+	public class SendPublicMsgThread extends Thread{
+		String mContent;
+		public SendPublicMsgThread(String content){
+			mContent = content;
+		}
+		
+		public void run(){
+			boolean success = false;
+			Message msg = Message.obtain();
+			if(mSendMsgData == null){
+				mSendMsgData = NetworkData.getInstance().getNewSendMessageData();
+			}
+			if(mSendMsgBack == null){
+				mSendMsgBack = NetworkData.getInstance().getCommonBack();
+			}
+			
+			if(type == 0){
+				msg.what = MESSAGE_SEND_PUBLIC_MSG;
+				mSendMsgData.content = mContent;
+				mSendMsgData.rec_id = Integer.parseInt(mPublicBack.item.topic_id);
+				success = HTTPPost.SendMessage(mSendMsgData, mSendMsgBack,type);
+			}else{
+				msg.what = MESSAGE_SEND_PRIVATE_MSG;
+				mSendMsgData.content = mContent;
+				mSendMsgData.rec_id = Integer.parseInt(mPrivateBack.items.get(0).rec_id);
+				mSendMsgData.topic_id = Integer.parseInt(mPrivateBack.items.get(0).topic_id);
+				success = HTTPPost.SendMessage(mSendMsgData, mSendMsgBack,type);
+			}
+			
+			if(success){
+				msg.obj = (Object)("OK");
+			}else{
+				msg.obj = mSendMsgBack.error;
 			}
 			mHandler.sendMessage(msg);
 		}
@@ -209,10 +265,10 @@ public class KoalaChatActivity extends ActionBarActivity implements OnClickListe
 		String contString = mEditTextContent.getText().toString();
 		if (contString.length() > 0) {
 			ChatMsgEntity entity = new ChatMsgEntity();
-			entity.setName("必败");
+			entity.setName("我");
 			entity.setDate(getDate());
 			entity.setMessage(contString);
-			entity.setMsgType(false);
+			entity.setMsgType(true);
 
 			mDataArrays.add(entity);
 			mAdapter.notifyDataSetChanged();// 通知ListView，数据已发生改变
@@ -220,6 +276,8 @@ public class KoalaChatActivity extends ActionBarActivity implements OnClickListe
 			mEditTextContent.setText("");// 清空编辑框数据
 
 			mListView.setSelection(mListView.getCount() - 1);// 发送一条消息时，ListView显示选择最后一项
+			
+			new SendPublicMsgThread(contString).start();
 		}
 	}
 

@@ -82,6 +82,7 @@ public class KLHomePageActivity extends FragmentActivity {
 	}
 	
 	public void setActionBarMain(){
+		mCurrentCity = mApplication.mLocationCity;
 		TextView textView = new TextView(this);
 		Drawable drawable = this.getResources().getDrawable(R.drawable.location);
 		textView.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
@@ -113,9 +114,14 @@ public class KLHomePageActivity extends FragmentActivity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO 自动生成的方法存根
-				Intent intent = new Intent(KLHomePageActivity.this,MessageListActivity.class);
-				intent.putExtra("type", 0);
-				startActivity(intent);
+				if(mApplication.isUserLogin()){
+					Intent intent = new Intent(KLHomePageActivity.this,MessageListActivity.class);
+					intent.putExtra("type", 0);
+					startActivity(intent);
+				}else{
+					Intent intent = new Intent(KLHomePageActivity.this,LoginPageActivity.class);
+					startActivity(intent);
+				}
 			}
 			
 		});
@@ -199,11 +205,43 @@ public class KLHomePageActivity extends FragmentActivity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO 自动生成的方法存根
-				if(mApplication.getSession() == null || mApplication.getUsername() == null){
+				if(!KoalaApplication.isUserLogin()){
 					Intent intent = new Intent(KLHomePageActivity.this, LoginPageActivity.class);
 					startActivity(intent);
 				}else{
 					mSwitchPage = 3;
+					mTabHost.setCurrentTab(mSwitchPage);
+				}
+			}
+			
+		});
+		
+		mTabHost.getTabWidget().getChildAt(1).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO 自动生成的方法存根
+				if(!KoalaApplication.isUserLogin()){
+					Intent intent = new Intent(KLHomePageActivity.this, LoginPageActivity.class);
+					startActivity(intent);
+				}else{
+					mSwitchPage = 1;
+					mTabHost.setCurrentTab(mSwitchPage);
+				}
+			}
+			
+		});
+		
+		mTabHost.getTabWidget().getChildAt(2).setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO 自动生成的方法存根
+				if(!KoalaApplication.isUserLogin()){
+					Intent intent = new Intent(KLHomePageActivity.this, LoginPageActivity.class);
+					startActivity(intent);
+				}else{
+					mSwitchPage = 2;
 					mTabHost.setCurrentTab(mSwitchPage);
 				}
 			}
@@ -262,6 +300,15 @@ public class KLHomePageActivity extends FragmentActivity {
 		super.onNewIntent(intent);
 		this.setIntent(intent);
 		getSwitchPageFromIntent(intent);
+	}
+
+	@Override
+	protected void onResume() {
+		// TODO 自动生成的方法存根
+		super.onResume();
+		if(mTabHost.getCurrentTab() == 0){
+			setActionBarMain();
+		}
 	}
 
 }

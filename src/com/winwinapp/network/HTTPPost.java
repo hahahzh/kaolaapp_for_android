@@ -236,4 +236,23 @@ public class HTTPPost {
 		}
 		return success;
 	}
+	
+	public static boolean SendMessage(NetworkData.SendMessageData data,NetworkData.CommonBack msgBack, int type){//0,public; 1,private
+		boolean success = false;
+		String url = null;
+		if(type == 0){
+			url = NetworkData.URL_SEND_PUBLIC_MESSAGE;
+		}else if(type == 1){
+			url = NetworkData.URL_SEND_PRIVATE_MESSAGE;
+		}
+		String postData = JsonHandler.createSendMessageString(data,type);
+		String back = HTTPBase.HTTPSend(url, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseBidPublish(back, msgBack);
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "Õ¯¬Á≤ªø…”√";
+		}
+		return success;
+	}
 }

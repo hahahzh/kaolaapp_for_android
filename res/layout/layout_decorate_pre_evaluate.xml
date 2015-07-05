@@ -73,10 +73,12 @@
             android:text="客厅"
             android:layout_weight="1"/>
         
-        <include 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            layout="@layout/layout_add_sub"/>
+        <com.winwinapp.util.AddSubLL 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/decorate_pre_hall">
+        </com.winwinapp.util.AddSubLL>
     </TableRow>
     
     <ImageView 
@@ -97,10 +99,12 @@
                 android:text="卧室"
                 android:layout_weight="1"/>
             
-            <include 
+            <com.winwinapp.util.AddSubLL 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                layout="@layout/layout_add_sub"/>
+                android:layout_gravity="center_vertical"
+                android:id="@+id/decorate_pre_room">
+            </com.winwinapp.util.AddSubLL>
         </TableRow> 
         
         <ImageView 
@@ -121,10 +125,12 @@
                 android:text="厨房"
                 android:layout_weight="1"/>
             
-            <include 
+            <com.winwinapp.util.AddSubLL 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                layout="@layout/layout_add_sub"/>
+                android:layout_gravity="center_vertical"
+                android:id="@+id/decorate_pre_kitchen">
+            </com.winwinapp.util.AddSubLL>
         </TableRow> 
         
         <ImageView 
@@ -145,10 +151,12 @@
                 android:text="卫生间"
                 android:layout_weight="1"/>
             
-            <include 
+            <com.winwinapp.util.AddSubLL 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                layout="@layout/layout_add_sub"/>
+                android:layout_gravity="center_vertical"
+                android:id="@+id/decorate_pre_toilet">
+            </com.winwinapp.util.AddSubLL>
         </TableRow> 
         
         <ImageView 
@@ -169,10 +177,12 @@
                 android:text="阳台"
                 android:layout_weight="1"/>
             
-            <include 
+            <com.winwinapp.util.AddSubLL 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                layout="@layout/layout_add_sub"/>
+                android:layout_gravity="center_vertical"
+                android:id="@+id/decorate_pre_balcony">
+            </com.winwinapp.util.AddSubLL>
         </TableRow> 
         </LinearLayout>
         <ImageView 
@@ -208,14 +218,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 	            <RadioButton
-	            android:id="@+id/radioButton1"
+	            android:id="@+id/decorate_radio_rich"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:text="精装" 
 	            android:layout_weight="1"/>
 	            
 	            <RadioButton
-	            android:id="@+id/radioButton2"
+	            android:id="@+id/decorate_radio_poor"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:text="简装" />

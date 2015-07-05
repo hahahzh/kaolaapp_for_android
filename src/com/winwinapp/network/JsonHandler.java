@@ -65,6 +65,25 @@ public class JsonHandler {
 		return str;
 	}
 	
+	public static String createSendMessageString(NetworkData.SendMessageData data, int type){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			jstring.put("content", data.content);
+			jstring.put("rec_id", data.rec_id);
+			jstring.put("sessid", KoalaApplication.loginData.sessid);
+			if(type == 1){
+				jstring.put("topic_id", data.topic_id);
+			}
+			
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+	}
+	
 	public static String createPrivateMsgListString(NetworkData.PrivateMessageListData data){
 		String str = null;
 		JSONObject jstring = new JSONObject();
@@ -935,8 +954,8 @@ public class JsonHandler {
 				for(int i=0;i<total;i++){
 					JSONObject itemObject = array.getJSONObject(i);
 					NetworkData.RegionsItem item = NetworkData.getInstance().getNewRegionsItem();
-					item.regions_id = itemObject.getString("regions_id");
-					item.regions_name = itemObject.getString("regions_name");
+					item.regions_id = itemObject.getString("region_id");
+					item.regions_name = itemObject.getString("region_name");
 					back.regions.add(item);
 				}
 				success = true;

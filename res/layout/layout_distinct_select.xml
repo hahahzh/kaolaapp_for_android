@@ -103,6 +103,7 @@
             android:layout_height="1dp"
             android:background="@color/graylight"/>
 
+    <!-- 
     <Button
         android:id="@+id/distict_invite_bids"
         android:layout_width="match_parent"
@@ -111,5 +112,6 @@
         android:layout_gravity="center"
         android:background="@drawable/decorate_yellow_bg"
         android:text="我要招标" />
+         -->
 
 </LinearLayout>

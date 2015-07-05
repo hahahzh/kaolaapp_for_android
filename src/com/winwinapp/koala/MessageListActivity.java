@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.winwinapp.chat.KoalaChatActivity;
 import com.winwinapp.designer.ContactDesignerActivity;
+import com.winwinapp.designer.DesignerActivity;
 import com.winwinapp.koala.SlideListView.RemoveDirection;
 import com.winwinapp.koala.SlideListView.RemoveListener;
 import com.winwinapp.network.HTTPPost;
@@ -53,7 +54,7 @@ public class MessageListActivity extends ActionBarActivity implements RemoveList
 			switch(msg.what){
 			case MESSAGE_ID_AVATRAR:
 				//Toast.makeText(MessageListActivity.this, "avatar:"+(int)msg.arg1, Toast.LENGTH_SHORT).show();
-				intent = new Intent(MessageListActivity.this,ContactDesignerActivity.class);
+				intent = new Intent(MessageListActivity.this,DesignerActivity.class);
 				intent.putExtra("type", fragment_homepage.TYPE_DESIGNER);
 				startActivity(intent);
 				break;

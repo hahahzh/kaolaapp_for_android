@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.winwinapp.koala.ActionBarActivity;
+import com.winwinapp.koala.KoalaApplication;
 import com.winwinapp.koala.R;
 import com.winwinapp.my.MyProjectActivity;
 import com.winwinapp.my.MyProjectCalendarActivity;
@@ -23,6 +24,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SelectCityActivity extends ActionBarActivity implements TextWatcher {
@@ -35,6 +37,8 @@ public class SelectCityActivity extends ActionBarActivity implements TextWatcher
 	public final static String TAG = SelectCityActivity.class.getName();
 	List<CityItemInterface> contactList;
 	List<CityItemInterface> filterList;
+	TextView mLocationCity;
+	private static KoalaApplication mApp;
 
 	private Handler mHandler = new Handler(){
 		public void handleMessage(Message msg){
@@ -70,9 +74,11 @@ public class SelectCityActivity extends ActionBarActivity implements TextWatcher
 				List<CityItemInterface> searchList = inSearchMode ? filterList
 						: contactList;
 
-				Toast.makeText(context_,
+				/*Toast.makeText(context_,
 						searchList.get(position).getDisplayInfo(),
-						Toast.LENGTH_SHORT).show();
+						Toast.LENGTH_SHORT).show();*/
+				mLocationCity.setText(searchList.get(position).getDisplayInfo());
+				mApp.saveLocationCity(mLocationCity.getText().toString());
 			}
 		});
 	}
@@ -83,7 +89,9 @@ public class SelectCityActivity extends ActionBarActivity implements TextWatcher
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_city_list);
 		
+		mApp = (KoalaApplication) this.getApplication();
 		initActionBar();
+		mLocationCity = (TextView)findViewById(R.id.location_city_name);
 
 		filterList = new ArrayList<CityItemInterface>();
 		listview = (CityListViewImpl) this.findViewById(R.id.listview);

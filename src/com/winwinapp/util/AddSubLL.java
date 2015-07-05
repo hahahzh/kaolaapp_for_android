@@ -95,6 +95,9 @@ public class AddSubLL extends LinearLayout {
 	
 	public void setCurrentNumber(String str){
 		mCurrentNumber = Integer.parseInt(str);
+		if(mCurrentNumber < 0){
+			mCurrentNumber = 0;
+		}
 		mNumberView.setText(""+mCurrentNumber);
 	}
 }

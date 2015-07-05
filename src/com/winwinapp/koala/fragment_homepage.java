@@ -5,10 +5,12 @@ import java.util.HashMap;
 
 import com.winwinapp.bids.BidsDistinctActivity;
 import com.winwinapp.bids.BidsListActivity;
+import com.winwinapp.bids.BidsPublishBids;
 import com.winwinapp.decorate.DecoratePriceActivity;
 import com.winwinapp.decorate.PreEvaluateActivity;
 import com.winwinapp.decorateTips.DecorateTipsActivity;
 import com.winwinapp.designer.ContactDesignerActivity;
+import com.winwinapp.login.LoginPageActivity;
 import com.winwinapp.my.MyLoveActivity.OnItemChildClickListener;
 import com.winwinapp.selectcity.SelectCityActivity;
 import com.winwinapp.util.Utils;
@@ -19,6 +21,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
@@ -28,6 +32,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -49,6 +54,9 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
 	public static final int TYPE_SUPRIOR = 3;
 	public static final int TYPE_OWER = 1;
 	
+	private static final int MESSAGE_SWITCH_WEB_PAGE = 1;
+	private static final int PAGE_UPDATE_INTERVAL = 5000;
+	
 	private final String TAG = fragment_homepage.class.getName();
 	ViewPager mViewPager;
     ArrayList<View> mViewContainer = new ArrayList<View>();
@@ -64,6 +72,20 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
     private int mImageResource[] = {R.drawable.image_preview,R.drawable.image_preview,R.drawable.image_preview,R.drawable.image_preview};
     private String mGridViewTitle[] = {"装修预算","我要竞标","装修宝典","联系设计师","寻找好工长","监理来帮忙"};
     private int mGridImageResourceId[] = {R.drawable.calculator,R.drawable.edit,R.drawable.literature,R.drawable.design,R.drawable.roller,R.drawable.supervisor};
+    
+    private Handler mHandler = new Handler(){
+		public void handleMessage(Message msg){
+			switch(msg.what){
+			case MESSAGE_SWITCH_WEB_PAGE:
+				int page = mPageIndicator.getCurrentPage();
+				int nextPage = (page == mViewContainer.size()-1) ? 0:page+1;
+				mViewPager.setCurrentItem(nextPage);
+				mHandler.removeMessages(MESSAGE_SWITCH_WEB_PAGE);
+				mHandler.sendEmptyMessageDelayed(MESSAGE_SWITCH_WEB_PAGE, PAGE_UPDATE_INTERVAL);
+				break;
+			}
+		}
+    };
     
     public static String getIdetifyStringFromID(int id){
     	String str = "未知身份";
@@ -130,6 +152,8 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
         
         mViewPager.setCurrentItem(0);
         mViewPager.setOnPageChangeListener(new myOnPageChangeListner());
+        mHandler.removeMessages(MESSAGE_SWITCH_WEB_PAGE);
+		mHandler.sendEmptyMessageDelayed(MESSAGE_SWITCH_WEB_PAGE, PAGE_UPDATE_INTERVAL);
         
         DisplayMetrics dm = new DisplayMetrics();
         mOffset = 0;
@@ -167,6 +191,10 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
         //Bitmap b3 = BitmapFactory.decodeResource(getResources(), R.drawable.pic3)
         
     }*/
+	
+	public void switchWebPage(){
+		
+	}
 	
 	public class myProjectAdapter extends BaseAdapter{
 
@@ -248,6 +276,18 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
         
         public Object instantiateItem(View arg0, int arg1){
             ((ViewPager)arg0).addView(mViewContainer.get(arg1),0);
+            mViewContainer.get(arg1).setOnClickListener(new OnClickListener(){
+
+    			@Override
+    			public void onClick(View arg0) {
+    				// TODO 自动生成的方法存根
+    				int page = mPageIndicator.getCurrentPage();
+    				Intent intent = new Intent(mActivity,WebActivity.class);
+    				intent.putExtra("page", page);
+    				startActivity(intent);
+    			}
+            	
+            });
             return mViewContainer.get(arg1);
         }
         
@@ -272,19 +312,23 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
         @Override
         public void onPageScrollStateChanged(int arg0) {
             // TODO Auto-generated method stub
-            
+        	mHandler.removeMessages(MESSAGE_SWITCH_WEB_PAGE);
+    		mHandler.sendEmptyMessageDelayed(MESSAGE_SWITCH_WEB_PAGE, PAGE_UPDATE_INTERVAL);
         }
 
         @Override
         public void onPageScrolled(int arg0, float arg1, int arg2) {
             // TODO Auto-generated method stub
-            
+        	mHandler.removeMessages(MESSAGE_SWITCH_WEB_PAGE);
+    		mHandler.sendEmptyMessageDelayed(MESSAGE_SWITCH_WEB_PAGE, PAGE_UPDATE_INTERVAL);
         }
 
         @Override
         public void onPageSelected(int arg0) {
             // TODO Auto-generated method stub
             mPageIndicator.setCurrentPage(arg0);
+            mHandler.removeMessages(MESSAGE_SWITCH_WEB_PAGE);
+    		mHandler.sendEmptyMessageDelayed(MESSAGE_SWITCH_WEB_PAGE, PAGE_UPDATE_INTERVAL);
         }
         
     }
@@ -299,12 +343,17 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
 			startActivity(intent);
 			break;
 		case 1:
-			if(KoalaApplication.mUserType == TYPE_OWER){
-				intent = new Intent(mActivity,BidsDistinctActivity.class);
-				startActivity(intent);
+			if(KoalaApplication.isUserLogin()){
+				if(KoalaApplication.mUserType == TYPE_OWER){
+					intent = new Intent(mActivity,BidsPublishBids.class);
+					startActivity(intent);
+				}else{
+					intent = new Intent(mActivity,BidsListActivity.class);
+					intent.putExtra("type", 0);//all bid list
+					startActivity(intent);
+				}
 			}else{
-				intent = new Intent(mActivity,BidsListActivity.class);
-				intent.putExtra("type", 0);//all bid list
+				intent = new Intent(mActivity,LoginPageActivity.class);
 				startActivity(intent);
 			}
 			break;
@@ -328,5 +377,20 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
 			startActivity(intent);
 			break;
 		}
+	}
+
+	@Override
+	public void onPause() {
+		// TODO 自动生成的方法存根
+		super.onPause();
+		mHandler.removeMessages(MESSAGE_SWITCH_WEB_PAGE);
+	}
+
+	@Override
+	public void onResume() {
+		// TODO 自动生成的方法存根
+		super.onResume();
+		mHandler.removeMessages(MESSAGE_SWITCH_WEB_PAGE);
+		mHandler.sendEmptyMessageDelayed(MESSAGE_SWITCH_WEB_PAGE, PAGE_UPDATE_INTERVAL);
 	}
 }

@@ -92,4 +92,8 @@ public class PageIndicator extends View {
             invalidate();
         }
     }
+    
+    public int getCurrentPage(){
+    	return mPos;
+    }
 }

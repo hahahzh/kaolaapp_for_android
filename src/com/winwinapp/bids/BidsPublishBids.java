@@ -25,6 +25,7 @@ public class BidsPublishBids extends ActionBarActivity {
 
 	public static final int REFRESH = 1;
 	public static final int REFRESH_EDIT = 2;
+	public static final int ACTIVITY_RESQUEST_CODE_DISTINCT = 1;
 	TextView mPosition;
 	TextView mbiotope_name;
 	TextView mArea;
@@ -124,6 +125,18 @@ public class BidsPublishBids extends ActionBarActivity {
 		mLabor = (RadioButton)findViewById(R.id.bid_publish_labor);
 		mSuperior = (RadioButton)findViewById(R.id.bid_publish_superior);
 		mPublish = (Button)findViewById(R.id.bid_publish_publish);
+		
+		//mPosition.setEnabled(false);
+		mPosition.setOnClickListener(new OnClickListener(){
+
+				@Override
+				public void onClick(View arg0) {
+					// TODO 自动生成的方法存根
+					Intent intent = new Intent(BidsPublishBids.this,BidsDistinctActivity.class);
+					startActivityForResult(intent, ACTIVITY_RESQUEST_CODE_DISTINCT);
+				}
+				
+		});
 		
 		if(mType == 1){
 			mPublish.setText("提交修改");
@@ -244,5 +257,19 @@ public class BidsPublishBids extends ActionBarActivity {
 			});
 		}
 		
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO 自动生成的方法存根
+		super.onActivityResult(requestCode, resultCode, data);
+		switch(resultCode){
+		case ACTIVITY_RESQUEST_CODE_DISTINCT:
+			String province = data.getStringExtra("province");
+			String city = data.getStringExtra("city");
+			String country = data.getStringExtra("country");
+			mPosition.setText(province+" "+city+" "+ country);
+			break;
+		}
 	}
 }
