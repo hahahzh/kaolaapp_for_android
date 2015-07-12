@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -17,17 +18,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.winwinapp.koala.ActionBarActivity;
+import com.winwinapp.koala.KoalaApplication;
 import com.winwinapp.koala.R;
+import com.winwinapp.koala.fragment_homepage;
 import com.winwinapp.network.HTTPPost;
 import com.winwinapp.network.NetworkData;
 
 public class BidsDetailsActivity extends ActionBarActivity implements OnClickListener{
 
-	public static final int DETAIL_INVALID = 1;
+	private static final int DETAIL_INVALID = 1;
+	private static final int MESSAGE_BIDS = 2;
+	private static final int MESSAGE_ABORT_BID = 3;
 	public String bid_id;
 	NetworkData.BidDetailData mData = NetworkData.getInstance().getNewBidDetailData();
 	NetworkData.BidListBack mBack = NetworkData.getInstance().getNewBidListBack();
 	NetworkData.UserBidDetailBack mUserBack = NetworkData.getInstance().getNewUserBidDetailBack();
+	
+	NetworkData.BidAbortData mBidAbortData;
+	NetworkData.BidVieData mBidData;
+	NetworkData.CommonBack mCommonBack;
 	LinearLayout mLL;
 	TextView mName;
 	TextView mLocation;
@@ -46,13 +55,14 @@ public class BidsDetailsActivity extends ActionBarActivity implements OnClickLis
 	LinearLayout mBidLL;
 	LinearLayout mBidMyLL;
 	Button mAbortBid;
+	Button mBid;
 	TextView mTitleDesigner;
 	TextView mTitleLabor;
 	TextView mTitleSuperior;
 	ListView mBidderList;
 	MyAdapter mBidderAdapter;
 	LayoutInflater mInflater;
-	
+	EditText mBidMsg;
 	int mType = 0;//0:竞标， 1，我的竞标，可以编辑
 	int mCurrentTitle = 0;
 	static int ForTest = 0;
@@ -60,9 +70,10 @@ public class BidsDetailsActivity extends ActionBarActivity implements OnClickLis
 	private Handler mHandler = new Handler(){
 		public void handleMessage(Message msg){
 			//Intent intent;
+			String error;
 			switch(msg.what){
 			case DETAIL_INVALID:
-				String error = (String)msg.obj;
+				error = (String)msg.obj;
 				if("OK".equals(error)){
 					//mAdapter.notifyDataSetChanged();
 					if(mType == 0){
@@ -124,6 +135,22 @@ public class BidsDetailsActivity extends ActionBarActivity implements OnClickLis
 					Toast.makeText(BidsDetailsActivity.this, "获取招标信息错误："+error, Toast.LENGTH_LONG).show();
 				}
 				break;
+			case MESSAGE_BIDS:
+				error = (String)msg.obj;
+				if("OK".equals(error)){
+					Toast.makeText(BidsDetailsActivity.this, "投标成功！", Toast.LENGTH_LONG).show();
+				}else{
+					Toast.makeText(BidsDetailsActivity.this, "投标发生错误："+error, Toast.LENGTH_LONG).show();
+				}
+				break;
+			case MESSAGE_ABORT_BID:
+				error = (String)msg.obj;
+				if("OK".equals(error)){
+					Toast.makeText(BidsDetailsActivity.this, "中止招标成功！", Toast.LENGTH_LONG).show();
+				}else{
+					Toast.makeText(BidsDetailsActivity.this, "中止招标发生错误："+error, Toast.LENGTH_LONG).show();
+				}
+				break;
 			}
 		}
 	};
@@ -137,10 +164,6 @@ public class BidsDetailsActivity extends ActionBarActivity implements OnClickLis
 		initActionBar();
 		
 		bid_id = getIntent().getStringExtra("bid_id");
-		if(ForTest == 0){
-			ForTest = 1;
-			bid_id = "10";
-		}
 		if(bid_id != null){
 			new Thread(){
 				public void run(){
@@ -183,6 +206,9 @@ public class BidsDetailsActivity extends ActionBarActivity implements OnClickLis
 		mNeedSuperior = (TextView)findViewById(R.id.bid_detail_superior);
 		mRequirement = (TextView)findViewById(R.id.bid_detail_requirement);
 		mAbortBid = (Button)findViewById(R.id.bid_detail_abort_bid);
+		mAbortBid.setOnClickListener(this);
+		mBid = (Button)findViewById(R.id.bid_detail_bid);
+		mBid.setOnClickListener(this);
 		mTitleDesigner = (TextView)findViewById(R.id.bid_detail_title_designer);
 		mTitleDesigner.setOnClickListener(this);
 		mTitleLabor = (TextView)findViewById(R.id.bid_detail_title_labor);
@@ -190,6 +216,7 @@ public class BidsDetailsActivity extends ActionBarActivity implements OnClickLis
 		mTitleSuperior = (TextView)findViewById(R.id.bid_detail_title_superior);
 		mTitleSuperior.setOnClickListener(this);
 		mBidderList = (ListView)findViewById(R.id.bid_detail_list_bidder);
+		mBidMsg = (EditText)findViewById(R.id.bid_details_bid_msg);
 		
 		mBidLL = (LinearLayout)findViewById(R.id.bid_detail_ll_bid);
 		mBidMyLL = (LinearLayout)findViewById(R.id.bid_detail_ll_mybid);
@@ -302,11 +329,68 @@ public class BidsDetailsActivity extends ActionBarActivity implements OnClickLis
 		
 	}
 
+	public class AbortBidThread extends Thread{
+		public void run(){
+			mBidAbortData = NetworkData.getInstance().getNewBidAbortData();
+			mCommonBack = NetworkData.getInstance().getCommonBack();
+			mBidAbortData.bid = Integer.parseInt(bid_id);
+			boolean success;
+			Message msg = Message.obtain();
+			msg.what = BidsDetailsActivity.MESSAGE_ABORT_BID;
+			success = HTTPPost.RequestBidAbort(mBidAbortData,mCommonBack);
+			if(success){
+				msg.obj = "OK";
+			}else{
+				msg.obj = mCommonBack.error;
+			}
+			mHandler.sendMessage(msg);
+		}
+	}
+	
+	public class BidThread extends Thread{
+		public void run(){
+			mBidData = NetworkData.getInstance().getNewBidVieData();
+			mCommonBack = NetworkData.getInstance().getCommonBack();
+			mBidData.bidid = Integer.parseInt(bid_id);
+			mBidData.bidmsg = mBidMsg.getText().toString();
+			boolean success;
+			Message msg = Message.obtain();
+			msg.what = BidsDetailsActivity.MESSAGE_BIDS;
+			success = HTTPPost.RequestBid(mBidData,mCommonBack);
+			if(success){
+				msg.obj = "OK";
+			}else{
+				msg.obj = mCommonBack.error;
+			}
+			mHandler.sendMessage(msg);
+		}
+	}
+	
 	@Override
 	public void onClick(View arg0) {
 		// TODO 自动生成的方法存根
 		switch(arg0.getId()){
 		case R.id.bid_detail_abort_bid:
+			if(!KoalaApplication.isUserLogin()){
+				Toast.makeText(this, "请先登录!", Toast.LENGTH_SHORT).show();
+			}else{
+				if(KoalaApplication.mUserType != fragment_homepage.TYPE_OWER){
+					Toast.makeText(this, "只有业主才能中止投标", Toast.LENGTH_SHORT).show();
+				}else{
+					new AbortBidThread().start();
+				}
+			}
+			break;
+		case R.id.bid_detail_bid:
+			if(!KoalaApplication.isUserLogin()){
+				Toast.makeText(this, "请先登录!", Toast.LENGTH_SHORT).show();
+			}else{
+				if(KoalaApplication.mUserType == fragment_homepage.TYPE_OWER){
+					Toast.makeText(this, "业主不能投标", Toast.LENGTH_SHORT).show();
+				}else{
+					new BidThread().start();
+				}
+			}
 			break;
 		case R.id.bid_detail_title_designer:
 			mTitleDesigner.setBackgroundResource(R.drawable.layout_border_darkgray);

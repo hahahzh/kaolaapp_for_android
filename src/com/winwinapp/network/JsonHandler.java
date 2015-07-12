@@ -65,6 +65,28 @@ public class JsonHandler {
 		return str;
 	}
 	
+	public static boolean parseCommonBack(String str,NetworkData.CommonBack back){
+		boolean success = false;
+		try {
+			JSONObject response = new JSONObject(str);
+			int code = -1;
+			code = response.getInt("code");
+			back.code = code;
+			if(code == 0){
+				success = true;
+			}else{
+				back.error = response.getString("error");
+				success = false;
+			}
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			return false;
+		}
+		
+		return success;
+	}
+	
 	public static String createSendMessageString(NetworkData.SendMessageData data, int type){
 		String str = null;
 		JSONObject jstring = new JSONObject();
@@ -727,6 +749,35 @@ public class JsonHandler {
 		}
 		
 		return success;
+	}
+	
+	public static String createBidVieString(NetworkData.BidVieData data){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			jstring.put("bidid", data.bidid);
+			jstring.put("bidmsg", data.bidmsg);
+			jstring.put("sessid", KoalaApplication.loginData.sessid);
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+	}
+	
+	public static String createBidAbortString(NetworkData.BidAbortData data){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			jstring.put("bidid", data.bid);
+			jstring.put("sessid", KoalaApplication.loginData.sessid);
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
 	}
 	
 	public static String createUserBidEditString(NetworkData.BidDetailData data){

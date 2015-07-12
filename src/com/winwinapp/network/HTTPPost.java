@@ -133,12 +133,51 @@ public class HTTPPost {
 		return success;
 	}
 	
+	public static boolean RequestDecorateList(NetworkData.BidListData data,NetworkData.BidListBack msgBack){
+		boolean success = false;
+		String postData = JsonHandler.createUserBidListString(data);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_DECORATE_LIST, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseUserBidList(back, msgBack);
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "网络不可用";
+		}
+		return success;
+	}
+	
 	public static boolean RequestUserBidDetail(NetworkData.BidDetailData data,NetworkData.UserBidDetailBack msgBack){
 		boolean success = false;
 		String postData = JsonHandler.createUserBidDetailString(data);
 		String back = HTTPBase.HTTPSend(NetworkData.URL_USER_BID_DETAIL, postData, HTTPBase.HTTP_TYPE_POST);
 		if(!TextUtils.isEmpty(back)){
 			success = JsonHandler.parseUserBidDetail(back, msgBack);
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "网络不可用";
+		}
+		return success;
+	}
+	
+	public static boolean RequestBid(NetworkData.BidVieData data,NetworkData.CommonBack msgBack){
+		boolean success = false;
+		String postData = JsonHandler.createBidVieString(data);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_BID_VIE, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseCommonBack(back, msgBack);
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "网络不可用";
+		}
+		return success;
+	}
+	
+	public static boolean RequestBidAbort(NetworkData.BidAbortData data,NetworkData.CommonBack msgBack){
+		boolean success = false;
+		String postData = JsonHandler.createBidAbortString(data);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_BID_ABORT, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseCommonBack(back, msgBack);
 		}else{
 			msgBack.code = -1;
 			msgBack.error = "网络不可用";

@@ -296,6 +296,7 @@
 		        android:gravity="top|left"
 		        android:hint="请填写自荐介绍"
 		        android:inputType="textMultiLine"
+		        android:id="@+id/bid_details_bid_msg"
 		        android:minLines="6" />
 		    
 		    <Button

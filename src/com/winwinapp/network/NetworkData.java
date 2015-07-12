@@ -29,11 +29,13 @@ public class NetworkData {
 	public static String URL_USER_BID_EDIT = URL_BASE_API +"/BidProj/edit.html";
 	public static String URL_BID_PUBLISH = URL_BASE_API + "/BidProj/insert.html";
 	public static String URL_BID_VIE = URL_BASE_API + "/BidProj/vieBid.html";
+	public static String URL_BID_ABORT = URL_BASE_API + "/BidProj/truncate.html";
 	public static String URL_GET_REGIONS = URL_BASE_API +"/BidProj/getRegions.html";
 	public static String URL_DELETE_PUBLIC_MSG = URL_BASE_API + "/Message/publicTruncate.html";
 	public static String URL_DELETE_PRIVATE_MSG = URL_BASE_API + "/Message/privateTruncate.html";
 	public static String URL_MY_CONTRACT_LIST = URL_BASE_API + "/Contract/contractList.html";
 	public static String URL_MY_CONTRACT_DETAIL = URL_BASE_API + "/Contract/contractDetail.html";
+	public static String URL_DECORATE_LIST = URL_BASE_API + "/BidProj/decList.html";//装修列表
 	public static final int USER_TYPE_MEMBER = 1;
 	public static final int USER_TYPE_DESIGNER = 2;
 	public static final int USER_TYPE_SUPERIOR = 3;
@@ -559,6 +561,14 @@ public class NetworkData {
 		public int bidid = 10;
 		public String bidmsg = "我打算竞标，能成功么?";
 		public String sessid;
+	}
+	
+	public BidAbortData getNewBidAbortData(){
+		return new BidAbortData();
+	}
+	
+	public class BidAbortData{
+		public int bid;
 	}
 	
 	public RegionsData getNewRegionsData(){

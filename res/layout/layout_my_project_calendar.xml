@@ -55,60 +55,66 @@
 		    <LinearLayout 
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
-		        android:orientation="horizontal">
+		        android:orientation="horizontal"
+		        android:paddingTop="5dp"
+		        android:paddingBottom="5dp"
+		        android:paddingRight="5dp">
 		          <TextView 
 		              android:layout_width="wrap_content"
 		              android:layout_height="wrap_content"
 		              android:layout_marginLeft="20dp"
 		              android:layout_marginRight="5dp"
-		              android:textSize="20dp"
+		              android:textSize="16dp"
+		              android:textStyle="bold"
 		              android:text="当前项目"/>
 		          
 		          <TextView 
 		              android:layout_width="wrap_content"
 		              android:layout_height="wrap_content"
 		              android:text="4月1日"
+		              android:textColor="@color/gray"
 		              android:layout_weight="1"/>
 		          
 		          <TextView 
 		              android:layout_width="wrap_content"
 		              android:layout_height="wrap_content"
+		              android:textColor="@color/orange_light"
 		              android:text="修改"/>
 		        
 		    </LinearLayout>
 		    
-		     <ImageView 
-			        android:layout_width="match_parent"
-			        android:layout_height="1dp"/>
+	     <ImageView 
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:background="@color/graylight"/>
 		     
 		     <LinearLayout 
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:layout_marginTop="10dp"
-		        android:orientation="horizontal"
-		        >
+		        android:orientation="horizontal">
 		          <TextView 
 		              android:layout_width="wrap_content"
 		              android:layout_height="wrap_content"
-		              android:layout_marginLeft="20dp"
-		              android:layout_marginRight="5dp"
-		              android:textSize="20dp"
+		              android:textSize="16dp"
+		              android:background="@drawable/rec_red"
+		              android:gravity="center"
 		              android:text="施工交底"/>
 		          
 		         <TextView 
 		              android:layout_width="wrap_content"
 		              android:layout_height="wrap_content"
-		              android:layout_marginLeft="20dp"
-		              android:layout_marginRight="5dp"
-		              android:textSize="20dp"
+		              android:textSize="16dp"
+		              android:gravity="center"
+		              android:background="@drawable/rec_blue"
 		              android:text="水电改造"/>
 		          
 		         <TextView 
 		              android:layout_width="wrap_content"
 		              android:layout_height="wrap_content"
-		              android:layout_marginLeft="20dp"
-		              android:layout_marginRight="5dp"
-		              android:textSize="20dp"
+		              android:gravity="center"
+		              android:textSize="16dp"
+		              android:background="@drawable/rec_orange"
 		              android:text="墙砖"/>
 		        
 		    </LinearLayout>
@@ -116,9 +122,10 @@
 		     <TextView 
 	              android:layout_width="wrap_content"
 	              android:layout_height="wrap_content"
-	              android:layout_marginLeft="20dp"
-	              android:layout_marginRight="5dp"
-	              android:textSize="20dp"
+	              android:layout_marginTop="5dp"
+	              android:textSize="16dp"
+	              android:gravity="center"
+	              android:background="@drawable/rec_green"
 	              android:text="油漆涂料"/>
 	     </LinearLayout>
 	     

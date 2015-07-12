@@ -270,6 +270,7 @@ public class CalendarView extends LinearLayout {
 			if (bSelected)
 				daySelected = dayCell;
 			calCalendar.add(Calendar.DAY_OF_MONTH, 1);
+			dayCell.invalidate();
 		}
 		layContent.invalidate();
 		return daySelected;

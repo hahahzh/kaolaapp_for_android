@@ -177,6 +177,8 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
                     */
         if(KoalaApplication.mUserType == fragment_homepage.TYPE_OWER){
         	mGridViewTitle[1] = "我要招标";
+        }else{
+        	mGridViewTitle[1] = "我要竞标";
         }
         mGridView.setAdapter(new myProjectAdapter(this.getActivity()));
         mGridView.setOnItemClickListener(this);
