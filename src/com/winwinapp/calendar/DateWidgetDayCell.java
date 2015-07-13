@@ -27,7 +27,7 @@ public class DateWidgetDayCell extends View {
 
 	public static int ANIM_ALPHA_DURATION = 100;
 	// fields
-	private final static float	fTextSize			= 20;
+	private final static float	fTextSize			= 30;
 	private final static int	iMargin				= 1;
 	private final static int iAlphaInactiveMonth = 0x88;
 

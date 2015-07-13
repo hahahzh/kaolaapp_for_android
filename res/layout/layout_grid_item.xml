@@ -25,6 +25,15 @@
 		    />
 	</LinearLayout>
 	
+        <ImageView 
+        android:background="@color/graylight"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentTop="true"
+        android:layout_below="@+id/grid_item_ll"
+        android:id="@+id/grid_view_item_top_frame"
+        android:visibility="gone"/>
+        
     <ImageView 
         android:background="@color/graylight"
         android:layout_width="fill_parent"
@@ -37,11 +46,10 @@
     <ImageView 
         android:background="@color/graylight"
         android:layout_width="1dp"
-        android:layout_height="fill_parent"
+        android:layout_height="90dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentRight="true"
-        android:layout_alignBottom="@+id/grid_view_item_bottom_frame"
         android:id="@+id/grid_view_item_right_frame"
         android:visibility="gone"/>
-	
+
 </RelativeLayout>

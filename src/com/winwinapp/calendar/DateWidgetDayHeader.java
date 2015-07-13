@@ -11,7 +11,7 @@ import android.widget.LinearLayout.LayoutParams;
 
 public class DateWidgetDayHeader extends View {
 	// fields
-	private final static int	iDayHeaderFontSize	= 13;
+	private final static int	iDayHeaderFontSize	= 30;
 
 	// fields
 	private Paint pt = new Paint();
