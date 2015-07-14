@@ -203,6 +203,7 @@ public class DateWidgetDayCell extends View {
 
 	public void drawDayNumber(Canvas canvas, boolean bFocused) {
 		// draw day number
+		
 		pt.setTypeface(null);
 		pt.setAntiAlias(true);
 		pt.setShader(null);
@@ -243,7 +244,7 @@ public class DateWidgetDayCell extends View {
 			canvas.drawCircle(rect.width()/2, (rect.height() - mBitmapHeight - 10)/2, Math.min(rect.width()/2,
 					(rect.height() - mBitmapHeight - 10)/2), mBackgroundPt);
 		}
-
+		
 		canvas.drawText(sDate, iTextPosX, iTextPosY + iMargin, pt);
 
 		pt.setUnderlineText(false);

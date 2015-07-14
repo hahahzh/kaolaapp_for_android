@@ -16,23 +16,33 @@
 	        
 	        <Spinner
 		        android:id="@+id/spinner_calendar_first"
+		        android:layout_marginLeft="5dp"
+		        android:layout_marginRight="5dp"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_weight="1"
+		        android:textColor="#000000"
+		        android:background="@drawable/spinner"
 		        android:entries="@array/Calendar_first"/>
 	        
 	         <Spinner
 		        android:id="@+id/spinner_calendar_second"
+		        android:layout_marginLeft="5dp"
+		        android:layout_marginRight="5dp"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_weight="1"
+		        android:background="@drawable/spinner"
 		        android:entries="@array/Calendar_second"/>
 	         
 	          <Spinner
 		        android:id="@+id/spinner_calendar_third"
+		        android:layout_marginLeft="5dp"
+		        android:layout_marginRight="5dp"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_weight="1"
+		        android:background="@drawable/spinner"
 		        android:entries="@array/Calendar_third"/>
 	        
 	    </LinearLayout>
@@ -78,7 +88,7 @@
 		          <TextView 
 		              android:layout_width="wrap_content"
 		              android:layout_height="wrap_content"
-		              android:textColor="@color/orange_light"
+		              android:textColor="@color/green"
 		              android:text="修改"/>
 		        
 		    </LinearLayout>

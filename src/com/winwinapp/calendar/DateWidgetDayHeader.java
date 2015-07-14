@@ -2,8 +2,11 @@ package com.winwinapp.calendar;
 
 import java.util.Calendar;
 
+import com.winwinapp.koala.R;
+
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.View;
@@ -34,8 +37,7 @@ public class DateWidgetDayHeader extends View {
 
 	private void drawDayHeader(Canvas canvas) {
 		if (iWeekDay != -1) {
-			// background
-			pt.setColor(DayStyle.getColorFrameHeader(bHoliday));
+			pt.setColor(Color.WHITE);
 			canvas.drawRect(rect, pt);
 
 			// text
@@ -55,7 +57,7 @@ public class DateWidgetDayHeader extends View {
 			canvas.drawText(sDayName, iDayNamePosX, rect.top + iTextPosY + 2,
 					pt);
 		}
-		//this.setBackgroundResource(R.drawable.calendar_bg);
+		this.setBackgroundResource(R.color.white);
 	}
 
 	private int getTextHeight() {

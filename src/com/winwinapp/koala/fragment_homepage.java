@@ -236,14 +236,14 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
 			convertView = mInflater.inflate(R.layout.layout_grid_item, null);
 			image = (ImageView)convertView.findViewById(R.id.item_image);
 			title = (TextView)convertView.findViewById(R.id.item_text);
-			topFrame = (ImageView)convertView.findViewById(R.id.grid_view_item_top_frame);
+//			topFrame = (ImageView)convertView.findViewById(R.id.grid_view_item_top_frame);
 //			leftFrame = (View)convertView.findViewById(R.id.grid_view_item_left_frame);
 			rightFrame = (ImageView)convertView.findViewById(R.id.grid_view_item_right_frame);
 			bottomFrame = (ImageView)convertView.findViewById(R.id.grid_view_item_bottom_frame);
 			
 			title.setText(mGridViewTitle[position]);
 			image.setImageResource(mGridImageResourceId[position]);
-			topFrame.setVisibility(View.VISIBLE);
+//			topFrame.setVisibility(View.VISIBLE);
 			//leftFrame.setVisibility(View.VISIBLE);
 			rightFrame.setVisibility(View.VISIBLE);
 			bottomFrame.setVisibility(View.VISIBLE);

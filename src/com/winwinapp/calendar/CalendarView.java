@@ -6,6 +6,7 @@ import java.util.Calendar;
 
 import com.winwinapp.koala.R;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -103,9 +104,10 @@ public class CalendarView extends LinearLayout {
 		param.gravity = Gravity.CENTER;
 		monthTextView.setLayoutParams(param);
 		monthTextView.setText(format(mMonth + 1) + "ÔÂ");
+		monthTextView.setTextColor(getResources().getColor(R.color.green));
 		
 		yearTextView = new TextView(mContext);
-		//yearTextView.setTextColor(0x00FF00);
+		yearTextView.setTextColor(getResources().getColor(R.color.green));
 		yearTextView.setLayoutParams(param);
 		yearTextView.setText(mYear + "Äê");
 		
@@ -170,11 +172,12 @@ public class CalendarView extends LinearLayout {
 
 		layContent = createLayout(LinearLayout.VERTICAL);
 		layContent.setLayoutParams(new LayoutParams(iDayCellSize * 7, LayoutParams.WRAP_CONTENT));
+		layTopControls.setBackgroundResource(R.drawable.layout_border);
 		generateTopButtons(layTopControls);
 		generateCalendar(layContent);
 		this.addView(layTopControls);
 		this.addView(layContent);
-		this.setBackgroundColor(Color.WHITE);
+		this.setBackgroundColor(Color.rgb(250, 250, 250));
 	}
 
 
@@ -389,4 +392,5 @@ public class CalendarView extends LinearLayout {
 			s = "0" + s;
 		return s;
 	}
+	
 }

@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
@@ -192,6 +193,7 @@ public class KLHomePageActivity extends FragmentActivity {
 		
 		mTabHost = (FragmentTabHost)findViewById(R.id.homepage_tabhost);
 		mTabHost.setup(this,this.getSupportFragmentManager(),R.id.common_fragment);
+		mTabHost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);
 		
 		int count = Math.min(mFragmentArray.length, mTabContent.length);
 		count = Math.min(count, mImageResource.length);

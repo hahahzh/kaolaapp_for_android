@@ -2,6 +2,9 @@ package com.winwinapp.calendar;
 
 import java.util.Calendar;
 
+import android.R;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
 import android.graphics.Color;
 
 public class DayStyle {
@@ -95,5 +98,4 @@ public class DayStyle {
 		}
 		return iWeekDay;
 	}
-
 }
