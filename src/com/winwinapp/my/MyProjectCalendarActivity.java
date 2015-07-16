@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
+import android.widget.TabWidget;
 import android.widget.TextView;
 
 import com.winwinapp.koala.R;
@@ -143,6 +144,15 @@ public class MyProjectCalendarActivity extends Activity  implements OnTabChangeL
 		mTabHost.addTab(mTabHost.newTabSpec(mTabTitle[0]).setIndicator(mTabTitle[0]).setContent(R.id.tab_content_my_project_calendar));
 		mTabHost.addTab(mTabHost.newTabSpec(mTabTitle[1]).setIndicator(mTabTitle[1]).setContent(R.id.tab_content_my_project_calendar));
 		mTabHost.addTab(mTabHost.newTabSpec(mTabTitle[2]).setIndicator(mTabTitle[2]).setContent(R.id.tab_content_my_project_calendar));
+		TabWidget tabWidget = mTabHost.getTabWidget(); 
+		
+        for (int i=0; i<tabWidget.getChildCount(); i++){
+            View view = tabWidget.getChildAt(i);   
+            view.setBackgroundResource(R.drawable.calendar_tab_bg_1);
+        }
+        View view = tabWidget.getChildAt(0);
+        view.setBackgroundResource(R.drawable.calendar_tab_bg);
+        mTabHost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);
 		mTabHost.setOnTabChangedListener(this);
 	}
 	
@@ -154,17 +164,36 @@ public class MyProjectCalendarActivity extends Activity  implements OnTabChangeL
 
 	@Override
 	public void onTabChanged(String arg0) {
+		View view;
 		if(arg0 == null)
 			return;
 		if(arg0.equals(mTabTitle[0])){
+			view = mTabHost.getTabWidget().getChildAt(0);
+	        view.setBackgroundResource(R.drawable.calendar_tab_bg);
+	        view = mTabHost.getTabWidget().getChildAt(1);
+	        view.setBackgroundResource(R.drawable.calendar_tab_bg_1);
+	        view = mTabHost.getTabWidget().getChildAt(2);
+	        view.setBackgroundResource(R.drawable.calendar_tab_bg_1);
 			spinner_calendar_first.setBackgroundResource(R.drawable.spinner_r);
 			spinner_calendar_second.setBackgroundResource(R.drawable.spinner);
 			spinner_calendar_third.setBackgroundResource(R.drawable.spinner);
 		}else if(arg0.equals(mTabTitle[1])){
+			view = mTabHost.getTabWidget().getChildAt(0);
+	        view.setBackgroundResource(R.drawable.calendar_tab_bg_1);
+	        view = mTabHost.getTabWidget().getChildAt(1);
+	        view.setBackgroundResource(R.drawable.calendar_tab_bg);
+	        view = mTabHost.getTabWidget().getChildAt(2);
+	        view.setBackgroundResource(R.drawable.calendar_tab_bg_1);
 			spinner_calendar_first.setBackgroundResource(R.drawable.spinner);
 			spinner_calendar_second.setBackgroundResource(R.drawable.spinner_r);
 			spinner_calendar_third.setBackgroundResource(R.drawable.spinner);
 		}else if(arg0.equals(mTabTitle[2])){
+			view = mTabHost.getTabWidget().getChildAt(0);
+	        view.setBackgroundResource(R.drawable.calendar_tab_bg_1);
+	        view = mTabHost.getTabWidget().getChildAt(1);
+	        view.setBackgroundResource(R.drawable.calendar_tab_bg_1);
+	        view = mTabHost.getTabWidget().getChildAt(2);
+	        view.setBackgroundResource(R.drawable.calendar_tab_bg);
 			spinner_calendar_first.setBackgroundResource(R.drawable.spinner);
 			spinner_calendar_second.setBackgroundResource(R.drawable.spinner);
 			spinner_calendar_third.setBackgroundResource(R.drawable.spinner_r);

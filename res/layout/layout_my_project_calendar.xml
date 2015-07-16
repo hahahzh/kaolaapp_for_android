@@ -12,6 +12,7 @@
 	    <LinearLayout 
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
+	        android:background="#FFFFFF"
 	        android:orientation="horizontal">
 	        
 	        <Spinner
@@ -22,6 +23,8 @@
 		        android:layout_height="wrap_content"
 		        android:layout_weight="1"
 		        android:textColor="#000000"
+		        android:gravity="center"
+		        android:paddingLeft="20dip"
 		        android:background="@drawable/spinner"
 		        android:entries="@array/Calendar_first"/>
 	        
@@ -32,6 +35,8 @@
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_weight="1"
+		        android:gravity="center"
+		        android:paddingLeft="20dip"
 		        android:background="@drawable/spinner"
 		        android:entries="@array/Calendar_second"/>
 	         
@@ -42,6 +47,8 @@
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_weight="1"
+		        android:gravity="center"
+		        android:paddingLeft="20dip"
 		        android:background="@drawable/spinner"
 		        android:entries="@array/Calendar_third"/>
 	        
@@ -109,6 +116,7 @@
 		              android:textSize="16dp"
 		              android:background="@drawable/rec_red"
 		              android:gravity="center"
+		              android:layout_marginLeft="10dp"
 		              android:text="施工交底"/>
 		          
 		         <TextView 
@@ -117,6 +125,7 @@
 		              android:textSize="16dp"
 		              android:gravity="center"
 		              android:background="@drawable/rec_blue"
+		              android:layout_marginLeft="10dp"
 		              android:text="水电改造"/>
 		          
 		         <TextView 
@@ -125,6 +134,7 @@
 		              android:gravity="center"
 		              android:textSize="16dp"
 		              android:background="@drawable/rec_orange"
+		              android:layout_marginLeft="10dp"
 		              android:text="墙砖"/>
 		        
 		    </LinearLayout>
@@ -136,6 +146,7 @@
 	              android:textSize="16dp"
 	              android:gravity="center"
 	              android:background="@drawable/rec_green"
+	              android:layout_marginLeft="10dp"
 	              android:text="油漆涂料"/>
 	     </LinearLayout>
 	     
