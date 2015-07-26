@@ -22,6 +22,7 @@
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
+        android:paddingRight="10dp"
         android:background="@color/white">
         
         <TextView 
@@ -29,12 +30,13 @@
         	android:layout_height="wrap_content"
         	android:text="银行卡类型"/>
         
-        <EditText 
+        <TextView 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="工商银行  储蓄卡"
-            android:textStyle="bold"
             android:layout_marginLeft="10dp"
+            android:id="@+id/card_info_type"
+            android:textStyle="bold"
             android:background="@color/white"
             android:drawableRight="@drawable/forward"/>
         
@@ -69,6 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="张曼曼"
+            android:id="@+id/card_info_name"
             android:background="@color/white"
             android:layout_marginLeft="10dp"
             android:textStyle="bold"/>
@@ -96,6 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="513922199102068374"
+            android:id="@+id/card_info_id"
             android:background="@color/white"
             android:layout_marginLeft="10dp"
             android:textStyle="bold"/>
@@ -123,6 +127,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="15821111346"
+            android:id="@+id/card_info_mobile"
             android:layout_marginLeft="10dp"
             android:textStyle="bold"
             android:background="@color/white"/>
@@ -133,13 +138,26 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
 
-    <CheckBox
-        android:id="@+id/checkBox_agree"
+    <LinearLayout 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:text="同意《用户协议》" />
+        android:layout_marginTop="10dp" >
+        
+	    <CheckBox
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="同意" 
+	        android:id="@+id/card_info_agree"/>
+	    <TextView 
+	        android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:id="@+id/card_info_protocol"
+            android:text="《用户协议》" />
+    </LinearLayout>
 
     	<Button
 	    android:id="@+id/my_card_information_next_step"

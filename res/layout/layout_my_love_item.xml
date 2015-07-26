@@ -32,6 +32,17 @@
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_marginTop="10dp"
+       android:layout_marginLeft="10dp"
+       android:gravity="center"
+       android:layout_toRightOf="@id/my_love_item_name"
+       android:id="@+id/my_love_item_job"
+       android:background="@drawable/score_job_bg"
+       android:text="设计师"/>
+   
+   <TextView 
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="10dp"
        android:layout_toRightOf="@id/my_love_item_avatar"
        android:layout_below="@id/my_love_item_name"
        android:id="@+id/my_love_item_cases"
@@ -43,6 +54,7 @@
        android:layout_marginTop="10dp"
        android:layout_toRightOf="@id/my_love_item_avatar"
        android:layout_below="@id/my_love_item_cases"
+       android:id="@+id/my_love_item_score"
        android:text="专业：9.0    服务：9.0"/>
    
    <TextView 

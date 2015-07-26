@@ -158,6 +158,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rectangular_white"
             android:text="广中西路"
+            android:id="@+id/address_detail_road"
             android:textSize="16dp"
             android:layout_weight="1"/>
         <TextView 
@@ -185,6 +186,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rectangular_white"
             android:text=""
+            android:id="@+id/address_detail_street"
             android:textSize="16dp"
             android:layout_weight="1"/>
         <TextView 
@@ -212,6 +214,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rectangular_white"
             android:text=""
+            android:id="@+id/address_detail_number"
             android:textSize="16dp"
             android:layout_weight="1"/>
         <TextView 
@@ -239,6 +242,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rectangular_white"
             android:text=""
+            android:id="@+id/address_detail_build"
             android:textSize="16dp"
             android:layout_weight="1"/>
         <TextView 
@@ -266,6 +270,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rectangular_white"
             android:text=""
+            android:id="@+id/address_detail_room"
             android:textSize="16dp"
             android:layout_weight="1"/>
         <TextView 
@@ -277,5 +282,16 @@
             android:layout_gravity="center_vertical"/>
         </LinearLayout>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:background="@drawable/feedback_o"
+        android:id="@+id/address_detail_submit"
+        android:layout_marginBottom="80dp"
+        android:text="确定" />
 </LinearLayout>
 </ScrollView>

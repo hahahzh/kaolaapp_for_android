@@ -2,7 +2,10 @@ package com.winwinapp.my;
 
 import java.util.ArrayList;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,8 +25,12 @@ import android.widget.Toast;
 
 import com.winwinapp.bids.BidsDetailsActivity;
 import com.winwinapp.bids.BidsListActivity;
+import com.winwinapp.calendar.SetDepositActivity;
 import com.winwinapp.koala.ActionBarActivity;
+import com.winwinapp.koala.KoalaApplication;
 import com.winwinapp.koala.R;
+import com.winwinapp.koala.fragment_homepage;
+import com.winwinapp.koala.fragment_project.OnItemChildClickListener;
 import com.winwinapp.network.HTTPPost;
 import com.winwinapp.network.NetworkData;
 
@@ -32,12 +39,13 @@ public class MyProjectActivity extends ActionBarActivity implements OnItemClickL
 	private static final int INDEX_BUTTON_SSET_DATE = 1;
 	private static final int INDEX_OTHERS = 2;
 	private static final int MESSAGE_REQUEST_LIST = 3;
+	private static final int INDEX_BUTTON_FINISH = 4;
 	ArrayList<MyProjectItem> mArrayList = new ArrayList<MyProjectItem>();
 	ListView mListView;
 	NetworkData.BidListData mData = NetworkData.getInstance().getNewBidListData();
 	NetworkData.BidListBack mBack = NetworkData.getInstance().getNewBidListBack();
 	MyProjectAdapter mAdapter;
-	
+	int mUserType = -1;
 	
 	private Handler mHandler = new Handler(){
 		public void handleMessage(Message msg){
@@ -56,6 +64,9 @@ public class MyProjectActivity extends ActionBarActivity implements OnItemClickL
 				intent.putExtra("bid_id", mBack.items.get(position).bid_id);
 				startActivity(intent);
 				break;
+			case INDEX_BUTTON_FINISH:
+				showMyDialog(msg.arg1);
+				break;
 			case MESSAGE_REQUEST_LIST:
 				String error = (String)msg.obj;
 				if("OK".equals(error)){
@@ -67,6 +78,28 @@ public class MyProjectActivity extends ActionBarActivity implements OnItemClickL
 			}
 		}
 	};
+	
+	protected void showMyDialog(final int position) {
+		  AlertDialog.Builder builder = new Builder(this);
+		  if(mUserType == fragment_homepage.TYPE_OWER){
+			  builder.setMessage("确定装修已完成？"); 
+		  }else{
+			  builder.setMessage("确定向业主发出竣工请求？"); 
+		  }
+		  builder.setTitle("竣工提示");  
+		  builder.setNegativeButton("取消", new DialogInterface.OnClickListener(){
+			  public void onClick(DialogInterface dialoginterface, int i) {
+		      	  		dialoginterface.dismiss();
+		        	}
+			  });
+		  builder.setPositiveButton("确定", new DialogInterface.OnClickListener(){
+			  public void onClick(DialogInterface dialoginterface, int i) {
+					Intent intent = new Intent(MyProjectActivity.this , SetDepositActivity.class);
+					startActivity(intent);
+		        }
+			  });
+		  builder.create().show();
+	}
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -88,10 +121,18 @@ public class MyProjectActivity extends ActionBarActivity implements OnItemClickL
 		mAdapter = new MyProjectAdapter(this);
 		mListView.setAdapter(mAdapter);
 		mListView.setOnItemClickListener(this);
+		mUserType = KoalaApplication.mUserType;
+		if(mUserType == -1){
+			return;
+		}
 		new Thread(){
 			public void run(){
 				boolean success = false;
-				success = HTTPPost.RequestDecorateList(mData, mBack);
+				if( mUserType == fragment_homepage.TYPE_OWER){
+					success = HTTPPost.RequestDecorateList(mData, mBack);
+				}else {
+					success = HTTPPost.RequestOtherDecorateList(mData, mBack);
+				}
 				Message msg = Message.obtain();
 				msg.what = MESSAGE_REQUEST_LIST;
 				if(success){
@@ -165,6 +206,7 @@ public class MyProjectActivity extends ActionBarActivity implements OnItemClickL
 			NetworkData.BidListItem item = mBack.items.get(position);
 			TextView mIndex,mBioName,mName,mArea,mBudget;
 			Button mBtn_set_date;
+			Button mBtn_finish;
 			arg1 = mInflater.inflate(R.layout.layout_my_project_item, null);
 			mIndex = (TextView)arg1.findViewById(R.id.my_project_item_index);
 			mIndex.setText(""+position);
@@ -184,6 +226,9 @@ public class MyProjectActivity extends ActionBarActivity implements OnItemClickL
 			mBudget = (TextView)arg1.findViewById(R.id.my_project_budget);
 			mBudget.setText(item.budget);
 			mBudget.setOnClickListener(new OnItemChildClickListener(INDEX_OTHERS,position));
+			
+			mBtn_finish = (Button)arg1.findViewById(R.id.my_project_item_btn_finish);
+			mBtn_finish.setOnClickListener(new OnItemChildClickListener(INDEX_BUTTON_FINISH,position));
 			
 			return arg1;
 		}

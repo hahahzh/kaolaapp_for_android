@@ -24,6 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:id="@+id/my_avatar"
                 android:src="@drawable/avatar_my" />
 
             <TextView
@@ -31,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
+                android:id="@+id/my_name"
                 android:text="张曼曼" />
 
             <TextView
@@ -277,6 +279,37 @@
                 android:text="" />
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/my_pay_ll"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/layout_border"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginTop="-1dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/my_money" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="我的支付" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableRight="@drawable/forward"
+                android:text="" />
+        </LinearLayout>
+        
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -285,7 +318,8 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:layout_weight="0.15"
-        android:background="#FFFFFF" >
+        android:background="#FFFFFF" 
+        android:id="@+id/my_about_ll">
 
         <ImageView
             android:layout_width="wrap_content"

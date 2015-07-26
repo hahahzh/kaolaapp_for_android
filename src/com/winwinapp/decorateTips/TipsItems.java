@@ -11,4 +11,5 @@ public class TipsItems {
 	String mViewed;
 	String content;
 	Drawable mImage;
+	int type;
 }

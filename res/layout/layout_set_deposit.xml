@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/gray"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp">
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:text="合同总价：￥100,000"
+            android:id="@+id/set_deposit_total"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20sp"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:text="合同总价：￥20,000"
+            android:id="@+id/set_deposit_first_pay"
+            android:layout_marginLeft="20sp"/>
+        
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:text="质保金 = 100,000 × "
+            android:id="@+id/set_deposit_edit_prefix"
+            android:textStyle="bold"
+            android:layout_marginLeft="20sp"/>
+        
+        <EditText 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:text="5"
+            android:numeric="integer"
+            android:background="@drawable/cube_percent"
+            android:gravity="center"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:id="@+id/set_deposit_edit"/>
+        
+       <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:text="% = 5,000"
+            android:textStyle="bold"
+            android:id="@+id/set_deposit_edit_suffix"/> 
+     </LinearLayout>
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/graylight"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+       
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:text="温馨提示：\n质保金用于装修完毕后一年内的质保押金，一年期满后，如无装修质量问题，质保金将自动转入工长账户中。\n质保金建议为 3% ~ 6%"
+            android:textStyle="bold"
+            android:id="@+id/set_deposit_tips"/> 
+            
+        <Button 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/feedback_o"
+            android:id="@+id/set_deposit_OK"
+            android:text="确定"/>
+    </LinearLayout>
+</LinearLayout>

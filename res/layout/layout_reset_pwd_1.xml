@@ -2,84 +2,101 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/feedback_bg"
     android:orientation="vertical" >
 
+    <ImageView 
+         android:layout_width="match_parent"
+         android:layout_height="1dp"
+         android:layout_marginTop="20dp"
+         android:background="@color/graylight"/>
+    
     <LinearLayout
+        android:id="@+id/login_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/reset_pwd_bg"
-        android:orientation="vertical" >
-
-	<LinearLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	    android:layout_weight="0.61"
-	    android:orientation="horizontal" >
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
         
-	<TextView
-	    android:layout_width="wrap_content"
-	    android:layout_height="match_parent"
-	    android:layout_weight="2"
-	    android:ems="20"
-	    android:gravity="left|center"
-	    android:text="邮箱/手机" />
-
-    <EditText
-        android:id="@+id/reset_mailorphone_txt"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp" >
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="@color/gray"
+                android:text="邮箱/手机" />
+           <EditText
+                android:id="@+id/reset_mailorphone_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:background="@null"
+                android:gravity="left|center"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="" >
+            </EditText>
+        </LinearLayout>
+        
+        <ImageView 
+             android:layout_width="match_parent"
+             android:layout_height="1dp"
+             android:background="@color/graylight"/>
+        
+        <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="@color/white"
-        android:ems="10"
-        android:gravity="left|center"
-        android:inputType="textPersonName"
-        android:text=""
-        android:textColor="@color/black" >
-
-        <requestFocus />
-    </EditText>
-    </LinearLayout>
-    <LinearLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	    android:layout_weight="0.61"
-	    android:orientation="horizontal" >
-        
-	<TextView
-	    android:layout_width="wrap_content"
-	    android:layout_height="match_parent"
-	    android:layout_weight="4"
-	    android:ems="20"
-	    android:gravity="left|center"
-	    android:text="验证码" />
-
-    <EditText
-        android:id="@+id/reset_v_code_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="@color/white"
-        android:ems="10"
-        android:gravity="left|center"
-        android:inputType="textPersonName"
-        android:text=""
-        android:textColor="@color/black" >
-
-        <requestFocus />
-    </EditText>
-
-    <Button
-        android:id="@+id/reset_vcode_btn"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/font_focus"
-        android:gravity="center"
-        android:text="获取验证码"
-        android:textSize="10dp" />
-
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal" >
+        
+		    <TextView
+		       android:layout_width="wrap_content"
+		       android:layout_height="wrap_content"
+		       android:textColor="@color/gray"
+		       android:textSize="20sp"
+		        android:text="验证码" />
+		
+		    <EditText
+		        android:id="@+id/reset_v_code_txt"
+		        android:layout_width="wrap_content"
+		        android:layout_height="match_parent"
+		        android:gravity="left|center"
+		        android:layout_weight="1"
+		        android:ems="10"
+		        android:background="@null"
+		        android:layout_marginLeft="50dp"
+		        android:inputType="textPersonName"
+		        android:text="1234" >
+		        <requestFocus />
+		    </EditText>
+		    
+		    <Button
+		        android:id="@+id/reset_vcode_btn"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:background="@color/font_focus"
+		        android:gravity="center"
+		        android:text="获取验证码"
+		        android:textSize="10dp" />
+	
+	    </LinearLayout>
     </LinearLayout>
-	</LinearLayout>
+    
+    <ImageView 
+         android:layout_width="match_parent"
+         android:layout_height="1dp"
+         android:background="@color/graylight"/>
+    
 
     <Button
         android:id="@+id/reset_submit_btn"

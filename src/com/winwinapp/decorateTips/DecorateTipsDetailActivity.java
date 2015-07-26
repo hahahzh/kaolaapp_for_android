@@ -11,10 +11,12 @@ import com.winwinapp.koala.R;
 
 public class DecorateTipsDetailActivity extends ActionBarActivity {
 
+	int mType = 1;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_decorate_tip_detail);
 
+		mType = getIntent().getIntExtra("type", 1);
 		initActionBar();
 		
 	}
@@ -24,6 +26,23 @@ public class DecorateTipsDetailActivity extends ActionBarActivity {
 		imageView.setImageResource(R.drawable.back);
 		setLeftView(imageView);
 		setTitle("软装");
+		switch(mType){
+		case 1:
+			setTitle("施工");
+			break;
+		case 2:
+			setTitle("软装");
+			break;
+		case 3:
+			setTitle("设计");
+			break;
+		case 4:
+			setTitle("材料");
+			break;
+		case 5:
+			setTitle("风水");
+			break;
+		}
 		this.setOnLeftClickListener(new OnClickListener(){
 
 			@Override

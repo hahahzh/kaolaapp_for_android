@@ -1,0 +1,981 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="match_parent" 
+    android:layout_height="wrap_content"
+    android:scrollbars="none">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EEEEEE"
+    android:orientation="vertical"
+    android:id="@+id/contract_designer_ll">
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:gravity="left"
+        android:text="装饰施工项目概况"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/layout_border">
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:text="业主姓名"/>
+        
+        <EditText 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:id="@+id/contract_designer_name"
+            android:text="张曼曼"/>
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layout_border"
+        android:layout_gravity="center"
+        android:layout_marginTop="-1dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:orientation="horizontal"
+        android:id="@+id/contract_designer_address_ll">
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="施工地址"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+        
+        <TextView 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="left"
+            android:textStyle="bold"
+            android:text="上海   上海市  闸北区  广中西路dfdfsdfdsf"
+            android:id="@+id/contract_designer_address"
+            android:drawableRight="@drawable/forward"/>    
+    </LinearLayout>
+
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:gravity="left"
+        android:text="设计图时序"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/layout_border"
+        android:id="@+id/contract_designer_measure_time_ll">
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:text="上门测量时间"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:id="@+id/contract_designer_measure_time"
+            android:drawableRight="@drawable/forward"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:text="2015年3月20日"/>
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@color/white"
+        android:orientation="horizontal" >
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="初稿完成天数"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:gravity="left"/>
+        
+        <EditText 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginRight="10dp"
+            android:gravity="left"
+            android:layout_gravity="center"
+            android:background="@drawable/layout_border"
+            android:textStyle="bold"
+            android:id="@+id/contract_designer_first_draft"
+            android:inputType="number"
+            android:text="5"/>
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="天"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+    </LinearLayout>
+    
+     <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@color/white"
+        android:orientation="horizontal" >
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="免费修改次数"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:gravity="left"/>
+        
+        <EditText 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginRight="10dp"
+            android:gravity="left"
+            android:layout_gravity="center"
+            android:background="@drawable/layout_border"
+            android:textStyle="bold"
+            android:inputType="number"
+            android:id="@+id/contract_designer_modify_times"
+            android:text="5"/>
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="次"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@color/white"
+        android:orientation="horizontal" >
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="终稿完成天数"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:gravity="left"/>
+        
+        <EditText 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginRight="10dp"
+            android:gravity="left"
+            android:layout_gravity="center"
+            android:background="@drawable/layout_border"
+            android:inputType="number"
+            android:textStyle="bold"
+            android:id="@+id/contract_designer_final_draft"
+            android:text="5"/>
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="天"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+    </LinearLayout>
+    
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/graylight"/>
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:gravity="left"
+        android:text="现场指导"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@color/white"
+        android:orientation="horizontal" >
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="现场放样及指导施工"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:gravity="left"/>
+        
+        <EditText 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginRight="10dp"
+            android:gravity="left"
+            android:layout_gravity="center"
+            android:background="@drawable/layout_border"
+            android:textStyle="bold"
+            android:id="@+id/contract_designer_field_guide"
+            android:inputType="number"
+            android:text="5"/>
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="次"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:orientation="horizontal" >
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="需要设计师出的图"
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="left"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/green"
+            android:text="修改"
+            android:id="@+id/contract_designer_graphic_modify"/> 
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@color/white"
+        android:orientation="horizontal" >
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开关控制线路示意图"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:id="@+id/contract_designer_graphic_switch"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/contract_designer_graphic_bg"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="楼梯设计施工详图"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:id="@+id/contract_designer_graphic_stairs"
+            android:gravity="center"
+            android:background="@drawable/contract_designer_graphic_bg"/>
+        
+    </LinearLayout>
+    
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/graylight"/>
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:textSize="16sp"
+        android:text="总设计费及其支付"/>
+    
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/graylight"/>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:orientation="horizontal"
+        android:background="@color/white">
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="总设计费"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:gravity="left"/>
+        
+        <EditText 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginRight="10dp"
+            android:gravity="left"
+            android:layout_gravity="center"
+            android:background="@drawable/layout_border"
+            android:textStyle="bold"
+            android:id="@+id/contract_designer_total_pay"
+            android:inputType="number"
+            android:text="90000"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="元"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+        
+    </LinearLayout>
+    
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:background="@color/graylight"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:layout_marginTop="-1dp">
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="第一次付款(建议为50%)"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:gravity="left"/>
+        
+        <EditText 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="left"
+            android:layout_gravity="center"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/layout_border"
+            android:textStyle="bold"
+            android:id="@+id/contract_designer_first_pay"
+            android:inputType="number"
+            android:text="18000"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="元"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+        </LinearLayout>
+    
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:background="@color/graylight"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:layout_marginTop="-1dp">
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="第二次付款(建议为50%)"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:gravity="left"/>
+        
+        <EditText 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="left"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginRight="10dp"
+            android:inputType="number"
+            android:background="@drawable/layout_border"
+            android:id="@+id/contract_designer_second_pay"
+            android:text="27000"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="元"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+        </LinearLayout>
+      
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:background="@color/graylight"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:layout_marginTop="-1dp">
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="另行设计费"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:gravity="left"/>
+        
+        <EditText 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="left"
+            android:layout_gravity="center"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/layout_border"
+            android:textStyle="bold"
+            android:id="@+id/contract_designer_extra_pay"
+            android:inputType="number"
+            android:text="100"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="元/㎡"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+    </LinearLayout>
+    
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/graylight"/>
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:gravity="left"
+        android:text="违约责任"/>
+    
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/graylight"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@color/white"
+        android:orientation="vertical" >
+        
+        <TextView 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:paddingTop="10dp"
+	        android:paddingBottom="10dp"
+	        android:gravity="left"
+	        android:text="甲方过失"/>
+        
+        <ImageView 
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:background="@color/graylight"/>
+        
+        <LinearLayout 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:paddingTop="10dp"
+	        android:paddingBottom="10dp"
+	        android:orientation="horizontal" >
+	        <TextView 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="逾期付款违约金"
+	            android:layout_gravity="center_vertical"
+	            android:layout_weight="1"
+	            android:textColor="@color/gray"
+	            android:textSize="16sp"
+	            android:gravity="left"/>
+	        
+	        <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="逾期未付款×"
+                android:layout_gravity="center_vertical"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:gravity="left"/>
+	        <EditText 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginLeft="10dp"
+	            android:paddingLeft="15dp"
+	            android:paddingRight="15dp"
+	            android:paddingTop="5dp"
+	            android:paddingBottom="5dp"
+	            android:gravity="left"
+	            android:layout_gravity="center"
+	            android:background="@drawable/layout_border"
+	            android:textStyle="bold"
+	            android:inputType="number"
+	            android:id="@+id/contract_designer_x_late_pay"
+	            android:text="5"/>
+	        <TextView 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="元"
+	            android:textColor="@color/gray"
+	            android:textSize="16sp"
+	            android:layout_gravity="center"
+	            android:gravity="center"/>
+	    </LinearLayout>
+	    
+        <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/graylight"/>
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:orientation="horizontal" >
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="付款逾期十天违约金"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:textColor="@color/gray"
+                android:textSize="16sp"
+                android:gravity="left"/>
+            
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="总额×"
+                android:layout_gravity="center_vertical"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:gravity="left"/>
+            <EditText 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:gravity="left"
+                android:layout_gravity="center"
+                android:background="@drawable/layout_border"
+                android:textStyle="bold"
+                android:inputType="number"
+                android:id="@+id/contract_designer_x__late_pay_percent"
+                android:text="5"/>
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="%"
+                android:textColor="@color/gray"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:gravity="center"/>
+        </LinearLayout>
+        
+        <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/graylight"/>
+        
+        <TextView 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp"
+            android:gravity="left"
+            android:text="乙方过失"/>
+        
+        <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/graylight"/>
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:orientation="horizontal" >
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="逾期交稿违约金"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:textColor="@color/gray"
+                android:textSize="16sp"
+                android:gravity="left"/>
+            
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="总额×"
+                android:layout_gravity="center_vertical"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:gravity="left"/>
+            <EditText 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:gravity="left"
+                android:layout_gravity="center"
+                android:background="@drawable/layout_border"
+                android:textStyle="bold"
+                android:inputType="number"
+                android:id="@+id/contract_designer_late_draft_percent"
+                android:text="5"/>
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="%"
+                android:textColor="@color/gray"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:gravity="center"/>
+        </LinearLayout>
+        
+        <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/graylight"/>
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:orientation="horizontal" >
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="交稿逾期十天违约金"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:textColor="@color/gray"
+                android:textSize="16sp"
+                android:gravity="left"/>
+            
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="总额×"
+                android:layout_gravity="center_vertical"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:gravity="left"/>
+            <EditText 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:gravity="left"
+                android:layout_gravity="center"
+                android:background="@drawable/layout_border"
+                android:textStyle="bold"
+                android:id="@+id/contract_designer_late_draft_tenday_percent"
+                android:inputType="number"
+                android:text="5"/>
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="%"
+                android:textColor="@color/gray"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:gravity="center"/>
+        </LinearLayout>
+	    
+        <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/graylight"/>
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:orientation="horizontal" >
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="改图不满意赔偿金"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:textColor="@color/gray"
+                android:textSize="16sp"
+                android:gravity="left"/>
+            
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="该项设计费×"
+                android:layout_gravity="center_vertical"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:gravity="left"/>
+            <EditText 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:gravity="left"
+                android:layout_gravity="center"
+                android:background="@drawable/layout_border"
+                android:inputType="number"
+                android:textStyle="bold"
+                android:id="@+id/contract_designer_draft_not_satisfy_percent"
+                android:text="5"/>
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="%"
+                android:textColor="@color/gray"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:gravity="center"/>
+        </LinearLayout>     
+    </LinearLayout>
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/contract_designer_tip1"
+        android:text="@string/str_contract_designer_tip1"/>
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/contract_designer_tip2"
+        android:text="@string/str_contract_designer_tip2"/>
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/contract_designer_tip3"
+        android:text="@string/str_contract_designer_tip3"/>
+    
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:background="@drawable/feedback_o"
+        android:layout_marginBottom="80dp"
+        android:id="@+id/contract_designer_submit"
+        android:text="提交" />
+</LinearLayout>
+</ScrollView>

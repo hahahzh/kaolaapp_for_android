@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -84,11 +85,11 @@ public class ChatMsgViewAdapter extends BaseAdapter {
 					.findViewById(R.id.tv_chatcontent);
 			viewHolder.mTopDateLayout = (LinearLayout)convertView.findViewById(R.id.chat_item_date);
 			viewHolder.isComMsg = isComMsg;
+			viewHolder.mAvatar = (ImageView) convertView.findViewById(R.id.iv_userhead);
 			
 			if(!isComMsg){
 				viewHolder.mTopDateLayout.setVisibility(View.INVISIBLE);
 			}
-
 			convertView.setTag(viewHolder);
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
@@ -96,6 +97,9 @@ public class ChatMsgViewAdapter extends BaseAdapter {
 		viewHolder.tvSendTime.setText(entity.getDate());
 		viewHolder.tvUserName.setText(entity.getName());
 		viewHolder.tvContent.setText(entity.getMessage());
+		if(entity.getAvatar() != null){
+			viewHolder.mAvatar.setImageBitmap(entity.getAvatar());
+		}
 		return convertView;
 	}
 
@@ -103,6 +107,7 @@ public class ChatMsgViewAdapter extends BaseAdapter {
 		public TextView tvSendTime;
 		public TextView tvUserName;
 		public TextView tvContent;
+		public ImageView mAvatar;
 		public boolean isComMsg = true;
 		public LinearLayout mTopDateLayout;
 	}

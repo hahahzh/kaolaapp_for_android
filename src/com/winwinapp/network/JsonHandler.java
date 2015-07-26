@@ -26,6 +26,54 @@ public class JsonHandler {
 		return str;
 	}
 	
+	public static String createRegisterSendCodeString(NetworkData.RegisterSendCodeData data){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			jstring.put("phone_mail", data.phone_mail);
+			jstring.put("is_email", data.is_email);
+			jstring.put("auth_code", data.auth_code);
+			
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+	}
+	
+	public static String createResetPWDSendCodeString(NetworkData.RegisterSendCodeData data){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			jstring.put("phone_mail", data.phone_mail);
+			//jstring.put("is_email", data.is_email);
+			//jstring.put("auth_code", data.auth_code);
+			
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+	}
+	
+	public static String createResetPWDString(NetworkData.RegisterSendCodeData data){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			jstring.put("phone_mail", data.phone_mail);
+			//jstring.put("is_email", data.is_email);
+			jstring.put("auth_code", data.auth_code);
+			
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+	}
+	
 	public static boolean parseRegister(String str,NetworkData.RegisterBack regBack){
 		boolean success = false;
 		try {
@@ -34,8 +82,8 @@ public class JsonHandler {
 			code = response.getInt("code");
 			regBack.code = code;
 			if(code == 0){
-				regBack.id = response.getString("id");
-				regBack.sessid = response.getString("sessid");
+				//regBack.id = response.getString("id");
+				//regBack.sessid = response.getString("sessid");
 				success = true;
 			}else{
 				regBack.error = response.getString("error");
@@ -524,6 +572,70 @@ public class JsonHandler {
 		return success;
 	}
 	
+	public static boolean parseOtherDecorateList(String str,NetworkData.BidListBack back){
+		boolean success = false;
+		try {
+			JSONObject response = new JSONObject(str);
+			int code = -1;
+			code = response.getInt("code");
+			back.code = code;
+			if(code == 0){
+				int total = Integer.parseInt(response.getString("total"));
+				JSONArray array = response.getJSONArray("data");
+				total = Math.min(total, array.length());
+				back.total = total;
+				for(int i=0;i<total;i++){
+					JSONObject itemObject = array.getJSONObject(i);
+					NetworkData.BidListItem item = NetworkData.getInstance().getNewBidListItem();
+					item.bid_id = itemObject.getString("bid_id");
+					item.user_id = itemObject.getString("user_id");
+					item.name = itemObject.getString("name");
+					item.mobile = itemObject.getString("mobile");
+					item.decorate_way = itemObject.getString("decorate_way");
+					item.design_style = itemObject.getString("design_style");
+					item.budget = itemObject.getString("budget");
+					item.house_type = itemObject.getString("house_type");
+					item.space_type = itemObject.getString("space_type");
+					item.area = itemObject.getString("area");
+					item.biotope_name = itemObject.getString("biotope_name");
+					item.province = itemObject.getString("province");
+					item.city = itemObject.getString("city");
+					item.district = itemObject.getString("district");
+					item.requirement = itemObject.getString("requirement");
+					item.title = itemObject.getString("title");
+					
+					item.publish_time = itemObject.getString("publish_time");
+					item.complete_time = itemObject.getString("complete_time");
+					item.is_signed = itemObject.getString("is_signed");
+					item.need_designer = itemObject.getString("need_designer");
+					item.need_foreman = itemObject.getString("need_foreman");
+					item.need_supervisor = itemObject.getString("need_supervisor");
+					item.bid_number = itemObject.getString("bid_number");
+					item.new_bidder = itemObject.getString("new_bidder");
+					item.prov_rate = itemObject.getString("prov_rate");
+					item.status = itemObject.getString("status");
+					item.proj_stat = itemObject.getString("proj_stat");
+					item.is_delete = itemObject.getString("is_delete");
+					item.start_time = itemObject.getString("start_time");
+					item.bidder_type = itemObject.getString("bidder_type");
+					//item.bidder_type_img = itemObject.getString("bidder_type_img");
+					back.items.add(item);
+				}
+				success = true;
+			}else{
+				back.error = response.getString("error");
+				success = false;
+			}
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			back.error = e.toString();
+			return false;
+		}
+		
+		return success;
+	}
+	
 	public static String createBidDetailString(NetworkData.BidDetailData data){
 		String str = null;
 		JSONObject jstring = new JSONObject();
@@ -916,6 +1028,40 @@ public class JsonHandler {
 		return str;
 	}
 	
+	public static String createUserBidEditPostString(NetworkData.BidPostEditData data){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			jstring.put("bid", data.bid);
+			jstring.put("decorate_way", data.decorate_way);
+			jstring.put("design_style", data.design_style);
+			jstring.put("budget", data.budget);
+			jstring.put("house_type", data.house_type);
+			jstring.put("room", data.room);
+			jstring.put("hall", data.hall);
+			jstring.put("kitchen", data.kitchen);
+			jstring.put("toilet", data.toilet);
+			jstring.put("balcony", data.balcony);
+			jstring.put("area", data.area);
+			jstring.put("biotope_name", data.biotope_name);
+			jstring.put("province", data.province);
+			jstring.put("city", data.city);
+			jstring.put("district", data.district);
+			jstring.put("req", data.req);
+			jstring.put("need_designer", data.need_designer);
+			jstring.put("need_forman", data.need_forman);
+			jstring.put("need_supervisor", data.need_supervisor);
+			jstring.put("new_bidder", data.new_bidder);
+			
+			jstring.put("sessid", KoalaApplication.loginData.sessid);
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+	}
+	
 	public static boolean parseBidPublish(String str,NetworkData.CommonBack back){
 		boolean success = false;
 		try {
@@ -1215,6 +1361,35 @@ public class JsonHandler {
 		return str;
 	}
 	
+	public static String createMyContractAgreeString(NetworkData.ContractAgreeRejectData data){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			jstring.put("c_id", data.c_id);
+			jstring.put("sessid", KoalaApplication.loginData.sessid);
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+	}
+	
+	public static String createMyContractRejectString(NetworkData.ContractAgreeRejectData data){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			jstring.put("c_id", data.c_id);
+			jstring.put("reason", data.reason);
+			jstring.put("sessid", KoalaApplication.loginData.sessid);
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+	}
+	
 	public static boolean parseMyContractDetail(String str,NetworkData.MyContractDetailBack back){
 		boolean success = false;
 		try {
@@ -1274,14 +1449,19 @@ public class JsonHandler {
 				back.fourth_pay = itemObject.getString("fourth_pay");
 				back.other_pay = itemObject.getString("other_pay");
 				back.str_liability = itemObject.getString("liability");
-				/*JSONObject liability = itemObject.getJSONObject("liability");
-				if(liability != null){
-					item.liability.unpaid_percent = liability.getString("unpaid_percent");
-					item.liability.first_percent = liability.getString("first_percent");
-					item.liability.second_percent = liability.getString("second_percent");
-					item.liability.third_percent = liability.getString("third_percent");
-					item.liability.fourth_percent = liability.getString("fourth_percent");
-				}*/
+				try{
+					JSONObject liability = itemObject.getJSONObject("liability");
+					if(liability != null){
+						back.liability.unpaid_percent = liability.getString("unpaid_percent");
+						back.liability.first_percent = liability.getString("first_percent");
+						back.liability.second_percent = liability.getString("second_percent");
+						back.liability.third_percent = liability.getString("third_percent");
+						back.liability.fourth_percent = liability.getString("fourth_percent");
+					}
+				}catch (JSONException e) {
+					// TODO 自动生成的 catch 块
+					e.printStackTrace();
+				}
 				
 				back.guide_num = itemObject.getString("guide_num");
 				back.plan = itemObject.getString("plan");
@@ -1305,12 +1485,16 @@ public class JsonHandler {
 				back.number = itemObject.getString("number");
 				back.floor = itemObject.getString("floor");
 				back.room = itemObject.getString("room");
-				back.syear = itemObject.getString("syear");
-				back.smonth = itemObject.getString("smonth");
-				back.sday = itemObject.getString("sday");
-				back.eyear = itemObject.getString("eyear");
-				back.emonth = itemObject.getString("emonth");
-				back.eday = itemObject.getString("eday");
+				try{
+					back.syear = itemObject.getString("syear");
+					back.smonth = itemObject.getString("smonth");
+					back.sday = itemObject.getString("sday");
+					back.eyear = itemObject.getString("eyear");
+					back.emonth = itemObject.getString("emonth");
+					back.eday = itemObject.getString("eday");
+				}catch (JSONException e) {
+					// TODO 自动生成的 catch 块
+				}
 				back.user_type = itemObject.getString("user_type");
 				//}
 				success = true;
@@ -1326,5 +1510,156 @@ public class JsonHandler {
 		}
 		
 		return success;
+	}
+	
+	public static boolean parseDesignerContractDetail(String str,NetworkData.MyContractDetailBack back){
+		boolean success = false;
+		try {
+			JSONObject response = new JSONObject(str);
+			int code = -1;
+			code = response.getInt("code");
+			back.code = code;
+			try{
+				back.error = response.getString("error");
+			}catch (JSONException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+				success = true;
+			}
+			if(success){
+				JSONObject itemObject = response.getJSONObject("data");
+				back.c_id = itemObject.getString("c_id");
+				back.bid_id = itemObject.getString("bid_id");
+				back.owner_id = itemObject.getString("owner_id");
+				back.contract_type = itemObject.getString("contract_type");
+				back.real_name = itemObject.getString("real_name");
+				//back.str_build_addr = itemObject.getString("build_addr");
+				JSONObject build_addr = itemObject.getJSONObject("build_addr");
+				if(build_addr != null){
+					back.addr.province = build_addr.getString("provice");
+					back.addr.city = build_addr.getString("city");
+					back.addr.district = build_addr.getString("district");
+					back.addr.road = build_addr.getString("road");
+					back.addr.lane = build_addr.getString("lane");
+					back.addr.number = build_addr.getString("number");
+					back.addr.floor = build_addr.getString("floor");
+					back.addr.road = build_addr.getString("road");
+				}
+				
+				
+				back.decorate_way = itemObject.getString("decorate_way");
+				//back.str_start_date = itemObject.getString("start_date");
+				JSONObject start_date = itemObject.getJSONObject("start_date");
+				if(start_date != null){
+					back.start_date.year = start_date.getString("year");
+					back.start_date.month = start_date.getString("month");
+					back.start_date.day = start_date.getString("day");
+				}
+				//back.str_end_date = itemObject.getString("end_date");
+				/*JSONObject end_date = itemObject.getJSONObject("end_date");
+				if(end_date != null){
+					item.end_date.year = end_date.getString("year");
+					item.end_date.month = end_date.getString("month");
+					item.end_date.day = end_date.getString("day");
+				}*/
+				
+				back.total_amount = itemObject.getString("total_amount");
+				back.first_pay = itemObject.getString("first_pay");
+				back.second_pay = itemObject.getString("second_pay");
+				back.third_pay = itemObject.getString("third_pay");
+				back.fourth_pay = itemObject.getString("fourth_pay");
+				back.other_pay = itemObject.getString("other_pay");
+				back.str_liability = itemObject.getString("liability");
+				try{
+					JSONObject liability = itemObject.getJSONObject("liability");
+					if(liability != null){
+						back.liability.unpaid_percent = liability.getString("unpaid_percent");
+						back.liability.first_percent = liability.getString("first_percent");
+						back.liability.second_percent = liability.getString("second_percent");
+						back.liability.third_percent = liability.getString("third_percent");
+						back.liability.fourth_percent = liability.getString("fourth_percent");
+					}
+				}catch (JSONException e) {
+					// TODO 自动生成的 catch 块
+					e.printStackTrace();
+				}
+				
+				back.guide_num = itemObject.getString("guide_num");
+				back.plan = itemObject.getString("plan");
+				back.free_num = itemObject.getString("free_num");
+				back.draft_day = itemObject.getString("draft_day");
+				back.final_day = itemObject.getString("final_day");
+				back.create_time = itemObject.getString("create_time");
+				back.is_confirm = itemObject.getString("is_confirm");
+				back.is_check = itemObject.getString("is_check");
+				
+				back.is_paid = itemObject.getString("is_paid");
+				back.is_complete = itemObject.getString("is_complete");
+				back.prov_finish = itemObject.getString("prov_finish");
+				back.title = itemObject.getString("title");
+				
+				back.province = itemObject.getString("provice");
+				back.city = itemObject.getString("city");
+				back.district = itemObject.getString("district");
+				back.road = itemObject.getString("road");
+				back.lane = itemObject.getString("lane");
+				back.number = itemObject.getString("number");
+				back.floor = itemObject.getString("floor");
+				back.room = itemObject.getString("room");
+				back.user_type = itemObject.getString("user_type");
+				//}
+				success = true;
+			}else{
+				back.error = response.getString("error");
+				success = false;
+			}
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			back.error = e.toString();
+			return false;
+		}
+		
+		return success;
+	}
+	
+	public static String createUpdateDesignerContractString(NetworkData.MyContractDetailBack data){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			jstring.put("c_id", data.c_id);
+			jstring.put("real_name", data.real_name);
+			jstring.put("sessid", KoalaApplication.loginData.sessid);
+			jstring.put("province", data.province);
+			
+			jstring.put("city", data.city);
+			jstring.put("district", data.district);
+			jstring.put("road", data.road);
+			jstring.put("lane", data.lane);
+			jstring.put("number", data.number);
+			jstring.put("floor", data.floor);
+			jstring.put("room", data.room);
+			jstring.put("total_amount", data.total_amount);
+			jstring.put("first_pay", data.first_pay);
+			jstring.put("second_pay", data.second_pay);
+			jstring.put("year", data.year);
+			jstring.put("month", data.month);
+			jstring.put("day", data.day);
+			jstring.put("guide_num", data.guide_num);
+			jstring.put("plan", data.plan);
+			jstring.put("free_num", data.free_num);
+			jstring.put("draft_day", data.draft_day);
+			jstring.put("final_day", data.final_day);
+			jstring.put("unpaid_percent", data.unpaid_percent);
+			jstring.put("first_percent", data.first_percent);
+			jstring.put("second_percent", data.second_percent);
+			jstring.put("third_percent", data.third_percent);
+			jstring.put("fourth_percent", data.fourth_percent);
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
 	}
 }

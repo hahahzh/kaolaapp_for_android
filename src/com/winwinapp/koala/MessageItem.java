@@ -1,5 +1,7 @@
 package com.winwinapp.koala;
 
+import android.graphics.Bitmap;
+
 public class MessageItem {
 
 	String mName;
@@ -8,6 +10,7 @@ public class MessageItem {
 	int mMessageNum;
 	int mAvataResId;
 	String mSnippet;
+	public Bitmap avatar;
 	
 	public MessageItem(String name,String identify,String time,int num, int avatarId,String snippet){
 		mName = name;

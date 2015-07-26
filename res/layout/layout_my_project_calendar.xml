@@ -14,36 +14,48 @@
 	        android:layout_height="wrap_content"
 	        android:orientation="horizontal">
 	        
-	        <Spinner
+	        <TextView
 		        android:id="@+id/spinner_calendar_first"
 		        android:layout_marginLeft="5dp"
 		        android:layout_marginRight="5dp"
+		        android:paddingLeft="5dp"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_weight="1"
 		        android:textColor="#000000"
+		        android:gravity="center"
+		        android:textSize="18sp"
 		        android:background="@drawable/spinner"
-		        android:entries="@array/Calendar_first"/>
+		        android:drawableLeft="@drawable/calendar_check"
+		        android:text="第一阶段"/>
 	        
-	         <Spinner
+	         <TextView
 		        android:id="@+id/spinner_calendar_second"
 		        android:layout_marginLeft="5dp"
 		        android:layout_marginRight="5dp"
+		        android:paddingLeft="5dp"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_weight="1"
+		        android:gravity="center"
+                android:textSize="18sp"
 		        android:background="@drawable/spinner"
-		        android:entries="@array/Calendar_second"/>
+		        android:drawableLeft="@drawable/calendar_check"
+		        android:text="第二阶段"/>
 	         
-	          <Spinner
+	          <TextView
 		        android:id="@+id/spinner_calendar_third"
 		        android:layout_marginLeft="5dp"
 		        android:layout_marginRight="5dp"
+		        android:paddingLeft="5dp"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_weight="1"
+		        android:drawableLeft="@drawable/calendar_check"
+		        android:gravity="center"
+                android:textSize="18sp"
 		        android:background="@drawable/spinner"
-		        android:entries="@array/Calendar_third"/>
+		        android:text="第三阶段"/>
 	        
 	    </LinearLayout>
 	    
@@ -89,6 +101,7 @@
 		              android:layout_width="wrap_content"
 		              android:layout_height="wrap_content"
 		              android:textColor="@color/green"
+		              android:id="@+id/calendar_modify"
 		              android:text="修改"/>
 		        
 		    </LinearLayout>
@@ -109,6 +122,10 @@
 		              android:textSize="16dp"
 		              android:background="@drawable/rec_red"
 		              android:gravity="center"
+		              android:layout_marginLeft="10dp"
+		              android:layout_marginRight="10dp"
+		              android:layout_gravity="center"
+		              android:id="@+id/calendar_shigongjiaodi"
 		              android:text="施工交底"/>
 		          
 		         <TextView 
@@ -116,7 +133,11 @@
 		              android:layout_height="wrap_content"
 		              android:textSize="16dp"
 		              android:gravity="center"
+		              android:layout_gravity="center"
 		              android:background="@drawable/rec_blue"
+		              android:layout_marginLeft="10dp"
+		              android:layout_marginRight="10dp"
+		              android:id="@+id/calendar_shuidiangaizao"
 		              android:text="水电改造"/>
 		          
 		         <TextView 
@@ -124,7 +145,11 @@
 		              android:layout_height="wrap_content"
 		              android:gravity="center"
 		              android:textSize="16dp"
+		              android:layout_gravity="center"
+		              android:layout_marginLeft="10dp"
+		              android:layout_marginRight="10dp"
 		              android:background="@drawable/rec_orange"
+		              android:id="@+id/calendar_qiangzhuan"
 		              android:text="墙砖"/>
 		        
 		    </LinearLayout>
@@ -135,7 +160,9 @@
 	              android:layout_marginTop="5dp"
 	              android:textSize="16dp"
 	              android:gravity="center"
+	              android:layout_marginLeft="10dp"
 	              android:background="@drawable/rec_green"
+	              android:id="@+id/calendar_youqituliao"
 	              android:text="油漆涂料"/>
 	     </LinearLayout>
 	     
@@ -207,6 +234,7 @@
 	                 android:layout_height="wrap_content"
 	                 android:drawableLeft="@drawable/clip"
 	                 android:gravity="center"
+	                 android:id="@+id/project_calendar_add_attachment"
 	                 android:text="添加附件"/>
 	             <TextView 
 	                 android:layout_width="wrap_content"
@@ -234,6 +262,7 @@
              android:background="@color/orange_light"
              android:paddingLeft="40dp"
              android:paddingRight="40dp"
+             android:id="@+id/project_calendar_submit"
              android:text="提交"
              /> 
 	

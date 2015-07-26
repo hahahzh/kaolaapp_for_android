@@ -12,14 +12,21 @@
     
     <TextView 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
         android:gravity="left"
         android:text="装饰施工项目概况"/>
     
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:background="@drawable/layout_border">
         
         <TextView 
@@ -27,14 +34,16 @@
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="center"
 	        android:gravity="center"
+	        android:textColor="@color/gray"
+            android:textSize="16sp"
 	        android:text="业主姓名"/>
         
-        <TextView 
+        <EditText 
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="center"
 	        android:layout_marginLeft="10dp"
-	        android:textStyle="bold"
+	        android:background="@null"
 	        android:id="@+id/my_contract_name"
 	        android:text="张曼曼"/>
         
@@ -42,10 +51,14 @@
     
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/layout_border"
         android:layout_gravity="center"
         android:layout_marginTop="-1dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:orientation="horizontal"
         android:id="@+id/contract_address_ll">
         
@@ -53,6 +66,8 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="施工地址"
+	        android:textColor="@color/gray"
+            android:textSize="16sp"
 	        android:layout_gravity="center"
 	        android:gravity="center"/>
         
@@ -70,9 +85,13 @@
     
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/layout_border"
         android:layout_gravity="center"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:layout_marginTop="-1dp"
         android:orientation="horizontal">
         
@@ -80,6 +99,8 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="承包方式"
+	        android:textColor="@color/gray"
+            android:textSize="16sp"
 	        android:layout_gravity="center"
 	        android:gravity="center"/>
         
@@ -98,12 +119,20 @@
     
     <TextView 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:textSize="16sp"
         android:text="工程期限"/>
     
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:orientation="horizontal"
         android:background="@drawable/layout_border">
         
@@ -111,6 +140,8 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="开工日期"
+	        android:textColor="@color/gray"
+            android:textSize="16sp"
 	        android:layout_gravity="center"
 	        android:gravity="center"/>
         
@@ -130,7 +161,11 @@
     
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:orientation="horizontal"
         android:background="@drawable/layout_border"
         android:layout_marginTop="-1dp">
@@ -139,6 +174,8 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="竣工日期"
+	        android:textColor="@color/gray"
+            android:textSize="16sp"
 	        android:layout_gravity="center"
 	        android:gravity="center"/>
         
@@ -158,12 +195,20 @@
     
     <TextView 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:textSize="16sp"
         android:text="工程价款"/>
     
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:orientation="horizontal"
         android:background="@drawable/layout_border">
         
@@ -171,16 +216,24 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="工程总价款"
-	        android:layout_gravity="center"
-	        android:gravity="center"/>
+	        android:layout_gravity="center_vertical"
+	        android:layout_weight="1"
+	        android:textColor="@color/gray"
+	        android:textSize="16sp"
+	        android:gravity="left"/>
         
-        <TextView 
+        <EditText 
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="10dp"
+	        android:paddingLeft="15dp"
+	        android:paddingRight="15dp"
+	        android:paddingTop="5dp"
+	        android:paddingBottom="5dp"
+	        android:layout_marginRight="10dp"
 	        android:gravity="left"
 	        android:layout_gravity="center"
-	        android:layout_weight="1"
+	        android:background="@drawable/layout_border"
 	        android:textStyle="bold"
 	        android:id="@+id/my_contract_total_pay"
 	        android:text="90000"/>
@@ -189,6 +242,8 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="元"
+	        android:textColor="@color/gray"
+            android:textSize="16sp"
 	        android:layout_gravity="center"
 	        android:gravity="center"/>
         
@@ -196,7 +251,11 @@
     
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:orientation="horizontal"
         android:background="@drawable/layout_border"
         android:layout_marginTop="-1dp">
@@ -205,16 +264,24 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="第一次付款(建议为20%)"
-	        android:layout_gravity="center"
-	        android:gravity="center"/>
+	        android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:gravity="left"/>
         
-        <TextView 
+        <EditText 
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="10dp"
 	        android:gravity="left"
 	        android:layout_gravity="center"
-	        android:layout_weight="1"
+	        android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/layout_border"
 	        android:textStyle="bold"
 	        android:id="@+id/my_contract_first_pay"
 	        android:text="18000"/>
@@ -223,13 +290,19 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="元"
+	        android:textColor="@color/gray"
+            android:textSize="16sp"
 	        android:layout_gravity="center"
 	        android:gravity="center"/>
         </LinearLayout>
         
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:orientation="horizontal"
         android:background="@drawable/layout_border"
         android:layout_marginTop="-1dp">
@@ -238,17 +311,25 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="第二次付款(建议为30%)"
-	        android:layout_gravity="center"
-	        android:gravity="center"/>
+	        android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:gravity="left"/>
         
-        <TextView 
+        <EditText 
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="10dp"
 	        android:gravity="left"
 	        android:layout_gravity="center"
-	        android:layout_weight="1"
 	        android:textStyle="bold"
+	        android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/layout_border"
 	        android:id="@+id/my_contract_second_pay"
 	        android:text="27000"/>
         
@@ -256,13 +337,19 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="元"
+	        android:textColor="@color/gray"
+            android:textSize="16sp"
 	        android:layout_gravity="center"
 	        android:gravity="center"/>
         </LinearLayout>
         
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:orientation="horizontal"
         android:background="@drawable/layout_border"
         android:layout_marginTop="-1dp">
@@ -271,16 +358,24 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="第三次付款(建议为30%)"
-	        android:layout_gravity="center"
-	        android:gravity="center"/>
+	        android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:gravity="left"/>
         
-        <TextView 
+        <EditText 
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="10dp"
 	        android:gravity="left"
 	        android:layout_gravity="center"
-	        android:layout_weight="1"
+	        android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/layout_border"
 	        android:textStyle="bold"
 	        android:id="@+id/my_contract_third_pay"
 	        android:text="27000"/>
@@ -289,13 +384,19 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="元"
+	        android:textColor="@color/gray"
+            android:textSize="16sp"
 	        android:layout_gravity="center"
 	        android:gravity="center"/>
         </LinearLayout>
         
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:orientation="horizontal"
         android:background="@drawable/layout_border"
         android:layout_marginTop="-1dp">
@@ -304,16 +405,24 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="第四次付款(建议为20%)"
-	        android:layout_gravity="center"
-	        android:gravity="center"/>
+	        android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:gravity="left"/>
         
-        <TextView 
+        <EditText 
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="10dp"
 	        android:gravity="left"
 	        android:layout_gravity="center"
-	        android:layout_weight="1"
+	        android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/layout_border"
 	        android:textStyle="bold"
 	        android:id="@+id/my_contract_fourth_pay"
 	        android:text="18000"/>
@@ -322,6 +431,8 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="元"
+	        android:textColor="@color/gray"
+	        android:textSize="16sp"
 	        android:layout_gravity="center"
 	        android:gravity="center"/>
         </LinearLayout>
@@ -334,7 +445,8 @@
 	    android:layout_marginTop="50dp"
 	    android:layout_gravity="center"
 	    android:background="@drawable/feedback_o"
-	    android:layout_marginBottom="40dp"
+	    android:layout_marginBottom="80dp"
+	    android:id="@+id/contract_labor_submit"
 	    android:text="提交" />
 </LinearLayout>
 </ScrollView>

@@ -16,7 +16,9 @@
 	       <TabWidget
 				  android:id="@android:id/tabs"
 				  android:layout_width="match_parent"
-				  android:layout_height="wrap_content" >
+				  android:layout_height="wrap_content"
+				  android:showDividers="none"
+				  android:background="@null" >
 	        </TabWidget>
 	
 	        <FrameLayout
@@ -25,11 +27,18 @@
 				  android:layout_height="match_parent"
 				  android:layout_gravity="fill" >
 				
-	            <ListView 
-				    android:layout_width="match_parent"
-				    android:layout_height="wrap_content"
-				    android:id="@+id/decorate_tips_list">
-				</ListView>
+	            <com.winwinapp.util.RefreshableListView  
+			        android:id="@+id/decorate_tips_refreshable_list_view"  
+			        android:layout_width="match_parent"  
+			        android:layout_height="match_parent"   
+			        android:listSelector="@android:color/transparent"  
+			        android:cacheColorHint="@android:color/transparent">
+		            <ListView 
+					    android:layout_width="match_parent"
+					    android:layout_height="wrap_content"
+					    android:id="@+id/decorate_tips_list">
+					</ListView>
+				</com.winwinapp.util.RefreshableListView>
 	            <include 
 	                android:id="@+id/tab_content_my_project_calendar" 
 	                layout="@layout/layout_my_project_calendar"

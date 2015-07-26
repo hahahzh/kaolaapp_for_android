@@ -7,19 +7,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EEEEEE"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/contract_superior_ll">
     
     <TextView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:gravity="left"
         android:text="监理工程概况"/>
     
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@drawable/layout_border"
-        android:layout_marginTop="10dp">
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
         
         <TextView 
 	        android:layout_width="wrap_content"
@@ -33,19 +41,23 @@
 	        android:layout_gravity="center"
 	        android:layout_marginLeft="10dp"
 	        android:textStyle="bold"
-	        android:id="@id/my_contract_name"
+	        android:id="@+id/contract_superior_name"
 	        android:text="张曼曼"/>
         
     </LinearLayout>
     
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/layout_border"
         android:layout_gravity="center"
         android:layout_marginTop="-1dp"
         android:orientation="horizontal"
-        android:layout_marginBottom="10dp">
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:id="@+id/contract_superior_address_ll">
         
         <TextView 
 	        android:layout_width="wrap_content"
@@ -62,7 +74,7 @@
 	        android:ellipsize="end"
 	        android:gravity="center"
 	        android:textStyle="bold"
-	        android:id="@id/my_contract_address"
+	        android:id="@+id/contract_superior_address"
 	        android:text="上海   上海市  闸北区  广中西路"
 	        android:drawableRight="@drawable/forward"/>
         
@@ -72,16 +84,21 @@
     <TextView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:gravity="left"
         android:text="监理费及其支付"/>
-    
-
     
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@drawable/layout_border"
-        android:layout_marginTop="10dp">
+       android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
         
         <TextView 
 	        android:layout_width="wrap_content"
@@ -98,7 +115,7 @@
 	        android:layout_gravity="center"
 	        android:layout_weight="1"
 	        android:textStyle="bold"
-	        android:id="@+id/my_contract_superior_total"
+	        android:id="@+id/contract_superior_total"
 	        android:text="90000"/>
         
         <TextView 
@@ -112,10 +129,14 @@
     
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@drawable/layout_border"
-        android:layout_marginTop="-1dp">
+        android:layout_marginTop="-1dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
         
         <TextView 
 	        android:layout_width="wrap_content"
@@ -132,6 +153,7 @@
 	        android:layout_gravity="center"
 	        android:layout_weight="1"
 	        android:textStyle="bold"
+	        android:id="@+id/contract_superior_first_pay"
 	        android:text="18000"/>
         
         <TextView 
@@ -144,11 +166,14 @@
         
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@drawable/layout_border"
         android:layout_marginTop="-1dp"
-        android:layout_marginBottom="10dp">
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
         
         <TextView 
 	        android:layout_width="wrap_content"
@@ -165,6 +190,7 @@
 	        android:layout_gravity="center"
 	        android:layout_weight="1"
 	        android:textStyle="bold"
+	        android:id="@+id/contract_superior_second_pay"
 	        android:text="27000"/>
         
         <TextView 
@@ -178,13 +204,22 @@
     <TextView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:gravity="left"
         android:text="违约责任"/>
+    
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@drawable/layout_border"
-        android:layout_marginTop="-1dp">
+        android:layout_marginTop="-1dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
         
         <TextView 
 	        android:layout_width="wrap_content"
@@ -201,6 +236,7 @@
 	        android:layout_gravity="center"
 	        android:layout_weight="1"
 	        android:textStyle="bold"
+	        android:id="@+id/contract_superior_normal_day"
 	        android:text="2"/>
         
         <TextView 
@@ -212,11 +248,15 @@
         </LinearLayout>
         
     <LinearLayout 
-             android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@drawable/layout_border"
-        android:layout_marginTop="-1dp">
+        android:layout_marginTop="-1dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
         
         <TextView 
 	        android:layout_width="wrap_content"
@@ -239,6 +279,7 @@
 	        android:layout_gravity="center"
 	        android:layout_weight="1"
 	        android:textStyle="bold"
+	        android:id="@+id/contract_superior_add_day"
 	        android:text="1"/>
         
         <TextView 
@@ -251,11 +292,14 @@
 
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@drawable/layout_border"
         android:layout_marginTop="-1dp"
-        android:layout_marginBottom="10dp">
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
         
         <TextView 
 	        android:layout_width="wrap_content"
@@ -278,6 +322,7 @@
 	        android:layout_gravity="center"
 	        android:layout_weight="1"
 	        android:textStyle="bold"
+	        android:id="@+id/contract_superior_percent"
 	        android:text="1"/>
         
         <TextView 
@@ -292,6 +337,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:singleLine="false"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:gravity="left"
+        android:id="@+id/contract_superior_tips"
         android:text="@string/legal_contract"/>
     <Button
 	    android:layout_width="wrap_content"
@@ -301,6 +351,7 @@
 	    android:layout_marginTop="50dp"
 	    android:layout_gravity="center"
 	    android:background="@drawable/feedback_o"
+	    android:id="@+id/contract_superior_submit"
 	    android:text="提交" />
 </LinearLayout>
 </ScrollView>

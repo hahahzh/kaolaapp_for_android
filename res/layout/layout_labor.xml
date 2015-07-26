@@ -162,7 +162,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/heart_no"
             android:layout_gravity="center_vertical"
-            android:gravity="center_vertical"/>
+            android:gravity="center_vertical"
+            android:id="@+id/labor_love"/>
       </LinearLayout>
       
      <EditText 

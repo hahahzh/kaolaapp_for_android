@@ -1,5 +1,8 @@
 package com.winwinapp.koala;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import com.winwinapp.chat.KoalaChatActivity;
@@ -12,6 +15,9 @@ import com.winwinapp.network.NetworkData;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -45,6 +51,8 @@ public class MessageListActivity extends ActionBarActivity implements RemoveList
 	
 	public static NetworkData.PrivateMessageListData mRequestPrivateData;
 	public static NetworkData.PrivateMessageListBack mRequestPrivateBack;
+	
+	Drawable mDefaultAvatar;
 	
 	private int type = 0;//0.public; 1, private
 	private Handler mHandler = new Handler(){
@@ -116,6 +124,8 @@ public class MessageListActivity extends ActionBarActivity implements RemoveList
 		mApp = (KoalaApplication) this.getApplication();
 		initActionBar();
 		initMessageList();
+		
+		mDefaultAvatar = getResources().getDrawable(R.drawable.avatar1);
 	}
 	
 	public void initActionBar(){
@@ -184,6 +194,19 @@ public class MessageListActivity extends ActionBarActivity implements RemoveList
 								item.mLastUpdateTime = backItem.send_time;
 								item.mSnippet = backItem.content;
 								item.mMessageNum = Integer.parseInt(backItem.reply_num);
+								Bitmap bmp;
+								try {
+									bmp = BitmapFactory.decodeStream(new URL(NetworkData.URL_SERVER+backItem.avatar).openStream());
+									Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp,mDefaultAvatar.getIntrinsicWidth(), mDefaultAvatar.getIntrinsicHeight(), true);
+									item.avatar = thumbBmp;
+									item.mAvataResId = -1;
+								} catch (MalformedURLException e) {
+									// TODO 自动生成的 catch 块
+									e.printStackTrace();
+								} catch (IOException e) {
+									// TODO 自动生成的 catch 块
+									e.printStackTrace();
+								}
 								mMessageItemArray.add(item);
 							}
 							msg.obj = (Object)("OK");
@@ -255,7 +278,11 @@ public class MessageListActivity extends ActionBarActivity implements RemoveList
 				mHolder = (MessageListViewHolder)convertView.getTag();
 			}
 			
-			mHolder.mAvatarView.setImageResource(mMessageItemArray.get(position).mAvataResId);
+			if(mMessageItemArray.get(position).mAvataResId == -1){
+				mHolder.mAvatarView.setImageBitmap(mMessageItemArray.get(position).avatar);
+			}else{
+				mHolder.mAvatarView.setImageResource(mMessageItemArray.get(position).mAvataResId);
+			}
 			mHolder.mUserNameText.setText(mMessageItemArray.get(position).mName);
 			mHolder.mMessageDateText.setText(mMessageItemArray.get(position).mLastUpdateTime);
 			if(mMessageItemArray.get(position).mMessageNum <= 0){

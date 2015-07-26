@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.winwinapp.koala.ActionBarActivity;
 import com.winwinapp.koala.R;
@@ -38,16 +39,16 @@ public class FeedbackActivity extends ActionBarActivity {
 			public void onClick(View v) {	
 				//设置点击背景
 //				btn_submit.setBackgroundResource(R.drawable.);
-				layoutProcess.setVisibility(View.VISIBLE);
+				//layoutProcess.setVisibility(View.VISIBLE);
 				//获取用户的登录信息，连接服务器，获取登录状态
-				content = edit_content.getText().toString().trim();
+				//content = edit_content.getText().toString().trim();
+				
 				
 				if ("".equals(content)){
-					layoutProcess.setVisibility(View.GONE);
-//					Toast.makeText(LoginPageActivity.this, context.getString(R.string.login_emptyname_or_emptypwd) , Toast.LENGTH_SHORT).show();
+					//layoutProcess.setVisibility(View.GONE);
+					Toast.makeText(FeedbackActivity.this, "反馈失败：建议不能为空" , Toast.LENGTH_SHORT).show();
 				}else {
-
-					
+					Toast.makeText(FeedbackActivity.this,"反馈失败：服务端无返回",Toast.LENGTH_LONG).show();
 				}
 			}
 		});

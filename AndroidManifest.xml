@@ -66,6 +66,7 @@
         
         <activity 
             android:name="com.winwinapp.decorateTips.Decorate_tips_share_window"
+            android:exported="true"
             android:theme="@style/MyDialogStyleBottom"></activity>
         
         <activity 
@@ -125,7 +126,7 @@
        <activity 
            android:name="com.winwinapp.my.MySelectPicActivity"
            android:theme="@style/MyDialogStyleBottom"></activity>
-       
+         
        <activity 
            android:name="com.winwinapp.my.MyContractActivity"></activity>
        <activity android:name="com.winwinapp.my.ContractLaborActivity"></activity>
@@ -141,6 +142,22 @@
        <provider android:name="com.winwinap.database.DatabaseProvider"
            android:exported="false"
            android:authorities="com.winwinap.database.DatabaseProvider"/>
+       
+       <activity 
+            android:name="com.winwinapp.bids.BidsPopupActivity"
+            android:theme="@style/MyDialogStyleBottom"></activity>
+       <activity 
+           android:name="com.winwinapp.calendar.SetDepositActivity"></activity>
+       
+       <activity 
+           android:name="com.winwinapp.calendar.SetScore"></activity>
+       <activity android:name="com.winwinapp.my.ContractBigPicActivity"></activity>
+       <activity android:name="com.winwinapp.my.ContractDetailActivity"></activity>
+       <activity android:name="com.winwinapp.my.ContractRejectActivity"></activity>
+       <activity android:name="com.winwinapp.my.MyPayActivity"></activity>
+       <activity android:name="com.winwinapp.my.ContractDesignerActivity"></activity>
+       
+       
     </application>
 
 </manifest>

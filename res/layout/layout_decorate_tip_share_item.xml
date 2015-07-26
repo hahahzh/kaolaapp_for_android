@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/tips_shared_item_title"
         android:layout_gravity="center"
+        android:textColor="@color/black"
         android:text="微信"/>
 
 </LinearLayout>

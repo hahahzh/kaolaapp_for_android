@@ -3,6 +3,7 @@ package com.winwinapp.calendar;
 import java.util.Calendar;
 
 import com.winwinapp.koala.R;
+import com.winwinapp.util.Utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -27,7 +28,7 @@ public class DateWidgetDayCell extends View {
 
 	public static int ANIM_ALPHA_DURATION = 100;
 	// fields
-	private final static float	fTextSize			= 30;
+	private final static float	fTextSize			= 20;
 	private final static int	iMargin				= 1;
 	private final static int iAlphaInactiveMonth = 0x88;
 
@@ -57,6 +58,7 @@ public class DateWidgetDayCell extends View {
 	private int mBitmapWidth;
 	private int mBitmapHeight;
 	private Paint mBackgroundPt = new Paint();
+	private Paint mCirclePt = new Paint();
 	// methods
 	public DateWidgetDayCell(Context context, int iWidth, int iHeight) {
 		super(context);
@@ -67,6 +69,8 @@ public class DateWidgetDayCell extends View {
 		//Toast.makeText(mContext, "wid="+mBitmapWidth+",height="+mBitmapHeight, Toast.LENGTH_SHORT).show();
 		mPtSeparator.setColor(0xffcccccc);
 		mBackgroundPt.setColor(0xFF000000);
+		mCirclePt.setColor(0xFF000000);
+		mCirclePt.setStyle(Paint.Style.STROKE);
 		setFocusable(true);
 		setLayoutParams(new LayoutParams(iWidth, iHeight));
 	}
@@ -208,7 +212,7 @@ public class DateWidgetDayCell extends View {
 		pt.setAntiAlias(true);
 		pt.setShader(null);
 		pt.setFakeBoldText(true);
-		pt.setTextSize(fTextSize);
+		pt.setTextSize(Utils.sp2px(mContext, fTextSize));
 
 		pt.setUnderlineText(false);
 		if (bToday)
@@ -233,18 +237,28 @@ public class DateWidgetDayCell extends View {
 			pt.setColor(DayStyle.getColorText(bHoliday, bToday,iDayOfWeek));
 		}
 
-		if(bToday){
-			pt.setColor(0xFFFFFFFF);
-		}
+//		if(bToday){
+//			pt.setColor(0xFFFFFFFF);
+//		}
 		
 		if (!bIsActiveMonth)
 			pt.setAlpha(iAlphaInactiveMonth);
 		
 		if (bToday) {//draw background circle
-			canvas.drawCircle(rect.width()/2, (rect.height() - mBitmapHeight - 10)/2, Math.min(rect.width()/2,
-					(rect.height() - mBitmapHeight - 10)/2), mBackgroundPt);
+			pt.setColor(0xFF000000);
+			float radius = Math.min(rect.width()/2,
+					(rect.height() - mBitmapHeight - 10-15)/2);//circle paddingTop = 10, paddingBottom = 5
+			
+			canvas.drawCircle(rect.width()/2, 10 + radius ,radius , mCirclePt);
 		}
 		
+		if (bSelected) {
+			pt.setColor(0xFFFFFFFF);
+			float radius = Math.min(rect.width()/2,
+					(rect.height() - mBitmapHeight - 10-15)/2);//circle paddingTop = 10, paddingBottom = 5
+			
+			canvas.drawCircle(rect.width()/2, 10 + radius ,radius , mBackgroundPt);
+		}
 		canvas.drawText(sDate, iTextPosX, iTextPosY + iMargin, pt);
 
 		pt.setUnderlineText(false);

@@ -1,12 +1,15 @@
 package com.winwinapp.selectcity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.winwinapp.koala.ActionBarActivity;
 import com.winwinapp.koala.R;
@@ -19,6 +22,12 @@ public class SelectAddressActivity extends ActionBarActivity {
     ArrayAdapter<String> provinceAdapter = null;  //省级适配器
     ArrayAdapter<String> cityAdapter = null;    //地级适配器
     ArrayAdapter<String> countyAdapter = null;    //县级适配器
+    private TextView mRoad;
+    private TextView mStreet;
+    private TextView mNumber;
+    private TextView mBuilding;
+    private TextView mRoom;
+    private Button mSubmit;
     
     static int provincePosition = 3;
   //省级选项值
@@ -65,6 +74,32 @@ public class SelectAddressActivity extends ActionBarActivity {
 		
 		initActionBar();
 		setSpinner();
+		
+		mRoad = (TextView)findViewById(R.id.address_detail_road);
+		mStreet = (TextView)findViewById(R.id.address_detail_street);
+		mNumber = (TextView)findViewById(R.id.address_detail_number);
+		mBuilding = (TextView)findViewById(R.id.address_detail_build);
+		mRoom = (TextView)findViewById(R.id.address_detail_room);
+		mSubmit = (Button)findViewById(R.id.address_detail_submit);
+		mSubmit.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO 自动生成的方法存根
+				Intent intent = new Intent();
+				intent.putExtra("province",provinceSpinner.getSelectedItem().toString());
+				intent.putExtra("city", citySpinner.getSelectedItem().toString());
+				intent.putExtra("country", countySpinner.getSelectedItem().toString());
+				intent.putExtra("road",mRoad.getText().toString());
+				intent.putExtra("street", mStreet.getText().toString());
+				intent.putExtra("number", mNumber.getText().toString());
+				intent.putExtra("build", mBuilding.getText().toString());
+				intent.putExtra("room", mRoom.getText().toString());
+				SelectAddressActivity.this.setResult(RESULT_OK, intent);
+				SelectAddressActivity.this.finish();
+			}
+			
+		});
 	}
 
 	private void setSpinner()

@@ -38,6 +38,10 @@ public class MyActivity extends Fragment implements OnClickListener{
 	LinearLayout mMyMessageLL;
 	LinearLayout mMyCardLL;
 	LinearLayout mMyAccountLL;
+	LinearLayout mMyPayLL;
+	LinearLayout mMyAboutLL;
+	TextView mMyName;
+	ImageView mMyAvatar;
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		View view = inflater.inflate(R.layout.layout_my, null);
@@ -56,6 +60,8 @@ public class MyActivity extends Fragment implements OnClickListener{
 		mMyMessageLL = (LinearLayout)view.findViewById(R.id.my_message_ll);
 		mMyCardLL = (LinearLayout)view.findViewById(R.id.my_card_ll);
 		mMyAccountLL = (LinearLayout)view.findViewById(R.id.my_account_ll);
+		mMyPayLL = (LinearLayout)view.findViewById(R.id.my_pay_ll);
+		mMyAboutLL = (LinearLayout)view.findViewById(R.id.my_about_ll);
 		
 		mMyProjectTxt.setOnClickListener(this);
 		mMyProjectImg.setOnClickListener(this);
@@ -70,12 +76,23 @@ public class MyActivity extends Fragment implements OnClickListener{
 		mMyMessageLL.setOnClickListener(this);
 		mMyCardLL.setOnClickListener(this);
 		mMyAccountLL.setOnClickListener(this);
+		mMyPayLL.setOnClickListener(this);
+		mMyAboutLL.setOnClickListener(this);
+		
+		mMyName = (TextView)view.findViewById(R.id.my_name);
+		mMyAvatar = (ImageView)view.findViewById(R.id.my_avatar);
+		
+		
 		
 		if(KoalaApplication.mUserType == fragment_homepage.TYPE_OWER){
 			mMyBidTxt.setText("我的招标");
+			mMyCardLL.setVisibility(View.GONE);
+			mMyAccountLL.setVisibility(View.GONE);
 		}else{
 			mMyBidTxt.setText("我的竞标");
+			mMyPayLL.setVisibility(View.GONE);
 		}
+		
 		
 		return view;
 	}
@@ -90,6 +107,7 @@ public class MyActivity extends Fragment implements OnClickListener{
 			intent = new Intent(mActivity,MyProjectActivity.class);
 			startActivity(intent);
 			break;
+		case R.id.my_about_ll:
 		case R.id.my_about_txt:
 			intent = new Intent(mActivity,AboutActivity.class);
 			startActivity(intent);
@@ -112,7 +130,9 @@ public class MyActivity extends Fragment implements OnClickListener{
 				intent.putExtra("type", 1);//My bid list
 				startActivity(intent);
 			}else{
-				
+				intent = new Intent(mActivity,BidsListActivity.class);//我的招标
+				intent.putExtra("type", 0);//My bid list
+				startActivity(intent);
 			}
 			break;
 		case R.id.my_id_cert_layout:
@@ -136,7 +156,18 @@ public class MyActivity extends Fragment implements OnClickListener{
 			intent = new Intent(mActivity,BindCardActivity.class);
 			startActivity(intent);
 			break;
+		case R.id.my_pay_ll:
+			intent = new Intent(mActivity,MyPayActivity.class);
+			startActivity(intent);
+			break;
 		}
+	}
+
+	@Override
+	public void onResume() {
+		// TODO 自动生成的方法存根
+		super.onResume();
+		mMyName.setText(KoalaApplication.loginData.username);
 	}
 	
 }

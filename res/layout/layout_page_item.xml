@@ -8,7 +8,7 @@
         android:id="@+id/imageView1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:scaleType="centerInside"
+        android:scaleType="fitXY"
         android:src="@drawable/image_preview" />
     
     <!-- android:layout_height="@dimen/hot_pic_height"   wrap_content-->

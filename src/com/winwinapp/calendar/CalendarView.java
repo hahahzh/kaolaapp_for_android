@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import com.winwinapp.koala.R;
+import com.winwinapp.util.Utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -120,6 +121,7 @@ public class CalendarView extends LinearLayout {
 		ImageView btnPrevMonth = new ImageView(mContext);
 		LayoutParams param1 = new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
 		param1.gravity = Gravity.CENTER_VERTICAL;
+		param1.leftMargin = Utils.dp2px(mContext, 10);
 		btnPrevMonth.setLayoutParams(param1);
 		btnPrevMonth.setImageResource(R.drawable.before);
 		
@@ -129,6 +131,7 @@ public class CalendarView extends LinearLayout {
 		//btnNextMonth.setBackgroundResource(R.drawable.after);
 		ImageView btnNextMonth = new ImageView(mContext);
 		btnNextMonth.setLayoutParams(param1);
+		param1.rightMargin = Utils.dp2px(mContext, 10);
 		btnNextMonth.setImageResource(R.drawable.after);
 		
 		

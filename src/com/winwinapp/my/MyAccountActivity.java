@@ -32,6 +32,8 @@ public class MyAccountActivity extends ActionBarActivity {
 		
 	}
 	
+	
+	
 	public void initListView(){
 		mListView = (ListView)this.findViewById(R.id.list_common);
 		MyAccountItem item = new MyAccountItem();
@@ -72,7 +74,7 @@ public class MyAccountActivity extends ActionBarActivity {
 		ImageView imageView = new ImageView(this);
 		imageView.setImageResource(R.drawable.back);
 		setLeftView(imageView);
-		setTitle("我的账户");
+		setTitle("我的支付");
 		this.setOnLeftClickListener(new OnClickListener(){
 
 			@Override
@@ -188,4 +190,5 @@ public class MyAccountActivity extends ActionBarActivity {
 		String mMoneyFrom;
 		String mExtra;
 	}
+
 }

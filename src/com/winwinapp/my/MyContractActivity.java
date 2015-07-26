@@ -4,18 +4,30 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.MeasureSpec;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +56,11 @@ public class MyContractActivity extends ActionBarActivity implements OnClickList
 	int i = 0;
 	NetworkData.BidListData mData = NetworkData.getInstance().getNewBidListData();
 	NetworkData.MyContractListBack mBack = NetworkData.getInstance().getNewMyContractListBack();
+	LinearLayout mContractPreviewLL;
+	ImageView mDesigner;
+	ImageView mLabor;
+	ImageView mSuperior;
+	int mUserType;
 	
 	private Handler mHandler = new Handler(){
 		public void handleMessage(Message msg){
@@ -66,12 +83,75 @@ public class MyContractActivity extends ActionBarActivity implements OnClickList
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.layout_list);
+		setContentView(R.layout.layout_contract_list);
 
 		initActionBar();
 		initListView();
-		
+		initView();
 	}
+	
+	public void initView(){
+		String text = "设计师合同";
+		//mText.setBackgroundResource(R.drawable.my_project_greeen_bg);
+		mContractPreviewLL = (LinearLayout)findViewById(R.id.contract_list_preview_ll);
+		mUserType = KoalaApplication.mUserType;
+		if(mUserType == fragment_homepage.TYPE_OWER){
+			mDesigner = (ImageView)findViewById(R.id.contract_list_designer);
+			mLabor = (ImageView)findViewById(R.id.contract_list_labor);
+			mSuperior = (ImageView)findViewById(R.id.contract_list_superior);
+			DisplayMetrics dm = new DisplayMetrics();
+			this.getWindowManager().getDefaultDisplay().getMetrics(dm);
+			int ScreenWidth = dm.widthPixels;
+			final BitmapFactory.Options options = new BitmapFactory.Options();
+	        Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.contract_preview, options);
+	        int mPicWidth = options.outWidth;
+	        int mPicHeight = options.outHeight;
+	        Bitmap txtBg = BitmapFactory.decodeResource(getResources(), R.drawable.my_project_greeen_bg);
+	        Bitmap scaleOut = BitmapFactory.decodeResource(getResources(), R.drawable.scale_out);
+	        int textPadding = 5;
+	        int destWidth = (ScreenWidth - 40)/3;
+	        int destHeight = mPicHeight * destWidth / mPicWidth;
+	        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+	        paint.setColor(Color.WHITE);
+	        paint.setTextSize(20);
+	        Rect txtBounds = new Rect();
+	        paint.getTextBounds(text, 0, text.length(), txtBounds);
+	        
+	        Bitmap des = Bitmap.createBitmap(destWidth, destHeight+txtBounds.height() + textPadding*2, bm.getConfig());
+			Canvas canvas = new Canvas(des);
+			Paint paint1 = new Paint();
+			ColorMatrix cMatrix = new ColorMatrix();  
+	        cMatrix.set(new float[] { 1, 0, 0, 0, -90, 0, 1,  
+	                0, 0, -90,// 改变亮度  
+	                0, 0, 1, 0, -90, 0, 0, 0, 1, 0 });
+	        paint1.setColorFilter(new ColorMatrixColorFilter(cMatrix));
+			canvas.drawBitmap(bm, null, new Rect(0,txtBounds.height()+textPadding,des.getWidth(),des.getHeight()),paint1);
+			canvas.drawBitmap(txtBg, null,new Rect((destWidth-txtBounds.width())/2-textPadding,0,(destWidth+txtBounds.width())/2+textPadding,txtBounds.height()+textPadding*2),null);
+			canvas.drawBitmap(scaleOut, null, new Rect(des.getWidth()-scaleOut.getWidth(),des.getHeight()-scaleOut.getHeight(),des.getWidth(),des.getHeight()),null);
+			
+			Bitmap des1 = Bitmap.createBitmap(des);
+			Canvas canvas1 = new Canvas(des1);
+			canvas1.drawText(text, (destWidth-txtBounds.width())/2,txtBounds.height()+textPadding, paint);
+			mDesigner.setImageBitmap(des1);
+			Bitmap des2 = Bitmap.createBitmap(des);
+			Canvas canvas2 = new Canvas(des2);
+			text = "工长合同";
+			canvas2.drawText(text, (destWidth-txtBounds.width()*4/5)/2,txtBounds.height()+textPadding, paint);
+			mLabor.setImageBitmap(des2);
+			Bitmap des3 = Bitmap.createBitmap(des);
+			Canvas canvas3 = new Canvas(des3);
+			text = "监理合同";
+			canvas3.drawText(text, (destWidth-txtBounds.width()*4/5)/2,txtBounds.height()+textPadding, paint);
+			mSuperior.setImageBitmap(des3);
+			
+			mDesigner.setOnClickListener(this);
+			mLabor.setOnClickListener(this);
+			mSuperior.setOnClickListener(this);
+		}else{
+			mContractPreviewLL.setVisibility(View.GONE);
+		}
+	}
+	
 	
 	public void updateListView(){
 		mArrayList.clear();
@@ -89,7 +169,7 @@ public class MyContractActivity extends ActionBarActivity implements OnClickList
 	}
 	
 	public void initListView(){
-		mListView = (ListView)this.findViewById(R.id.list_common);
+		mListView = (ListView)this.findViewById(R.id.contract_list_listview);
 		new Thread(){
 			public void run(){
 				boolean success = false;
@@ -122,6 +202,9 @@ public class MyContractActivity extends ActionBarActivity implements OnClickList
 			
 		});
 		
+		if(KoalaApplication.mUserType == fragment_homepage.TYPE_OWER){
+			return;
+		}
 		TextView txtView = new TextView(this);
 		txtView.setTextColor(0xFF00FF00);
 		txtView.setText("发起合同");
@@ -135,11 +218,17 @@ public class MyContractActivity extends ActionBarActivity implements OnClickList
 				if(KoalaApplication.mUserType == fragment_homepage.TYPE_OWER){
 					intent = new Intent(MyContractActivity.this,ContractLaborActivity.class);
 					intent.putExtra("type", 0);//new contract
-				}else{
+					startActivity(intent);
+				}else if(KoalaApplication.mUserType == fragment_homepage.TYPE_SUPRIOR){
 					intent = new Intent(MyContractActivity.this,ContractSuperiorActivity.class);
 					intent.putExtra("type", 0);//new contract
+					startActivity(intent);
+				}else if(KoalaApplication.mUserType == fragment_homepage.TYPE_DESIGNER){
+					intent = new Intent(MyContractActivity.this,ContractDesignerActivity.class);
+					intent.putExtra("type", 0);//new contract
+					startActivity(intent);
 				}
-				startActivity(intent);
+				
 			}
 			
 		});
@@ -148,7 +237,26 @@ public class MyContractActivity extends ActionBarActivity implements OnClickList
 	@Override
 	public void onClick(View arg0) {
 		// TODO 自动生成的方法存根
+		Intent intent;
 		switch(arg0.getId()){
+		case R.id.contract_list_designer:
+			intent = new Intent(MyContractActivity.this,ContractBigPicActivity.class);
+			intent.putExtra("page", 5);
+			intent.putExtra("type", 0);
+			startActivity(intent);
+			break;
+		case R.id.contract_list_labor:
+			intent = new Intent(MyContractActivity.this,ContractBigPicActivity.class);
+			intent.putExtra("page", 5);
+			intent.putExtra("type", 1);
+			startActivity(intent);
+			break;
+		case R.id.contract_list_superior:
+			intent = new Intent(MyContractActivity.this,ContractBigPicActivity.class);
+			intent.putExtra("page", 5);
+			intent.putExtra("type", 2);
+			startActivity(intent);
+			break;
 		}
 	}
 	
@@ -230,15 +338,10 @@ public class MyContractActivity extends ActionBarActivity implements OnClickList
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		// TODO 自动生成的方法存根
 		Intent intent;
-		if(KoalaApplication.mUserType == fragment_homepage.TYPE_OWER){
-			intent = new Intent(MyContractActivity.this,ContractLaborActivity.class);
-			intent.putExtra("type", 1);//view contract
-			intent.putExtra("id", Integer.parseInt(mBack.items.get(arg2).c_id));
-		}else{
-			intent = new Intent(MyContractActivity.this,ContractSuperiorActivity.class);
-			intent.putExtra("type", 1);//view contract
-			intent.putExtra("id", Integer.parseInt(mBack.items.get(arg2).c_id));
-		}
+		boolean bConfirmed = mArrayList.get(arg2).bConfirm;
+		intent = new Intent(MyContractActivity.this,ContractDetailActivity.class);
+		intent.putExtra("id", Integer.parseInt(mBack.items.get(arg2).c_id));
+		intent.putExtra("confirm", bConfirmed);
 		startActivity(intent);
 	}
 }
