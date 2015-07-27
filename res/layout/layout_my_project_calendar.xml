@@ -12,6 +12,7 @@
 	    <LinearLayout 
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
+	        android:background="#FFFFFF"
 	        android:orientation="horizontal">
 	        
 	        <TextView
@@ -24,7 +25,11 @@
 		        android:layout_weight="1"
 		        android:textColor="#000000"
 		        android:gravity="center"
+<<<<<<< HEAD
 		        android:textSize="18sp"
+=======
+		        android:paddingLeft="20dip"
+>>>>>>> 6e2914a7ef765c65c4f9a4f07e41e1ea101ec88d
 		        android:background="@drawable/spinner"
 		        android:drawableLeft="@drawable/calendar_check"
 		        android:text="第一阶段"/>
@@ -38,7 +43,11 @@
 		        android:layout_height="wrap_content"
 		        android:layout_weight="1"
 		        android:gravity="center"
+<<<<<<< HEAD
                 android:textSize="18sp"
+=======
+		        android:paddingLeft="20dip"
+>>>>>>> 6e2914a7ef765c65c4f9a4f07e41e1ea101ec88d
 		        android:background="@drawable/spinner"
 		        android:drawableLeft="@drawable/calendar_check"
 		        android:text="第二阶段"/>
@@ -51,9 +60,14 @@
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_weight="1"
+<<<<<<< HEAD
 		        android:drawableLeft="@drawable/calendar_check"
 		        android:gravity="center"
                 android:textSize="18sp"
+=======
+		        android:gravity="center"
+		        android:paddingLeft="20dip"
+>>>>>>> 6e2914a7ef765c65c4f9a4f07e41e1ea101ec88d
 		        android:background="@drawable/spinner"
 		        android:text="第三阶段"/>
 	        
@@ -123,9 +137,12 @@
 		              android:background="@drawable/rec_red"
 		              android:gravity="center"
 		              android:layout_marginLeft="10dp"
+<<<<<<< HEAD
 		              android:layout_marginRight="10dp"
 		              android:layout_gravity="center"
 		              android:id="@+id/calendar_shigongjiaodi"
+=======
+>>>>>>> 6e2914a7ef765c65c4f9a4f07e41e1ea101ec88d
 		              android:text="施工交底"/>
 		          
 		         <TextView 
@@ -136,8 +153,11 @@
 		              android:layout_gravity="center"
 		              android:background="@drawable/rec_blue"
 		              android:layout_marginLeft="10dp"
+<<<<<<< HEAD
 		              android:layout_marginRight="10dp"
 		              android:id="@+id/calendar_shuidiangaizao"
+=======
+>>>>>>> 6e2914a7ef765c65c4f9a4f07e41e1ea101ec88d
 		              android:text="水电改造"/>
 		          
 		         <TextView 
@@ -149,7 +169,11 @@
 		              android:layout_marginLeft="10dp"
 		              android:layout_marginRight="10dp"
 		              android:background="@drawable/rec_orange"
+<<<<<<< HEAD
 		              android:id="@+id/calendar_qiangzhuan"
+=======
+		              android:layout_marginLeft="10dp"
+>>>>>>> 6e2914a7ef765c65c4f9a4f07e41e1ea101ec88d
 		              android:text="墙砖"/>
 		        
 		    </LinearLayout>
@@ -162,7 +186,11 @@
 	              android:gravity="center"
 	              android:layout_marginLeft="10dp"
 	              android:background="@drawable/rec_green"
+<<<<<<< HEAD
 	              android:id="@+id/calendar_youqituliao"
+=======
+	              android:layout_marginLeft="10dp"
+>>>>>>> 6e2914a7ef765c65c4f9a4f07e41e1ea101ec88d
 	              android:text="油漆涂料"/>
 	     </LinearLayout>
 	     
