@@ -3,6 +3,7 @@ package com.winwinapp.bids;
 import java.util.ArrayList;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -34,6 +35,9 @@ public class BidsListActivity extends ActionBarActivity implements OnItemClickLi
 	LayoutInflater mInflater;
 	MyAdapter mAdapter = new MyAdapter();
 	private int mType = 0;//0: request all bid list; 1: request user bid list(only for owner)
+	Bitmap bitmap1 = null;
+	Bitmap bitmap2 = null;
+	Bitmap bitmap3 = null;
 	
 	private Handler mHandler = new Handler(){
 		public void handleMessage(Message msg){
@@ -54,10 +58,9 @@ public class BidsListActivity extends ActionBarActivity implements OnItemClickLi
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_list);
-
-		initActionBar();
 		
 		mType = getIntent().getIntExtra("type", 0);
+		initActionBar();
 		mInflater = LayoutInflater.from(this);
 		mListView = (ListView)findViewById(R.id.list_common);
 		mListView.setAdapter(mAdapter);
@@ -87,7 +90,11 @@ public class BidsListActivity extends ActionBarActivity implements OnItemClickLi
 		ImageView imageView = new ImageView(this);
 		imageView.setImageResource(R.drawable.back);
 		setLeftView(imageView);
-		setTitle("我要竞标");
+		if(mType == 0){
+			setTitle("我要竞标");
+		}else{
+			setTitle("我的招标");
+		}
 		this.setOnLeftClickListener(new OnClickListener(){
 
 			@Override

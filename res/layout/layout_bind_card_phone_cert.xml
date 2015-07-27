@@ -5,11 +5,11 @@
     android:orientation="vertical" >
     
     <TextView 
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:singleLine="false"
+        android:padding="20dp"
+        android:id="@+id/card_phone_cert_tips"
         android:text="绑定银行卡需手机号认证，验证码已经发送到您的手机：158××××1346，请按提示操作"/>
     
     <ImageView 
@@ -34,6 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="6348"
+            android:id="@+id/card_phone_vercode"
             android:layout_marginLeft="20dp"
             android:background="#00FFFFFF"/>
         
@@ -41,6 +42,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="重发(58秒)"
+            android:id="@+id/card_phone_send"
+            android:background="@color/yellow"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:clickable="false"/>
     </LinearLayout>
     

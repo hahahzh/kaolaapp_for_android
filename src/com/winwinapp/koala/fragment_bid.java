@@ -65,6 +65,10 @@ public class fragment_bid extends Fragment implements OnItemClickListener{
 		mListView.setAdapter(mAdapter);
 		
 		mListView.setOnItemClickListener(this);
+		
+		if(KoalaApplication.mUserType == fragment_homepage.TYPE_OWER){
+			mType = 1;
+		}
 		//initView(inflater,view);
 		
 		return view;

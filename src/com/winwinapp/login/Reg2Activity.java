@@ -12,11 +12,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.winwinapp.koala.ActionBarActivity;
 import com.winwinapp.koala.KLHomePageActivity;
 import com.winwinapp.koala.KoalaApplication;
 import com.winwinapp.koala.MessageListActivity;
@@ -24,7 +26,7 @@ import com.winwinapp.koala.R;
 import com.winwinapp.network.HTTPPost;
 import com.winwinapp.network.NetworkData;
 
-public class Reg2Activity extends Activity implements OnClickListener{
+public class Reg2Activity extends ActionBarActivity implements OnClickListener{
 
 	private Context context = Reg2Activity.this;
 	private static final int MESSAGE_REG = 1;
@@ -64,20 +66,20 @@ public class Reg2Activity extends Activity implements OnClickListener{
 			case MESSAGE_REG:
 				error = (String)msg.obj;
 				if("OK".equals(error)){
-					KoalaApplication app = ((KoalaApplication)Reg2Activity.this.getApplication());
-					NetworkData.LoginBack mLogBack = NetworkData.getInstance().getNewLoginBack();
-					mLogBack.id = mRegBack.id;
-					mLogBack.sessid = mRegBack.sessid;
-					mLogBack.username = mRegData.username;
-					app.saveSession(mLogBack);
-					intent = new Intent(context,KLHomePageActivity.class);
-					intent.putExtra("page", 3);
+					//KoalaApplication app = ((KoalaApplication)Reg2Activity.this.getApplication());
+					//NetworkData.LoginBack mLogBack = NetworkData.getInstance().getNewLoginBack();
+					//mLogBack.id = mRegBack.id;
+					//mLogBack.sessid = mRegBack.sessid;
+					//mLogBack.username = mRegData.username;
+					//app.saveSession(mLogBack);
+					intent = new Intent(context,LoginPageActivity.class);
 					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					startActivity(intent);
-					
+					Toast.makeText(context, "注册用户成功，请登录", Toast.LENGTH_LONG).show();
 				}
 				else{
 					Toast.makeText(context, "注册用户失败："+error, Toast.LENGTH_LONG).show();
+					finish();
 				}
 				break;
 			}
@@ -88,6 +90,7 @@ public class Reg2Activity extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_reg_2);
+		initActionBar();
 		btn_ower = (TextView)findViewById(R.id.reg2_ower);
 		btn_designer = (TextView)findViewById(R.id.reg2_designer);
 		btn_labor = (TextView)findViewById(R.id.reg2_labor);
@@ -166,6 +169,23 @@ public class Reg2Activity extends Activity implements OnClickListener{
 		});
 		
 	}
+	
+	public void initActionBar(){
+		ImageView imageView = new ImageView(this);
+		imageView.setImageResource(R.drawable.back);
+		setLeftView(imageView);
+		setTitle("注册");
+		this.setOnLeftClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO 自动生成的方法存根
+				finish();
+			}
+			
+		});
+	}
+	
 	@Override
 	public void onClick(View arg0) {
 		// TODO 自动生成的方法存根

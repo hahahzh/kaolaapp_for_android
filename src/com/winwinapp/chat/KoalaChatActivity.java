@@ -1,5 +1,8 @@
 package com.winwinapp.chat;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,6 +18,9 @@ import com.winwinapp.util.ActionBarView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -38,6 +44,9 @@ public class KoalaChatActivity extends ActionBarActivity implements OnClickListe
 	private List<ChatMsgEntity> mDataArrays = new ArrayList<ChatMsgEntity>();// 消息对象数组
 	private ActionBarView mActionBar;
 	private ArrayList<MessageItem> mMessageItemArray;
+	/**
+	 * 类型,0:系统消息；1，私人消息
+	 */
 	int type = 0;
 	int msg_id = 0;
 	int is_exist = 0;
@@ -49,8 +58,10 @@ public class KoalaChatActivity extends ActionBarActivity implements OnClickListe
 	private NetworkData.PrivateMessageInfoData mPrivateData;
 	private NetworkData.PrivateMessageInfoBack mPrivateBack;
 	
+	private ArrayList<Bitmap> mBitmapList = new ArrayList<Bitmap>();
 	private NetworkData.SendMessageData mSendMsgData;
 	private NetworkData.CommonBack mSendMsgBack;
+	Drawable mDefaultAvatar;
 
 	private Handler mHandler = new Handler(){
 		public void handleMessage(Message msg){
@@ -86,16 +97,25 @@ public class KoalaChatActivity extends ActionBarActivity implements OnClickListe
 		Intent intent = this.getIntent();
 		type = intent.getIntExtra("type", 0);
 		if(type == 0){
-			msg_id = Integer.parseInt(intent.getStringExtra("msg_id"));
-			is_exist = Integer.parseInt(intent.getStringExtra("is_exist"));
+			try{
+				msg_id = Integer.parseInt(intent.getStringExtra("msg_id"));
+				is_exist = Integer.parseInt(intent.getStringExtra("is_exist"));
+			}catch(Exception e){
+				
+			}
 		}else{
-			msg_id = Integer.parseInt(intent.getStringExtra("msg_id"));
-			topic_id = Integer.parseInt(intent.getStringExtra("topic_id"));
-			rec_id = Integer.parseInt(intent.getStringExtra("rec_id"));
+			try{
+				msg_id = Integer.parseInt(intent.getStringExtra("msg_id"));
+				topic_id = Integer.parseInt(intent.getStringExtra("topic_id"));
+				rec_id = Integer.parseInt(intent.getStringExtra("rec_id"));
+			}catch(Exception e){
+				
+			}
 		}
 		initView();// 初始化view
 
 		initActionBar();
+		mDefaultAvatar = getResources().getDrawable(R.drawable.avatar1);
 		//initData();// 初始化数据
 		//mListView.setSelection(mAdapter.getCount() - 1);
 		
@@ -113,6 +133,10 @@ public class KoalaChatActivity extends ActionBarActivity implements OnClickListe
 				mPublicData.msg_id = msg_id;
 				mPublicBack = NetworkData.getInstance().getNewPublicMessageInfoBack();
 				success = HTTPPost.RequestPublicMsgInfo(mPublicData, mPublicBack);
+//				Bitmap bmp = BitmapFactory.decodeStream(new URL(NetworkData.URL_SERVER+mPublicBack.item.a)
+//				.openStream());
+//				Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp,
+//				THUMB_SIZE, THUMB_SIZE, true);
 			}else{
 				mPrivateData = NetworkData.getInstance().getNewPrivateMessageInfoData();
 				mPrivateData.msg_id = msg_id;
@@ -120,6 +144,24 @@ public class KoalaChatActivity extends ActionBarActivity implements OnClickListe
 				mPrivateData.topic_id = topic_id;
 				mPrivateBack = NetworkData.getInstance().getNewPrivateMessageInfoBack();
 				success = HTTPPost.RequestPrivateMsgInfo(mPrivateData, mPrivateBack);
+				mBitmapList.clear();
+				int size = mPrivateBack.items.size();
+				for(int i=0;i<size;i++){
+					try {
+						Bitmap bmp = BitmapFactory.decodeStream(new URL(NetworkData.URL_SERVER+mPrivateBack.items.get(i).avatar).openStream());
+						Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp,mDefaultAvatar.getIntrinsicWidth(), mDefaultAvatar.getIntrinsicHeight(), true);
+						mBitmapList.add(thumbBmp);
+						
+					} catch (MalformedURLException e) {
+						// TODO 自动生成的 catch 块
+						e.printStackTrace();
+						mBitmapList.add(null);
+					} catch (IOException e) {
+						// TODO 自动生成的 catch 块
+						e.printStackTrace();
+						mBitmapList.add(null);
+					}
+				}
 			}
 			
 			if(success){
@@ -216,7 +258,6 @@ public class KoalaChatActivity extends ActionBarActivity implements OnClickListe
 			mDataArrays.add(entity);
 		}else{
 			for(int i=0;i<mPrivateBack.items.size();i++){
-				
 				ChatMsgEntity entity = new ChatMsgEntity();
 				entity.setDate(mPrivateBack.items.get(i).send_time);
 				if(mPrivateBack.items.get(i).send_name != null && mPrivateBack.items.get(i).send_name.equals(KoalaApplication.loginData.username)){
@@ -227,6 +268,7 @@ public class KoalaChatActivity extends ActionBarActivity implements OnClickListe
 					entity.setName(mPrivateBack.items.get(i).send_name);
 				}
 				entity.setMessage(mPrivateBack.items.get(i).content);
+				entity.setAvatar(mBitmapList.get(i));
 				mDataArrays.add(entity);
 			}
 		}

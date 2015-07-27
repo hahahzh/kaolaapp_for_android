@@ -5,22 +5,30 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.StrictMode;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.winwinapp.about.AboutActivity;
 import com.winwinapp.about.FuncDescActivity;
+import com.winwinapp.koala.ActionBarActivity;
 import com.winwinapp.koala.R;
+import com.winwinapp.my.MyContractActivity;
+import com.winwinapp.network.HTTPPost;
+import com.winwinapp.network.NetworkData;
 import com.winwinapp.util.Utils;
 
-public class Reg1Activity extends Activity {
+public class Reg1Activity extends ActionBarActivity {
 
+	private static final int REQUEST_CODE_BACK = 1;
 	private Context context = Reg1Activity.this;
 	private EditText edit_mailandphone;
 	private EditText edit_username;
@@ -37,10 +45,28 @@ public class Reg1Activity extends Activity {
 	private String v_code;
 	private LinearLayout layoutProcess;
 	private Thread mThread;
+	NetworkData.RegisterSendCodeData mData = NetworkData.getInstance().getNewRegisterSendCodeData();
+	NetworkData.CommonBack mBack = NetworkData.getInstance().getCommonBack();
+	
+	private Handler mHandler = new Handler(){
+		public void handleMessage(Message msg){
+			switch(msg.what){
+			case REQUEST_CODE_BACK:
+				String error = (String) msg.obj;
+				if("OK".equals(error)){
+					Toast.makeText(Reg1Activity.this, "发送验证码成功："+error, Toast.LENGTH_LONG).show();
+				}else{
+					Toast.makeText(Reg1Activity.this, "发送验证码失败："+error, Toast.LENGTH_LONG).show();
+				}
+				break;
+			}
+		}
+	};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_reg_1);
+		initActionBar();
 		edit_mailandphone = (EditText)findViewById(R.id.reg_mailorphone_txt);
 		edit_username = (EditText)findViewById(R.id.reg_username_txt);
 		edit_password = (EditText)findViewById(R.id.reg_pwd_txt);
@@ -101,7 +127,18 @@ public class Reg1Activity extends Activity {
 				if(edit_mailandphone.getText().toString().isEmpty()){
 					Toast.makeText(context, "邮箱或手机不能为空", Toast.LENGTH_LONG).show();
 				}else{
-					
+					mData.phone_mail = edit_mailandphone.getText().toString();
+					mailandphone = edit_mailandphone.getText().toString().trim();
+					if(Utils.isEmail(mailandphone)){
+						mData.is_email = 1;
+					}else if(Utils.isMobilePhone(mailandphone)){
+						mData.is_email = 0;
+					}else{
+						Toast.makeText(context, "邮箱或者手机号非法" , Toast.LENGTH_SHORT).show();
+						return;
+					}
+					mData.auth_code = "ABCD";
+					new SendVerCodeThread().start();
 				}
 					
 			}
@@ -110,14 +147,39 @@ public class Reg1Activity extends Activity {
 	}
 	
 
-//	/**
-//	 * 获取验证码线程
-//	 */
-//	Runnable getVCodeRunable = new Runnable() {
-//		
-//		@Override
-//		public void run() {
-//		}
-//	};
+	public void initActionBar(){
+		ImageView imageView = new ImageView(this);
+		imageView.setImageResource(R.drawable.back);
+		setLeftView(imageView);
+		setTitle("注册");
+		this.setOnLeftClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO 自动生成的方法存根
+				finish();
+			}
+			
+		});
+	}
+	/**
+	 * 获取验证码线程
+	 */
+	public class SendVerCodeThread extends Thread {
+		
+		@Override
+		public void run() {
+			boolean success = false;
+			success = HTTPPost.RegisterSendCode(mData, mBack);
+			Message msg = Message.obtain();
+			msg.what = REQUEST_CODE_BACK;
+			if(success){
+				msg.obj = "OK";
+			}else{
+				msg.obj = mBack.error;
+			}
+			mHandler.sendMessage(msg);
+		}
+	};
 
 }

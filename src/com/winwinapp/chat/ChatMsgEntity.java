@@ -1,12 +1,23 @@
 package com.winwinapp.chat;
 
+import android.graphics.Bitmap;
+
 public class ChatMsgEntity {
 
 	private String name;//消息来自
 	private String date;//消息日期
 	private String message;//消息内容
 	private boolean isComMeg = true;// 是否为收到的消息
+	private Bitmap avatar;
 
+	public Bitmap getAvatar(){
+		return avatar;
+	}
+	
+	public void setAvatar(Bitmap b){
+		avatar = b;
+	}
+	
 	public String getName() {
 		return name;
 	}

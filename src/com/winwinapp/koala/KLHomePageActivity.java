@@ -132,13 +132,19 @@ public class KLHomePageActivity extends FragmentActivity {
 		//ImageView imageView = new ImageView(this);
 		//imageView.setImageResource(R.drawable.back);
 		//mActionBar.setLeftView(imageView);
-		mActionBar.setTitle("竞标");
+		if(KoalaApplication.mUserType == fragment_homepage.TYPE_DESIGNER || 
+				KoalaApplication.mUserType == fragment_homepage.TYPE_LABOR ||
+				KoalaApplication.mUserType == fragment_homepage.TYPE_SUPRIOR){
+			mActionBar.setTitle("我的竞标");
+		}else{
+			mActionBar.setTitle("我的招标");
+		}
 		mActionBar.setLeftView(null);
 		mActionBar.setRightView(null);
 	}
 	
 	public void setActionBarProjects(){
-		mActionBar.setTitle("项目");
+		mActionBar.setTitle("我的项目");
 		mActionBar.setLeftView(null);
 		mActionBar.setRightView(null);
 	}
@@ -291,7 +297,18 @@ public class KLHomePageActivity extends FragmentActivity {
 		TextView textView = (TextView)view.findViewById(R.id.item_text);
 		
 		imageView.setImageResource(mImageResource[index]);
-		textView.setText(mTabContent[index]);
+		if(index == 1){
+			if(KoalaApplication.mUserType == fragment_homepage.TYPE_DESIGNER || 
+					KoalaApplication.mUserType == fragment_homepage.TYPE_LABOR ||
+					KoalaApplication.mUserType == fragment_homepage.TYPE_SUPRIOR){
+				textView.setText(mTabContent[index]);
+			}else{
+				textView.setText("招标");
+			}
+		}else{
+			textView.setText(mTabContent[index]);
+		}	
+		
 		
 		return view;
 	}
@@ -301,6 +318,15 @@ public class KLHomePageActivity extends FragmentActivity {
 		// TODO 自动生成的方法存根
 		super.onNewIntent(intent);
 		this.setIntent(intent);
+		View view = mTabHost.getTabWidget().getChildAt(1);
+		TextView textView = (TextView) view.findViewById(R.id.item_text);
+		if(KoalaApplication.mUserType == fragment_homepage.TYPE_DESIGNER || 
+				KoalaApplication.mUserType == fragment_homepage.TYPE_LABOR ||
+				KoalaApplication.mUserType == fragment_homepage.TYPE_SUPRIOR){
+			textView.setText(mTabContent[1]);
+		}else{
+			textView.setText("招标");
+		}
 		getSwitchPageFromIntent(intent);
 	}
 

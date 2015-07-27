@@ -16,4 +16,29 @@
         		监理费，达到逾期收费时间按照逾期收费（每天）的标准进行支付</string>
         		
     <string name="login_emptyname_or_emptypwd">用户名或密码为空，请重新填写</string>
+    <string name="errcode_success">发送成功</string>
+    <string name="errcode_cancel">发送取消</string>
+    <string name="errcode_deny">发送被拒绝</string>
+    <string name="errcode_unknown">发送返回</string>
+    
+    <string name="pull_to_refresh">下拉可以刷新</string>
+    <string name="release_to_refresh">释放立即刷新</string>
+    <string name="refreshing">正在刷新…</string>
+    <string name="not_updated_yet">暂未更新过</string>
+    <string name="updated_at">上次更新于%1$s前</string>
+    <string name="updated_just_now">刚刚更新</string>
+    <string name="time_error">时间有问题</string>
+    
+    <string name="str_contract_designer_tip1">
+        (一) 甲方为按本合同约定付款期限付款，没逾期一天，甲方按照逾期付款违约金的标准支付违约金，设计工期顺延。逾期超过10天以上，乙方有权通知
+        解除苯合同，并要求甲方付款逾期10天违约金.
+    </string>
+    
+    <string name="str_contract_designer_tip2">
+        (二) 因乙方原因提交设计图超出约定时间，乙方每日按照逾期交稿违约金支付甲方赔偿。
+    </string>
+    
+    <string name="str_contract_designer_tip3">
+        (三) 因乙方原因造成设计图逾期交付超过10天，甲方有权通知乙方解除本合同，乙方应全额退还甲方的设计费用，甲方并可以要求乙方承担交稿逾期10天违约金.
+    </string>
 </resources>

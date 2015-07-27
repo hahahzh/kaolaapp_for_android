@@ -5,12 +5,18 @@
     android:layout_marginBottom="20dp"
     android:paddingTop="20dp" >
     
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:background="@drawable/canon_bg"
-            android:orientation="vertical" >
-        
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical" 
+      android:background="@color/white">
+    
+  <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/graylight"/>
+  
     <TextView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,17 +47,20 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:text="2015-03-19"
+            android:textColor="@color/gray"
             android:id="@+id/tips_item_date"/>
         <ImageView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
+            android:layout_gravity="center"
             android:src="@drawable/eye"/>
          <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:text="166"
+            android:textColor="@color/gray"
             android:id="@+id/tips_item_viewed"/>
     </LinearLayout>
     
@@ -60,8 +69,8 @@
         android:layout_height="1dp"
         android:layout_below="@id/tips_item_first"
         android:layout_marginBottom="10dp"
-        android:id="@+id/tips_item_separator"
-        android:background="#FFFFFF"/>
+        android:background="@color/graylight"
+        android:id="@+id/tips_item_separator"/>
     
     <LinearLayout 
         android:layout_height="wrap_content"
@@ -85,6 +94,7 @@
             android:id="@+id/tips_item_content"
             android:minLines="3"
             android:maxLines="3"
+            android:textColor="@color/gray"
             android:text="装修是件麻烦的事情"/>
         
     </LinearLayout>

@@ -34,7 +34,7 @@
         android:layout_marginTop="5dp" >
 
         <ImageView
-            android:id="@+id/iv_userhead"
+            android:id="@id/iv_userhead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

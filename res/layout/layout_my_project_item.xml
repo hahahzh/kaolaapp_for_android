@@ -127,6 +127,8 @@
        	    android:background="@drawable/my_project_green_bg"
        	    android:gravity="center"
        	    android:text="设定工期"
+       	    android:paddingLeft="5dp"
+       	    android:paddingRight="5dp"
        	    android:textColor="@color/white" />
 
        	</LinearLayout>

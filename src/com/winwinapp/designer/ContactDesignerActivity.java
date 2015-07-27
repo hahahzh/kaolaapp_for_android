@@ -3,6 +3,7 @@ package com.winwinapp.designer;
 import java.util.ArrayList;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.TextView;
 
 import com.winwinapp.koala.ActionBarActivity;
 import com.winwinapp.koala.R;
@@ -57,20 +59,35 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 	public void initTabHost(Intent intent){
 		mTabHost = (TabHost) this.findViewById(R.id.contact_designer_tabhost);
 		mTabHost.setup();
-		mTabHost.addTab(mTabHost.newTabSpec("专业水平").setIndicator("专业水平").setContent(R.id.contact_designer_list));
-		mTabHost.addTab(mTabHost.newTabSpec("服务态度").setIndicator("服务态度").setContent(R.id.contact_designer_list));
-		mTabHost.addTab(mTabHost.newTabSpec("案例数").setIndicator("案例数").setContent(R.id.contact_designer_list));
+		
+		LayoutInflater lf = LayoutInflater.from(this);
+		View view = lf.inflate(R.layout.layout_contact_tab_item, null);
+		TextView text = (TextView) view.findViewById(R.id.contact_tab_title);
+		text.setText("专业水平");
+		mTabHost.addTab(mTabHost.newTabSpec("专业水平").setIndicator(view).setContent(R.id.contact_designer_list));
+		view = lf.inflate(R.layout.layout_contact_tab_item, null);
+		text = (TextView) view.findViewById(R.id.contact_tab_title);
+		text.setText("服务态度");
+		mTabHost.addTab(mTabHost.newTabSpec("服务态度").setIndicator(view).setContent(R.id.contact_designer_list));
+		view = lf.inflate(R.layout.layout_contact_tab_item, null);
+		text = (TextView) view.findViewById(R.id.contact_tab_title);
+		text.setText("案例数");
+		mTabHost.addTab(mTabHost.newTabSpec("案例数").setIndicator(view).setContent(R.id.contact_designer_list));
 		
 		type = intent.getIntExtra("type", fragment_homepage.TYPE_DESIGNER);
 		switch(type){
 		case fragment_homepage.TYPE_DESIGNER:
-			mTabHost.addTab(mTabHost.newTabSpec("收费标准").setIndicator("收费标准").setContent(R.id.contact_designer_list));
+			view = lf.inflate(R.layout.layout_contact_tab_item, null);
+			text = (TextView) view.findViewById(R.id.contact_tab_title);
+			text.setText("收费标准");
+			mTabHost.addTab(mTabHost.newTabSpec("收费标准").setIndicator(view).setContent(R.id.contact_designer_list));
 			break;
 		case fragment_homepage.TYPE_LABOR:
-			mTabHost.addTab(mTabHost.newTabSpec("从业年限").setIndicator("从业年限").setContent(R.id.contact_designer_list));
-			break;
 		case fragment_homepage.TYPE_SUPRIOR:
-			mTabHost.addTab(mTabHost.newTabSpec("从业年限").setIndicator("从业年限").setContent(R.id.contact_designer_list));
+			view = lf.inflate(R.layout.layout_contact_tab_item, null);
+			text = (TextView) view.findViewById(R.id.contact_tab_title);
+			text.setText("从业年限");
+			mTabHost.addTab(mTabHost.newTabSpec("从业年限").setIndicator(view).setContent(R.id.contact_designer_list));
 			break;
 		}
 		
@@ -139,8 +156,54 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 	@Override
 	public void onTabChanged(String arg0) {
 		// TODO 自动生成的方法存根
+		refreshTab();
 		mListView = (ListView) mTabHost.getCurrentView().findViewById(R.id.contact_designer_list);
 		mListView.setAdapter(mAdapter);
+	}
+	
+	public void refreshTab(){
+		int current = mTabHost.getCurrentTab();
+		for (int i = 0; i < mTabHost.getTabWidget().getChildCount(); i++) {
+            TextView tv=(TextView)mTabHost.getTabWidget().getChildAt(i).findViewById(R.id.contact_tab_title);
+            //ImageView img = (ImageView)mTabHost.getTabWidget().getChildAt(i).findViewById(R.id.tips_tab_img);
+            
+            if(i == current){
+            	tv.setTextColor(getResources().getColor(R.color.green));//设置字体的颜色
+            	//img.setBackgroundColor(getResources().getColor(R.color.green));
+            	//mTabHost.getTabWidget().getChildAt(i).setBackgroundColor(getResources().getColor(R.color.yellow));
+            }else{
+            	tv.setTextColor(Color.GRAY);//设置字体的颜色；
+            	//img.setBackgroundColor(getResources().getColor(R.color.graylight));
+            }
+                //获取tabs图片；
+        }
+		
+		switch(current){
+		case 0:
+			//mAdapter.setArrayList(mArrayList);
+			mAdapter.notifyDataSetChanged();
+			break;
+		case 1:
+			//mAdapter.setArrayList(mArrayProject);
+			mAdapter.notifyDataSetChanged();
+			break;
+		case 2:
+			//mAdapter.setArrayList(mArraySoft);
+			mAdapter.notifyDataSetChanged();
+			break;
+		case 3:
+			//mAdapter.setArrayList(mArrayDesign);
+			mAdapter.notifyDataSetChanged();
+			break;
+		case 4:
+			//mAdapter.setArrayList(mArrayMateria);
+			mAdapter.notifyDataSetChanged();
+			break;
+		case 5:
+			//mAdapter.setArrayList(mArrayWindWater);
+			mAdapter.notifyDataSetChanged();
+			break;
+		}
 	}
 	
 	public class DesignerListAdapter extends BaseAdapter{

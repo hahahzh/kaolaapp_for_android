@@ -196,7 +196,7 @@ public class SlideListView extends ListView {
                 downX = x;  
   
                 // 手指拖动itemView滚动, deltaX大于0向左滚动，小于0向右滚  
-                itemView.scrollBy(deltaX, 0);  
+                itemView.scrollBy(deltaX, 0);
                   
                 return true;  //拖动的时候ListView不滚动  
             case MotionEvent.ACTION_UP:  

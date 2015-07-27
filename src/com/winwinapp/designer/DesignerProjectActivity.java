@@ -10,22 +10,37 @@ import android.widget.ListView;
 
 import com.winwinapp.koala.ActionBarActivity;
 import com.winwinapp.koala.R;
+import com.winwinapp.util.RefreshableListView;
 
 public class DesignerProjectActivity extends ActionBarActivity {
 
 	ArrayList<DesignerProjectItem> mArrayList = new ArrayList<DesignerProjectItem>();
+	
 	ListView mListView;
+	RefreshableListView mRefreshListView;
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.layout_designer_project_detail);
+		setContentView(R.layout.layout_list_refresh);
 
+		mRefreshListView = (RefreshableListView)findViewById(R.id.refreshable_list_view);
+		mRefreshListView.setOnRefreshListener(new com.winwinapp.util.RefreshableListView.PullToRefreshListener() {
+			@Override
+			public void onRefresh() {
+				try {
+					Thread.sleep(3000);//refresh item
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				mRefreshListView.finishRefreshing();
+			}
+		}, 0);
 		initActionBar();
 		initListView();
 	}
 	
 	public void initListView(){
-		mListView = (ListView)this.findViewById(R.id.designer_project_detail_list);
+		mListView = (ListView)this.findViewById(R.id.refresh_list_view);
 		DesignerProjectItem item = new DesignerProjectItem();
 		mArrayList.add(item);
 		item = new DesignerProjectItem();
@@ -37,7 +52,7 @@ public class DesignerProjectActivity extends ActionBarActivity {
 		ImageView imageView = new ImageView(this);
 		imageView.setImageResource(R.drawable.back);
 		setLeftView(imageView);
-		setTitle("设计师");
+		setTitle("项目经验");
 		this.setOnLeftClickListener(new OnClickListener(){
 
 			@Override
@@ -47,8 +62,5 @@ public class DesignerProjectActivity extends ActionBarActivity {
 			}
 			
 		});
-		imageView = new ImageView(this);
-		imageView.setImageResource(R.drawable.message_1);
-		setRightView(imageView);
 	}
 }

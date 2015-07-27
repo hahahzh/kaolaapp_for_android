@@ -1,5 +1,8 @@
 package com.winwinapp.bids;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,10 +20,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.winwinapp.chat.KoalaChatActivity;
+import com.winwinapp.designer.DesignerActivity;
 import com.winwinapp.koala.ActionBarActivity;
 import com.winwinapp.koala.KoalaApplication;
 import com.winwinapp.koala.R;
 import com.winwinapp.koala.fragment_homepage;
+import com.winwinapp.koala.MessageListActivity.OnItemChildClickListener;
 import com.winwinapp.network.HTTPPost;
 import com.winwinapp.network.NetworkData;
 
@@ -29,6 +35,8 @@ public class BidsDetailsActivity extends ActionBarActivity implements OnClickLis
 	private static final int DETAIL_INVALID = 1;
 	private static final int MESSAGE_BIDS = 2;
 	private static final int MESSAGE_ABORT_BID = 3;
+	private static final int MESSAGE_SELECT = 4;
+	private static final int MESSAGE_LEAVE_MSG = 5;
 	public String bid_id;
 	NetworkData.BidDetailData mData = NetworkData.getInstance().getNewBidDetailData();
 	NetworkData.BidListBack mBack = NetworkData.getInstance().getNewBidListBack();
@@ -71,6 +79,8 @@ public class BidsDetailsActivity extends ActionBarActivity implements OnClickLis
 		public void handleMessage(Message msg){
 			//Intent intent;
 			String error;
+			int position;
+			NetworkData.UserBidDetailBidders item = null;
 			switch(msg.what){
 			case DETAIL_INVALID:
 				error = (String)msg.obj;
@@ -151,9 +161,77 @@ public class BidsDetailsActivity extends ActionBarActivity implements OnClickLis
 					Toast.makeText(BidsDetailsActivity.this, "中止招标发生错误："+error, Toast.LENGTH_LONG).show();
 				}
 				break;
+			case MESSAGE_SELECT:
+				position = msg.arg1;
+				ImageView image = (ImageView) msg.obj;
+				String checkedId = "";
+				String selectType = "";
+				if(mType == 1){
+					if(mCurrentTitle == 0){
+						item = mUserBack.designers.get(position);
+						checkedId = mUserBack.des_uid;
+						selectType = "设计师-";
+					}else if(mCurrentTitle == 1){
+						item = mUserBack.labors.get(position);
+						checkedId = mUserBack.frm_uid;
+						selectType = "工长-";
+					}else if(mCurrentTitle == 2){
+						item = mUserBack.superiors.get(position);
+						checkedId = mUserBack.sup_uid;
+						selectType = "监理-";
+					}
+					
+					if( (item != null) && !checkedId.equals(item.uid)){
+						String displayMsg = "选定\""+selectType+item.username+"\"为合作对象";
+						showDialog(image,displayMsg);
+					}
+				}
+				
+				
+				break;
+			case MESSAGE_LEAVE_MSG:
+				position = msg.arg1;
+				if(mType == 1){
+					if(mCurrentTitle == 0){
+						item = mUserBack.designers.get(position);
+						checkedId = mUserBack.des_uid;
+					}else if(mCurrentTitle == 1){
+						item = mUserBack.labors.get(position);
+						checkedId = mUserBack.frm_uid;
+					}else if(mCurrentTitle == 2){
+						item = mUserBack.superiors.get(position);
+						checkedId = mUserBack.sup_uid;
+					}
+					
+					Intent intent = new Intent(BidsDetailsActivity.this,KoalaChatActivity.class);
+					intent.putExtra("type", 1);
+					intent.putExtra("msg_id", "54");
+					intent.putExtra("topic_id", "21");
+					intent.putExtra("rec_id", "5");
+					startActivity(intent);
+				}
+				break;
 			}
 		}
 	};
+	
+	protected void showDialog(final ImageView image,String msg) {
+		  AlertDialog.Builder builder = new Builder(this);
+		  builder.setMessage(msg); 
+		  builder.setTitle("提示");  
+		  builder.setNegativeButton("取消", new DialogInterface.OnClickListener(){
+            public void onClick(DialogInterface dialoginterface, int i) {
+          	  dialoginterface.dismiss();
+            }
+			  });
+		  builder.setPositiveButton("确认", new DialogInterface.OnClickListener(){
+            public void onClick(DialogInterface dialoginterface, int i) {
+            	image.setImageResource(R.drawable.reg2_check_c);
+          	  	dialoginterface.dismiss();
+            }
+			  });
+		  builder.create().show();
+	}
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -251,7 +329,7 @@ public class BidsDetailsActivity extends ActionBarActivity implements OnClickLis
 					Intent intent = new Intent(BidsDetailsActivity.this,BidsPublishBids.class);
 					intent.putExtra("type", 1);
 					intent.putExtra("bid_id", mUserBack.bid_info.bid_id);
-					intent.putExtra("bid_id", "17");//need to delete, only for test
+					//intent.putExtra("bid_id", "17");//need to delete, only for test
 					startActivity(intent);	
 				}
 				
@@ -294,8 +372,10 @@ public class BidsDetailsActivity extends ActionBarActivity implements OnClickLis
 		public View getView(int position, View convertView, ViewGroup parent) {
 			// TODO 自动生成的方法存根
 			convertView = mInflater.inflate(R.layout.layout_bids_detail_bidder_item, null);
-			NetworkData.UserBidDetailBidders item = mUserBack.designers.get(position);
+			NetworkData.UserBidDetailBidders item = null ;//= mUserBack.designers.get(position);
 			ImageView imageCheck = (ImageView)convertView.findViewById(R.id.bid_detail_bidder_check);
+			TextView txtMsg = (TextView)convertView.findViewById(R.id.bid_detail_bidder_leave_message);
+			ImageView imageMsg = (ImageView)convertView.findViewById(R.id.bid_detail_bidder_message);
 			TextView name = (TextView)convertView.findViewById(R.id.bid_detail_bidder_avatar_name);
 			TextView BidTime = (TextView)convertView.findViewById(R.id.bid_detail_bidder_bid_time);
 			TextView  rank = (TextView)convertView.findViewById(R.id.bid_detail_bidder_rank);
@@ -313,22 +393,48 @@ public class BidsDetailsActivity extends ActionBarActivity implements OnClickLis
 					item = mUserBack.superiors.get(position);
 					checkedId = mUserBack.sup_uid;
 				}
+				
+				if(checkedId.equals(item.uid)){
+					imageCheck.setImageResource(R.drawable.reg2_check_c);
+				}
+				imageCheck.setOnClickListener(new OnItemChildClickListener(MESSAGE_SELECT,position,imageCheck));
+				OnItemChildClickListener msgLis = new OnItemChildClickListener(MESSAGE_LEAVE_MSG,position,null);
+				imageMsg.setOnClickListener(msgLis);
+				txtMsg.setOnClickListener(msgLis);
+				name.setText(item.username);
+				BidTime.setText(item.datetime);
+				rank.setText("专业："+item.rate_avg+"    服务："+item.attud_avg);
+				SelfIntroduce.setText("自荐介绍：\n"+item.msg);
 			}
-			
-			if(checkedId.equals(item.uid)){
-				imageCheck.setImageResource(R.drawable.reg2_check_c);
-			}
-			name.setText(item.username);
-			BidTime.setText(item.datetime);
-			rank.setText("专业："+item.rate_avg+"    服务："+item.attud_avg);
-			SelfIntroduce.setText("自荐介绍：\n"+item.msg);
-			
 			
 			return convertView;
 		}
 		
 	}
 
+	public class OnItemChildClickListener implements View.OnClickListener{
+		private int mClickIndex;
+		private int mPosition;
+		private ImageView mImage;
+		
+		public OnItemChildClickListener(int clickIndex, int position,ImageView image){
+			mClickIndex = clickIndex;
+			mPosition = position;
+			mImage = image;
+		}
+		
+		@Override
+		public void onClick(View arg0) {
+			// TODO 自动生成的方法存根
+			Message msg = Message.obtain();
+			msg.what = mClickIndex;
+			msg.arg1 = mPosition;
+			msg.obj = mImage;
+			mHandler.sendMessage(msg);
+		}
+		
+	}
+	
 	public class AbortBidThread extends Thread{
 		public void run(){
 			mBidAbortData = NetworkData.getInstance().getNewBidAbortData();

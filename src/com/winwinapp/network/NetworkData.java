@@ -4,9 +4,12 @@ import java.util.ArrayList;
 
 public class NetworkData {
 	//public static String URL_BASE_API = "http://www.kaolaxj.com/index.php/Api";
+	public static String URL_SERVER = "http://120.26.197.206";
 	public static String URL_BASE_API = "http://120.26.197.206/index.php/Api";
 	public static String URL_LOGIN = URL_BASE_API + "/Login/index.html";
 	public static String URL_REGISTER = URL_BASE_API + "/Register/index.html";
+	public static String URL_REGISTER_SEND_CODE = URL_BASE_API + "/Register/sendCode.html";
+	public static String URL_REGISTER_RESET_PWD = URL_BASE_API + "/Login/findPassword.html";
 	public static String URL_MEMBER_find = URL_BASE_API + "/Member/find.html";
 	public static String URL_MEMBER_DETAIL = URL_BASE_API + "/Member/detail.html";
 	public static String URL_MY_COLLECT = URL_BASE_API + "/Collect/find.html";
@@ -27,6 +30,7 @@ public class NetworkData {
 	public static String URL_BID_DETAIL = URL_BASE_API + "/BidProj/getOneBid.html";
 	public static String URL_USER_BID_DETAIL = URL_BASE_API +"/BidProj/bidDetail.html";
 	public static String URL_USER_BID_EDIT = URL_BASE_API +"/BidProj/edit.html";
+	public static String URL_USER_BID_EDIT_FINISH = URL_BASE_API +"/BidProj/doEdit.html";
 	public static String URL_BID_PUBLISH = URL_BASE_API + "/BidProj/insert.html";
 	public static String URL_BID_VIE = URL_BASE_API + "/BidProj/vieBid.html";
 	public static String URL_BID_ABORT = URL_BASE_API + "/BidProj/truncate.html";
@@ -35,7 +39,12 @@ public class NetworkData {
 	public static String URL_DELETE_PRIVATE_MSG = URL_BASE_API + "/Message/privateTruncate.html";
 	public static String URL_MY_CONTRACT_LIST = URL_BASE_API + "/Contract/contractList.html";
 	public static String URL_MY_CONTRACT_DETAIL = URL_BASE_API + "/Contract/contractDetail.html";
+	public static String URL_MY_CONTRACT_AGREE = URL_BASE_API + "/Contract/confirm.html";
+	public static String URL_MY_CONTRACT_REJECT = URL_BASE_API + "/Contract/doReject.html";
+	public static String URL_CONTRACT_UPDATE = URL_BASE_API + "/Contract/insertContract.html";
 	public static String URL_DECORATE_LIST = URL_BASE_API + "/BidProj/decList.html";//×°ÐÞÁÐ±í
+	public static String URL_OTHER_DECORATE_LIST = URL_BASE_API + "/Decorate/winDecList.html";
+	public static String URL_OTHER_DECORATE_DETAIL = URL_BASE_API + "/Decorate/winDecDetail.html";
 	public static final int USER_TYPE_MEMBER = 1;
 	public static final int USER_TYPE_DESIGNER = 2;
 	public static final int USER_TYPE_SUPERIOR = 3;
@@ -98,6 +107,16 @@ public class NetworkData {
 		public int type;//1,huiyuan; 2,designer; 3 superior; 4 labor;
 		public String email;
 		public String mobile;
+	}
+	
+	public RegisterSendCodeData getNewRegisterSendCodeData(){
+		return new RegisterSendCodeData();
+	}
+	
+	public class RegisterSendCodeData {
+		public String phone_mail;
+		public int is_email;
+		public String auth_code;
 	}
 	
 	public RegisterBack getNewRegisterBack(){
@@ -492,6 +511,15 @@ public class NetworkData {
 		return new BidPublishData();
 	}
 	
+	public ContractAgreeRejectData getNewContractAgreeRejectData(){
+		return new ContractAgreeRejectData();
+	}
+	
+	public class ContractAgreeRejectData{
+		public int c_id = 0;
+		public String reason;
+	}
+	
 	public class BidPublishData{
 		public String decorate_way = "0";
 		public String design_style = "0";
@@ -513,6 +541,34 @@ public class NetworkData {
 		public int need_supervisor = 1;
 		public int new_bidder = 0;
 	}
+	
+	public BidPostEditData getNewBidPostEditData(){
+		return new BidPostEditData();
+	}
+	
+	public class BidPostEditData{
+		public int bid;
+		public String decorate_way = "0";
+		public String design_style = "0";
+		public int budget = 0;
+		public int house_type = 2;
+		public int room = 2;
+		public int hall = 1;
+		public int kitchen = 1;
+		public int toilet = 1;
+		public int balcony = 1;
+		public int area = 120;
+		public String biotope_name;
+		public int province = 25;
+		public int city = 321;
+		public int district = 2715;
+		public String req;
+		public int need_designer = 1;
+		public int need_forman = 1;
+		public int need_supervisor = 1;
+		public int new_bidder = 0;
+	}
+	
 	
 	public UserBidDetailBidders getNewUserBidDetailBidders(){
 		return new UserBidDetailBidders();
@@ -666,6 +722,14 @@ public class NetworkData {
 		public String is_complete;
 		public String prov_finish;
 		public String title;
+		public int unpaid_percent;
+		public int first_percent;
+		public int second_percent;
+		public int third_percent;
+		public int fourth_percent;
+		public int add_day;
+		public int normal_day;
+		public int percent;
 	}
 	
 	public class build_addr{
@@ -715,5 +779,8 @@ public class NetworkData {
 		public String emonth;
 		public String eday;
 		public String user_type;
+		public int year;
+		public int month;
+		public int day;
 	}
 }

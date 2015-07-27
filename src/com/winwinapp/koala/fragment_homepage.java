@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -73,6 +74,8 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
     private String mGridViewTitle[] = {"装修预算","我要竞标","装修宝典","联系设计师","寻找好工长","监理来帮忙"};
     private int mGridImageResourceId[] = {R.drawable.calculator,R.drawable.edit,R.drawable.literature,R.drawable.design,R.drawable.roller,R.drawable.supervisor};
     
+    private Drawable mPreviewImg;
+    
     private Handler mHandler = new Handler(){
 		public void handleMessage(Message msg){
 			switch(msg.what){
@@ -114,6 +117,7 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
 		
 		mActivity = this.getActivity();
 		
+		mPreviewImg = getResources().getDrawable(R.drawable.image_preview);
 		initView(inflater,view);
 		
 		return view;
@@ -129,10 +133,10 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
         //Log.i(TAG,"reW="+reqWidth + ",reH = "+reqHeight);
         
         mViewContainer.clear();
+        
         for(int i=0;i<mImageResource.length;i++){
         	View view_item = inflater.inflate(R.layout.layout_page_item, null);
             ImageView iv = (ImageView)view_item.findViewById(R.id.imageView1);
-            //iv.setImageBitmap(Utils.decodeSampleBitmapFromResource(getResources(),mImageResource[i] , reqWidth,reqHeight));
             iv.setImageResource(mImageResource[i]);
             mViewContainer.add(view_item);
         }
@@ -175,7 +179,7 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
         SimpleAdapter saImageItems = new SimpleAdapter(getActivity(),listImageItem,R.layout.layout_grid_item,
                     new String[]{"ItemImage","ItemText"}, new int[]{R.id.item_image,R.id.item_text});
                     */
-        if(KoalaApplication.mUserType == fragment_homepage.TYPE_OWER){
+        if(KoalaApplication.mUserType == fragment_homepage.TYPE_OWER || KoalaApplication.mUserType == -1){
         	mGridViewTitle[1] = "我要招标";
         }else{
         	mGridViewTitle[1] = "我要竞标";

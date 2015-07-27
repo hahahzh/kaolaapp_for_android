@@ -1,11 +1,19 @@
 package com.winwinapp.util;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Bitmap.CompressFormat;
+import android.os.Environment;
 import android.util.Log;
 
 public class Utils {
@@ -75,4 +83,57 @@ public class Utils {
         is = matcher.matches();
     	return is;
     }
+    
+    public static byte[] bmpToByteArray(final Bitmap bmp, final boolean needRecycle) {
+		ByteArrayOutputStream output = new ByteArrayOutputStream();
+		bmp.compress(CompressFormat.PNG, 100, output);
+		if (needRecycle) {
+			bmp.recycle();
+		}
+		
+		byte[] result = output.toByteArray();
+		try {
+			output.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+    
+    public static boolean bmpToFile(final Bitmap bmp, final String path){
+    	FileOutputStream output;
+    	boolean bl = true;
+		try {
+			output = new FileOutputStream(path);
+			bmp.compress(CompressFormat.PNG, 100, output);
+			output.close();
+		} catch (FileNotFoundException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			bl = false;
+		}catch (IOException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			bl = false;
+		}
+    	
+    	return bl;
+    }
+    
+    public static String getPrivateFilePath(Context context){
+    	File file = context.getFilesDir();
+    	return file.getAbsolutePath();
+    }
+    
+    public static float sp2px(Context context,float sp){
+    	final float scale = context.getResources().getDisplayMetrics().density;
+    	return sp*scale;
+    }
+    
+    public static int dp2px(Context context,int dp){
+    	final float scale = context.getResources().getDisplayMetrics().density;
+    	return (int)(dp*scale+0.5f);
+    }
+    
 }

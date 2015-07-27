@@ -22,6 +22,11 @@ public class DecorateTipsAdapter extends BaseAdapter {
 		mArrayList = list;
 		mInflater = LayoutInflater.from(mContext);
 	}
+	
+	public void setArrayList(ArrayList<TipsItems> list){
+		mArrayList = list;
+	}
+	
 	@Override
 	public int getCount() {
 		// TODO 自动生成的方法存根
@@ -62,6 +67,7 @@ public class DecorateTipsAdapter extends BaseAdapter {
 		mHolder.mDateText.setText(mArrayList.get(position).mDate);
 		mHolder.mViewedText.setText(mArrayList.get(position).mViewed);
 		mHolder.mPreviewImage.setImageDrawable(mArrayList.get(position).mImage);
+		mHolder.type = mArrayList.get(position).type;
 		
 		return convertView;
 	}
@@ -72,6 +78,7 @@ public class DecorateTipsAdapter extends BaseAdapter {
 		TextView mViewedText;
 		ImageView mPreviewImage;
 		TextView mContentText;
+		int type;
 	}
 
 }

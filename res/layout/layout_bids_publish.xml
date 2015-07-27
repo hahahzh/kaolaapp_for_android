@@ -16,18 +16,22 @@
         android:background="@drawable/layout_border"
         android:layout_gravity="center"
 	    android:gravity="center"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 	    <TextView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_marginRight="10dp"
+	        android:textSize="18sp"
+	        android:textColor="@color/gray"
 	        android:text="地区" />
 	    <TextView 
 	        android:drawableRight="@drawable/forward"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="上海      上海      闸北区"
-	        android:textSize="15dp"
+	        android:textSize="20dp"
 	        android:textStyle="bold"
 	        android:id="@+id/bid_publish_position"
 	        android:background="@null"/>
@@ -38,17 +42,21 @@
         android:background="@drawable/layout_border"
         android:layout_gravity="center"
 	    android:gravity="center"
-        android:layout_marginTop="-1dp">
+        android:layout_marginTop="-1dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 	    <TextView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_marginRight="10dp"
+	        android:textSize="18sp"
+            android:textColor="@color/gray"
 	        android:text="小区名称" />
 	    <EditText 
-	        android:drawableRight="@drawable/forward"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="慧芝湖花苑"
+	        android:textSize="20sp"
 	        android:id="@+id/bid_publish_biotope_name"
 	        android:background="@null"/>
 	    </LinearLayout>
@@ -60,17 +68,22 @@
         android:layout_gravity="center"
 	    android:gravity="center"
         android:layout_marginTop="-1dp"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="20dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 	    <TextView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_marginRight="10dp"
+	        android:textSize="18sp"
+            android:textColor="@color/gray"
 	        android:text="房屋面积" />
-	    <EditText 
+	    <TextView 
 	        android:drawableRight="@drawable/forward"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="102㎡"
+	        android:textSize="20sp"
 	        android:id="@+id/bid_publish_area"
 	        android:background="@null"/>
 	    </LinearLayout>
@@ -80,32 +93,41 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
 	    android:gravity="center"
-        android:background="@drawable/layout_border">
+        android:background="@drawable/layout_border"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 		    <TextView
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_marginRight="10dp"
+		        android:textSize="18sp"
+                android:textColor="@color/gray"
 		        android:text="房屋类型" />
-		    <EditText 
+		    <TextView 
 		        android:drawableRight="@drawable/forward"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:text="普通住宅"
+		        android:textSize="20sp"
 		        android:id="@+id/bid_publish_house_type"
 		        android:background="@null"/>
 	    </LinearLayout>
 	    
     <TableRow 
-              android:layout_width="match_parent"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/layout_border"
-        android:layout_marginTop="-1dp">
+        android:layout_marginTop="-1dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
             
             <TextView 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="客厅"
+                android:textSize="18sp"
+                android:textColor="@color/gray"
                 android:layout_weight="1"/>
             
             <com.winwinapp.util.AddSubLL 
@@ -123,16 +145,20 @@
      </TableRow> 
      
     <TableRow 
-              android:layout_width="match_parent"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/layout_border"
-        android:layout_marginTop="-1dp">
+        android:layout_marginTop="-1dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
             
             <TextView 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="卧室"
+                android:textSize="18sp"
+                android:textColor="@color/gray"
                 android:layout_weight="1"/>
             
             <com.winwinapp.util.AddSubLL 
@@ -144,16 +170,20 @@
         </TableRow> 
         
     <TableRow 
-              android:layout_width="match_parent"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/layout_border"
-        android:layout_marginTop="-1dp">
+        android:layout_marginTop="-1dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
             
             <TextView 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="厨房"
+                android:textSize="18sp"
+                android:textColor="@color/gray"
                 android:layout_weight="1"/>
             
             <com.winwinapp.util.AddSubLL 
@@ -165,16 +195,20 @@
         </TableRow>
         
     <TableRow 
-              android:layout_width="match_parent"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/layout_border"
-        android:layout_marginTop="-1dp">
+        android:layout_marginTop="-1dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
             
             <TextView 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="卫生间"
+                android:textSize="18sp"
+                android:textColor="@color/gray"
                 android:layout_weight="1"/>
             
             <com.winwinapp.util.AddSubLL 
@@ -186,17 +220,21 @@
         </TableRow> 
 
     <TableRow 
-              android:layout_width="match_parent"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/layout_border"
         android:layout_marginTop="-1dp"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="20dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
             
             <TextView 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="阳台"
+                android:textSize="18sp"
+                android:textColor="@color/gray"
                 android:layout_weight="1"/>
             
            <com.winwinapp.util.AddSubLL 
@@ -212,57 +250,72 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
 	    android:gravity="center"
-        android:background="@drawable/layout_border">
+        android:background="@drawable/layout_border"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 		    <TextView
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_marginRight="10dp"
+		        android:textSize="18sp"
+                android:textColor="@color/gray"
 		        android:text="装修方式" />
-		    <EditText 
+		    <TextView 
 		        android:drawableRight="@drawable/forward"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:text="全包"
+		        android:textSize="20sp"
 		        android:id="@+id/bid_publish_decorate_way"
 		        android:background="@null"/>
 	    </LinearLayout>
-	        <LinearLayout 
+	<LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/layout_border"
         android:layout_gravity="center"
 	    android:gravity="center"
-        android:layout_marginTop="-1dp">
+        android:layout_marginTop="-1dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 		    <TextView
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_marginRight="10dp"
+		        android:textSize="18sp"
+                android:textColor="@color/gray"
 		        android:text="设计风格" />
-		    <EditText 
+		    <TextView 
 		        android:drawableRight="@drawable/forward"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
+		        android:textSize="20sp"
 		        android:text="简约"
 		        android:id="@+id/bid_publish_decorate_style"
 		        android:background="@null"/>
 	    </LinearLayout>
-	         <LinearLayout 
+    <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/layout_border"
         android:layout_gravity="center"
 	    android:gravity="center"
-        android:layout_marginTop="-1dp">
+        android:layout_marginTop="-1dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 		    <TextView
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_marginRight="10dp"
+		        android:textSize="18sp"
+                android:textColor="@color/gray"
 		        android:text="装修预算" />
-		    <EditText 
+		    <TextView 
 		        android:drawableRight="@drawable/forward"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:text="2万以下"
+		        android:textSize="20sp"
 		        android:id="@+id/bid_publish_budget"
 		        android:background="@null"/>
 	    </LinearLayout>
@@ -270,13 +323,17 @@
    <LinearLayout
          android:layout_width="match_parent"
          android:layout_height="wrap_content"
-         android:background="@drawable/background_gray" >
+         android:background="@drawable/background_gray"
+         android:paddingLeft="10dp"
+         android:paddingRight="10dp" >
 
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
+            android:textSize="18sp"
+            android:textColor="@color/gray"
             android:text="装修要求"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"/>
@@ -290,6 +347,8 @@
         android:minLines="4"
         android:background="#FFFFFF"
         android:id="@+id/bid_publish_requirement"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:hint="请填写装修要求..."/>
      
        <LinearLayout
@@ -303,37 +362,55 @@
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:text="我需要"
+            android:textSize="18sp"
+            android:textColor="@color/gray"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"/>
       </LinearLayout>
-      <TableRow
-            android:layout_width="match_parent"
+      <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_gravity="center"
             android:layout_marginBottom="40dp"
-            android:background="@drawable/budget_bg_2" >
+            android:background="@drawable/budget_bg_2"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" >
             
-            <RadioButton
+            <TextView
 	            android:id="@+id/bid_publish_designer"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:text="设计师" 
-	            android:layout_weight="1"/>
+	            android:text="设计师"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+	            android:drawableLeft="@drawable/reg2_check"/>
             
-            <RadioButton
+            <TextView
 	            android:id="@+id/bid_publish_labor"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
+                android:layout_gravity="center"
+	            android:drawableLeft="@drawable/reg2_check_c"
 	            android:layout_weight="1"
+	            android:textSize="20sp"
+	            android:textColor="@color/green"
 	            android:text="工长" />
             
-            <RadioButton
+            <TextView
 	            android:id="@+id/bid_publish_superior"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:textColor="@color/green"
+	            android:drawableLeft="@drawable/reg2_check_c"
 	            android:text="监理" />
-        </TableRow>
+        </LinearLayout>
              <Button 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

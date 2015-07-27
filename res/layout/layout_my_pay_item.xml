@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white" >
+    
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/graylight"/>
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:id="@+id/my_pay_item_bioname"
+        android:text="杨浦小区"/>
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/my_pay_item_bioname"
+        android:textSize="18sp"
+        android:textColor="@color/gray"
+        android:id="@+id/my_pay_item_name"
+        android:text="章成"/>
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@id/my_pay_item_bioname"
+        android:layout_toRightOf="@id/my_pay_item_name"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:background="@drawable/score_job_bg"
+        android:id="@+id/my_pay_item_job"
+        android:text="设计师"/>
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/my_pay_item_name"
+        android:textSize="18sp"
+        android:textColor="@color/gray"
+        android:id="@+id/my_pay_item_account_txt"
+        android:text="合同总额："/>
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@id/my_pay_item_job"
+        android:layout_toRightOf="@id/my_pay_item_account_txt"
+        android:textSize="18sp"
+        android:id="@+id/my_pay_item_account"
+        android:text="￥10000"/>
+    
+     <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/my_pay_item_account"
+        android:textSize="18sp"
+        android:drawableLeft="@drawable/clock"
+        android:textColor="@color/gray"
+        android:id="@+id/my_pay_item_date"
+        android:text="  2015-03-19"/>
+        
+     <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:textSize="20sp"
+        android:textColor="@color/orange"
+        android:id="@+id/my_pay_item_first_pay"
+        android:text="￥5000"/>
+     
+     <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/my_pay_item_first_pay"
+        android:textSize="15sp"
+        android:textColor="@color/gray"
+        android:id="@+id/my_pay_item_first_pay_txt"
+        android:text="首付"/>
+     
+     <Button 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/my_pay_item_first_pay_txt"
+        android:textSize="15sp"
+        android:textColor="@color/gray"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="@drawable/my_project_greeen_bg"
+        android:id="@+id/my_pay_item_pay"
+        android:text="支付"/>
+    
+</RelativeLayout>
