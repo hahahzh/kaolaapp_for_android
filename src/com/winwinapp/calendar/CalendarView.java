@@ -120,13 +120,8 @@ public class CalendarView extends LinearLayout {
 		//btnPrevMonth.setBackgroundResource(R.drawable.before);
 		ImageView btnPrevMonth = new ImageView(mContext);
 		LayoutParams param1 = new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
-		
 		param1.gravity = Gravity.CENTER_VERTICAL;
-<<<<<<< HEAD
 		param1.leftMargin = Utils.dp2px(mContext, 10);
-=======
-		param1.rightMargin = 10;
->>>>>>> 6e2914a7ef765c65c4f9a4f07e41e1ea101ec88d
 		btnPrevMonth.setLayoutParams(param1);
 		btnPrevMonth.setImageResource(R.drawable.before);
 		
@@ -135,7 +130,6 @@ public class CalendarView extends LinearLayout {
 		//Button btnNextMonth = new Button(mContext);
 		//btnNextMonth.setBackgroundResource(R.drawable.after);
 		ImageView btnNextMonth = new ImageView(mContext);
-		param1.leftMargin = 10;
 		btnNextMonth.setLayoutParams(param1);
 		param1.rightMargin = Utils.dp2px(mContext, 10);
 		btnNextMonth.setImageResource(R.drawable.after);

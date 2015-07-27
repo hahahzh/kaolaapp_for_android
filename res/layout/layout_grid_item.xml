@@ -46,11 +46,7 @@
     <ImageView 
         android:background="@color/graylight"
         android:layout_width="1dp"
-<<<<<<< HEAD
         android:layout_height="117dp"
-=======
-        android:layout_height="123dp"
->>>>>>> 6e2914a7ef765c65c4f9a4f07e41e1ea101ec88d
         android:layout_centerHorizontal="true"
         android:layout_alignParentRight="true"
         android:id="@+id/grid_view_item_right_frame"
