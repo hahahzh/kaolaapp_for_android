@@ -2,15 +2,16 @@ package com.winwinapp.calendar;
 
 import java.util.Calendar;
 
-import com.winwinapp.koala.R;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.LinearLayout.LayoutParams;
+
+import com.winwinapp.koala.R;
 
 public class DateWidgetDayHeader extends View {
 	// fields
@@ -40,9 +41,18 @@ public class DateWidgetDayHeader extends View {
 			pt.setColor(Color.WHITE);
 			canvas.drawRect(rect, pt);
 
+
+			WindowManager wm = (WindowManager) getContext()
+                    .getSystemService(Context.WINDOW_SERVICE);
+ 
+			int width = wm.getDefaultDisplay().getWidth();
+			int height = wm.getDefaultDisplay().getHeight();
+     
+			int size = 30;
+			if(width==1080 && height==1920)size = 55;
 			// text
 			pt.setTypeface(null);
-			pt.setTextSize(iDayHeaderFontSize);
+			pt.setTextSize(size);
 			pt.setAntiAlias(true);
 			pt.setFakeBoldText(true);
 			pt.setColor(DayStyle.getColorTextHeader(bHoliday,iWeekDay));
