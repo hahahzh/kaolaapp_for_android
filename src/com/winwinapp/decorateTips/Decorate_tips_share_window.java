@@ -50,6 +50,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
@@ -72,7 +73,7 @@ public class Decorate_tips_share_window extends Activity implements OnItemClickL
     // 微博 Web 授权类，提供登陆等功能  
     private WeiboAuth mWeiboAuth;
     /** 当前 DEMO 应用的 APP_KEY，第三方应用应该使用自己的 APP_KEY 替换该 APP_KEY */
-    public static final String APP_KEY_WEIBO      = "2045436852";
+    public static final String APP_KEY_WEIBO      = "1411727048";
     /** 封装了 "access_token"，"expires_in"，"refresh_token"，并提供了他们的管理功能  */
     private Oauth2AccessToken mAccessToken;/** 
      * 当前 DEMO 应用的回调页，第三方应用可以使用自己的回调页。
@@ -83,7 +84,7 @@ public class Decorate_tips_share_window extends Activity implements OnItemClickL
      * 建议使用默认回调页：https://api.weibo.com/oauth2/default.html
      * </p>
      */
-    public static final String REDIRECT_URL = "http://www.sina.com";
+    public static final String REDIRECT_URL = "http://www.kaolaxj.com";
     /**
      * Scope 是 OAuth2.0 授权机制中 authorize 接口的一个参数。通过 Scope，平台将开放更多的微博
      * 核心功能给开发者，同时也加强用户隐私保护，提升了用户体验，用户在新 OAuth2.0 授权页中有权利
@@ -139,14 +140,17 @@ public class Decorate_tips_share_window extends Activity implements OnItemClickL
 		// TODO 自动生成的方法存根
 		final int pos = position;
 		if(position == 0 || position == 1){//wechat
-			String APP_ID = "wxd930ea5d5a258f4f";
+			String APP_ID = "wx6ffd5748f21b1aec";
+			
 			api = WXAPIFactory.createWXAPI(this, APP_ID, true);
 			api.registerApp(APP_ID);
+			
 			api.handleIntent(getIntent(), this);
 			if(!api.isWXAppInstalled()){
 				Toast.makeText(this, "您还未安装微信客户端", Toast.LENGTH_LONG).show();
 				return;
 			}
+			
 			/**
 			 * 微信分享图片到好友
 			 */
@@ -155,7 +159,6 @@ public class Decorate_tips_share_window extends Activity implements OnItemClickL
 				@Override
 				public void run() {
 					
-
 					try {
 						WXWebpageObject webPage = new WXWebpageObject();
 						webPage.webpageUrl = url;
@@ -166,20 +169,20 @@ public class Decorate_tips_share_window extends Activity implements OnItemClickL
 						//WXMediaMessage msg = new WXMediaMessage();
 						//msg.mediaObject = imgObj;
 
-						Bitmap bmp = BitmapFactory.decodeStream(new URL(url_pic)
-								.openStream());
-						Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp,
-								THUMB_SIZE, THUMB_SIZE, true);
+//						Bitmap bmp = BitmapFactory.decodeStream(new URL(url_pic)
+//								.openStream());
+//						Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp,
+//								THUMB_SIZE, THUMB_SIZE, true);
 						//bmp.recycle();
 						//msg.thumbData = Utils.bmpToByteArray(thumbBmp, true);
-						msg.setThumbImage(thumbBmp);
+//						msg.setThumbImage(thumbBmp);
 						msg.title = "考拉装修网";
 						msg.description = url;
 
 						SendMessageToWX.Req req = new SendMessageToWX.Req();
-						req.transaction = buildTransaction("img");
+//						req.transaction = buildTransaction("img");
 						req.message = msg;
-						req.scene = 1- pos;//scene:0,moment; scene:1,friends
+						req.scene = pos;//scene:0,moment; scene:1,friends
 						api.sendReq(req);
 						finish();
 					} catch (Exception e) {
@@ -322,16 +325,18 @@ public class Decorate_tips_share_window extends Activity implements OnItemClickL
     }
     
     public void WeiboShare(){
+    	Log.e("KAOLA", "weiboshare");
     	if(checkVersion()){
             try {
                 // 检查微博客户端环境是否正常，如果未安装微博，弹出对话框询问用户下载微博客户端
                 if (mWeiboShareAPI.checkEnvironment(true)) {
-                     
+                	Log.e("KAOLA", "checkEnvironment");             
                     // 注册第三方应用 到微博客户端中，注册成功后该应用将显示在微博的应用列表中。
                     // 但该附件栏集成分享权限需要合作申请，详情请查看 Demo 提示
                     mWeiboShareAPI.registerApp();
-                     
-                    sendMessage(false, false, true,false,  false, false);
+                    Log.e("KAOLA", "registerApp");
+                    sendMessage(true, false, true,false,  false, false);
+                    Log.e("KAOLA", "sendMessage");
                 }
             } catch (WeiboShareException e) {
                 e.printStackTrace();
@@ -345,12 +350,15 @@ public class Decorate_tips_share_window extends Activity implements OnItemClickL
      * @see {@link #sendMultiMessage} 或者 {@link #sendSingleMessage}
      */
     private void sendMessage(boolean hasText, boolean hasImage, boolean hasWebpage, boolean hasMusic, boolean hasVideo, boolean hasVoice) {
-         
+    	Log.e("KAOLA", "body");
         if (mWeiboShareAPI.isWeiboAppSupportAPI()) {
+        	Log.e("KAOLA", "API");
             int supportApi = mWeiboShareAPI.getWeiboAppSupportAPI();
             if (supportApi >= 10351 /*ApiUtils.BUILD_INT_VER_2_2*/) {
+            	Log.e("KAOLA", "S1");
                 sendMultiMessage(hasText, hasImage, hasWebpage, hasMusic, hasVideo, hasVoice);
             } else {
+            	Log.e("KAOLA", "S2");
                 sendSingleMessage(hasText, hasImage, hasWebpage, hasMusic, hasVideo/*, hasVoice*/);
             }
         } else {

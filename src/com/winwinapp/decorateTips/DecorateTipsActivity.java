@@ -8,6 +8,7 @@ import android.app.TabActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,6 +23,8 @@ import android.widget.TextView;
 
 import com.winwinapp.decorateTips.DecorateTipsAdapter.tipsViewHolder;
 import com.winwinapp.koala.R;
+import com.winwinapp.network.HTTPPost;
+import com.winwinapp.network.NetworkData;
 import com.winwinapp.util.ActionBarView;
 import com.winwinapp.util.RefreshableListView;
 
@@ -38,6 +41,9 @@ public class DecorateTipsActivity extends Activity  implements OnTabChangeListen
 	private ArrayList<TipsItems> mArrayDesign = new ArrayList<TipsItems>();
 	private ArrayList<TipsItems> mArrayMateria = new ArrayList<TipsItems>();
 	private ArrayList<TipsItems> mArrayWindWater = new ArrayList<TipsItems>();
+	
+	NetworkData.DecorateTipsData mData = NetworkData.getInstance().getDecorateTipsData();
+	NetworkData.DecorateTipsBack mBack = NetworkData.getInstance().getDecorateTipsBack();
 	
 	DecorateTipsAdapter mAdapter;
 	
@@ -189,7 +195,7 @@ public class DecorateTipsActivity extends Activity  implements OnTabChangeListen
 		mTabHost.setCurrentTab(0);
 	}
 	
-	public void initList(){
+	public void initList(){	
 		for(int i=0;i<5;i++){
 			TipsItems item = new TipsItems();
 			item.content = "装修是件很麻烦的事，很多人在装修的时候是件很麻烦的事，很多人在装修的时候是件很麻烦的事情";
