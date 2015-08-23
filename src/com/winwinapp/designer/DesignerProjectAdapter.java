@@ -3,7 +3,6 @@ package com.winwinapp.designer;
 import java.util.ArrayList;
 
 import com.winwinapp.decorateTips.TipsItems;
-import com.winwinapp.decorateTips.DecorateTipsAdapter.tipsViewHolder;
 import com.winwinapp.koala.R;
 
 import android.content.Context;

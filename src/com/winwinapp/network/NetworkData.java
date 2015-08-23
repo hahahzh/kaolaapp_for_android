@@ -1,6 +1,7 @@
 package com.winwinapp.network;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class NetworkData {
 	//public static String URL_BASE_API = "http://www.kaolaxj.com/index.php/Api";
@@ -45,6 +46,9 @@ public class NetworkData {
 	public static String URL_DECORATE_LIST = URL_BASE_API + "/BidProj/decList.html";//装修列表
 	public static String URL_OTHER_DECORATE_LIST = URL_BASE_API + "/Decorate/winDecList.html";
 	public static String URL_OTHER_DECORATE_DETAIL = URL_BASE_API + "/Decorate/winDecDetail.html";
+	
+	public static String URL_DECKMS = URL_BASE_API + "/DecKms/decKmsList.html";
+	
 	public static final int USER_TYPE_MEMBER = 1;
 	public static final int USER_TYPE_DESIGNER = 2;
 	public static final int USER_TYPE_SUPERIOR = 3;
@@ -386,47 +390,78 @@ public class NetworkData {
 	}
 	
 	public class DecorateTipsData{
-		int limit = 10;
-		int cat_id = 8;//文档分类编号,8----装修宝典列表；9----装修论坛列表
+		public int limit = 10;
+		public int page = 0;
+		public int cid = 0;//文档分类编号,8----装修宝典列表；9----装修论坛列表
 	}
 	
 	public class DecorateTipsBack{
-		String code;
-		String error;
-		String doc_id;
-		String cat_id;
-		String title;
-		String content;
-		String author;
-		String keywords;
-		String is_open;//1----显示；0----不显示
-		String add_time;//
-		String scan_num;//查看次数
+		public int code = -1;
+		public String error = null;
+		public int total = 0;
+		public ArrayList<DecorateTipsItem> items = new ArrayList<DecorateTipsItem>();
 	}
 	
-	public class DecorateTipsDetailData{
+	public DecorateTipsData getDecorateTipsData(){
+		return new DecorateTipsData();
+	}
+	
+	public DecorateTipsBack getDecorateTipsBack(){
+		return new DecorateTipsBack();
+	}
+	
+	public class DecorateTipsItem extends MessageListBase{
+		public String code;
+		public String error;
+		public int cid;
+		public String choose_cat;
+		public String docCats;
+		public String doc_id;
+		public String cat_id;
+		public String title;
+		public String keywords;
+		public String add_time;//
+		public String scan_num;//查看次数
+		public String content;
+		public int total;
+		ArrayList<Map<String,String>> cats = new ArrayList<Map<String,String>>(); 
+	}
+	
+	public class DecorateTipDetailData{
 		int doc_id;
 		int cat_id;
 	}
 	
-	public class DecorateTipsDetailBack{
-		String code;
-		String error;
-		String doc_id;
-		String cat_id;
-		String title;
-		String content;
-		String author;
-		String keywords;
-		String is_open;
-		String add_time;
-		String scan_num;
-		String prev_id;
-		String prev_title;
-		String next_id;
-		String next_title;
-		String pcat_id;//父文档分类id
-		String pcat_name;//父文档名称
+	public class DecorateTipDetailBack{
+		public int code;
+		public String error;
+		public String doc_id;
+		public String cat_id;
+		public String title;
+		public String content;
+		public String author;
+		public String keywords;
+		public String is_open;
+		public String add_time;
+		public String scan_num;
+		public String prev_id;
+		public String prev_title;
+		public String next_id;
+		public String next_title;
+		public String pcat_id;//父文档分类id
+		public String pcat_name;//父文档名称
+	}
+	
+	public DecorateTipsItem getDecorateTipItem(){
+		return new DecorateTipsItem();
+	}
+	
+	public DecorateTipDetailData getDecorateTipDetailData(){
+		return new DecorateTipDetailData();
+	}
+	
+	public DecorateTipDetailBack getDecorateTipDetailBack(){
+		return new DecorateTipDetailBack();
 	}
 	
 	public BidListData getNewBidListData(){

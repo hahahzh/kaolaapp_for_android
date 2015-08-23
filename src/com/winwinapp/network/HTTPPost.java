@@ -4,17 +4,17 @@ import android.text.TextUtils;
 
 public class HTTPPost {
 
-	public static boolean RequestDecorateTips(NetworkData.DecorateTipsData data,NetworkData.DecorateTipsBack result){
-		String postData = JsonHandler.createTipsListString(data);
-		String back = HTTPBase.HTTPSend(NetworkData.URL_DECORATE_TIPS_LIST, postData, HTTPBase.HTTP_TYPE_POST);
-		if(TextUtils.isDigitsOnly(back)){
-			
-		}else{
-			result.code = "-1";
-			result.error = "网络不可用";
-		}
-		return true;
-	}
+//	public static boolean RequestDecorateTips(NetworkData.DecorateTipsData data,NetworkData.DecorateTipsBack result){
+//		String postData = JsonHandler.createTipsListString(data);
+//		String back = HTTPBase.HTTPSend(NetworkData.URL_DECORATE_TIPS_LIST, postData, HTTPBase.HTTP_TYPE_POST);
+//		if(TextUtils.isDigitsOnly(back)){
+//			
+//		}else{
+//			result.code = "-1";
+//			result.error = "网络不可用";
+//		}
+//		return true;
+//	}
 	
 	public static boolean sendLoginData(NetworkData.LoginData loginData,NetworkData.LoginBack loginBack){
 		boolean success = false;
@@ -87,6 +87,31 @@ public class HTTPPost {
 		String back = HTTPBase.HTTPSend(NetworkData.URL_BID_LIST, postData, HTTPBase.HTTP_TYPE_POST);
 		if(!TextUtils.isEmpty(back)){
 			success = JsonHandler.parseBidList(back, msgBack);
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "网络不可用";
+		}
+		return success;
+	}
+	
+	public static boolean RequestDecorateTipList(NetworkData.DecorateTipsData data,NetworkData.DecorateTipsBack msgBack){
+		boolean success = false;
+		String back = HTTPBase.HTTPSendGet(NetworkData.URL_DECKMS+"?cid="+data.cid+"&page="+data.page+"&limit="+data.limit);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseDecorateTipList(back, msgBack);
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "网络不可用";
+		}
+		return success;
+	}
+	
+	public static boolean RequestDecorateTipDetail(NetworkData.DecorateTipDetailData data,NetworkData.DecorateTipDetailBack msgBack){
+		boolean success = false;
+		String postData = JsonHandler.createDecorateTipDeailString(data);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_DECORATE_TIPS_DETAIL, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseDecorateTipDetail(back, msgBack);
 		}else{
 			msgBack.code = -1;
 			msgBack.error = "网络不可用";

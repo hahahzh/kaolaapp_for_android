@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="【软装】装修中被人坑了也不知道的陷阱"
+            android:text=""
             android:textSize="20sp"
             android:textColor="@color/white" />
 
@@ -39,7 +39,7 @@
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
 		            android:layout_marginRight="20dp"
-		            android:text="2015-03-19"
+		            android:text=""
 		            android:textColor="@color/white" />
 
 		        <ImageView 
@@ -62,13 +62,13 @@
     
     <ImageView 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/tips_detail_image_preview"/>
+        android:layout_height="wrap_content"/>
     <TextView 
+        android:id="@+id/tips_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textSize="16sp"
         android:layout_marginLeft="10dp"
-        android:text="    装修是件很麻烦的事情,装修是件很麻烦的事情,装修是件很麻烦的事情,装修是件很麻烦的事情"/>
+        android:text=""/>
 
 </LinearLayout>

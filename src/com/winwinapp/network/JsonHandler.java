@@ -1,5 +1,8 @@
 package com.winwinapp.network;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -429,6 +432,21 @@ public class JsonHandler {
 		return str;
 	}
 	
+	public static String createDecorateTipDeailString(NetworkData.DecorateTipDetailData data){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			//jstring.put("page", data.page);
+			jstring.put("limit", data.doc_id);
+			
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+	}
+	
 	public static boolean parseBidList(String str,NetworkData.BidListBack back){
 		boolean success = false;
 		try {
@@ -477,6 +495,116 @@ public class JsonHandler {
 					item.bidder_type = itemObject.getString("bidder_type");
 					item.bidder_type_img = itemObject.getString("bidder_type_img");
 					back.items.add(item);
+				}
+				success = true;
+			}else{
+				back.error = response.getString("error");
+				success = false;
+			}
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			back.error = e.toString();
+			return false;
+		}
+		
+		return success;
+	}
+	
+	public static boolean parseDecorateTipDetail(String str,NetworkData.DecorateTipDetailBack back){
+		boolean success = false;
+		try {
+			JSONObject response = new JSONObject(str);
+			int code = -1;
+			code = response.getInt("code");
+			back.code = code;
+			if(code == 0){
+				JSONObject data = response.getJSONObject("data");
+				JSONObject doc = data.getJSONObject("doc");
+				
+				NetworkData.DecorateTipDetailBack item = NetworkData.getInstance().getDecorateTipDetailBack();
+				item.doc_id = doc.getString("doc_id");
+				item.cat_id = doc.getString("cat_id");
+				item.title = doc.getString("title");
+				item.content = doc.getString("content");
+				item.author = doc.getString("author");
+				item.keywords = doc.getString("keywords");
+				item.is_open = doc.getString("is_open");
+				item.add_time = doc.getString("add_time");
+				item.scan_num = doc.getString("scan_num");
+//				item.is_hot = itemObject.getString("is_hot");
+//				item.cat_name = itemObject.getString("cat_name");
+//				item.cat_desc = itemObject.getString("cat_desc");
+//				item.parent_id = itemObject.getString("parent_id");
+//				item.is_delete = itemObject.getString("is_delete");
+//				item.prevDoc = itemObject.getString("prevDoc");
+					
+				success = true;
+			}else{
+				back.error = response.getString("error");
+				success = false;
+			}
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			back.error = e.toString();
+			return false;
+		}
+		
+		return success;
+	}
+	
+	public static String createDecorateTipListString(NetworkData.DecorateTipsData data){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			jstring.put("limit", data.limit);
+//			jstring.put("page", data.page);
+//			jstring.put("cid", data.cid);
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+	}
+	
+	public static boolean parseDecorateTipList(String str,NetworkData.DecorateTipsBack back){
+		boolean success = false;
+		try {
+			back.items.clear();
+			JSONObject response = new JSONObject(str);
+			int code = -1;
+			code = response.getInt("code");
+			back.code = code;
+			if(code == 1){
+				
+				JSONObject datas = response.getJSONObject("data");
+				
+				int total = Integer.parseInt(datas.getString("total"));
+				back.total = total;
+				
+				NetworkData.DecorateTipsItem item = NetworkData.getInstance().getDecorateTipItem();
+				item.cid = datas.getInt("cid");
+					
+				JSONArray catArray = datas.getJSONArray("docCats");
+				for(int i=0;i<catArray.length();i++){
+					JSONObject cat = catArray.getJSONObject(i);
+					Map<String,String> map = new HashMap<String,String>();
+					map.put(cat.getString("cat_id"), cat.getString("cat_name"));
+					item.cats.add(map);
+				}
+				
+				JSONArray docList = datas.getJSONArray("docList");
+				
+				for(int i=0;i<docList.length();i++){
+					JSONObject itemObject = docList.getJSONObject(i);
+					item.doc_id = itemObject.getString("doc_id");
+					item.cat_id = itemObject.getString("cat_id");
+					item.title = itemObject.getString("title");
+					item.add_time = itemObject.getString("add_time");
+					item.scan_num = itemObject.getString("scan_num");
+					back.items.add(item);	
 				}
 				success = true;
 			}else{
@@ -1084,21 +1212,6 @@ public class JsonHandler {
 		return success;
 	}
 	
-	public static String createTipsListString(NetworkData.DecorateTipsData data){
-		String str = null;
-		JSONObject jstring = new JSONObject();
-		try {
-			jstring.put("cat_id", data.cat_id);
-			jstring.put("limit", data.limit);
-			
-			str = jstring.toString();
-		} catch (JSONException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
-		return str;
-	}
-	
 	public static boolean parseLoginBack(String str,NetworkData.LoginBack loginBack){
 		boolean success = false;
 		try {
@@ -1662,4 +1775,5 @@ public class JsonHandler {
 		}
 		return str;
 	}
+
 }

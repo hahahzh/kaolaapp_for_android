@@ -4,24 +4,26 @@ import java.util.ArrayList;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.TabActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.Toast;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
 
-import com.winwinapp.decorateTips.DecorateTipsAdapter.tipsViewHolder;
 import com.winwinapp.koala.R;
 import com.winwinapp.network.HTTPPost;
 import com.winwinapp.network.NetworkData;
@@ -29,23 +31,52 @@ import com.winwinapp.util.ActionBarView;
 import com.winwinapp.util.RefreshableListView;
 
 @SuppressWarnings("deprecation")
-public class DecorateTipsActivity extends Activity  implements OnTabChangeListener{
+public class DecorateTipsActivity extends Activity  implements OnTabChangeListener,OnItemClickListener{
 
+	public static final int URL_INVALIDATE = 1;
 	private TabHost mTabHost;
+	LayoutInflater mInflater;
 	private ActionBarView mActionBar;
 	RefreshableListView mRefreshListView;
 	private ListView mListView;
-	private ArrayList<TipsItems> mArrayList = new ArrayList<TipsItems>();
-	private ArrayList<TipsItems> mArrayProject = new ArrayList<TipsItems>();
-	private ArrayList<TipsItems> mArraySoft = new ArrayList<TipsItems>();
-	private ArrayList<TipsItems> mArrayDesign = new ArrayList<TipsItems>();
-	private ArrayList<TipsItems> mArrayMateria = new ArrayList<TipsItems>();
-	private ArrayList<TipsItems> mArrayWindWater = new ArrayList<TipsItems>();
-	
+
+	private int mType = 0;//0: request all bid list; 1: request user bid list(only for owner)
 	NetworkData.DecorateTipsData mData = NetworkData.getInstance().getDecorateTipsData();
 	NetworkData.DecorateTipsBack mBack = NetworkData.getInstance().getDecorateTipsBack();
 	
-	DecorateTipsAdapter mAdapter;
+	DecorateTipsAdapter mAdapter = new DecorateTipsAdapter();
+	
+	class MyThread extends Thread {  
+		public void run(){
+			mBack.items.clear();
+			boolean success = false;
+			success = HTTPPost.RequestDecorateTipList(mData, mBack);
+			Message msg = Message.obtain();
+			msg.what = URL_INVALIDATE;
+			if(success){
+				msg.obj = "OK";
+			}else{
+				msg.obj = mBack.error;
+			}
+			mHandler.sendMessage(msg);
+		}
+	}
+
+	private Handler mHandler = new Handler(){
+		public void handleMessage(Message msg){
+			//Intent intent;ta
+			switch(msg.what){
+			case URL_INVALIDATE:
+				String error = (String)msg.obj;
+				if("OK".equals(error)){
+					mAdapter.notifyDataSetChanged();
+				}else{
+					Toast.makeText(DecorateTipsActivity.this, "获取装修宝典列表失败："+error, Toast.LENGTH_LONG).show();
+				}
+				break;
+			}
+		}
+	};
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -64,13 +95,15 @@ public class DecorateTipsActivity extends Activity  implements OnTabChangeListen
 				mRefreshListView.finishRefreshing();
 			}
 		}, 1);
-		
 		initActionBar();
-		
-		initList();
+		mInflater = LayoutInflater.from(this);
+		mListView = (ListView) this.findViewById(R.id.decorate_tips_list);
+		mListView.setAdapter(mAdapter);
 		initTabHost();
-		
+		mListView.setOnItemClickListener(this);
+		new MyThread().start();
 	}
+
 
 	public void initActionBar(){
 		ActionBar actionBar = this.getActionBar();
@@ -138,7 +171,7 @@ public class DecorateTipsActivity extends Activity  implements OnTabChangeListen
 		text.setText("风水");
 		mTabHost.addTab(mTabHost.newTabSpec("风水").setIndicator(view).setContent(R.id.decorate_tips_refreshable_list_view));
 		
-		refreshTab();
+		
 		mTabHost.setOnTabChangedListener(this);
 		
 		onTabChanged("全部");
@@ -163,27 +196,45 @@ public class DecorateTipsActivity extends Activity  implements OnTabChangeListen
 		
 		switch(current){
 		case 0:
-			mAdapter.setArrayList(mArrayList);
+			mData.cid = 0;
+			mData.page = 1;
+			mData.limit = 10;
+			new MyThread().start();
 			mAdapter.notifyDataSetChanged();
 			break;
 		case 1:
-			mAdapter.setArrayList(mArrayProject);
+			mData.cid = 9;
+			mData.page = 1;
+			mData.limit = 10;
+			new MyThread().start();
 			mAdapter.notifyDataSetChanged();
 			break;
 		case 2:
-			mAdapter.setArrayList(mArraySoft);
+			mData.cid = 10;
+			mData.page = 1;
+			mData.limit = 10;
+			new MyThread().start();
 			mAdapter.notifyDataSetChanged();
 			break;
 		case 3:
-			mAdapter.setArrayList(mArrayDesign);
+			mData.cid = 11;
+			mData.page = 1;
+			mData.limit = 10;
+			new MyThread().start();
 			mAdapter.notifyDataSetChanged();
 			break;
 		case 4:
-			mAdapter.setArrayList(mArrayMateria);
+			mData.cid = 12;
+			mData.page = 1;
+			mData.limit = 10;
+			new MyThread().start();
 			mAdapter.notifyDataSetChanged();
 			break;
 		case 5:
-			mAdapter.setArrayList(mArrayWindWater);
+			mData.cid = 13;
+			mData.page = 1;
+			mData.limit = 10;
+			new MyThread().start();
 			mAdapter.notifyDataSetChanged();
 			break;
 		}
@@ -193,68 +244,90 @@ public class DecorateTipsActivity extends Activity  implements OnTabChangeListen
 		super.onResume();
 		mTabHost.setCurrentTab(1);
 		mTabHost.setCurrentTab(0);
+		
 	}
 	
-	public void initList(){	
-		for(int i=0;i<5;i++){
-			TipsItems item = new TipsItems();
-			item.content = "装修是件很麻烦的事，很多人在装修的时候是件很麻烦的事，很多人在装修的时候是件很麻烦的事情";
-			item.mDate = "2015-03-19";
-			item.mViewed = "166";
-			item.mTitle = "【软装】装修中被人坑了也不知道的10件事";
-			item.type = i+1;
-			item.mImage = this.getResources().getDrawable(R.drawable.tips_image_preview);
-			mArrayList.add(item);
-		}
-		
-		for(int i=0;i<mArrayList.size();i++){
-			TipsItems item = mArrayList.get(i);
-			switch(item.type){
-			case 1:
-				item.mTitle = "【施工】装修中被人坑了也不知道的10件事";
-				mArrayProject.add(item);
-				break;
-			case 2:
-				item.mTitle = "【软装】装修中被人坑了也不知道的10件事";
-				mArraySoft.add(item);
-				break;
-			case 3:
-				item.mTitle = "【设计】装修中被人坑了也不知道的10件事";
-				mArrayDesign.add(item);
-				break;
-			case 4:
-				item.mTitle = "【材料】装修中被人坑了也不知道的10件事";
-				mArrayMateria.add(item);
-				break;
-			case 5:
-				item.mTitle = "【风水】装修中被人坑了也不知道的10件事";
-				mArrayWindWater.add(item);
-				break;
-			}
-		}
-		
-		mListView = (ListView) this.findViewById(R.id.decorate_tips_list);
-		mAdapter = new DecorateTipsAdapter(this,mArrayList);
-		mListView.setAdapter(mAdapter);
-		mListView.setOnItemClickListener(new OnItemClickListener(){
-
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
-				// TODO 自动生成的方法存根
-				Intent intent = new Intent(DecorateTipsActivity.this,DecorateTipsDetailActivity.class);
-				intent.putExtra("type", ((tipsViewHolder)arg1.getTag()).type);
-				startActivity(intent);
-			}
-			
-		});
-	}
 
 	@Override
 	public void onTabChanged(String arg0) {
 		// TODO 自动生成的方法存根
 		refreshTab();
+		new MyThread().start();
 		//mListView = (ListView) mTabHost.getCurrentView().findViewById(R.id.decorate_tips_list);
 		//mListView.setAdapter(new DecorateTipsAdapter(this,mArrayList));
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		// TODO Auto-generated method stub
+		// TODO 自动生成的方法存根
+		Intent intent = new Intent(DecorateTipsActivity.this,DecorateTipsDetailActivity.class);
+		intent.putExtra("type", mType);
+		intent.putExtra("doc_id", mBack.items.get(position).doc_id);
+		startActivity(intent);
+	}
+	
+	public class DecorateTipsAdapter extends BaseAdapter {
+		
+		@Override
+		public int getCount() {
+			// TODO 自动生成的方法存根
+			return mBack.items.size();
+		}
+
+		@Override
+		public Object getItem(int arg0) {
+			// TODO 自动生成的方法存根
+			return null;
+		}
+
+		@Override
+		public long getItemId(int arg0) {
+			// TODO 自动生成的方法存根
+			return 0;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup arg2) {
+			// TODO 自动生成的方法存根
+			convertView = mInflater.inflate(R.layout.layout_tips_items, null);
+			NetworkData.DecorateTipsItem item = mBack.items.get(position);
+			
+			tipsViewHolder mHolder;
+			
+			mHolder = new tipsViewHolder();
+			mHolder.mtitleText = (TextView)convertView.findViewById(R.id.tips_item_title);
+			mHolder.mtitleText.setText(item.title);
+			mHolder.mContentText = (TextView)convertView.findViewById(R.id.tips_item_content);
+			mHolder.mContentText.setText(item.content);
+			mHolder.mDateText = (TextView)convertView.findViewById(R.id.tips_item_date);
+			mHolder.mDateText.setText(item.add_time);
+			mHolder.mPreviewImage = (ImageView)convertView.findViewById(R.id.tips_item_preview);
+			mHolder.mViewedText = (TextView)convertView.findViewById(R.id.tips_item_viewed);
+			mHolder.mViewedText.setText(item.scan_num);
+			convertView.setTag(mHolder);
+			
+			mHolder = (tipsViewHolder) convertView.getTag();
+//			
+//			mHolder.mtitleText.setText(mArrayList.get(position).mTitle);
+//			mHolder.mContentText.setText(mArrayList.get(position).content);
+//			mHolder.mDateText.setText(mArrayList.get(position).mDate);
+//			mHolder.mViewedText.setText(mArrayList.get(position).mViewed);
+//			mHolder.mPreviewImage.setImageDrawable(mArrayList.get(position).mImage);
+//			mHolder.type = mArrayList.get(position).type;
+//			
+			return convertView;
+		}
+		
+		public class tipsViewHolder{
+			TextView mtitleText;
+			TextView mDateText;
+			TextView mViewedText;
+			ImageView mPreviewImage;
+			TextView mContentText;
+			int type;
+		}
+
 	}
 }

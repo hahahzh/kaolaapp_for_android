@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -60,4 +61,33 @@ public class HTTPBase {
 		
 		return page;
 	}
+	
+	public static String HTTPSendGet(String url)
+	{
+		String page = null;
+		DefaultHttpClient httpClient = getHttpClient();
+		try {
+			HttpResponse response = null;
+			HttpGet post = new HttpGet(url);
+			response = httpClient.execute(post);
+			if(response.getStatusLine().getStatusCode() == HttpStatus.SC_OK)
+			{
+				page = EntityUtils.toString(response.getEntity());
+			}
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			httpClient.getConnectionManager().shutdown();
+		}
+		
+		return page;
+	}
+	
 }
