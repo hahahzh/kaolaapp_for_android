@@ -47,6 +47,9 @@ public class NetworkData {
 	public static String URL_OTHER_DECORATE_LIST = URL_BASE_API + "/Decorate/winDecList.html";
 	public static String URL_OTHER_DECORATE_DETAIL = URL_BASE_API + "/Decorate/winDecDetail.html";
 	
+	public static String URL_SET_DEPOSIT = URL_BASE_API + "/Decorate/finishProjEnd.html";//设置保证金
+	public static String URL_USER_EVALUE = URL_BASE_API + "/Decorate/userEvaluate.html";
+	
 	public static String URL_DECKMS = URL_BASE_API + "/DecKms/decKmsList.html";
 	
 	public static final int USER_TYPE_MEMBER = 1;
@@ -66,6 +69,32 @@ public class NetworkData {
 	public class CommonBack{
 		public int code = -1;
 		public String error = null;
+	}
+	
+	public UserEvalueData getNewUserEvalueData(){
+		return new UserEvalueData();
+	}
+	
+	public class UserEvalueData{
+		public int bid;
+		public String s1 = "";//工长
+		public String p1 = "";
+		public String commend1 = "";//
+		public String s2;//设计师服务态度
+		public String p2;//设计师专业水平
+		public String commend2;//设计师评语
+		public String s3;//监理
+		public String p3;
+		public String commend3;//
+	}
+	
+	public SetDepositData getNewSetDepositData(){
+		return new SetDepositData();
+	}
+	
+	public class SetDepositData{
+		public int bid;
+		public int grate;
 	}
 	
 	public LoginData getNewLoginData(){

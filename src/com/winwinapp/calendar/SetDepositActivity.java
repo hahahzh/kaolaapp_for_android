@@ -3,6 +3,8 @@ package com.winwinapp.calendar;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -15,12 +17,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.winwinapp.koala.ActionBarActivity;
+import com.winwinapp.koala.KLHomePageActivity;
+import com.winwinapp.koala.KoalaApplication;
 import com.winwinapp.koala.R;
+import com.winwinapp.koala.fragment_homepage;
+import com.winwinapp.login.LoginPageActivity;
+import com.winwinapp.network.HTTPPost;
+import com.winwinapp.network.NetworkData;
+import com.winwinapp.network.NetworkData.SetDepositData;
 
 public class SetDepositActivity extends ActionBarActivity implements TextWatcher{
 
+	private static final int SET_DEPOSIT_BACK = 0;
+	NetworkData.SetDepositData mData = NetworkData.getInstance().getNewSetDepositData();
+	NetworkData.CommonBack mBack = NetworkData.getInstance().getCommonBack();
 	Button mOK;
 	TextView mContractTotal;
 	TextView mContractFirstPay;
@@ -30,11 +43,42 @@ public class SetDepositActivity extends ActionBarActivity implements TextWatcher
 	TextView mTips;
 	int total = 100000;
 	int suffix = 5000;
+	int bid = 0;
+	
+	private Handler mHandler = new Handler(){
+		public void handleMessage(Message msg){
+			//Intent intent;
+			switch(msg.what){
+			case SET_DEPOSIT_BACK:
+				String error = (String)msg.obj;
+				if("OK".equals(error)){
+					if(KoalaApplication.mUserType == fragment_homepage.TYPE_OWER){
+						Intent intent = new Intent(SetDepositActivity.this , SetScore.class);
+						intent.putExtra("bid", bid);
+						startActivity(intent);
+					}else{
+						Intent intent = new Intent(SetDepositActivity.this,KLHomePageActivity.class);
+						intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						startActivity(intent);
+					}	
+				}else{
+					Toast.makeText(SetDepositActivity.this, "设置保证金失败："+error, Toast.LENGTH_LONG).show();
+				}
+				break;
+			}
+		}
+	};
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_set_deposit);
 
+		String bidId = getIntent().getStringExtra("bid");
+		try{
+			bid = Integer.parseInt(bidId);
+		}catch(Exception e){
+			bid = 0;
+		}
 		initActionBar();
 		initView();
 	}
@@ -60,8 +104,28 @@ public class SetDepositActivity extends ActionBarActivity implements TextWatcher
 			@Override
 			public void onClick(View arg0) {
 				// TODO 自动生成的方法存根
-				Intent intent = new Intent(SetDepositActivity.this , SetScore.class);
-				startActivity(intent);
+				
+				new Thread(){
+					public void run(){
+						boolean success = false;
+						mData.bid = bid;
+						try{
+							mData.grate = Integer.parseInt(mSetPercent.getText().toString());
+						}catch(Exception e){
+							mData.grate = 0;
+						}
+						success = HTTPPost.setDeposit(mData, mBack);
+						Message msg = Message.obtain();
+						msg.what = SET_DEPOSIT_BACK;
+						if(success){
+							msg.obj = "OK";
+						}else{
+							msg.obj = mBack.error;
+						}
+						mHandler.sendMessage(msg);
+					}
+				}.start();
+				
 			}
 			
 		});

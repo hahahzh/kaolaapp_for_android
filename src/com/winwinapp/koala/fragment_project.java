@@ -87,6 +87,7 @@ public class fragment_project extends Fragment implements OnClickListener{
 		  builder.setPositiveButton("È·¶¨", new DialogInterface.OnClickListener(){
 			  public void onClick(DialogInterface dialoginterface, int i) {
 					  	Intent intent = new Intent(mActivity , SetDepositActivity.class);
+					  	intent.putExtra("bid", mBack.items.get(position).bid_id);
 						startActivity(intent);
 		        	}
 			  });

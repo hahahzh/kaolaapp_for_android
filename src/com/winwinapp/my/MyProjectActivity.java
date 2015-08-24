@@ -95,6 +95,7 @@ public class MyProjectActivity extends ActionBarActivity implements OnItemClickL
 		  builder.setPositiveButton("È·¶¨", new DialogInterface.OnClickListener(){
 			  public void onClick(DialogInterface dialoginterface, int i) {
 					Intent intent = new Intent(MyProjectActivity.this , SetDepositActivity.class);
+					intent.putExtra("bid", mBack.items.get(position).bid_id);
 					startActivity(intent);
 		        }
 			  });

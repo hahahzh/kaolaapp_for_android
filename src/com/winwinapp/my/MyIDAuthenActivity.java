@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -42,6 +43,7 @@ public class MyIDAuthenActivity extends ActionBarActivity implements OnClickList
 	String mCertPath = "img_cert.jpg";
 	int mPicWidth = 100;
 	int mPicHeight = 100;
+	Button mSubmit;
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

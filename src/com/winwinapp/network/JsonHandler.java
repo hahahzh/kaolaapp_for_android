@@ -764,6 +764,46 @@ public class JsonHandler {
 		return success;
 	}
 	
+	public static String createUserEvalueString(NetworkData.UserEvalueData data){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			jstring.put("bid", data.bid);
+			jstring.put("s1", data.s1);
+			jstring.put("p1", data.p1);
+			jstring.put("commend1", data.commend1);
+			jstring.put("s2", data.s2);
+			jstring.put("p2", data.p2);
+			jstring.put("commend2", data.commend2);
+			jstring.put("s3", data.s3);
+			jstring.put("p3", data.p3);
+			jstring.put("commend3", data.commend3);
+			jstring.put("sessid", KoalaApplication.loginData.sessid);
+			
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+	}
+	
+	public static String createSetDepositString(NetworkData.SetDepositData data){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			jstring.put("bid", data.bid);
+			jstring.put("grate", data.grate);
+			jstring.put("sessid", KoalaApplication.loginData.sessid);
+			
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+	}
+	
 	public static String createBidDetailString(NetworkData.BidDetailData data){
 		String str = null;
 		JSONObject jstring = new JSONObject();

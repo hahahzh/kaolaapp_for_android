@@ -119,6 +119,38 @@ public class HTTPPost {
 		return success;
 	}
 	
+	public static boolean userEvalue(NetworkData.UserEvalueData data,NetworkData.CommonBack msgBack){
+		boolean success = false;
+		String postData = JsonHandler.createUserEvalueString(data);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_USER_EVALUE, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseCommonBack(back, msgBack);
+			if(msgBack.code == 1){
+				success = true;
+			}
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "网络不可用";
+		}
+		return success;
+	}
+	
+	public static boolean setDeposit(NetworkData.SetDepositData data,NetworkData.CommonBack msgBack){
+		boolean success = false;
+		String postData = JsonHandler.createSetDepositString(data);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_SET_DEPOSIT, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseCommonBack(back, msgBack);
+			if(msgBack.code == 1){
+				success = true;
+			}
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "网络不可用";
+		}
+		return success;
+	}
+	
 	public static boolean RequestBidDetail(NetworkData.BidDetailData data,NetworkData.BidListBack msgBack){
 		boolean success = false;
 		String postData = JsonHandler.createBidDetailString(data);
