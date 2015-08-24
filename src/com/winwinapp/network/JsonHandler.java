@@ -7,6 +7,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 import com.winwinapp.decorateTips.SubDecorateTips;
 import com.winwinapp.koala.KoalaApplication;
 
@@ -1833,6 +1835,25 @@ public class JsonHandler {
 			e.printStackTrace();
 		}
 		return str;
+	}
+	
+	public static String parseGeo(String str){
+		String city = null;
+		String status;
+		try {
+			JSONObject jstring = new JSONObject(str);
+			status = jstring.getString("status");
+			if("OK".equals(status)){
+				JSONObject itemObject = jstring.getJSONObject("result");
+				JSONObject address = itemObject.getJSONObject("addressComponent");
+				city = address.getString("city");
+			}
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			return null;
+		}
+		return city;
 	}
 
 }

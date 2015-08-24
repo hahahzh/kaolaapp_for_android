@@ -5,9 +5,15 @@ import com.winwinapp.selectcity.SelectCityActivity;
 import com.winwinapp.util.ActionBarView;
 
 import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
@@ -25,8 +31,9 @@ import com.winwinapp.bids.BidsListActivity;
 import com.winwinapp.login.LoginPageActivity;
 import com.winwinapp.login.SettingPageActivity;
 import com.winwinapp.my.MyProjectActivity;
+import com.winwinapp.network.HTTPGet;
 
-public class KLHomePageActivity extends FragmentActivity {
+public class KLHomePageActivity extends FragmentActivity implements LocationListener{
 
 	private String mTabContent[];
 	private FragmentTabHost mTabHost;
@@ -38,19 +45,63 @@ public class KLHomePageActivity extends FragmentActivity {
 	private String mCurrentCity = "上海";
 	private KoalaApplication mApplication;
 	private int mSwitchPage = 0;
+	private LocationManager mLocationManager;
+	
+	private Handler mHandler = new Handler(){
+		public void handleMessage(Message msg){
+			switch(msg.what){
+			case 1:
+				if(mTabHost.getCurrentTab() == 0){
+					setActionBarMain();
+				}
+				break;
+			}
+		}
+	};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setTheme(R.style.AppTheme); 
-		initActionBar();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_tabhost_home);
 		getSwitchPageFromIntent(this.getIntent());
 		mApplication = (KoalaApplication) this.getApplication();
 		mApplication.init();
 		initView();
+		initLocationService();
+		initActionBar();
 	}
 
+	public void initLocationService(){
+		mLocationManager = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
+		Location locGps = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		Location locNlp = mLocationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+		
+		if(locGps != null){
+			new GetCurrentCityThread(locGps.getLatitude(),locGps.getLongitude()).start();
+		}else if(locNlp != null){
+			new GetCurrentCityThread(locNlp.getLatitude(),locNlp.getLongitude()).start();
+		}else{
+			mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, this);
+		}
+	}
+	
+	public class GetCurrentCityThread extends Thread{
+		double mLat = 0.0f;
+		double mLon = 0.0f;
+		public GetCurrentCityThread(double lat,double lon){
+			mLat = lat;
+			mLon = lon;
+		}
+		public void run(){
+			String city = HTTPGet.RequestCurrentCity(31.0f, 120.1f);
+			if(city != null){
+				mApplication.saveLocationCity(city);
+				mHandler.sendEmptyMessage(1);
+			}
+		}
+	}
+	
 	public void onStart(){
 		super.onStart();
 	}
@@ -337,6 +388,33 @@ public class KLHomePageActivity extends FragmentActivity {
 		if(mTabHost.getCurrentTab() == 0){
 			setActionBarMain();
 		}
+	}
+
+	@Override
+	public void onLocationChanged(Location arg0) {
+		// TODO 自动生成的方法存根
+		if(arg0 != null){
+			new GetCurrentCityThread(arg0.getLatitude(),arg0.getLongitude()).start();
+			mLocationManager.removeUpdates(this);
+		}
+	}
+
+	@Override
+	public void onProviderDisabled(String arg0) {
+		// TODO 自动生成的方法存根
+		
+	}
+
+	@Override
+	public void onProviderEnabled(String arg0) {
+		// TODO 自动生成的方法存根
+		
+	}
+
+	@Override
+	public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
+		// TODO 自动生成的方法存根
+		
 	}
 
 }
