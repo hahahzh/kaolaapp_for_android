@@ -8,10 +8,11 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,11 +23,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.winwinapp.koala.ActionBarActivity;
+import com.winwinapp.koala.KLHomePageActivity;
 import com.winwinapp.koala.R;
+import com.winwinapp.network.HTTPPost;
+import com.winwinapp.network.NetworkData;
 import com.winwinapp.util.Utils;
 
 public class MyIDAuthenActivity extends ActionBarActivity implements OnClickListener{
 
+	private static final int MESSAGE_AUTHEN = 1;
 	ImageView mIDFront;
 	ImageView mIDBack;
 	ImageView mCert;
@@ -44,6 +49,25 @@ public class MyIDAuthenActivity extends ActionBarActivity implements OnClickList
 	int mPicWidth = 100;
 	int mPicHeight = 100;
 	Button mSubmit;
+	NetworkData.IdAuthenData mData = NetworkData.getInstance().getNewIdAuthenData();
+	NetworkData.CommonBack mBack = NetworkData.getInstance().getCommonBack();
+	
+	private Handler mHandler = new Handler(){
+		public void handleMessage(Message msg){
+			switch(msg.what){
+			case MESSAGE_AUTHEN:
+				String error = (String)msg.obj;
+				if("OK".equals(error)){
+						Intent intent = new Intent(MyIDAuthenActivity.this,KLHomePageActivity.class);
+						intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						startActivity(intent);
+				}else{
+					Toast.makeText(MyIDAuthenActivity.this, "实名认证失败："+error, Toast.LENGTH_LONG).show();
+				}
+				break;
+			}
+		}
+	};
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -74,6 +98,9 @@ public class MyIDAuthenActivity extends ActionBarActivity implements OnClickList
 		mCertText.setTextColor(0xFF000000);
 		mCertLL.setVisibility(View.GONE);
 		mCertIndicator.setVisibility(View.INVISIBLE);
+		
+		mSubmit = (Button)findViewById(R.id.id_authen_submit);
+		mSubmit.setOnClickListener(this);
 		
 		final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
@@ -162,6 +189,24 @@ public class MyIDAuthenActivity extends ActionBarActivity implements OnClickList
 			mIDLL.setVisibility(View.VISIBLE);
 			mIDIndicator.setVisibility(View.VISIBLE);
 			mIDText.setTextColor(0xFFFF6600);
+			break;
+		case R.id.id_authen_submit:
+			new Thread(){
+				public void run(){
+					boolean success = false;
+					mData.real_name = mName.getText().toString();
+					mData.idcard = mIDNumber.getText().toString();
+					success = HTTPPost.IdAuthen(mData, mBack);
+					Message msg = Message.obtain();
+					msg.what = MESSAGE_AUTHEN;
+					if(success){
+						msg.obj = "OK";
+					}else{
+						msg.obj = mBack.error;
+					}
+					mHandler.sendMessage(msg);
+				}
+			}.start();
 			break;
 		}
 	}

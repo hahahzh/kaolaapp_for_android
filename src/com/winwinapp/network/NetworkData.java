@@ -50,6 +50,7 @@ public class NetworkData {
 	
 	public static String URL_SET_DEPOSIT = URL_BASE_API + "/Decorate/finishProjEnd.html";//设置保证金
 	public static String URL_USER_EVALUE = URL_BASE_API + "/Decorate/userEvaluate.html";
+	public static String URL_ID_AUTHEN = URL_BASE_API + "/Auth/IdAuth.html";
 	
 	public static String URL_DECKMS = URL_BASE_API + "/DecKms/decKmsList.html";
 	public static String URL_DECKMS_WEBPAGE = URL_SERVER + "/index.php/Home/DecKms/detail/doc/";
@@ -70,6 +71,16 @@ public class NetworkData {
 	public class CommonBack{
 		public int code = -1;
 		public String error = null;
+	}
+	
+	public IdAuthenData getNewIdAuthenData(){
+		return new IdAuthenData();
+	}
+	
+	public class IdAuthenData{
+		public String real_name;
+		public String idcard;
+		public String idc_img;
 	}
 	
 	public UserEvalueData getNewUserEvalueData(){

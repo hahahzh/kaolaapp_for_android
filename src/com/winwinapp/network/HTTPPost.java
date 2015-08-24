@@ -120,6 +120,22 @@ public class HTTPPost {
 		return success;
 	}
 	
+	public static boolean IdAuthen(NetworkData.IdAuthenData data,NetworkData.CommonBack msgBack){
+		boolean success = false;
+		String postData = JsonHandler.createIdAuthenString(data);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_ID_AUTHEN, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseCommonBack(back, msgBack);
+			if(msgBack.code == 1){
+				success = true;
+			}
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "Õ¯¬Á≤ªø…”√";
+		}
+		return success;
+	}
+	
 	public static boolean userEvalue(NetworkData.UserEvalueData data,NetworkData.CommonBack msgBack){
 		boolean success = false;
 		String postData = JsonHandler.createUserEvalueString(data);

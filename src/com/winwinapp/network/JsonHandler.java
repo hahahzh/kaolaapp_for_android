@@ -102,6 +102,23 @@ public class JsonHandler {
 		return success;
 	}
 	
+	public static String createIdAuthenString(NetworkData.IdAuthenData data){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			jstring.put("real_name", data.real_name);
+			jstring.put("idcard", data.idcard);
+			jstring.put("sessid", KoalaApplication.loginData.sessid);
+			
+			
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+	}
+	
 	public static String createLoginString(NetworkData.LoginData data){
 		String str = null;
 		JSONObject jstring = new JSONObject();
