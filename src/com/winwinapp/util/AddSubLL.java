@@ -17,6 +17,12 @@ public class AddSubLL extends LinearLayout {
 	ImageView mSubView;
 	TextView mNumberView;
 	int mCurrentNumber= 0;
+	OnAddSubChangeListener mListener;
+	
+	public void registerListener(OnAddSubChangeListener l){
+		mListener = l;
+	}
+	
 	public AddSubLL(Context context) {
 		super(context);
 		mContext = context;
@@ -67,6 +73,9 @@ public class AddSubLL extends LinearLayout {
 					mCurrentNumber--;
 					mNumberView.setText(""+mCurrentNumber);
 					mNumberView.invalidate();
+					if(mListener != null){
+						mListener.onAddSubChange(AddSubLL.this.getId());
+					}
 				}
 			}
 			
@@ -80,6 +89,9 @@ public class AddSubLL extends LinearLayout {
 				mCurrentNumber++;
 				mNumberView.setText(""+mCurrentNumber);
 				mNumberView.invalidate();
+				if(mListener != null){
+					mListener.onAddSubChange(AddSubLL.this.getId());
+				}
 			}
 			
 		});

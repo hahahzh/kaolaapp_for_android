@@ -22,9 +22,9 @@
         android:paddingRight="5dp" >
 
         <ImageView 
-	        android:layout_width="match_parent"
-	        android:layout_height="1dp"
-	        android:background="@color/graylight"/>
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/graylight"/>
         
         <RelativeLayout
             android:layout_width="match_parent"
@@ -39,7 +39,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:text="板材" />
+                android:text="淋浴龙头/花洒" />
 
             <TextView
                 android:id="@+id/decorate_price1"
@@ -48,7 +48,7 @@
                 android:layout_below="@id/decorate_price_title1"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:text="100" />
+                android:text="800" />
 
             <TextView
                 android:id="@+id/decorate_price_unit1"
@@ -58,13 +58,13 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/decorate_price1"
-                android:text="元/每张" />
+                android:text="元/套" />
 
-            <include
+            <com.winwinapp.util.AddSubLL
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                layout="@layout/layout_add_sub" />
+                android:id="@+id/decorate_num1" />
 
             <TextView
                 android:id="@+id/decorate_price_total_unit1"
@@ -84,9 +84,9 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_toLeftOf="@id/decorate_price_total_unit1"
-                android:text="100" />
+                android:text="2400" />
         </RelativeLayout>
-
+        
         <ImageView 
 	        android:layout_width="match_parent"
 	        android:layout_height="1dp"
@@ -105,7 +105,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:text="墙砖" />
+                android:text="橱柜" />
 
             <TextView
                 android:id="@+id/decorate_price2"
@@ -114,7 +114,7 @@
                 android:layout_below="@id/decorate_price_title2"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:text="50" />
+                android:text="600" />
 
             <TextView
                 android:id="@+id/decorate_price_unit2"
@@ -124,13 +124,13 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/decorate_price2"
-                android:text="元/m2" />
+                android:text="元/米" />
 
-            <include
+            <com.winwinapp.util.AddSubLL
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                layout="@layout/layout_add_sub" />
+                android:id="@+id/decorate_num2" />
 
             <TextView
                 android:id="@+id/decorate_price_total_unit2"
@@ -150,7 +150,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_toLeftOf="@id/decorate_price_total_unit2"
-                android:text="50000" />
+                android:text="1800" />
         </RelativeLayout>
 
         <ImageView 
@@ -171,7 +171,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:text="板材" />
+                android:text="地板" />
 
             <TextView
                 android:id="@+id/decorate_price3"
@@ -190,13 +190,13 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/decorate_price3"
-                android:text="元/每张" />
+                android:text="元/㎡" />
 
-            <include
+            <com.winwinapp.util.AddSubLL
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                layout="@layout/layout_add_sub" />
+                android:id="@+id/decorate_num3" />
 
             <TextView
                 android:id="@+id/decorate_price_total_unit3"
@@ -226,8 +226,8 @@
         
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-             android:layout_marginBottom="2dp">
+            android:layout_height="wrap_content" 
+            android:layout_marginBottom="2dp">
 
             <TextView
                 android:id="@+id/decorate_price_title4"
@@ -237,7 +237,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:text="板材" />
+                android:text="地砖" />
 
             <TextView
                 android:id="@+id/decorate_price4"
@@ -256,13 +256,13 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/decorate_price4"
-                android:text="元/每张" />
+                android:text="元/㎡" />
 
-            <include
+            <com.winwinapp.util.AddSubLL
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                layout="@layout/layout_add_sub" />
+                android:id="@+id/decorate_num4" />
 
             <TextView
                 android:id="@+id/decorate_price_total_unit4"
@@ -283,6 +283,930 @@
                 android:layout_marginTop="5dp"
                 android:layout_toLeftOf="@id/decorate_price_total_unit4"
                 android:text="100" />
+        </RelativeLayout>
+
+        <ImageView 
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:background="@color/graylight"/>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:layout_marginBottom="2dp">
+
+            <TextView
+                android:id="@+id/decorate_price_title5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="防盗门" />
+
+            <TextView
+                android:id="@+id/decorate_price5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title5"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="1000" />
+
+            <TextView
+                android:id="@+id/decorate_price_unit5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title5"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/decorate_price5"
+                android:text="元/" />
+
+            <com.winwinapp.util.AddSubLL
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:id="@+id/decorate_num5" />
+
+            <TextView
+                android:id="@+id/decorate_price_total_unit5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="元" />
+
+            <TextView
+                android:id="@+id/decorate_price_total5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toLeftOf="@id/decorate_price_total_unit5"
+                android:text="1000" />
+        </RelativeLayout>
+        
+        <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/graylight"/>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:layout_marginBottom="2dp">
+
+            <TextView
+                android:id="@+id/decorate_price_title6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="集成吊顶" />
+
+            <TextView
+                android:id="@+id/decorate_price6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title6"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="1000" />
+
+            <TextView
+                android:id="@+id/decorate_price_unit6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title6"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/decorate_price6"
+                android:text="元/㎡" />
+
+            <com.winwinapp.util.AddSubLL
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:id="@+id/decorate_num6" />
+
+            <TextView
+                android:id="@+id/decorate_price_total_unit6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="元" />
+
+            <TextView
+                android:id="@+id/decorate_price_total6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toLeftOf="@id/decorate_price_total_unit6"
+                android:text="1000" />
+        </RelativeLayout>
+        
+        <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/graylight"/>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:layout_marginBottom="2dp">
+
+            <TextView
+                android:id="@+id/decorate_price_title7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="净水器" />
+
+            <TextView
+                android:id="@+id/decorate_price7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title7"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="500" />
+
+            <TextView
+                android:id="@+id/decorate_price_unit7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title7"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/decorate_price7"
+                android:text="元/套" />
+
+            <com.winwinapp.util.AddSubLL
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:id="@+id/decorate_num7" />
+
+            <TextView
+                android:id="@+id/decorate_price_total_unit7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="元" />
+
+            <TextView
+                android:id="@+id/decorate_price_total7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toLeftOf="@id/decorate_price_total_unit7"
+                android:text="500" />
+        </RelativeLayout>
+        
+        <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/graylight"/>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:layout_marginBottom="2dp">
+
+            <TextView
+                android:id="@+id/decorate_price_title8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="开关" />
+
+            <TextView
+                android:id="@+id/decorate_price8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title8"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="100" />
+
+            <TextView
+                android:id="@+id/decorate_price_unit8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title8"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/decorate_price8"
+                android:text="元/只" />
+
+            <com.winwinapp.util.AddSubLL
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:id="@+id/decorate_num8" />
+
+            <TextView
+                android:id="@+id/decorate_price_total_unit8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="元" />
+
+            <TextView
+                android:id="@+id/decorate_price_total8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toLeftOf="@id/decorate_price_total_unit8"
+                android:text="1000" />
+        </RelativeLayout>
+        
+        <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/graylight"/>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:layout_marginBottom="2dp">
+
+            <TextView
+                android:id="@+id/decorate_price_title9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="淋浴房/浴缸" />
+
+            <TextView
+                android:id="@+id/decorate_price9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title9"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="2000" />
+
+            <TextView
+                android:id="@+id/decorate_price_unit9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title9"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/decorate_price9"
+                android:text="元/套" />
+
+            <com.winwinapp.util.AddSubLL
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:id="@+id/decorate_num9" />
+
+            <TextView
+                android:id="@+id/decorate_price_total_unit9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="元" />
+
+            <TextView
+                android:id="@+id/decorate_price_total9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toLeftOf="@id/decorate_price_total_unit9"
+                android:text="2000" />
+        </RelativeLayout>
+        
+        <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/graylight"/>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:layout_marginBottom="2dp">
+
+            <TextView
+                android:id="@+id/decorate_price_title10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="木门" />
+
+            <TextView
+                android:id="@+id/decorate_price10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title10"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="2000" />
+
+            <TextView
+                android:id="@+id/decorate_price_unit10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title10"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/decorate_price10"
+                android:text="元/樘" />
+
+            <com.winwinapp.util.AddSubLL
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:id="@+id/decorate_num10" />
+
+            <TextView
+                android:id="@+id/decorate_price_total_unit10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="元" />
+
+            <TextView
+                android:id="@+id/decorate_price_total10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toLeftOf="@id/decorate_price_total_unit10"
+                android:text="2000" />
+        </RelativeLayout>
+        
+        <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/graylight"/>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:layout_marginBottom="2dp">
+
+            <TextView
+                android:id="@+id/decorate_price_title11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="墙砖" />
+
+            <TextView
+                android:id="@+id/decorate_price11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title11"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="200" />
+
+            <TextView
+                android:id="@+id/decorate_price_unit11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title11"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/decorate_price11"
+                android:text="元/㎡" />
+
+            <com.winwinapp.util.AddSubLL
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:id="@+id/decorate_num11" />
+
+            <TextView
+                android:id="@+id/decorate_price_total_unit11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="元" />
+
+            <TextView
+                android:id="@+id/decorate_price_total11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toLeftOf="@id/decorate_price_total_unit11"
+                android:text="10000" />
+        </RelativeLayout>
+        
+        <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/graylight"/>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:layout_marginBottom="2dp">
+
+            <TextView
+                android:id="@+id/decorate_price_title12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="热水器" />
+
+            <TextView
+                android:id="@+id/decorate_price12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title12"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="800" />
+
+            <TextView
+                android:id="@+id/decorate_price_unit12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title12"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/decorate_price12"
+                android:text="元/个" />
+
+            <com.winwinapp.util.AddSubLL
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:id="@+id/decorate_num12" />
+
+            <TextView
+                android:id="@+id/decorate_price_total_unit12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="元" />
+
+            <TextView
+                android:id="@+id/decorate_price_total12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toLeftOf="@id/decorate_price_total_unit12"
+                android:text="800" />
+        </RelativeLayout>
+        
+        <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/graylight"/>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:layout_marginBottom="2dp">
+
+            <TextView
+                android:id="@+id/decorate_price_title13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="水槽" />
+
+            <TextView
+                android:id="@+id/decorate_price13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title13"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="200" />
+
+            <TextView
+                android:id="@+id/decorate_price_unit13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title13"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/decorate_price13"
+                android:text="元/个" />
+
+            <com.winwinapp.util.AddSubLL
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:id="@+id/decorate_num13" />
+
+            <TextView
+                android:id="@+id/decorate_price_total_unit13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="元" />
+
+            <TextView
+                android:id="@+id/decorate_price_total13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toLeftOf="@id/decorate_price_total_unit13"
+                android:text="600" />
+        </RelativeLayout>
+        
+        <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/graylight"/>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:layout_marginBottom="2dp">
+
+            <TextView
+                android:id="@+id/decorate_price_title14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="涂料" />
+
+            <TextView
+                android:id="@+id/decorate_price14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title14"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="200" />
+
+            <TextView
+                android:id="@+id/decorate_price_unit14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title14"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/decorate_price14"
+                android:text="元/㎡" />
+
+            <com.winwinapp.util.AddSubLL
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:id="@+id/decorate_num14" />
+
+            <TextView
+                android:id="@+id/decorate_price_total_unit14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="元" />
+
+            <TextView
+                android:id="@+id/decorate_price_total14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toLeftOf="@id/decorate_price_total_unit14"
+                android:text="10000" />
+        </RelativeLayout>
+        
+        <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/graylight"/>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:layout_marginBottom="2dp">
+
+            <TextView
+                android:id="@+id/decorate_price_title15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="阳台窗" />
+
+            <TextView
+                android:id="@+id/decorate_price15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title15"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="300" />
+
+            <TextView
+                android:id="@+id/decorate_price_unit15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title15"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/decorate_price15"
+                android:text="元/㎡" />
+
+            <com.winwinapp.util.AddSubLL
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:id="@+id/decorate_num15" />
+
+            <TextView
+                android:id="@+id/decorate_price_total_unit15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="元" />
+
+            <TextView
+                android:id="@+id/decorate_price_total15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toLeftOf="@id/decorate_price_total_unit15"
+                android:text="6000" />
+        </RelativeLayout>
+        
+        <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/graylight"/>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:layout_marginBottom="2dp">
+
+            <TextView
+                android:id="@+id/decorate_price_title16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="油烟机/灶台" />
+
+            <TextView
+                android:id="@+id/decorate_price16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title16"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="600" />
+
+            <TextView
+                android:id="@+id/decorate_price_unit16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title16"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/decorate_price16"
+                android:text="元/套" />
+
+            <com.winwinapp.util.AddSubLL
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:id="@+id/decorate_num16" />
+
+            <TextView
+                android:id="@+id/decorate_price_total_unit16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="元" />
+
+            <TextView
+                android:id="@+id/decorate_price_total16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toLeftOf="@id/decorate_price_total_unit16"
+                android:text="600" />
+        </RelativeLayout>
+        
+        <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/graylight"/>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:layout_marginBottom="2dp">
+
+            <TextView
+                android:id="@+id/decorate_price_title17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="浴室柜" />
+
+            <TextView
+                android:id="@+id/decorate_price17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title17"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="500" />
+
+            <TextView
+                android:id="@+id/decorate_price_unit17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title17"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/decorate_price17"
+                android:text="元/个" />
+
+            <com.winwinapp.util.AddSubLL
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:id="@+id/decorate_num17" />
+
+            <TextView
+                android:id="@+id/decorate_price_total_unit17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="元" />
+
+            <TextView
+                android:id="@+id/decorate_price_total17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toLeftOf="@id/decorate_price_total_unit17"
+                android:text="500" />
+        </RelativeLayout>
+        
+        <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/graylight"/>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:layout_marginBottom="2dp">
+
+            <TextView
+                android:id="@+id/decorate_price_title18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="坐便器" />
+
+            <TextView
+                android:id="@+id/decorate_price18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title18"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="500" />
+
+            <TextView
+                android:id="@+id/decorate_price_unit18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/decorate_price_title18"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/decorate_price18"
+                android:text="元/个" />
+
+            <com.winwinapp.util.AddSubLL
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:id="@+id/decorate_num18" />
+
+            <TextView
+                android:id="@+id/decorate_price_total_unit18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="元" />
+
+            <TextView
+                android:id="@+id/decorate_price_total18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toLeftOf="@id/decorate_price_total_unit18"
+                android:text="500" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -341,8 +1265,9 @@
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@id/price_main_matirial_total"
                 android:background="@drawable/rectangular_150_75"
-                android:text="50300"
-                android:paddingLeft="2dp" />
+                android:paddingLeft="2dp"
+                android:text="45800" />
+
         </RelativeLayout>
 
         <ImageView 
@@ -378,8 +1303,9 @@
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@id/price_sub_matirial_total"
                 android:background="@drawable/rectangular_150_75"
-                android:text="4000"
-                android:paddingLeft="2dp" />
+                android:paddingLeft="2dp"
+                android:text="6870" />
+
         </RelativeLayout>
 
         <ImageView 
@@ -452,10 +1378,11 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@id/price_total"
-                android:singleLine="true"
                 android:background="@drawable/rectangular_150_75"
-                android:text="79300"
-                android:paddingLeft="2dp" />
+                android:paddingLeft="2dp"
+                android:singleLine="true"
+                android:text="97670" />
+
         </RelativeLayout>
     </LinearLayout>
     
