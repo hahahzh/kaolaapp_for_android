@@ -96,7 +96,8 @@ public class HTTPPost {
 	
 	public static boolean RequestDecorateTipList(NetworkData.DecorateTipsData data,NetworkData.DecorateTipsBack msgBack){
 		boolean success = false;
-		String back = HTTPBase.HTTPSendGet(NetworkData.URL_DECKMS+"?cid="+data.cid+"&page="+data.page+"&limit="+data.limit);
+		String postData = JsonHandler.createDecorateTipListString(data);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_DECKMS, postData, HTTPBase.HTTP_TYPE_POST);
 		if(!TextUtils.isEmpty(back)){
 			success = JsonHandler.parseDecorateTipList(back, msgBack);
 		}else{

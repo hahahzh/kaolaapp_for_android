@@ -41,14 +41,14 @@ public class DateWidgetDayHeader extends View {
 			pt.setColor(Color.WHITE);
 			canvas.drawRect(rect, pt);
 
-
+			
 			WindowManager wm = (WindowManager) getContext()
                     .getSystemService(Context.WINDOW_SERVICE);
  
 			int width = wm.getDefaultDisplay().getWidth();
 			int height = wm.getDefaultDisplay().getHeight();
      
-			int size = 30;
+			int size = 35;
 			if(width==1080 && height==1920)size = 55;
 			// text
 			pt.setTypeface(null);
@@ -64,8 +64,10 @@ public class DateWidgetDayHeader extends View {
 			final int iDayNamePosX = (int) rect.left
 					+ ((int) rect.width() >> 1)
 					- ((int) pt.measureText(sDayName) >> 1);
-			canvas.drawText(sDayName, iDayNamePosX, rect.top + iTextPosY + 2,
+			canvas.drawText(sDayName, iDayNamePosX, rect.top + iTextPosY + 15,
 					pt);
+			
+			
 		}
 		this.setBackgroundResource(R.color.white);
 	}

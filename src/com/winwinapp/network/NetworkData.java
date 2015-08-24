@@ -3,6 +3,8 @@ package com.winwinapp.network;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.winwinapp.decorateTips.SubDecorateTips;
+
 public class NetworkData {
 	//public static String URL_BASE_API = "http://www.kaolaxj.com/index.php/Api";
 	public static String URL_SERVER = "http://120.26.197.206";
@@ -24,8 +26,7 @@ public class NetworkData {
 	public static String URL_SEND_PRIVATE_MESSAGE = URL_BASE_API + "/Message/reply.html";
 	
 	public static String URL_SEND_MESSAGE = URL_BASE_API + "/Message/insert.html";
-	public static String URL_DECORATE_TIPS_DETAIL = URL_BASE_API + "/Document/docsDetail.html";
-	public static String URL_DECORATE_TIPS_LIST = URL_BASE_API + "/Document/docsList.html";
+	public static String URL_DECORATE_TIPS_DETAIL = URL_BASE_API + "/DecKms/docsDetail.html";
 	public static String URL_BID_LIST = URL_BASE_API + "/BidProj/BidList.html";
 	public static String URL_USER_BID_LIST = URL_BASE_API + "/BidProj/userBidList.html";
 	public static String URL_BID_DETAIL = URL_BASE_API + "/BidProj/getOneBid.html";
@@ -48,7 +49,7 @@ public class NetworkData {
 	public static String URL_OTHER_DECORATE_DETAIL = URL_BASE_API + "/Decorate/winDecDetail.html";
 	
 	public static String URL_DECKMS = URL_BASE_API + "/DecKms/decKmsList.html";
-	
+	public static String URL_DECKMS_WEBPAGE = URL_SERVER + "/index.php/Home/DecKms/detail/doc/";
 	public static final int USER_TYPE_MEMBER = 1;
 	public static final int USER_TYPE_DESIGNER = 2;
 	public static final int USER_TYPE_SUPERIOR = 3;
@@ -399,7 +400,7 @@ public class NetworkData {
 		public int code = -1;
 		public String error = null;
 		public int total = 0;
-		public ArrayList<DecorateTipsItem> items = new ArrayList<DecorateTipsItem>();
+		public DecorateTipsItem items = new DecorateTipsItem();
 	}
 	
 	public DecorateTipsData getDecorateTipsData(){
@@ -416,20 +417,15 @@ public class NetworkData {
 		public int cid;
 		public String choose_cat;
 		public String docCats;
-		public String doc_id;
-		public String cat_id;
-		public String title;
 		public String keywords;
-		public String add_time;//
-		public String scan_num;//查看次数
-		public String content;
 		public int total;
-		ArrayList<Map<String,String>> cats = new ArrayList<Map<String,String>>(); 
+		public ArrayList<Map<String,String>> cats = new ArrayList<Map<String,String>>();
+		public ArrayList<SubDecorateTips> subDecorate = new ArrayList<SubDecorateTips>();
 	}
 	
 	public class DecorateTipDetailData{
-		int doc_id;
-		int cat_id;
+		public int doc_id;
+		public int cat_id;
 	}
 	
 	public class DecorateTipDetailBack{
@@ -818,4 +814,6 @@ public class NetworkData {
 		public int month;
 		public int day;
 	}
+
 }
+

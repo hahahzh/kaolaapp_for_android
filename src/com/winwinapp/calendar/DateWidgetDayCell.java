@@ -30,7 +30,7 @@ public class DateWidgetDayCell extends View {
 	// fields
 	private final static float	fTextSize			= 20;
 	private final static int	iMargin				= 1;
-	private final static int iAlphaInactiveMonth = 0x00;
+	private final static int iAlphaInactiveMonth = 0x88;
 
 	Context mContext;
 	// fields
@@ -265,7 +265,8 @@ public class DateWidgetDayCell extends View {
 
 		pt.setUnderlineText(false);
 		
-		if(mFlag_ongoing && bIsActiveMonth){
+//		if(mFlag_ongoing && bIsActiveMonth){
+		if(mFlag_ongoing){
 			//mBitmapSelect.
 			float left = (rect.width() - mBitmapWidth)/2;
 			float top = rect.height() - mBitmapHeight - 5;

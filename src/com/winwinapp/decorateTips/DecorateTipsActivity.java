@@ -1,6 +1,7 @@
 package com.winwinapp.decorateTips;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -48,7 +49,6 @@ public class DecorateTipsActivity extends Activity  implements OnTabChangeListen
 	
 	class MyThread extends Thread {  
 		public void run(){
-			mBack.items.clear();
 			boolean success = false;
 			success = HTTPPost.RequestDecorateTipList(mData, mBack);
 			Message msg = Message.obtain();
@@ -264,7 +264,7 @@ public class DecorateTipsActivity extends Activity  implements OnTabChangeListen
 		// TODO 自动生成的方法存根
 		Intent intent = new Intent(DecorateTipsActivity.this,DecorateTipsDetailActivity.class);
 		intent.putExtra("type", mType);
-		intent.putExtra("doc_id", mBack.items.get(position).doc_id);
+		intent.putExtra("doc_id", mBack.items.subDecorate.get(position).doc_id);
 		startActivity(intent);
 	}
 	
@@ -273,7 +273,7 @@ public class DecorateTipsActivity extends Activity  implements OnTabChangeListen
 		@Override
 		public int getCount() {
 			// TODO 自动生成的方法存根
-			return mBack.items.size();
+			return mBack.items.subDecorate.size();
 		}
 
 		@Override
@@ -292,7 +292,7 @@ public class DecorateTipsActivity extends Activity  implements OnTabChangeListen
 		public View getView(int position, View convertView, ViewGroup arg2) {
 			// TODO 自动生成的方法存根
 			convertView = mInflater.inflate(R.layout.layout_tips_items, null);
-			NetworkData.DecorateTipsItem item = mBack.items.get(position);
+			SubDecorateTips item = mBack.items.subDecorate.get(position);
 			
 			tipsViewHolder mHolder;
 			
@@ -302,7 +302,9 @@ public class DecorateTipsActivity extends Activity  implements OnTabChangeListen
 			mHolder.mContentText = (TextView)convertView.findViewById(R.id.tips_item_content);
 			mHolder.mContentText.setText(item.content);
 			mHolder.mDateText = (TextView)convertView.findViewById(R.id.tips_item_date);
-			mHolder.mDateText.setText(item.add_time);
+			java.text.DateFormat format = new java.text.SimpleDateFormat("yyyy-MM-dd");
+			Date time = new Date(Long.parseLong(item.add_time)*1000);
+			mHolder.mDateText.setText(format.format(time));
 			mHolder.mPreviewImage = (ImageView)convertView.findViewById(R.id.tips_item_preview);
 			mHolder.mViewedText = (TextView)convertView.findViewById(R.id.tips_item_viewed);
 			mHolder.mViewedText.setText(item.scan_num);
