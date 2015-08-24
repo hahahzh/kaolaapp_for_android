@@ -41,6 +41,7 @@ import com.tencent.mm.sdk.openapi.WXImageObject;
 import com.tencent.mm.sdk.openapi.WXMediaMessage;
 import com.tencent.mm.sdk.openapi.WXWebpageObject;
 import com.winwinapp.koala.R;
+import com.winwinapp.network.NetworkData;
 import com.winwinapp.util.Utils;
 
 import android.app.Activity;
@@ -107,8 +108,9 @@ public class Decorate_tips_share_window extends Activity implements OnItemClickL
     String title = "¿¼À­Ð¡½³";
     
     String url_pic = "http://www.zhbiao.com/uploads/20150210/35471423540429.jpg";
-	String url = "http://120.26.197.206/index.php/Home/DecKms/detail/doc/16.html";
+	String url;
 	String description = "This is share description";
+	
 	 @Override  
 	 protected void onCreate(Bundle savedInstanceState) {  
 	        super.onCreate(savedInstanceState);  
@@ -133,6 +135,10 @@ public class Decorate_tips_share_window extends Activity implements OnItemClickL
 	        		new String[] {"image","title"}, new int[]{R.id.tips_share_item_image,R.id.tips_shared_item_title});
 	        mGridView.setAdapter(simpleAdapter);
 	        mGridView.setOnItemClickListener(this);
+
+			Bundle bundle = this.getIntent().getExtras();
+			Integer doc_id = bundle.getInt("doc_id");
+	        url = NetworkData.URL_DECKMS_WEBPAGE+doc_id+".html";
  }
 
 	@Override

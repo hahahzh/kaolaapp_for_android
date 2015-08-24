@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.winwinapp.decorateTips.SubDecorateTips;
 import com.winwinapp.koala.KoalaApplication;
 
 public class JsonHandler {
@@ -437,7 +438,7 @@ public class JsonHandler {
 		JSONObject jstring = new JSONObject();
 		try {
 			//jstring.put("page", data.page);
-			jstring.put("limit", data.doc_id);
+			jstring.put("doc_id", data.doc_id);
 			
 			str = jstring.toString();
 		} catch (JSONException e) {
@@ -518,20 +519,19 @@ public class JsonHandler {
 			int code = -1;
 			code = response.getInt("code");
 			back.code = code;
-			if(code == 0){
+			if(code == -1){
 				JSONObject data = response.getJSONObject("data");
 				JSONObject doc = data.getJSONObject("doc");
 				
-				NetworkData.DecorateTipDetailBack item = NetworkData.getInstance().getDecorateTipDetailBack();
-				item.doc_id = doc.getString("doc_id");
-				item.cat_id = doc.getString("cat_id");
-				item.title = doc.getString("title");
-				item.content = doc.getString("content");
-				item.author = doc.getString("author");
-				item.keywords = doc.getString("keywords");
-				item.is_open = doc.getString("is_open");
-				item.add_time = doc.getString("add_time");
-				item.scan_num = doc.getString("scan_num");
+				back.doc_id = doc.getString("doc_id");
+				back.cat_id = doc.getString("cat_id");
+				back.title = doc.getString("title");
+				back.content = doc.getString("content");
+				back.author = doc.getString("author");
+				back.keywords = doc.getString("keywords");
+				back.is_open = doc.getString("is_open");
+				back.add_time = doc.getString("add_time");
+				back.scan_num = doc.getString("scan_num");
 //				item.is_hot = itemObject.getString("is_hot");
 //				item.cat_name = itemObject.getString("cat_name");
 //				item.cat_desc = itemObject.getString("cat_desc");
@@ -560,7 +560,7 @@ public class JsonHandler {
 		try {
 			jstring.put("limit", data.limit);
 //			jstring.put("page", data.page);
-//			jstring.put("cid", data.cid);
+			jstring.put("cid", data.cid);
 			str = jstring.toString();
 		} catch (JSONException e) {
 			// TODO 自动生成的 catch 块
@@ -572,7 +572,7 @@ public class JsonHandler {
 	public static boolean parseDecorateTipList(String str,NetworkData.DecorateTipsBack back){
 		boolean success = false;
 		try {
-			back.items.clear();
+			back.items = null;
 			JSONObject response = new JSONObject(str);
 			int code = -1;
 			code = response.getInt("code");
@@ -599,13 +599,15 @@ public class JsonHandler {
 				
 				for(int i=0;i<docList.length();i++){
 					JSONObject itemObject = docList.getJSONObject(i);
-					item.doc_id = itemObject.getString("doc_id");
-					item.cat_id = itemObject.getString("cat_id");
-					item.title = itemObject.getString("title");
-					item.add_time = itemObject.getString("add_time");
-					item.scan_num = itemObject.getString("scan_num");
-					back.items.add(item);	
+					SubDecorateTips sdt = new SubDecorateTips();
+					sdt.doc_id = itemObject.getString("doc_id");
+					sdt.cat_id = itemObject.getString("cat_id");
+					sdt.title = itemObject.getString("title");
+					sdt.add_time = itemObject.getString("add_time");
+					sdt.scan_num = itemObject.getString("scan_num");
+					item.subDecorate.add(sdt);
 				}
+				back.items = item;
 				success = true;
 			}else{
 				back.error = response.getString("error");

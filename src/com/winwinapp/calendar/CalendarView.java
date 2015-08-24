@@ -214,7 +214,7 @@ public class CalendarView extends LinearLayout {
 	private void generateCalendar(LinearLayout layContent) {
 		layContent.addView(generateCalendarHeader());
 		days.clear();
-		for (int iRow = 0; iRow < 5; iRow++) {
+		for (int iRow = 0; iRow < 6; iRow++) {
 			layContent.addView(generateCalendarRow());
 		}
 	}

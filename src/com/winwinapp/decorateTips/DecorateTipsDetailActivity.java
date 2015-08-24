@@ -1,5 +1,7 @@
 package com.winwinapp.decorateTips;
 
+import java.util.Date;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -30,6 +32,7 @@ public class DecorateTipsDetailActivity extends ActionBarActivity {
 	ImageView mPreviewImage;
 	TextView mContentText;
 	int type;
+	
 	class MyThread extends Thread {  
 		public void run(){
 			boolean success = false;
@@ -54,7 +57,9 @@ public class DecorateTipsDetailActivity extends ActionBarActivity {
 				if("OK".equals(error)){
 					mtitleText.setText(mBack.title);
 					mContentText.setText(mBack.content);
-					mDateText.setText(mBack.add_time);
+					java.text.DateFormat format = new java.text.SimpleDateFormat("yyyy-MM-dd");
+					Date time = new Date(Long.parseLong(mBack.add_time)*1000);
+					mDateText.setText(format.format(time));
 					mViewedText.setText(mBack.scan_num);
 
 				}else{
@@ -80,6 +85,8 @@ public class DecorateTipsDetailActivity extends ActionBarActivity {
 		mContentText = (TextView)findViewById(R.id.tips_content);
 		
 		mType = getIntent().getIntExtra("type", 1);
+		String doc_id = getIntent().getStringExtra("doc_id");
+		mData.doc_id = Integer.parseInt(doc_id);
 		initActionBar();
 		mInflater = LayoutInflater.from(this);
 		new MyThread().start();
@@ -126,7 +133,13 @@ public class DecorateTipsDetailActivity extends ActionBarActivity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO 自动生成的方法存根
-				startActivity(new Intent(DecorateTipsDetailActivity.this,Decorate_tips_share_window.class));  
+				Intent intent = new Intent(DecorateTipsDetailActivity.this,Decorate_tips_share_window.class);
+				intent.putExtra("type", mType);
+				intent.putExtra("doc_id", mData.doc_id);
+				Bundle bundle = new Bundle();
+				bundle.putInt("doc_id", mData.doc_id);
+				intent.putExtras(bundle);
+				startActivity(intent);
 			}
 			
 		});
