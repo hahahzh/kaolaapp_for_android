@@ -3,6 +3,8 @@ package com.winwinapp.network;
 import java.util.ArrayList;
 import java.util.Map;
 
+import android.graphics.Bitmap;
+
 import com.winwinapp.decorateTips.SubDecorateTips;
 
 public class NetworkData {
@@ -171,17 +173,22 @@ public class NetworkData {
 	public class RegisterBack{
 		public int code = -1;//ie, 0
 		public String error ;
+		public int user_type;
 		public String id;
 		public String sessid;
 	}
 	
+	public FindMemberData getNewFindMemberData(){
+		return new FindMemberData();
+	}
+	
 	public class FindMemberData{
-		int type;//the type to find, only 2,3,4
-		String keyword;//the keyword  for find
-		int work_num; //the worker's work age
-		String sort;//sort:work(工作年限),attud(服务态度),rate(专业水平),case(案例数)
-		int page;//current page number
-		int limit;//the item number for each page
+		public int type;//the type to find, only 2,3,4
+		public String keyword;//the keyword  for find
+		public int work_num; //the worker's work age
+		public String sort;//sort:work(工作年限),attud(服务态度),rate(专业水平),case(案例数)
+		public int page;//current page number
+		public int limit;//the item number for each page
 		public FindMemberData(){
 			type = 2;
 			keyword = null;
@@ -192,22 +199,32 @@ public class NetworkData {
 		}
 	}
 	
+	public FindMemberItem getNewFindMemberItem(){
+		return new FindMemberItem();
+	}
+	
 	public class FindMemberItem{
-		String username = null;
-		int work_num = 0;
-		int name_auth = 0;//实名认证:0,not auth;1,auth
-		String avatar;//the location of avatar
-		String casename;//the latest case name
-		float rate_avg = 0.0f;//the rate average
-		float attud_avg = 0.0f;//the attitude average
-		int case_num = 0;
-		String introduce = null;
+		public String username = null;
+		public String work_num ;
+		public String name_auth ;//实名认证:0,not auth;1,auth
+		public String avatar;//the location of avatar
+		public String casename;//the latest case name
+		public String rate_avg ;//the rate average
+		public String attud_avg ;//the attitude average
+		public String case_num;
+		public String introduce = null;
+		public Bitmap imgAvatar;
+	}
+	
+	public FindMemberBack getNewFindMemberBack(){
+		return new FindMemberBack();
 	}
 	
 	public class FindMemberBack{
-		int code = -1;
-		int total = 0;
-		ArrayList<FindMemberItem> memberInfo = new ArrayList<FindMemberItem>();
+		public int code = -1;
+		public int total = 0;
+		public String error;
+		public ArrayList<FindMemberItem> memberInfo = new ArrayList<FindMemberItem>();
 	}
 	
 	public class MemberDetailData{

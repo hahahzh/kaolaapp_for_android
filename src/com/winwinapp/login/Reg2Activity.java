@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.winwinapp.calendar.SetScore;
 import com.winwinapp.koala.ActionBarActivity;
 import com.winwinapp.koala.KLHomePageActivity;
 import com.winwinapp.koala.KoalaApplication;
@@ -66,16 +67,20 @@ public class Reg2Activity extends ActionBarActivity implements OnClickListener{
 			case MESSAGE_REG:
 				error = (String)msg.obj;
 				if("OK".equals(error)){
-					//KoalaApplication app = ((KoalaApplication)Reg2Activity.this.getApplication());
-					//NetworkData.LoginBack mLogBack = NetworkData.getInstance().getNewLoginBack();
-					//mLogBack.id = mRegBack.id;
-					//mLogBack.sessid = mRegBack.sessid;
-					//mLogBack.username = mRegData.username;
-					//app.saveSession(mLogBack);
-					intent = new Intent(context,LoginPageActivity.class);
+					KoalaApplication app = ((KoalaApplication)Reg2Activity.this.getApplication());
+					NetworkData.LoginBack mLogBack = NetworkData.getInstance().getNewLoginBack();
+					mLogBack.id = mRegBack.id;
+					mLogBack.sessid = mRegBack.sessid;
+					mLogBack.username = mRegData.username;
+					app.saveSession(mLogBack);
+					intent = new Intent(Reg2Activity.this,KLHomePageActivity.class);
 					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					startActivity(intent);
-					Toast.makeText(context, "注册用户成功，请登录", Toast.LENGTH_LONG).show();
+					Toast.makeText(context, "注册用户成功.", Toast.LENGTH_LONG).show();
+					//intent = new Intent(context,LoginPageActivity.class);
+					//intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					//startActivity(intent);
+					//Toast.makeText(context, "注册用户成功，请登录", Toast.LENGTH_LONG).show();
 				}
 				else{
 					Toast.makeText(context, "注册用户失败："+error, Toast.LENGTH_LONG).show();

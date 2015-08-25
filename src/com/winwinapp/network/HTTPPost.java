@@ -107,6 +107,19 @@ public class HTTPPost {
 		return success;
 	}
 	
+	public static boolean FindMember(NetworkData.FindMemberData data,NetworkData.FindMemberBack msgBack){
+		boolean success = false;
+		String postData = JsonHandler.createFindMemberString(data);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_MEMBER_find, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseFindMember(back, msgBack);
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "Õ¯¬Á≤ªø…”√";
+		}
+		return success;
+	}
+	
 	public static boolean RequestDecorateTipDetail(NetworkData.DecorateTipDetailData data,NetworkData.DecorateTipDetailBack msgBack){
 		boolean success = false;
 		String postData = JsonHandler.createDecorateTipDeailString(data);

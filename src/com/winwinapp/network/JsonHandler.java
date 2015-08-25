@@ -88,8 +88,9 @@ public class JsonHandler {
 			code = response.getInt("code");
 			regBack.code = code;
 			if(code == 0){
-				//regBack.id = response.getString("id");
-				//regBack.sessid = response.getString("sessid");
+				regBack.id = response.getString("id");
+				regBack.sessid = response.getString("sessid");
+				regBack.user_type = response.getInt("user_type");
 				success = true;
 			}else{
 				regBack.error = response.getString("error");
@@ -98,6 +99,67 @@ public class JsonHandler {
 		} catch (JSONException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			return false;
+		}
+		
+		return success;
+	}
+	
+	public static String createFindMemberString(NetworkData.FindMemberData data){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			jstring.put("type", data.type);
+			jstring.put("keyword", data.keyword);
+			jstring.put("work_num", data.work_num);
+			jstring.put("sort", data.sort);
+			jstring.put("page", data.page);
+			jstring.put("limit",data.limit);
+			
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+	}
+	
+	public static boolean parseFindMember(String str,NetworkData.FindMemberBack back){
+		boolean success = false;
+		try {
+			JSONObject response = new JSONObject(str);
+			int code = -1;
+			code = response.getInt("code");
+			back.code = code;
+			if(code == 0){
+				int total = Integer.parseInt(response.getString("total"));
+				JSONArray array = response.getJSONArray("data");
+				total = array.length();
+				back.total = total;
+				for(int i=0;i<total;i++){
+					JSONObject itemObject = array.getJSONObject(i);
+					NetworkData.FindMemberItem item = NetworkData.getInstance().getNewFindMemberItem();
+					item.username = itemObject.getString("username");
+					item.work_num = itemObject.getString("work_num");
+					item.name_auth = itemObject.getString("name_auth");
+					item.avatar = itemObject.getString("avatar");
+					item.casename = itemObject.getString("casename");
+					item.rate_avg = itemObject.getString("rate_avg");
+					item.attud_avg = itemObject.getString("attud_avg");
+					item.case_num = itemObject.getString("case_num");
+					item.introduce = itemObject.getString("introduce");
+					
+					back.memberInfo.add(item);
+				}
+				success = true;
+			}else{
+				back.error = response.getString("error");
+				success = false;
+			}
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			back.error = e.toString();
 			return false;
 		}
 		

@@ -45,6 +45,7 @@
        android:layout_below="@id/contact_designer_cases"
        android:textSize="14sp"
        android:textColor="@color/gray"
+       android:id="@+id/contract_designer_RateAttu"
        android:text="专业：9.0    服务：9.0"/>
    
    <TextView 
@@ -69,6 +70,7 @@
        android:src="@drawable/heart_no"
        android:layout_below="@id/contact_designer_price"
        android:id="@+id/contact_designer_heart"/>
+   
     <TextView 
         android:layout_height="wrap_content"
        android:layout_width="wrap_content"
