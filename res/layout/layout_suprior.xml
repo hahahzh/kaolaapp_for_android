@@ -11,7 +11,7 @@
     android:focusableInTouchMode="true" >
     
     <FrameLayout
-        android:id="@+id/suprior_rl_layout"
+        android:id="@+id/superior_rl_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -28,6 +28,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:id="@+id/superior_avatar"
             android:src="@drawable/avatar1"/>
         
         <TextView
@@ -37,6 +38,7 @@
             android:drawableLeft="@drawable/location"
             android:paddingLeft="5dp"
             android:text="上海 "
+            android:id="@+id/superior_location"
             android:textColor="@color/white" />
         
         <TextView
@@ -46,6 +48,7 @@
             android:layout_marginTop="120dp"
             android:paddingLeft="5dp"
             android:text="张澈  监理"
+            android:id="@+id/superior_name_type"
             android:textColor="@color/white" />
 
     </FrameLayout>
@@ -58,7 +61,7 @@
          <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/suprior_skill"
+            android:id="@+id/superior_skill"
             android:text="9.0"
             android:layout_weight="1"
             android:gravity="center"
@@ -69,7 +72,7 @@
             android:layout_height="wrap_content"
             android:text="9.0"
             android:layout_weight="1"
-            android:id="@+id/suprior_experience"
+            android:id="@+id/superior_experience"
             android:gravity="center"/>
          
          <TextView 
@@ -77,7 +80,7 @@
             android:layout_height="wrap_content"
             android:text="9"
             android:layout_weight="1"
-            android:id="@+id/suprior_atitude"
+            android:id="@+id/superior_atitude"
             android:gravity="center"/>
 
          
@@ -128,17 +131,19 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:drawableLeft="@drawable/certificate_no"
+            android:drawableLeft="@drawable/certificate"
             android:textColor="#999999"
-            android:text="身份证未认证"/>
+            android:id="@+id/superior_id_auth"
+            android:text="身份证已认证"/>
         
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:drawableLeft="@drawable/certificate_no"
-            android:text="证书未认证"
+            android:drawableLeft="@drawable/certificate"
+            android:id="@+id/superior_certi_auth"
+            android:text="证书已认证"
             android:textColor="#999999"/>
     	</TableRow>
        
@@ -172,6 +177,7 @@
         android:inputType="textMultiLine"
         android:gravity="top|left"
         android:minLines="4"
+        android:id="@+id/superior_introduce"
         android:background="#FFFFFF"
         android:hint="Ta 现在还没有介绍哦 ~"/>
 
@@ -195,7 +201,7 @@
             android:textStyle="bold"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
-            android:id="@+id/designer_project_more"
+            android:id="@+id/superior_project_more"
             android:textColor="#00FF00"/>
       </LinearLayout>
       

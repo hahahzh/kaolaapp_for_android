@@ -97,7 +97,7 @@ public class DesignerActivity extends ActionBarActivity {
 		if(mAvartarImg != null){
 			avatar.setImageBitmap(mAvartarImg);
 		}
-		mNameType.setText(mBack.username+"  ");
+		mNameType.setText(mBack.username+"  设计师");
 		mSkill.setText(mBack.rate_avg);
 		mAttu.setText(mBack.attud_avg);
 		if("1".equals(mBack.name_auth)){
@@ -106,6 +106,7 @@ public class DesignerActivity extends ActionBarActivity {
 			mIDAuth.setText("身份未认证");
 			mIDAuth.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.id_no), null, null, null);
 		}
+		mIntroduce.setText(mBack.introduce);
 //		if("1".equals(mBack.certauth)){
 //			
 //		}else{
