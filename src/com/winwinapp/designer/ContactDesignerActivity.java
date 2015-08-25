@@ -75,7 +75,7 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 		public void run(){
 			boolean success = false;
 			mData.type = mType;
-			mData.work_num = 5;
+			mData.work_num = 0;
 			mData.sort = mSort;
 			mData.page = mPage;
 			mData.limit = mLimit;

@@ -120,7 +120,20 @@ public class LaborActivity extends ActionBarActivity {
 
 		initActionBar();
 		
-		mTextView = (TextView)findViewById(R.id.designer_project_more);
+		avatar = (ImageView)findViewById(R.id.labor_avatar);
+		mLocation = (TextView)findViewById(R.id.labor_location);
+		mNameType = (TextView)findViewById(R.id.labor_name_type);
+		mSkill = (TextView)findViewById(R.id.labor_skill);
+		mAttu = (TextView)findViewById(R.id.labor_atitude);
+		mExperience = (TextView)findViewById(R.id.labor_experience);
+		mIDAuth = (TextView)findViewById(R.id.labor_id_auth);
+		mCertAuth = (TextView)findViewById(R.id.labor_certi_auth);
+		mIntroduce = (TextView)findViewById(R.id.labor_introduce);
+		mId = getIntent().getStringExtra("id");
+		mDefaultAvatar = getResources().getDrawable(R.drawable.avatar1);
+		
+		mTextView = (TextView)findViewById(R.id.labor_project_more);
+		
 		mTextView.setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -150,19 +163,6 @@ public class LaborActivity extends ActionBarActivity {
 		imageView.setImageResource(R.drawable.back);
 		setLeftView(imageView);
 		setTitle("¹¤³¤");
-		
-		avatar = (ImageView)findViewById(R.id.labor_avatar);
-		mLocation = (TextView)findViewById(R.id.labor_location);
-		mNameType = (TextView)findViewById(R.id.labor_name_type);
-		mSkill = (TextView)findViewById(R.id.labor_skill);
-		mAttu = (TextView)findViewById(R.id.labor_atitude);
-		mExperience = (TextView)findViewById(R.id.labor_experience);
-		mIDAuth = (TextView)findViewById(R.id.labor_id_auth);
-		mCertAuth = (TextView)findViewById(R.id.labor_certi_auth);
-		mIntroduce = (TextView)findViewById(R.id.labor_introduce);
-		initActionBar();
-		mId = getIntent().getStringExtra("id");
-		mDefaultAvatar = getResources().getDrawable(R.drawable.avatar1);
 		
 		new getMemberDetailThread().start();
 		

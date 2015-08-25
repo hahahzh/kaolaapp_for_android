@@ -269,8 +269,8 @@ public class NetworkData {
 	}
 	
 	public class AddDelMyCollectData{
-		int uid = 0;//
-		String sessid = null;
+		public int uid = 0;//
+		public String sessid = null;
 	}
 	
 	public SendMessageData getNewSendMessageData(){
