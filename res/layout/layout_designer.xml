@@ -28,6 +28,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:id="@+id/designer_avatar"
             android:src="@drawable/avatar1"/>
         
         <TextView
@@ -37,6 +38,7 @@
             android:drawableLeft="@drawable/location"
             android:paddingLeft="5dp"
             android:text="上海 "
+            android:id="@+id/designer_location"
             android:textColor="@color/white" />
         
         <TextView
@@ -46,6 +48,7 @@
             android:layout_marginTop="120dp"
             android:paddingLeft="5dp"
             android:text="张澈  设计师"
+            android:id="@+id/designer_name_type"
             android:textColor="@color/white" />
 
     </FrameLayout>
@@ -145,6 +148,7 @@
             android:layout_weight="1"
             android:drawableLeft="@drawable/id"
             android:textColor="#CAD314"
+            android:id="@+id/designer_id_auth"
             android:gravity="center_vertical"
             android:text="身份证已认证"/>
         
@@ -154,6 +158,7 @@
             android:layout_weight="1"
             android:drawableLeft="@drawable/certificate"
             android:gravity="center_vertical"
+            android:id="@+id/designer_certi_auth"
             android:text="证书已认证"
             android:textColor="#FF0000"/>
     	</TableRow>
@@ -193,6 +198,7 @@
         android:background="#FFFFFF"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
+        android:id="@+id/designer_introduce"
         android:hint="Ta 现在还没有介绍哦 ~"/>
 
      <LinearLayout

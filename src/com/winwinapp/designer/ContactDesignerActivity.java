@@ -25,10 +25,7 @@ import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.winwinapp.calendar.SetScore;
 import com.winwinapp.koala.ActionBarActivity;
-import com.winwinapp.koala.KLHomePageActivity;
 import com.winwinapp.koala.R;
 import com.winwinapp.koala.fragment_homepage;
 import com.winwinapp.network.HTTPPost;
@@ -82,6 +79,7 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 			mData.sort = mSort;
 			mData.page = mPage;
 			mData.limit = mLimit;
+			mData.keyword = "";
 			success = HTTPPost.FindMember(mData, mBack);
 			Message msg = Message.obtain();
 			msg.what = 1;
@@ -218,14 +216,17 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 				case fragment_homepage.TYPE_DESIGNER:
 					// TODO 自动生成的方法存根
 					Intent intent = new Intent(ContactDesignerActivity.this,DesignerActivity.class);
+					intent.putExtra("id", mBack.memberInfo.get(arg2).id);
 					startActivity(intent);
 					break;
 				case fragment_homepage.TYPE_LABOR:
 					Intent intentLabor = new Intent(ContactDesignerActivity.this,LaborActivity.class);
+					intentLabor.putExtra("id", mBack.memberInfo.get(arg2).id);
 					startActivity(intentLabor);
 					break;
 				case fragment_homepage.TYPE_SUPRIOR:
 					Intent intentSuprior = new Intent(ContactDesignerActivity.this,SupriorActivity.class);
+					intentSuprior.putExtra("id", mBack.memberInfo.get(arg2).id);
 					startActivity(intentSuprior);
 					break;
 				}
@@ -263,22 +264,22 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 		case 0:
 			//mAdapter.setArrayList(mArrayList);
 			mAdapter.notifyDataSetChanged();
-			new getListThread("rate",1,5);
+			new getListThread("rate",0,5);
 			break;
 		case 1:
 			//mAdapter.setArrayList(mArrayProject);
 			mAdapter.notifyDataSetChanged();
-			new getListThread("attud",1,5).start(); 
+			new getListThread("attud",0,5).start(); 
 			break;
 		case 2:
 			//mAdapter.setArrayList(mArraySoft);
 			mAdapter.notifyDataSetChanged();
-			new getListThread("case",1,5).start(); 
+			new getListThread("case",0,5).start(); 
 			break;
 		case 3:
 			//mAdapter.setArrayList(mArrayDesign);
 			mAdapter.notifyDataSetChanged();
-			new getListThread("work",1,5).start(); 
+			new getListThread("work",0,5).start(); 
 			break;
 		case 4:
 			//mAdapter.setArrayList(mArrayMateria);
@@ -315,7 +316,7 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 		public View getView(int arg0, View arg1, ViewGroup arg2) {
 			// TODO 自动生成的方法存根
 			arg1 = mInflater.inflate(R.layout.layout_contact_designer_item, null);
-			TextView name = (TextView) arg1.findViewById(R.id.contract_designer_name);
+			TextView name = (TextView) arg1.findViewById(R.id.contact_designer_item_name);
 			ImageView avatar = (ImageView) arg1.findViewById(R.id.contact_designer_avatar);
 			TextView caseNum = (TextView) arg1.findViewById(R.id.contact_designer_cases);
 			TextView rateAtt = (TextView) arg1.findViewById(R.id.contract_designer_RateAttu);

@@ -105,6 +105,58 @@ public class JsonHandler {
 		return success;
 	}
 	
+	public static String createFindMemberDetailString(NetworkData.MemberDetailData data){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			jstring.put("uid", data.uid);
+			
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+	}
+	
+	public static boolean parseFindMemberDetail(String str,NetworkData.MemberDetailBack back){
+		boolean success = false;
+		try {
+			JSONObject response = new JSONObject(str);
+			int code = -1;
+			code = response.getInt("code");
+			back.code = code;
+			if(code == 0){
+				JSONObject itemObject = response.getJSONObject("data");
+				back.id = itemObject.getString("id");
+				back.username = itemObject.getString("username");
+				back.email = itemObject.getString("email");
+				back.mobile = itemObject.getString("mobile");
+				back.qq = itemObject.getString("qq");
+				back.work_num = itemObject.getString("work_num");
+				back.name_auth = itemObject.getString("name_auth");
+				back.avatar = itemObject.getString("avatar");
+				back.casename = itemObject.getString("casename");
+				back.rate_avg = itemObject.getString("rate_avg");
+				back.attud_avg = itemObject.getString("attud_avg");
+				back.case_num = itemObject.getString("case_num");
+				back.introduce = itemObject.getString("introduce");
+
+				success = true;
+			}else{
+				back.error = response.getString("error");
+				success = false;
+			}
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			back.error = e.toString();
+			return false;
+		}
+		
+		return success;
+	}
+	
 	public static String createFindMemberString(NetworkData.FindMemberData data){
 		String str = null;
 		JSONObject jstring = new JSONObject();
@@ -139,6 +191,7 @@ public class JsonHandler {
 				for(int i=0;i<total;i++){
 					JSONObject itemObject = array.getJSONObject(i);
 					NetworkData.FindMemberItem item = NetworkData.getInstance().getNewFindMemberItem();
+					item.id = itemObject.getString("id");
 					item.username = itemObject.getString("username");
 					item.work_num = itemObject.getString("work_num");
 					item.name_auth = itemObject.getString("name_auth");

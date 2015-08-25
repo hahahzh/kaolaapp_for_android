@@ -21,7 +21,7 @@
        android:layout_height="wrap_content"
        android:layout_marginTop="10dp"
        android:layout_toRightOf="@id/contact_designer_avatar"
-       android:id="@+id/contact_designer_name"
+       android:id="@+id/contact_designer_item_name"
        android:textSize="20sp"
        android:textStyle="bold"
        android:text="钟晓晓"/>
@@ -31,7 +31,7 @@
        android:layout_height="wrap_content"
        android:layout_marginTop="10dp"
        android:layout_toRightOf="@id/contact_designer_avatar"
-       android:layout_below="@id/contact_designer_name"
+       android:layout_below="@id/contact_designer_item_name"
        android:id="@+id/contact_designer_cases"
        android:textSize="16sp"
        android:textColor="@color/gray"
@@ -77,6 +77,7 @@
        android:layout_marginRight="10dp"
        android:layout_marginTop="5dp"
        android:layout_alignParentRight="true"
+       android:id="@+id/contract_designer_lovenum"
        android:text="50"
        android:layout_below="@id/contact_designer_heart"/>
 

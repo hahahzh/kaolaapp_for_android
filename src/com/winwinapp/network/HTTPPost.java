@@ -107,6 +107,19 @@ public class HTTPPost {
 		return success;
 	}
 	
+	public static boolean FindMemberDetail(NetworkData.MemberDetailData data,NetworkData.MemberDetailBack msgBack){
+		boolean success = false;
+		String postData = JsonHandler.createFindMemberDetailString(data);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_MEMBER_DETAIL, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseFindMemberDetail(back, msgBack);
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "Õ¯¬Á≤ªø…”√";
+		}
+		return success;
+	}
+	
 	public static boolean FindMember(NetworkData.FindMemberData data,NetworkData.FindMemberBack msgBack){
 		boolean success = false;
 		String postData = JsonHandler.createFindMemberString(data);

@@ -204,6 +204,7 @@ public class NetworkData {
 	}
 	
 	public class FindMemberItem{
+		public String id;
 		public String username = null;
 		public String work_num ;
 		public String name_auth ;//实名认证:0,not auth;1,auth
@@ -227,24 +228,33 @@ public class NetworkData {
 		public ArrayList<FindMemberItem> memberInfo = new ArrayList<FindMemberItem>();
 	}
 	
-	public class MemberDetailData{
-		int uid;//the id of member
+	public MemberDetailData getNewMemberDetailData(){
+		return new MemberDetailData();
 	}
 	
+	public class MemberDetailData{
+		public int uid;//the id of member
+	}
+	
+	public MemberDetailBack getNewMemberDetailBack(){
+		return new MemberDetailBack();
+	}
 	public class MemberDetailBack{
-		String code = "-1";
-		String username = null;
-		String email = null;
-		String qq = null;
-		String mobile = null;
-		int work_num = 0;
-		int name_auth = 0;
-		String avatar = null;
-		String casename = null;
-		float rate_avg = 0.0f;
-		float attud_avg = 0.0f;
-		int case_num = 0;
-		String introduce = null;
+		public int code = -1;
+		public String error;
+		public String id;
+		public String username = null;
+		public String email = null;
+		public String qq = null;
+		public String mobile = null;
+		public String work_num;
+		public String name_auth;
+		public String avatar = null;
+		public String casename = null;
+		public String rate_avg ;
+		public String attud_avg ;
+		public String case_num ;
+		public String introduce = null;
 	}
 	
 	public class MyCollectData{
