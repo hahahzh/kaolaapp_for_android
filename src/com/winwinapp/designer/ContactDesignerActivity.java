@@ -77,7 +77,7 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 			mData.type = mType;
 			mData.work_num = 0;
 			mData.sort = mSort;
-			mData.page = mPage;
+			mData.page = 0;
 			mData.limit = mLimit;
 			mData.keyword = "";
 			success = HTTPPost.FindMember(mData, mBack);

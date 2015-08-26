@@ -50,18 +50,67 @@ public class DesignerActivity extends ActionBarActivity {
 	private Handler mHandler = new Handler(){
 		public void handleMessage(Message msg){
 			//Intent intent;
+			String error;
 			switch(msg.what){
 			case 1:
-				String error = (String)msg.obj;
+				error = (String)msg.obj;
 				if("OK".equals(error)){
 					refresh();
 				}else{
 					Toast.makeText(DesignerActivity.this, "获取招会员信息失败："+error, Toast.LENGTH_LONG).show();
 				}
 				break;
+			case 2://add
+				error = (String)msg.obj;
+				if("OK".equals(error)){
+					Toast.makeText(DesignerActivity.this, "添加收藏成功", Toast.LENGTH_LONG).show();
+				}else{
+					Toast.makeText(DesignerActivity.this, "添加收藏失败："+error, Toast.LENGTH_LONG).show();
+				}
+				break;
+			case 3://del
+				error = (String)msg.obj;
+				if("OK".equals(error)){
+					Toast.makeText(DesignerActivity.this, "删除收藏成功", Toast.LENGTH_LONG).show();
+				}else{
+					Toast.makeText(DesignerActivity.this, "删除收藏失败："+error, Toast.LENGTH_LONG).show();
+				}
+				break;
 			}
 		}
 	};
+	
+	NetworkData.AddDelMyCollectData mDelData = NetworkData.getInstance().getNewAddDelMyCollectData();
+	NetworkData.CommonBack mCommBack = NetworkData.getInstance().getCommonBack();
+	public class DelCollectThread extends Thread{
+		int uid =0;
+		boolean add;
+		public DelCollectThread(String id,boolean add){
+			try{
+			uid = Integer.parseInt(id);
+			}catch(Exception e){
+				uid = 0;
+			}
+		}
+		public void run(){
+			boolean success = false;
+			mDelData.uid = uid;
+			Message msg = Message.obtain();
+			if(add){
+				msg.what = 2;
+				success = HTTPPost.AddCollectList(mDelData, mCommBack);
+			}else{
+				msg.what = 3;
+				success = HTTPPost.DelCollectList(mDelData, mCommBack);
+			}
+			if(success){
+				msg.obj = "OK";
+			}else{
+				msg.obj = mCommBack.error;
+			}
+			mHandler.sendMessage(msg);
+		}
+	}
 	
 	public class getMemberDetailThread extends Thread{
 		public void run(){
@@ -154,6 +203,7 @@ public class DesignerActivity extends ActionBarActivity {
 				// TODO 自动生成的方法存根
 				bLove = !bLove;
 				mLove.setImageResource(bLove?R.drawable.heart_yes:R.drawable.heart_no);
+				new DelCollectThread(mId,bLove).start();
 			}
 			
 		});

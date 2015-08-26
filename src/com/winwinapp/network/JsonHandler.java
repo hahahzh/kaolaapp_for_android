@@ -125,6 +125,7 @@ public class JsonHandler {
 		JSONObject jstring = new JSONObject();
 		try {
 			jstring.put("uid", data.uid);
+			jstring.put("sessid", KoalaApplication.loginData.sessid);
 			
 			str = jstring.toString();
 		} catch (JSONException e) {
@@ -242,6 +243,7 @@ public class JsonHandler {
 			jstring.put("sort", data.sort);
 			jstring.put("page", data.page);
 			jstring.put("limit",data.limit);
+			jstring.put("sessid", KoalaApplication.loginData.sessid);
 			
 			str = jstring.toString();
 		} catch (JSONException e) {
