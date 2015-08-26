@@ -12,9 +12,13 @@ public class NetworkData {
 	public static String URL_SERVER = "http://120.26.197.206";
 	public static String URL_BASE_API = "http://120.26.197.206/index.php/Api";
 	public static String URL_LOGIN = URL_BASE_API + "/Login/index.html";
+	public static String URL_USER_ACCOUNT_INFO = URL_BASE_API + "/User/accountInfo.html";
+	public static String URL_USER_ACCOUNT_MODIFY = URL_BASE_API + "/User/updateMember.html";
+	
 	public static String URL_REGISTER = URL_BASE_API + "/Register/index.html";
 	public static String URL_REGISTER_SEND_CODE = URL_BASE_API + "/Register/sendCode.html";
 	public static String URL_REGISTER_RESET_PWD = URL_BASE_API + "/Login/findPassword.html";
+	public static String URL_CHANGE_PWD = URL_BASE_API + "/Login/changePassword.html";
 	public static String URL_MEMBER_find = URL_BASE_API + "/Member/find.html";
 	public static String URL_MEMBER_DETAIL = URL_BASE_API + "/Member/detail.html";
 	public static String URL_MY_COLLECT = URL_BASE_API + "/Collect/find.html";
@@ -26,6 +30,7 @@ public class NetworkData {
 	public static String URL_PRIVATE_MESSAGE_INFO = URL_BASE_API + "/Message/pivateInfo.html";
 	public static String URL_SEND_PUBLIC_MESSAGE = URL_BASE_API + "/Message/insert.html";
 	public static String URL_SEND_PRIVATE_MESSAGE = URL_BASE_API + "/Message/reply.html";
+	public static String URL_GENERATE_PRICE = URL_BASE_API + "/Calculator/createQuote.html";
 	
 	public static String URL_SEND_MESSAGE = URL_BASE_API + "/Message/insert.html";
 	public static String URL_DECORATE_TIPS_DETAIL = URL_BASE_API + "/DecKms/docsDetail.html";
@@ -89,6 +94,22 @@ public class NetworkData {
 		public String idc_img;
 	}
 	
+	public AccountInfoBack getNewAccountInfoBack(){
+		return new AccountInfoBack();
+	}
+	public class AccountInfoBack{
+		public int code;
+		public String error;
+		public ArrayList<RegionsItem> provinces = new ArrayList<RegionsItem>();
+		public String id;
+		public String username;
+		public String qq;
+		public String password;
+		public String work_num;
+		public String city_id;
+		public String introduce;
+	}
+	
 	public GetPayListData getNewGetPayList(){
 		return new GetPayListData();
 	}
@@ -119,6 +140,52 @@ public class NetworkData {
 		public String bill_info;
 		public String amount;
 		public String channel;
+	}
+	
+	public GeneratePriceBack getNewGeneratePriceBack(){
+		return new GeneratePriceBack();
+	}
+	
+	public class GeneratePriceBack{
+		public int code;
+		public String error;
+		public int chug_price,chug_num;
+		public int youyj_price,youyj_num;
+		public int jingsq_price,jingsq_num;
+		public int qiangz_price,qiangz_num;
+		public int diz_price,diz_num;
+		public int shuic_price,shuic_num;
+		public int resq_price,resq_num;
+		public int jicdd_price,jicdd_num;
+		public int zuobq_price,zuobq_num;
+		public int yusg_price,yusg_num;
+		public int lingyf_price,lingyf_num;
+		public int lingylt_price,lingylt_num;
+		public int fangdm_price,fangdm_num;
+		public int dib_price,dib_num;
+		public int tul_price,tul_num;
+		public int mum_price,mum_num;
+		public int yangtc_price,yangtc_num;
+		public int kaig_price,kaig_num;
+		public double base_price;
+		public double access_price;
+		public double worker_price;
+		public double final_price;
+		
+	}
+	
+	public GeneratePriceData getNewGeneratePriceData(){
+		return new GeneratePriceData();
+	}
+	
+	public class GeneratePriceData{
+		public int area;
+		public int ting;
+		public int room;
+		public int chu;
+		public int wei;
+		public int yangtai;
+		public String dec_way;
 	}
 	
 	public UserEvalueData getNewUserEvalueData(){

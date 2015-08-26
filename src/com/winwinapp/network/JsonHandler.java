@@ -233,6 +233,169 @@ public class JsonHandler {
 		return success;
 	}
 	
+	public static String createModifyAccountInfo(NetworkData.AccountInfoBack data){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			jstring.put("id", data.id);
+			jstring.put("qq", data.qq);
+			jstring.put("work_num", data.work_num);
+			jstring.put("city_id", data.city_id);
+			jstring.put("introduce", data.introduce);
+			jstring.put("sessid", KoalaApplication.loginData.sessid);
+			
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+	}
+	public static boolean parseAccountInfo(String str,NetworkData.AccountInfoBack back){
+		boolean success = false;
+		try {
+			JSONObject response = new JSONObject(str);
+			int code = -1;
+			code = response.getInt("code");
+			back.code = code;
+			if(code == 0){
+				int total = 0;
+				JSONArray array = response.getJSONArray("province");
+				total = array.length();
+				for(int i=0;i<total;i++){
+					JSONObject itemObject = array.getJSONObject(i);
+					NetworkData.RegionsItem item = NetworkData.getInstance().getNewRegionsItem();
+					item.regions_id = itemObject.getString("region_id");
+					item.regions_name = itemObject.getString("region_name");					
+					back.provinces.add(item);
+				}
+				JSONObject data = response.getJSONObject("data");
+				back.id = data.getString("id");
+				back.username = data.getString("username");
+				back.qq = data.getString("qq");
+				back.password = data.getString("password");
+				back.city_id = data.getString("city_id");
+				back.work_num = data.getString("work_num");
+				back.introduce = data.getString("introduce");
+				success = true;
+			}else{
+				back.error = response.getString("error");
+				success = false;
+			}
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			back.error = e.toString();
+			return false;
+		}
+		
+		return success;
+	}
+	
+	public static String createAccountInfoString(){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			//jstring.put("page", data.page);
+			jstring.put("sessid", KoalaApplication.loginData.sessid);
+			
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+	}
+	
+	public static String createGeneratePriceString(NetworkData.GeneratePriceData data){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			jstring.put("area", data.area);
+			jstring.put("chu", data.chu);
+			jstring.put("room", data.room);
+			jstring.put("ting", data.ting);
+			jstring.put("wei", data.wei);
+			jstring.put("yangtai", data.yangtai);
+			jstring.put("dec_way", data.dec_way);
+			//jstring.put("page", data.page);
+			//jstring.put("sessid", KoalaApplication.loginData.sessid);
+			
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+	}
+	
+	public static boolean parseGeneratePrice(String str,NetworkData.GeneratePriceBack back){
+		boolean success = false;
+		try {
+			JSONObject response = new JSONObject(str);
+			int code = 0;
+			code = response.getInt("code");
+			back.code = code;
+			if(code == 0){
+				JSONObject values = response.getJSONObject("items_val");
+				back.chug_num = values.getInt("chug_num");
+				back.chug_price = values.getInt("chug_price");
+				back.youyj_num = values.getInt("youyj_num");
+				back.youyj_price = values.getInt("youyj_price");
+				back.jingsq_num = values.getInt("jingsq_num");
+				back.jingsq_price = values.getInt("jingsq_price");
+				back.diz_num = values.getInt("diz_num");
+				back.diz_price = values.getInt("diz_price");
+				back.qiangz_num = values.getInt("qiangz_num");
+				back.qiangz_price = values.getInt("qiangz_price");
+				back.shuic_num = values.getInt("shuic_num");
+				back.shuic_price = values.getInt("shuic_price");
+				back.resq_num = values.getInt("resq_num");
+				back.resq_price = values.getInt("resq_price");
+				back.jicdd_num = values.getInt("jicdd_num");
+				back.jicdd_price = values.getInt("jicdd_price");
+				back.zuobq_num = values.getInt("zuobq_num");
+				back.zuobq_price = values.getInt("zuobq_price");
+				back.yusg_num = values.getInt("yusg_num");
+				back.yusg_price = values.getInt("yusg_price");
+				back.lingyf_num = values.getInt("lingyf_num");
+				back.lingyf_price = values.getInt("lingyf_price");
+				back.lingylt_num = values.getInt("lingylt_num");
+				back.lingylt_price = values.getInt("lingylt_price");
+				back.fangdm_num = values.getInt("fangdm_num");
+				back.fangdm_price = values.getInt("fangdm_price");
+				back.dib_num = values.getInt("dib_num");
+				back.dib_price = values.getInt("dib_price");
+				back.tul_num = values.getInt("tul_num");
+				back.tul_price = values.getInt("tul_price");
+				back.mum_num = values.getInt("mum_num");
+				back.mum_price = values.getInt("mum_price");
+				back.yangtc_num = values.getInt("yangtc_num");
+				back.yangtc_price = values.getInt("yangtc_price");
+				back.kaig_num = values.getInt("kaig_num");
+				back.kaig_price = values.getInt("kaig_price");
+				
+				JSONObject data = response.getJSONObject("data");
+				back.base_price = data.getDouble("base_price");
+				back.access_price = data.getDouble("access_price");
+				back.worker_price = data.getDouble("worker_price");
+				back.final_price = data.getDouble("final_price");
+				
+				success = true;
+			}else{
+				back.error = response.getString("error");
+				success = false;
+			}
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			back.error = e.toString();
+			return false;
+		}
+		
+		return success;
+	}
+	
 	public static String createGetPayListString(NetworkData.GetPayListData data){
 		String str = null;
 		JSONObject jstring = new JSONObject();

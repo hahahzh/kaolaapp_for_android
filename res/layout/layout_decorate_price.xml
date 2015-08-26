@@ -11,6 +11,7 @@
     android:orientation="vertical"
     android:focusable="true"
     android:focusableInTouchMode="true"
+    android:id="@+id/decorate_price_ll"
      >
 
     <LinearLayout
@@ -1266,6 +1267,8 @@
                 android:layout_toLeftOf="@id/price_main_matirial_total"
                 android:background="@drawable/rectangular_150_75"
                 android:paddingLeft="2dp"
+                android:inputType="numberDecimal"
+                android:id="@+id/price_base"
                 android:text="45800" />
 
         </RelativeLayout>
@@ -1304,6 +1307,8 @@
                 android:layout_toLeftOf="@id/price_sub_matirial_total"
                 android:background="@drawable/rectangular_150_75"
                 android:paddingLeft="2dp"
+                android:inputType="numberDecimal"
+                android:id="@+id/price_access"
                 android:text="6870" />
 
         </RelativeLayout>
@@ -1343,6 +1348,8 @@
                 android:singleLine="true"
                 android:background="@drawable/rectangular_150_75"
                 android:text="25000"
+                android:inputType="numberDecimal"
+                android:id="@+id/price_worker"
                 android:paddingLeft="2dp" />
         </RelativeLayout>
 
@@ -1366,7 +1373,7 @@
                 android:text="合计工程总价" />
 
             <TextView
-                android:id="@+id/price_total"
+                android:id="@+id/price_total_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -1377,10 +1384,12 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/price_total"
+                android:layout_toLeftOf="@id/price_total_txt"
                 android:background="@drawable/rectangular_150_75"
                 android:paddingLeft="2dp"
                 android:singleLine="true"
+                android:id="@+id/price_total"
+                android:inputType="numberDecimal"
                 android:text="97670" />
 
         </RelativeLayout>

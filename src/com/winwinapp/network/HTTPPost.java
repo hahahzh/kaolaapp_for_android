@@ -159,6 +159,19 @@ public class HTTPPost {
 		return success;
 	}
 	
+	public static boolean GeneratePrice(NetworkData.GeneratePriceData data,NetworkData.GeneratePriceBack msgBack){
+		boolean success = false;
+		String postData = JsonHandler.createGeneratePriceString(data);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_GENERATE_PRICE, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseGeneratePrice(back, msgBack);
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "网络不可用";
+		}
+		return success;
+	}
+	
 	public static boolean GetPayList(NetworkData.GetPayListData data,NetworkData.GetPayListBack msgBack){
 		boolean success = false;
 		String postData = JsonHandler.createGetPayListString(data);
@@ -447,6 +460,32 @@ public class HTTPPost {
 		String back = HTTPBase.HTTPSend(NetworkData.URL_REGISTER_SEND_CODE, postData, HTTPBase.HTTP_TYPE_POST);
 		if(!TextUtils.isEmpty(back)){
 			success = JsonHandler.parseCommonBack(back, msgBack);
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "网络不可用";
+		}
+		return success;
+	}
+	
+	public static boolean ModifyAccountInfo(NetworkData.AccountInfoBack data,NetworkData.CommonBack msgBack){
+		boolean success = false;
+		String postData = JsonHandler.createModifyAccountInfo(data);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_USER_ACCOUNT_MODIFY, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseCommonBack(back, msgBack);
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "网络不可用";
+		}
+		return success;
+	}
+	
+	public static boolean GetAccountInfo(NetworkData.AccountInfoBack msgBack){
+		boolean success = false;
+		String postData = JsonHandler.createAccountInfoString();
+		String back = HTTPBase.HTTPSend(NetworkData.URL_USER_ACCOUNT_INFO, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseAccountInfo(back, msgBack);
 		}else{
 			msgBack.code = -1;
 			msgBack.error = "网络不可用";

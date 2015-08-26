@@ -5,13 +5,17 @@ import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
+import com.winwinapp.bids.BidsListActivity;
 import com.winwinapp.koala.ActionBarActivity;
 import com.winwinapp.koala.KoalaApplication;
 import com.winwinapp.koala.R;
@@ -30,17 +34,17 @@ public class PreEvaluateActivity extends ActionBarActivity {
 	RadioButton mPoor;
 	KoalaApplication mApp;
 	DecorateSaveData mSavedData = new DecorateSaveData();
-	
+
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.layout_decorate_pre_evaluate);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.layout_decorate_pre_evaluate);
 
-		initActionBar();
-		initView();
-		mApp = (KoalaApplication) this.getApplication();
-		loadSavedData();
+        initActionBar();
+        initView();
+        mApp = (KoalaApplication) this.getApplication();
+        loadSavedData();
 	}
-
+	
 	public void loadSavedData(){
 		if(mApp.loadSavedDecorateData(mSavedData)){
 			mArea.setText(mSavedData.area+"");
@@ -74,6 +78,13 @@ public class PreEvaluateActivity extends ActionBarActivity {
 			public void onClick(View arg0) {
 				// TODO 自动生成的方法存根
 				Intent intent = new Intent(PreEvaluateActivity.this,DecoratePriceActivity.class);
+				intent.putExtra("area", Integer.parseInt(mArea.getText().toString()));
+				intent.putExtra("ting", mHall.getCurrentNumber());
+				intent.putExtra("room", mRoom.getCurrentNumber());
+				intent.putExtra("chu",  mKitchen.getCurrentNumber());
+				intent.putExtra("wei",  mToilet.getCurrentNumber());
+				intent.putExtra("yangtai",  mBalcony.getCurrentNumber());
+				intent.putExtra("dec_way", mRich.isChecked()?"hardb":"paperb");
 				startActivity(intent);
 			}
 			
