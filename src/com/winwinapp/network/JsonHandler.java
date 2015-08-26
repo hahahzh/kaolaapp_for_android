@@ -233,6 +233,61 @@ public class JsonHandler {
 		return success;
 	}
 	
+	public static String createGetPayListString(NetworkData.GetPayListData data){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			jstring.put("limit", data.limit);
+			//jstring.put("page", data.page);
+			jstring.put("sessid", KoalaApplication.loginData.sessid);
+			
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+	}
+	
+	public static boolean parseGetPayList(String str,NetworkData.GetPayListBack back){
+		boolean success = false;
+		try {
+			JSONObject response = new JSONObject(str);
+			int code = -1;
+			code = response.getInt("code");
+			back.code = code;
+			if(code == 0){
+				int total = Integer.parseInt(response.getString("total"));
+				JSONArray array = response.getJSONArray("data");
+				total = array.length();
+				back.total = total;
+				for(int i=0;i<total;i++){
+					JSONObject itemObject = array.getJSONObject(i);
+					NetworkData.PayListItem item = NetworkData.getInstance().getNewPayListItem();
+					item.operate_time = itemObject.getString("operate_time");
+					item.username = itemObject.getString("username");
+					//item.bill_type = itemObject.getString("bill_type");
+					item.bill_info = itemObject.getString("bill_info");
+					item.amount = itemObject.getString("amount");
+					//item.channel = itemObject.getString("channel");
+					
+					back.items.add(item);
+				}
+				success = true;
+			}else{
+				back.error = response.getString("error");
+				success = false;
+			}
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			back.error = e.toString();
+			return false;
+		}
+		
+		return success;
+	}
+	
 	public static String createFindMemberString(NetworkData.FindMemberData data){
 		String str = null;
 		JSONObject jstring = new JSONObject();

@@ -159,6 +159,19 @@ public class HTTPPost {
 		return success;
 	}
 	
+	public static boolean GetPayList(NetworkData.GetPayListData data,NetworkData.GetPayListBack msgBack){
+		boolean success = false;
+		String postData = JsonHandler.createGetPayListString(data);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_PAY_LIST, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseGetPayList(back, msgBack);
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "Õ¯¬Á≤ªø…”√";
+		}
+		return success;
+	}
+	
 	public static boolean FindMember(NetworkData.FindMemberData data,NetworkData.FindMemberBack msgBack){
 		boolean success = false;
 		String postData = JsonHandler.createFindMemberString(data);

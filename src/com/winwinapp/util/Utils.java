@@ -5,6 +5,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -134,6 +137,19 @@ public class Utils {
     public static int dp2px(Context context,int dp){
     	final float scale = context.getResources().getDisplayMetrics().density;
     	return (int)(dp*scale+0.5f);
+    }
+    
+    public static String utcToData(String utc){
+    	long tm = 0;
+    	try{
+    		tm = Long.parseLong(utc);
+    	}catch(Exception e){
+    		return "1970-01-01";
+    	}
+    	SimpleDateFormat foo = new SimpleDateFormat("yyyy-MM-dd");
+    	Calendar c = Calendar.getInstance();
+    	Date time = new Date(tm);
+    	return foo.format(time);
     }
     
 }

@@ -80,6 +80,7 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 			mData.page = 0;
 			mData.limit = mLimit;
 			mData.keyword = "";
+			mBack.memberInfo.clear();
 			success = HTTPPost.FindMember(mData, mBack);
 			Message msg = Message.obtain();
 			msg.what = 1;

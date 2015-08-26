@@ -18,12 +18,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.winwinapp.designer.DesignerActivity;
 import com.winwinapp.koala.ActionBarActivity;
 import com.winwinapp.koala.R;
+import com.winwinapp.network.HTTPPost;
+import com.winwinapp.network.NetworkData;
+import com.winwinapp.util.Utils;
 
 public class MyPayActivity extends ActionBarActivity implements OnClickListener{
 
 	private static final int INDEX_BUTTON_PAY = 1;
+	private static final int MESSAGE_PAY_BACK = 2;
 	ArrayList<MyPayItem> mArrayListOnPay = new ArrayList<MyPayItem>();
 	ArrayList<MyPayItem> mArrayListPayed = new ArrayList<MyPayItem>();
 	ListView mListView;
@@ -36,6 +41,8 @@ public class MyPayActivity extends ActionBarActivity implements OnClickListener{
 	TextView mTipsText;
 	String mOnPayTips = "首付=合同总额  ×百分比(设计50%,工长20%,监理50%)";
 	String mPayedTips = "首付款，考拉会为您妥善保管，竣工后按流程支付给收款人。";
+	NetworkData.GetPayListBack mBack = NetworkData.getInstance().getNewGetPayListBack();
+	NetworkData.GetPayListData mData = NetworkData.getInstance().getNewGetPayList();
 	
 	private Handler mHandler = new Handler(){
 		public void handleMessage(Message msg){
@@ -44,10 +51,37 @@ public class MyPayActivity extends ActionBarActivity implements OnClickListener{
 				int position = msg.arg1;
 				Toast.makeText(MyPayActivity.this, "pos="+position+",暂时还不支持支付功能", Toast.LENGTH_LONG).show();
 				break;
+			case 2:
+				String error = (String)msg.obj;
+				if("OK".equals(error)){
+					mAdapter.notifyDataSetChanged();
+					//Toast.makeText(MyPayActivity.this, "获取支付列表成功", Toast.LENGTH_LONG).show();
+				}else{
+					Toast.makeText(MyPayActivity.this, "获取支付列表失败："+error, Toast.LENGTH_LONG).show();
+				}
+				break;
 			}
 		}
 	};
 	
+	
+	public class GetPayListThread extends Thread{
+		public void run(){
+			boolean success = false;
+			mData.limit = 5;
+			mData.page = 0;
+			Message msg = Message.obtain();
+			msg.what = MESSAGE_PAY_BACK;
+			success = HTTPPost.GetPayList(mData, mBack);
+			if(success){
+				msg.obj = "OK";
+			}else{
+				msg.obj = mBack.error;
+			}
+			mHandler.sendMessage(msg);
+		}
+	}
+		
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_my_pay);
@@ -55,6 +89,7 @@ public class MyPayActivity extends ActionBarActivity implements OnClickListener{
 		initActionBar();
 		initListView();
 		initView();
+		new GetPayListThread().start();
 		
 	}
 	
@@ -76,33 +111,33 @@ public class MyPayActivity extends ActionBarActivity implements OnClickListener{
 	
 	public void initListView(){
 		mListView = (ListView)this.findViewById(R.id.my_pay_list_view);
-		MyPayItem item = new MyPayItem();
-		item.mBioName = "杨浦小区";
-		item.mName = "章成";
-		item.mJob = "设计师";
-		item.mTotalAcount = "￥10000";
-		item.date = "  2015-03-19";
-		item.firstPay = "￥5000";
-		mArrayListOnPay.add(item);
-		mArrayListPayed.add(item);
-		item = new MyPayItem();
-		item.mBioName = "杨浦小区";
-		item.mName = "章成";
-		item.mJob = "工长";
-		item.mTotalAcount = "￥10000";
-		item.date = "  2015-03-19";
-		item.firstPay = "￥2000";
-		mArrayListOnPay.add(item);
-		mArrayListPayed.add(item);
-		item = new MyPayItem();
-		item.mBioName = "杨浦小区";
-		item.mName = "章成";
-		item.mJob = "监理";
-		item.mTotalAcount = "￥10000";
-		item.date = "  2015-03-19";
-		item.firstPay = "￥2000";
-		mArrayListOnPay.add(item);
-		mArrayListPayed.add(item);
+//		MyPayItem item = new MyPayItem();
+//		item.mBioName = "杨浦小区";
+//		item.mName = "章成";
+//		item.mJob = "设计师";
+//		item.mTotalAcount = "￥10000";
+//		item.date = "  2015-03-19";
+//		item.firstPay = "￥5000";
+//		mArrayListOnPay.add(item);
+//		mArrayListPayed.add(item);
+//		item = new MyPayItem();
+//		item.mBioName = "杨浦小区";
+//		item.mName = "章成";
+//		item.mJob = "工长";
+//		item.mTotalAcount = "￥10000";
+//		item.date = "  2015-03-19";
+//		item.firstPay = "￥2000";
+//		mArrayListOnPay.add(item);
+//		mArrayListPayed.add(item);
+//		item = new MyPayItem();
+//		item.mBioName = "杨浦小区";
+//		item.mName = "章成";
+//		item.mJob = "监理";
+//		item.mTotalAcount = "￥10000";
+//		item.date = "  2015-03-19";
+//		item.firstPay = "￥2000";
+//		mArrayListOnPay.add(item);
+//		mArrayListPayed.add(item);
 		mAdapter = new MyPayAdapter(this);
 		mListView.setAdapter(mAdapter);
 		//mListView.setOnItemClickListener(this);
@@ -148,10 +183,10 @@ public class MyPayActivity extends ActionBarActivity implements OnClickListener{
 		@Override
 		public int getCount() {
 			// TODO 自动生成的方法存根
-			if(mCurrentState == 0){
-				return mArrayListOnPay.size();
-			}else{
-				return mArrayListPayed.size();
+			if(mCurrentState == 0){//待支付
+				return mBack.items.size();
+			}else{//已支付
+				return mBack.items.size();
 			}
 		}
 
@@ -178,21 +213,26 @@ public class MyPayActivity extends ActionBarActivity implements OnClickListener{
 			TextView date = (TextView) view.findViewById(R.id.my_pay_item_date);
 			TextView firstPay = (TextView) view.findViewById(R.id.my_pay_item_first_pay);
 			Button pay = (Button) view.findViewById(R.id.my_pay_item_pay);
-			MyPayItem item;
+			NetworkData.PayListItem item = mBack.items.get(position);
+			//MyPayItem item;
 			if(mCurrentState == 0){
-				item = mArrayListOnPay.get(position);
+				item = mBack.items.get(position);
 				pay.setOnClickListener(new OnItemChildClickListener(INDEX_BUTTON_PAY,position));
 			}else{
 				firstPay.setTextColor(Color.BLACK);
 				pay.setVisibility(View.GONE);
-				item = mArrayListPayed.get(position);
+				item = mBack.items.get(position);
 			}
-			name.setText(item.mName);
-			bio.setText(item.mBioName);
-			job.setText(item.mJob);
-			account.setText(item.mTotalAcount);
-			date.setText(item.date);
-			firstPay.setText(item.firstPay);
+			name.setText(item.username);
+			String[] arr = item.bill_info.split(" ");
+			if(arr != null && arr.length >= 3){
+				bio.setText(arr[1]);
+			}
+			
+			//job.setText(item.mJob);
+			account.setText(item.amount);
+			date.setText(Utils.utcToData(item.operate_time));
+			//firstPay.setText(item.firstPay);
 			
 			return view;
 		}

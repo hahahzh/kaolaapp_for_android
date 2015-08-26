@@ -50,12 +50,16 @@ public class NetworkData {
 	public static String URL_OTHER_DECORATE_LIST = URL_BASE_API + "/Decorate/winDecList.html";
 	public static String URL_OTHER_DECORATE_DETAIL = URL_BASE_API + "/Decorate/winDecDetail.html";
 	
+	public static String URL_PAY_LIST = URL_BASE_API + "/Pay/payList.html";
+	public static String URL_PAY_FIND_CONTRACT = URL_BASE_API + "/Pay/findContract.html";
+	
 	public static String URL_SET_DEPOSIT = URL_BASE_API + "/Decorate/finishProjEnd.html";//设置保证金
 	public static String URL_USER_EVALUE = URL_BASE_API + "/Decorate/userEvaluate.html";
 	public static String URL_ID_AUTHEN = URL_BASE_API + "/Auth/IdAuth.html";
 	
 	public static String URL_DECKMS = URL_BASE_API + "/DecKms/decKmsList.html";
 	public static String URL_DECKMS_WEBPAGE = URL_SERVER + "/index.php/Home/DecKms/detail/doc/";
+	
 	public static final int USER_TYPE_MEMBER = 1;
 	public static final int USER_TYPE_DESIGNER = 2;
 	public static final int USER_TYPE_SUPERIOR = 3;
@@ -83,6 +87,38 @@ public class NetworkData {
 		public String real_name;
 		public String idcard;
 		public String idc_img;
+	}
+	
+	public GetPayListData getNewGetPayList(){
+		return new GetPayListData();
+	}
+	
+	public class GetPayListData{
+		public int limit = 5;
+		public int page = 0;
+	}
+	
+	public GetPayListBack getNewGetPayListBack(){
+		return new GetPayListBack();
+	}
+	
+	public class GetPayListBack{
+		public int code;
+		public int total;
+		public String error;
+		public ArrayList<PayListItem> items = new ArrayList<PayListItem>();
+	}
+	
+	public PayListItem getNewPayListItem(){
+		return new PayListItem();
+	}
+	public class PayListItem{
+		public String username;
+		public String operate_time;
+		public String bill_type;
+		public String bill_info;
+		public String amount;
+		public String channel;
 	}
 	
 	public UserEvalueData getNewUserEvalueData(){
