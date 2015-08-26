@@ -105,6 +105,21 @@ public class JsonHandler {
 		return success;
 	}
 	
+	public static String createAddDelString(NetworkData.AddDelMyCollectData data){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			jstring.put("uid", data.uid);
+			jstring.put("sessid", KoalaApplication.loginData.sessid);
+			
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+	}
+	
 	public static String createFindMemberDetailString(NetworkData.MemberDetailData data){
 		String str = null;
 		JSONObject jstring = new JSONObject();
@@ -142,6 +157,66 @@ public class JsonHandler {
 				back.case_num = itemObject.getString("case_num");
 				back.introduce = itemObject.getString("introduce");
 
+				success = true;
+			}else{
+				back.error = response.getString("error");
+				success = false;
+			}
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			back.error = e.toString();
+			return false;
+		}
+		
+		return success;
+	}
+	
+	public static String createMyCollectString(NetworkData.MyCollectData data){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			jstring.put("typeid", data.typeid);
+			jstring.put("page", data.page);
+			jstring.put("limit", data.limit);
+			jstring.put("sessid", KoalaApplication.loginData.sessid);
+			
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+	}
+	
+	public static boolean parseMyCollect(String str,NetworkData.MyCollectBack back){
+		boolean success = false;
+		try {
+			JSONObject response = new JSONObject(str);
+			int code = -1;
+			code = response.getInt("code");
+			back.code = code;
+			if(code == 0){
+				int total = Integer.parseInt(response.getString("total"));
+				JSONArray array = response.getJSONArray("data");
+				total = array.length();
+				back.total = total;
+				for(int i=0;i<total;i++){
+					JSONObject itemObject = array.getJSONObject(i);
+					NetworkData.FindMemberItem item = NetworkData.getInstance().getNewFindMemberItem();
+					item.id = itemObject.getString("id");
+					item.username = itemObject.getString("username");
+					item.work_num = itemObject.getString("work_num");
+					item.name_auth = itemObject.getString("name_auth");
+					item.avatar = itemObject.getString("avatar");
+					item.casename = itemObject.getString("casename");
+					item.rate_avg = itemObject.getString("rate_avg");
+					item.attud_avg = itemObject.getString("attud_avg");
+					item.case_num = itemObject.getString("case_num");
+					item.introduce = itemObject.getString("introduce");
+					
+					back.memberInfo.add(item);
+				}
 				success = true;
 			}else{
 				back.error = response.getString("error");

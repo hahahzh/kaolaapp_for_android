@@ -18,8 +18,8 @@ public class NetworkData {
 	public static String URL_MEMBER_find = URL_BASE_API + "/Member/find.html";
 	public static String URL_MEMBER_DETAIL = URL_BASE_API + "/Member/detail.html";
 	public static String URL_MY_COLLECT = URL_BASE_API + "/Collect/find.html";
-	public static String URL_ADD_COLLECT = URL_BASE_API + "/Member/addCollect.html";
-	public static String URL_DEL_COLLECT = URL_BASE_API + "/Member/delCollect.html";
+	public static String URL_ADD_COLLECT = URL_BASE_API + "/Collect/addCollect.html";
+	public static String URL_DEL_COLLECT = URL_BASE_API + "/Collect/delCollect.html";
 	public static String URL_PRIVATE_MESSAGE_LIST = URL_BASE_API + "/Message/privateList.html";
 	public static String URL_PUBLIC_MESSAGE_LIST = URL_BASE_API + "/Message/publicList.html";
 	public static String URL_PUBLIC_MESSAGE_INFO = URL_BASE_API + "/Message/publicInfo.html";
@@ -257,15 +257,26 @@ public class NetworkData {
 		public String introduce = null;
 	}
 	
+	public MyCollectData getNewMyCollectData(){
+		return new MyCollectData();
+	}
+	
 	public class MyCollectData{
-		int typeid = 2;//only 2,3,4
-		int page = 1;//current page number
-		int limit = 5;//
-		String sessid;
+		public int typeid = 2;//only 2,3,4
+		public int page = 0;//current page number
+		public int limit = 5;//
+	}
+	
+	public MyCollectBack getNewMyCollectBack(){
+		return new MyCollectBack();
 	}
 	
 	public class MyCollectBack extends FindMemberBack{
 		
+	}
+	
+	public AddDelMyCollectData getNewAddDelMyCollectData(){
+		return new AddDelMyCollectData();
 	}
 	
 	public class AddDelMyCollectData{

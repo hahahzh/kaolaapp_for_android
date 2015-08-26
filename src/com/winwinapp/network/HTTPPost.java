@@ -120,10 +120,49 @@ public class HTTPPost {
 		return success;
 	}
 	
+	public static boolean DelCollectList(NetworkData.AddDelMyCollectData data,NetworkData.CommonBack msgBack){
+		boolean success = false;
+		String postData = JsonHandler.createAddDelString(data);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_DEL_COLLECT, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseCommonBack(back, msgBack);
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "网络不可用";
+		}
+		return success;
+	}
+	
+	public static boolean AddCollectList(NetworkData.AddDelMyCollectData data,NetworkData.CommonBack msgBack){
+		boolean success = false;
+		String postData = JsonHandler.createAddDelString(data);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_ADD_COLLECT, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseCommonBack(back, msgBack);
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "网络不可用";
+		}
+		return success;
+	}
+	
+	public static boolean getMyCollectList(NetworkData.MyCollectData data,NetworkData.MyCollectBack msgBack){
+		boolean success = false;
+		String postData = JsonHandler.createMyCollectString(data);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_MEMBER_find, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseMyCollect(back, msgBack);
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "网络不可用";
+		}
+		return success;
+	}
+	
 	public static boolean FindMember(NetworkData.FindMemberData data,NetworkData.FindMemberBack msgBack){
 		boolean success = false;
 		String postData = JsonHandler.createFindMemberString(data);
-		String back = HTTPBase.HTTPSend(NetworkData.URL_MEMBER_find, postData, HTTPBase.HTTP_TYPE_POST);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_MY_COLLECT, postData, HTTPBase.HTTP_TYPE_POST);
 		if(!TextUtils.isEmpty(back)){
 			success = JsonHandler.parseFindMember(back, msgBack);
 		}else{
