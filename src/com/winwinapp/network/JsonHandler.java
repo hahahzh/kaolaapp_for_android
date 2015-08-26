@@ -251,6 +251,49 @@ public class JsonHandler {
 		}
 		return str;
 	}
+	
+	public static boolean parseAdList(String str,NetworkData.GetAdListBack back){
+		boolean success = false;
+		try {
+			JSONObject response = new JSONObject(str);
+			int code = -1;
+			code = response.getInt("code");
+			back.code = code;
+			if(code == 0){
+				int total = 0;
+				JSONObject data = response.getJSONObject("data");
+				JSONArray banner = data.getJSONArray("banner");
+				total = banner.length();
+				for(int i=0;i<total;i++){
+					JSONObject itemObject = banner.getJSONObject(i);
+					NetworkData.AdItem item = NetworkData.getInstance().getNewAdItem();
+					item.url = itemObject.getString("url");
+					item.src = itemObject.getString("src");		
+					item.width = itemObject.getString("width");
+					item.height = itemObject.getString("height");
+					back.banner.add(item);
+				}
+				JSONObject leftAd = data.getJSONObject("leftAd");
+				//back.leftAd.url = leftAd.getString("url");
+				back.leftAd.src = leftAd.getString("src");		
+				back.leftAd.width = leftAd.getString("width");
+				back.leftAd.height = leftAd.getString("height");
+				
+				success = true;
+			}else{
+				back.error = response.getString("error");
+				success = false;
+			}
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			back.error = e.toString();
+			return false;
+		}
+		
+		return success;
+	}
+	
 	public static boolean parseAccountInfo(String str,NetworkData.AccountInfoBack back){
 		boolean success = false;
 		try {

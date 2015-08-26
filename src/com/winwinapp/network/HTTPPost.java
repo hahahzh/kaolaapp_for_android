@@ -480,6 +480,19 @@ public class HTTPPost {
 		return success;
 	}
 	
+	public static boolean GetAdList(NetworkData.GetAdListBack msgBack){
+		boolean success = false;
+		String postData = "";
+		String back = HTTPBase.HTTPSend(NetworkData.URL_AD_LIST, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseAdList(back, msgBack);
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "Õ¯¬Á≤ªø…”√";
+		}
+		return success;
+	}
+	
 	public static boolean GetAccountInfo(NetworkData.AccountInfoBack msgBack){
 		boolean success = false;
 		String postData = JsonHandler.createAccountInfoString();

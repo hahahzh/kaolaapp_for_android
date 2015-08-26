@@ -14,6 +14,7 @@ public class NetworkData {
 	public static String URL_LOGIN = URL_BASE_API + "/Login/index.html";
 	public static String URL_USER_ACCOUNT_INFO = URL_BASE_API + "/User/accountInfo.html";
 	public static String URL_USER_ACCOUNT_MODIFY = URL_BASE_API + "/User/updateMember.html";
+	public static String URL_AD_LIST = URL_BASE_API + "/Ad/adList.html";
 	
 	public static String URL_REGISTER = URL_BASE_API + "/Register/index.html";
 	public static String URL_REGISTER_SEND_CODE = URL_BASE_API + "/Register/sendCode.html";
@@ -92,6 +93,28 @@ public class NetworkData {
 		public String real_name;
 		public String idcard;
 		public String idc_img;
+	}
+	
+	public GetAdListBack getNewGetAdListBack(){
+		return new GetAdListBack();
+	}
+	
+	public class GetAdListBack{
+		public int code;
+		public String error;
+		public ArrayList<AdItem> banner = new ArrayList<AdItem>();
+		public AdItem leftAd = new AdItem();
+	}
+	
+	public AdItem getNewAdItem(){
+		return new AdItem();
+	}
+	public class AdItem{
+		public String url;
+		public String src;
+		public String width;
+		public String height;
+		public Bitmap bm;
 	}
 	
 	public AccountInfoBack getNewAccountInfoBack(){

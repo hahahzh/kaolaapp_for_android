@@ -1,7 +1,11 @@
 package com.winwinapp.koala;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.zip.Inflater;
 
 import com.winwinapp.bids.BidsDistinctActivity;
 import com.winwinapp.bids.BidsListActivity;
@@ -12,6 +16,8 @@ import com.winwinapp.decorateTips.DecorateTipsActivity;
 import com.winwinapp.designer.ContactDesignerActivity;
 import com.winwinapp.login.LoginPageActivity;
 import com.winwinapp.my.MyLoveActivity.OnItemChildClickListener;
+import com.winwinapp.network.HTTPPost;
+import com.winwinapp.network.NetworkData;
 import com.winwinapp.selectcity.SelectCityActivity;
 import com.winwinapp.util.Utils;
 
@@ -70,11 +76,14 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
     private Activity mActivity;
     FrameLayout mViewPagerContainer;
     
-    private int mImageResource[] = {R.drawable.image_preview,R.drawable.image_preview,R.drawable.image_preview,R.drawable.image_preview};
+    private int mImageResource[] = {R.drawable.image_preview};
     private String mGridViewTitle[] = {"装修预算","我要竞标","装修宝典","联系设计师","寻找好工长","监理来帮忙"};
     private int mGridImageResourceId[] = {R.drawable.calculator,R.drawable.edit,R.drawable.literature,R.drawable.design,R.drawable.roller,R.drawable.supervisor};
     
     private Drawable mPreviewImg;
+    private boolean mIsAdLoaded = false;
+    NetworkData.GetAdListBack mBack = NetworkData.getInstance().getNewGetAdListBack();
+    LayoutInflater mInflater;
     
     private Handler mHandler = new Handler(){
 		public void handleMessage(Message msg){
@@ -86,9 +95,46 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
 				mHandler.removeMessages(MESSAGE_SWITCH_WEB_PAGE);
 				mHandler.sendEmptyMessageDelayed(MESSAGE_SWITCH_WEB_PAGE, PAGE_UPDATE_INTERVAL);
 				break;
+			case 2:
+				String error = (String)msg.obj;
+				if("OK".equals(error)){
+					displayAd();
+				}else{
+					Toast.makeText(mActivity, "获取广告列表失败："+error, Toast.LENGTH_LONG).show();
+				}
+				break;
 			}
 		}
     };
+    
+    public void displayAd(){
+    	mViewContainer.clear();
+        
+        for(int i=0;i<mBack.banner.size();i++){
+        	View view_item = mInflater.inflate(R.layout.layout_page_item, null);
+            ImageView iv = (ImageView)view_item.findViewById(R.id.imageView1);
+            if(mBack.banner.get(i).bm != null){
+            	iv.setImageBitmap(mBack.banner.get(i).bm);
+            }else
+            {
+            	iv.setImageResource(mImageResource[i]);
+            }
+            mViewContainer.add(view_item);
+            //mPageAdapter.notifyDataSetChanged();
+            //mViewPager.invalidate();
+        }
+        mPageAdapter = new myPageAdapter();
+        mViewPager.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,mViewPagerHeight));
+        mViewPagerContainer.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,mViewPagerHeight));
+        //Toast.makeText(mActivity, "height="+mViewPagerHeight+",wid="+bitmap.getWidth(), Toast.LENGTH_LONG).show();
+        mViewPager.setAdapter(mPageAdapter);
+        
+        mViewPager.setCurrentItem(0);
+        mViewPager.setOnPageChangeListener(new myOnPageChangeListner());
+        mHandler.removeMessages(MESSAGE_SWITCH_WEB_PAGE);
+		mHandler.sendEmptyMessageDelayed(MESSAGE_SWITCH_WEB_PAGE, PAGE_UPDATE_INTERVAL);
+        mIsAdLoaded = true;
+    }
     
     public static String getIdetifyStringFromID(int id){
     	String str = "未知身份";
@@ -118,6 +164,7 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
 		mActivity = this.getActivity();
 		
 		mPreviewImg = getResources().getDrawable(R.drawable.image_preview);
+		mInflater = inflater;
 		initView(inflater,view);
 		
 		return view;
@@ -132,13 +179,47 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
         int reqHeight = (int) getResources().getDimension(R.dimen.hot_pic_height);
         //Log.i(TAG,"reW="+reqWidth + ",reH = "+reqHeight);
         
-        mViewContainer.clear();
-        
-        for(int i=0;i<mImageResource.length;i++){
-        	View view_item = inflater.inflate(R.layout.layout_page_item, null);
-            ImageView iv = (ImageView)view_item.findViewById(R.id.imageView1);
-            iv.setImageResource(mImageResource[i]);
-            mViewContainer.add(view_item);
+        if(mIsAdLoaded){
+        	this.displayAd();
+        }else{
+	        mViewContainer.clear();
+	        
+	        for(int i=0;i<mImageResource.length;i++){
+	        	View view_item = inflater.inflate(R.layout.layout_page_item, null);
+	            ImageView iv = (ImageView)view_item.findViewById(R.id.imageView1);
+	            iv.setImageResource(mImageResource[i]);
+	            mViewContainer.add(view_item);
+	        }
+	        new Thread(){
+				public void run(){
+					boolean success = false;
+					success = HTTPPost.GetAdList(mBack);
+					Message msg = Message.obtain();
+					msg.what = 2;
+					if(success){
+						msg.obj = "OK";
+						int size = mBack.banner.size();
+						for(int i=0;i<size;i++){
+							Bitmap bmp;
+							NetworkData.AdItem item = mBack.banner.get(i);
+							try {
+								bmp = BitmapFactory.decodeStream(new URL(NetworkData.URL_SERVER+item.src).openStream());
+								Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp,mPreviewImg.getIntrinsicWidth(), mPreviewImg.getIntrinsicHeight(), true);
+								item.bm = thumbBmp;
+							} catch (MalformedURLException e) {
+								// TODO 自动生成的 catch 块
+								e.printStackTrace();
+							} catch (IOException e) {
+								// TODO 自动生成的 catch 块
+								e.printStackTrace();
+							}
+						}
+					}else{
+						msg.obj = mBack.error;
+					}
+					mHandler.sendMessage(msg);
+				}
+			}.start();
         }
         
         BitmapFactory.Options options = new BitmapFactory.Options();
@@ -148,16 +229,7 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
         mViewPagerHeight = bitmap.getHeight();
         mViewPagerHeight = mViewPagerHeight * reqWidth / imageWidth;
         
-        mPageAdapter = new myPageAdapter();
-        mViewPager.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,mViewPagerHeight));
-        mViewPagerContainer.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,mViewPagerHeight));
-        //Toast.makeText(mActivity, "height="+mViewPagerHeight+",wid="+bitmap.getWidth(), Toast.LENGTH_LONG).show();
-        mViewPager.setAdapter(mPageAdapter);
         
-        mViewPager.setCurrentItem(0);
-        mViewPager.setOnPageChangeListener(new myOnPageChangeListner());
-        mHandler.removeMessages(MESSAGE_SWITCH_WEB_PAGE);
-		mHandler.sendEmptyMessageDelayed(MESSAGE_SWITCH_WEB_PAGE, PAGE_UPDATE_INTERVAL);
         
         DisplayMetrics dm = new DisplayMetrics();
         mOffset = 0;
@@ -210,6 +282,7 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
 			mContext = context;
 			mInflater = LayoutInflater.from(mContext);
 		}
+		 
 		@Override
 		public int getCount() {
 			// TODO 自动生成的方法存根
@@ -259,6 +332,11 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
     
     public class myPageAdapter extends PagerAdapter{
 
+    	@Override
+    	public int getItemPosition(Object object){   
+            return -2;
+		 }
+    	
         @Override
         public int getCount() {
             // TODO Auto-generated method stub
@@ -269,7 +347,7 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
         @Override
         public boolean isViewFromObject(View arg0, Object arg1) {
             // TODO Auto-generated method stub
-            return arg0 == arg1;
+            return arg0 == ((View)arg1);
         }
         
         public void destroyItem(View arg0, int arg1, Object arg2){
@@ -290,6 +368,12 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
     				int page = mPageIndicator.getCurrentPage();
     				Intent intent = new Intent(mActivity,WebActivity.class);
     				intent.putExtra("page", page);
+    				if(mBack.banner.size() > page){
+    					intent.putExtra("url", mBack.banner.get(page).url);
+    				}else{
+    					intent.putExtra("url", "www.kaolaxj.com");
+    				}
+    				
     				startActivity(intent);
     			}
             	
