@@ -86,7 +86,7 @@ public class MyActivity extends Fragment implements OnClickListener{
 		
 		if(KoalaApplication.mUserType == fragment_homepage.TYPE_OWER){
 			mMyBidTxt.setText("我的招标");
-			mMyCardLL.setVisibility(View.GONE);
+			//mMyCardLL.setVisibility(View.GONE);
 			mMyAccountLL.setVisibility(View.GONE);
 		}else{
 			mMyBidTxt.setText("我的竞标");

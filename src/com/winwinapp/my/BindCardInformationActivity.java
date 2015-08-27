@@ -2,6 +2,8 @@ package com.winwinapp.my;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,8 +16,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.winwinapp.koala.ActionBarActivity;
+import com.winwinapp.koala.KoalaApplication;
 import com.winwinapp.koala.R;
 import com.winwinapp.koala.WebActivity;
+import com.winwinapp.network.HTTPPost;
+import com.winwinapp.network.NetworkData;
 import com.winwinapp.util.Utils;
 
 public class BindCardInformationActivity extends ActionBarActivity implements OnClickListener{
@@ -28,11 +33,38 @@ public class BindCardInformationActivity extends ActionBarActivity implements On
 	CheckBox mAgree;
 	TextView mProtocol;
 	
+	String mCardNo;
+	
+	NetworkData.BindBankData mData = NetworkData.getInstance().getNewBindBankData();
+	NetworkData.BindBankBack mBack = NetworkData.getInstance().getNewBindBankBack();
+	
+	private Handler mHandler = new Handler(){
+		public void handleMessage(Message msg){
+			//Intent intent;
+			switch(msg.what){
+			case 1:
+				String error = (String)msg.obj;
+				if("OK".equals(error)){
+					Toast.makeText(BindCardInformationActivity.this, "绑定银行卡成功", Toast.LENGTH_LONG).show();
+					Intent intent = new Intent(BindCardInformationActivity.this,BindCardPhoneCertActivity.class);
+					intent.putExtra("mobile", mMobile.getText().toString());
+					intent.putExtra("bank_no", mCardNo);
+					intent.putExtra("bank_name", mBank);
+					startActivity(intent);
+				}else{
+					Toast.makeText(BindCardInformationActivity.this, "绑定银行卡失败："+error, Toast.LENGTH_LONG).show();
+				}
+				break;
+			}
+		}
+	};
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_bind_card_information);
 
 		initActionBar();
+		mCardNo = getIntent().getStringExtra("cardno");
 		
 		mNextStep = (Button)findViewById(R.id.my_card_information_next_step);
 		mNextStep.setOnClickListener(this);
@@ -87,9 +119,30 @@ public class BindCardInformationActivity extends ActionBarActivity implements On
 			}else if(18 != mID.getText().toString().length()){
 				Toast.makeText(this, "请填写合法的身份证号", Toast.LENGTH_LONG).show();
 			}else{
-				intent = new Intent(BindCardInformationActivity.this,BindCardPhoneCertActivity.class);
-				intent.putExtra("mobile", mMobile.getText().toString());
-				startActivity(intent);
+				new Thread(){
+					public void run(){
+						boolean success = false;
+						mData.bank_add = "";
+						mData.bank_name = mBank;
+						mData.bank_no = mCardNo;
+						mData.id = 0;
+						mData.uid = KoalaApplication.mUserType;
+						mData.is_on = 0;
+						mData.mobile = mMobile.getText().toString();
+						mData.real_name = mName.getText().toString();
+						mData.idcard = mID.getText().toString();
+						success = HTTPPost.BindBank(mData, mBack);
+						Message msg = Message.obtain();
+						msg.what = 1;
+						if(success){
+							msg.obj = "OK";
+						}else{
+							msg.obj = mBack.error;
+						}
+						mHandler.sendMessage(msg);
+					}
+				}.start();
+				
 			}
 			break;
 		case R.id.card_info_type:
@@ -103,14 +156,16 @@ public class BindCardInformationActivity extends ActionBarActivity implements On
 		}
 	}
 	
+	String mType = "储蓄卡";
+	String mBank = "工商银行";
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data){
 		super.onActivityResult(requestCode, resultCode, data);
 		switch(requestCode){
 		case 0:
-			String type = data.getStringExtra("type");
-			String bank = data.getStringExtra("bank");
-			mCardType.setText(bank + " " + type);
+			mType = data.getStringExtra("type");
+			mBank = data.getStringExtra("bank");
+			mCardType.setText(mBank + " " + mType);
 			break;
 		}
 	}

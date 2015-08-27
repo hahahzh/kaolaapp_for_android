@@ -439,6 +439,83 @@ public class JsonHandler {
 		return success;
 	}
 	
+	public static String createBindBankFinishString(NetworkData.DoBindBankData data){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			jstring.put("bank_name", data.bank_name);
+			jstring.put("bank_no", data.bank_no);
+			jstring.put("auth_code", data.auth_code);
+			jstring.put("sessid", KoalaApplication.loginData.sessid);
+			
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+	}
+	
+	public static String createBindBankString(NetworkData.BindBankData data){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			jstring.put("id", data.id);
+			jstring.put("is_on", data.is_on);
+			jstring.put("uid", data.uid);
+			jstring.put("bank_add", data.bank_add);
+			jstring.put("bank_name", data.bank_name);
+			jstring.put("bank_no", data.bank_no);
+			jstring.put("idcard", data.idcard);
+			jstring.put("mobile", data.mobile);
+			jstring.put("real_name", data.real_name);
+			//jstring.put("page", data.page);
+			jstring.put("sessid", KoalaApplication.loginData.sessid);
+			
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+	}
+	
+	public static boolean parseBindBank(String str,NetworkData.BindBankBack back){
+		boolean success = false;
+		try {
+			JSONObject response = new JSONObject(str);
+			int code = -1;
+			code = response.getInt("code");
+			back.code = code;
+			if(code == 0){
+				success = true;
+			}else{
+				back.error = response.getString("error");
+				success = false;
+			}
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			return false;
+		}
+		
+		return success;
+	}
+	
+	public static String createSendShortMessageString(String mobile){
+		String str = null;
+		JSONObject jstring = new JSONObject();
+		try {
+			jstring.put("mobile", mobile);
+			jstring.put("sessid", KoalaApplication.loginData.sessid);
+			
+			str = jstring.toString();
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+	}
 	public static String createGetPayListString(NetworkData.GetPayListData data){
 		String str = null;
 		JSONObject jstring = new JSONObject();

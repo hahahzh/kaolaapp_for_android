@@ -519,6 +519,45 @@ public class HTTPPost {
 		return success;
 	}
 	
+	public static boolean BindBank(NetworkData.BindBankData data,NetworkData.BindBankBack msgBack){
+		boolean success = false;
+		String postData = JsonHandler.createBindBankString(data);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_BIND_BANK, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseBindBank(back, msgBack);
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "网络不可用";
+		}
+		return success;
+	}
+	
+	public static boolean SendShortMessage(String mobile,NetworkData.CommonBack msgBack){
+		boolean success = false;
+		String postData = JsonHandler.createSendShortMessageString(mobile);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_SEND_SHORT_MSG, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseCommonBack(back, msgBack);
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "网络不可用";
+		}
+		return success;
+	}
+	
+	public static boolean BindBankFinish(NetworkData.DoBindBankData data,NetworkData.CommonBack msgBack){
+		boolean success = false;
+		String postData = JsonHandler.createBindBankFinishString(data);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_BIND_BANK_FINISH, postData, HTTPBase.HTTP_TYPE_POST);
+		if(!TextUtils.isEmpty(back)){
+			success = JsonHandler.parseCommonBack(back, msgBack);
+		}else{
+			msgBack.code = -1;
+			msgBack.error = "网络不可用";
+		}
+		return success;
+	}
+	
 	public static boolean RequestMyContractList(NetworkData.BidListData data,NetworkData.MyContractListBack msgBack){
 		boolean success = false;
 		String postData = JsonHandler.createUserBidListString(data);

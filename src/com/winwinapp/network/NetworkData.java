@@ -32,6 +32,9 @@ public class NetworkData {
 	public static String URL_SEND_PUBLIC_MESSAGE = URL_BASE_API + "/Message/insert.html";
 	public static String URL_SEND_PRIVATE_MESSAGE = URL_BASE_API + "/Message/reply.html";
 	public static String URL_GENERATE_PRICE = URL_BASE_API + "/Calculator/createQuote.html";
+	public static String URL_BIND_BANK = URL_BASE_API + "/Auth/bindBand.html";
+	public static String URL_SEND_SHORT_MSG = URL_BASE_API + "/Auth/mobileCode.html";
+	public static String URL_BIND_BANK_FINISH = URL_BASE_API + "/Auth/doBind.html";
 	
 	public static String URL_SEND_MESSAGE = URL_BASE_API + "/Message/insert.html";
 	public static String URL_DECORATE_TIPS_DETAIL = URL_BASE_API + "/DecKms/docsDetail.html";
@@ -95,6 +98,31 @@ public class NetworkData {
 		public String idc_img;
 	}
 	
+	public BindBankData getNewBindBankData(){
+		return new BindBankData();
+	}
+	
+	public class BindBankData{
+		public int id;
+		public String real_name;
+		public String idcard;
+		public String mobile;
+		public int uid;
+		public String bank_no;
+		public String bank_name;
+		public String bank_add;
+		public int is_on;
+	}
+	
+	public BindBankBack getNewBindBankBack(){
+		return new BindBankBack();
+	}
+	
+	public class BindBankBack{
+		public int code;
+		public String error;
+	}
+	
 	public GetAdListBack getNewGetAdListBack(){
 		return new GetAdListBack();
 	}
@@ -131,6 +159,16 @@ public class NetworkData {
 		public String work_num;
 		public String city_id;
 		public String introduce;
+	}
+	
+	public DoBindBankData getNewDoBindBankData(){
+		return new DoBindBankData();
+	}
+	
+	public class DoBindBankData{
+		public String bank_no;
+		public String bank_name;
+		public String auth_code;
 	}
 	
 	public GetPayListData getNewGetPayList(){

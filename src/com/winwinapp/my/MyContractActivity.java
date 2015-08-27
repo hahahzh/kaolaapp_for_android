@@ -215,7 +215,7 @@ public class MyContractActivity extends ActionBarActivity implements OnClickList
 			public void onClick(View arg0) {
 				// TODO 自动生成的方法存根
 				Intent intent;
-				if(KoalaApplication.mUserType == fragment_homepage.TYPE_OWER){
+				if(KoalaApplication.mUserType == fragment_homepage.TYPE_LABOR){
 					intent = new Intent(MyContractActivity.this,ContractLaborActivity.class);
 					intent.putExtra("type", 0);//new contract
 					startActivity(intent);

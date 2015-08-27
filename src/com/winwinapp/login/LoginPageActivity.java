@@ -134,7 +134,7 @@ public class LoginPageActivity extends ActionBarActivity {
 				// TODO 自动生成的方法存根
 				//finish();
 				Intent intent = new Intent(LoginPageActivity.this,KLHomePageActivity.class);
-				intent.putExtra("page", 0);
+				intent.putExtra("page", 3);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
 			}
