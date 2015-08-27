@@ -43,6 +43,8 @@ public class MyPayActivity extends ActionBarActivity implements OnClickListener{
 	String mPayedTips = "首付款，考拉会为您妥善保管，竣工后按流程支付给收款人。";
 	NetworkData.GetPayListBack mBack = NetworkData.getInstance().getNewGetPayListBack();
 	NetworkData.GetPayListData mData = NetworkData.getInstance().getNewGetPayList();
+	ArrayList<NetworkData.PayListItem> mOnPay = new ArrayList<NetworkData.PayListItem>();
+	ArrayList<NetworkData.PayListItem> mPayed = new ArrayList<NetworkData.PayListItem>();
 	
 	private Handler mHandler = new Handler(){
 		public void handleMessage(Message msg){
@@ -72,9 +74,21 @@ public class MyPayActivity extends ActionBarActivity implements OnClickListener{
 			mData.page = 0;
 			Message msg = Message.obtain();
 			msg.what = MESSAGE_PAY_BACK;
+			mBack.items.clear();
 			success = HTTPPost.GetPayList(mData, mBack);
 			if(success){
 				msg.obj = "OK";
+				mOnPay.clear();
+				mPayed.clear();
+				if(mBack.items.size() > 0){
+					for(NetworkData.PayListItem item:mBack.items){
+						if("1".equals(item.ret)){
+							mPayed.add(item);
+						}else{
+							mOnPay.add(item);
+						}
+					}
+				}
 			}else{
 				msg.obj = mBack.error;
 			}
@@ -184,9 +198,9 @@ public class MyPayActivity extends ActionBarActivity implements OnClickListener{
 		public int getCount() {
 			// TODO 自动生成的方法存根
 			if(mCurrentState == 0){//待支付
-				return mBack.items.size();
+				return mOnPay.size();
 			}else{//已支付
-				return mBack.items.size();
+				return mPayed.size();
 			}
 		}
 
@@ -216,12 +230,12 @@ public class MyPayActivity extends ActionBarActivity implements OnClickListener{
 			NetworkData.PayListItem item = mBack.items.get(position);
 			//MyPayItem item;
 			if(mCurrentState == 0){
-				item = mBack.items.get(position);
+				item =mOnPay.get(position);
 				pay.setOnClickListener(new OnItemChildClickListener(INDEX_BUTTON_PAY,position));
 			}else{
 				firstPay.setTextColor(Color.BLACK);
 				pay.setVisibility(View.GONE);
-				item = mBack.items.get(position);
+				item = mPayed.get(position);
 			}
 			name.setText(item.username);
 			String[] arr = item.bill_info.split(" ");

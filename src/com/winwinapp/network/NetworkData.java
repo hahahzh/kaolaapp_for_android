@@ -163,6 +163,7 @@ public class NetworkData {
 		public String bill_info;
 		public String amount;
 		public String channel;
+		public String ret;
 	}
 	
 	public GeneratePriceBack getNewGeneratePriceBack(){

@@ -476,6 +476,7 @@ public class JsonHandler {
 					item.bill_info = itemObject.getString("bill_info");
 					item.amount = itemObject.getString("amount");
 					//item.channel = itemObject.getString("channel");
+					item.ret = itemObject.getString("ret");
 					
 					back.items.add(item);
 				}

@@ -65,6 +65,7 @@
 	       	    android:textSize="16dp"
 	       	    android:layout_marginLeft="10dp"
 	       	    android:layout_gravity="center"
+	       	    android:id="@+id/my_account_total"
 	       	    android:text="￥100000"/>
         </LinearLayout>
     </LinearLayout>
