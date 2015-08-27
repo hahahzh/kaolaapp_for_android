@@ -3,12 +3,77 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/layout_border"
+        android:id="@+id/message_separate_ll"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="@color/orange"
+            android:clickable="true"
+            android:id="@+id/message_public_message"
+            android:text="公共消息" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:clickable="true"
+            android:id="@+id/message_system_message"
+            android:text="系统消息" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_below="@id/message_separate_ll"
+        android:id="@+id/message_list_indicator"
+        android:visibility="gone" >
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:id="@+id/message_public_message_indicator"
+            android:background="@color/orange" />
+
+         <ImageView
+            android:layout_width="20dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:id="@+id/message_system_message_indicator"
+            android:background="@color/orange" />
+    </LinearLayout>
+    
     <com.winwinapp.koala.SlideListView  
         android:id="@+id/slideCutListView"  
         android:layout_width="match_parent"  
         android:layout_height="match_parent"   
         android:listSelector="@android:color/transparent"  
-        android:cacheColorHint="@android:color/transparent">  
+        android:cacheColorHint="@android:color/transparent"
+        android:layout_below="@id/message_list_indicator">  
     </com.winwinapp.koala.SlideListView>  
 
 </RelativeLayout >

@@ -145,7 +145,7 @@ public class MyActivity extends Fragment implements OnClickListener{
 			break;
 		case R.id.my_message_ll:
 			intent = new Intent(mActivity,MessageListActivity.class);
-			intent.putExtra("type", 1);
+			intent.putExtra("type", 0);
 			startActivity(intent);
 			break;
 		case R.id.my_account_ll:

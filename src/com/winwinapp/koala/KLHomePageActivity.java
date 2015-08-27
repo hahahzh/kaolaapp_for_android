@@ -168,7 +168,7 @@ public class KLHomePageActivity extends FragmentActivity implements LocationList
 				// TODO 自动生成的方法存根
 				if(mApplication.isUserLogin()){
 					Intent intent = new Intent(KLHomePageActivity.this,MessageListActivity.class);
-					intent.putExtra("type", 0);
+					intent.putExtra("type", 1);
 					startActivity(intent);
 				}else{
 					Intent intent = new Intent(KLHomePageActivity.this,LoginPageActivity.class);

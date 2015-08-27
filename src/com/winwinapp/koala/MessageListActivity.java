@@ -34,7 +34,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MessageListActivity extends ActionBarActivity implements RemoveListener{
+public class MessageListActivity extends ActionBarActivity implements RemoveListener,OnClickListener{
 
 	private static final int MESSAGE_ID_AVATRAR = 0;
 	private static final int MESSAGE_ID_OTHERS = 1;
@@ -43,11 +43,19 @@ public class MessageListActivity extends ActionBarActivity implements RemoveList
 	private static final int MESSAGE_DELETE_PRIVATE_MSG = 4;
 	private SlideListView mMessageListView;
 	private ArrayList<MessageItem> mMessageItemArray = new ArrayList<MessageItem>();
+	
+	private ArrayList<MessageItem> mPublicItemArray = new ArrayList<MessageItem>();
+	private ArrayList<MessageItem> mSystemItemArray = new ArrayList<MessageItem>();
+	
 	private LayoutInflater mInflater;
 	MessageListAdapter mMessageAdapter;
 	KoalaApplication mApp;
 	public static NetworkData.PublicMessageListData mRequestPublicData;
 	public static NetworkData.PublicMessageListBack mRequestPublicBack;
+	
+	NetworkData.PublicMessageListData mPublicMsgData;
+	NetworkData.PublicMessageListData mSystemMsgData;
+	public int mPubSysState = 0;//0,public message;1,system message
 	
 	public static NetworkData.PrivateMessageListData mRequestPrivateData;
 	public static NetworkData.PrivateMessageListBack mRequestPrivateBack;
@@ -55,6 +63,8 @@ public class MessageListActivity extends ActionBarActivity implements RemoveList
 	Drawable mDefaultAvatar;
 	
 	private int type = 0;//0.public; 1, private
+	LinearLayout mPubSysLL;
+	LinearLayout mSeperator;
 	private Handler mHandler = new Handler(){
 		public void handleMessage(Message msg){
 			Intent intent;
@@ -113,13 +123,35 @@ public class MessageListActivity extends ActionBarActivity implements RemoveList
 		}
 	};
 	
-	
+	TextView mPublicTxt;
+	TextView mSystemTxt;
+	ImageView mPublicIndicator;
+	ImageView mSystemIndicator;
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_list_slide);
 		
 		type = getIntent().getIntExtra("type", 0);
+		mPubSysLL = (LinearLayout)findViewById(R.id.message_separate_ll);
+		mSeperator = (LinearLayout)findViewById(R.id.message_list_indicator);
+		if(type == 0){
+			mPubSysLL.setVisibility(View.VISIBLE);
+			mSeperator.setVisibility(View.VISIBLE);
+			mPublicTxt = (TextView) findViewById(R.id.message_public_message);
+			mSystemTxt = (TextView) findViewById(R.id.message_system_message);
+			mPublicIndicator = (ImageView) findViewById(R.id.message_public_message_indicator);
+			mSystemIndicator = (ImageView) findViewById(R.id.message_system_message_indicator);
+			mSystemIndicator.setVisibility(View.GONE);
+			mPublicTxt.setOnClickListener(this);
+			mSystemTxt.setOnClickListener(this);
+			
+			mSystemIndicator.setVisibility(View.INVISIBLE);
+			mSystemTxt.setTextColor(0xFF000000);
+			mPublicIndicator.setVisibility(View.VISIBLE);
+			mPublicTxt.setTextColor(0xFFFF6600);
+			mPubSysState = 0;
+		}
 		
 		mApp = (KoalaApplication) this.getApplication();
 		initActionBar();
@@ -170,6 +202,8 @@ public class MessageListActivity extends ActionBarActivity implements RemoveList
 					if(type == 0){//public message
 						success = HTTPPost.RequestPublicMsgList(mRequestPublicData, mRequestPublicBack);
 						if(success){
+							mPublicItemArray.clear();
+							mSystemItemArray.clear();
 							for(int i=0;i<mRequestPublicBack.total;i++){
 								NetworkData.PublicMessageListItem backItem = mRequestPublicBack.items.get(i);
 								MessageItem item = new MessageItem("张澈","设计师","2015-03-19",2,R.drawable.avatar1,"今天木板已经送到，明天工人来安装，请耐心等待");
@@ -177,11 +211,18 @@ public class MessageListActivity extends ActionBarActivity implements RemoveList
 								item.mIdentify = fragment_homepage.getIdetifyStringFromID(Integer.parseInt(backItem.user_type));
 								item.mLastUpdateTime = backItem.send_time;
 								item.mSnippet = backItem.content;
-								mMessageItemArray.add(item);
+								item.type = backItem.type;
+								if("1".equals(item.type)){
+									mPublicItemArray.add(item);
+								}else{
+									mSystemItemArray.add(item);
+								}
+								//mMessageItemArray.add(item);
 							}
-							msg.obj = (Object)("OK");
+							
 						}else{
 							msg.obj = mRequestPublicBack.error;
+							
 						}
 					}else{//private message
 						success = HTTPPost.RequestPrivateMsgList(mRequestPrivateData, mRequestPrivateBack);
@@ -243,7 +284,15 @@ public class MessageListActivity extends ActionBarActivity implements RemoveList
 		@Override
 		public int getCount() {
 			// TODO 自动生成的方法存根
-			return mMessageItemArray.size();
+			if(type == 0){
+				if(mPubSysState == 0){
+					return mPublicItemArray.size();
+				}else{
+					return mSystemItemArray.size();
+				}
+			}else{
+				return mMessageItemArray.size();
+			}
 		}
 
 		@Override
@@ -278,21 +327,31 @@ public class MessageListActivity extends ActionBarActivity implements RemoveList
 				mHolder = (MessageListViewHolder)convertView.getTag();
 			}
 			
-			if(mMessageItemArray.get(position).mAvataResId == -1){
-				mHolder.mAvatarView.setImageBitmap(mMessageItemArray.get(position).avatar);
+			MessageItem item;
+			if(type == 0){
+				if(mPubSysState == 0){
+					item = mPublicItemArray.get(position);
+				}else{
+					item = mSystemItemArray.get(position);
+				}
 			}else{
-				mHolder.mAvatarView.setImageResource(mMessageItemArray.get(position).mAvataResId);
+				item = mMessageItemArray.get(position);
 			}
-			mHolder.mUserNameText.setText(mMessageItemArray.get(position).mName);
-			mHolder.mMessageDateText.setText(mMessageItemArray.get(position).mLastUpdateTime);
-			if(mMessageItemArray.get(position).mMessageNum <= 0){
+			if(item.mAvataResId == -1){
+				mHolder.mAvatarView.setImageBitmap(item.avatar);
+			}else{
+				mHolder.mAvatarView.setImageResource(item.mAvataResId);
+			}
+			mHolder.mUserNameText.setText(item.mName);
+			mHolder.mMessageDateText.setText(item.mLastUpdateTime);
+			if(item.mMessageNum <= 0){
 				mHolder.mMessageNum.setVisibility(View.INVISIBLE);
 			}else{
 				mHolder.mMessageNum.setVisibility(View.VISIBLE);
-				mHolder.mMessageNum.setText(""+mMessageItemArray.get(position).mMessageNum);
+				mHolder.mMessageNum.setText(""+item.mMessageNum);
 			}
-			mHolder.mMessageSnippetText.setText(mMessageItemArray.get(position).mSnippet);
-			mHolder.mUserIdentifyText.setText(mMessageItemArray.get(position).mIdentify);
+			mHolder.mMessageSnippetText.setText(item.mSnippet);
+			mHolder.mUserIdentifyText.setText(item.mIdentify);
 			
 			mHolder.mAvatarView.setOnClickListener(new OnItemChildClickListener(MESSAGE_ID_AVATRAR,position));
 			mHolder.mFirstLayout.setOnClickListener(new OnItemChildClickListener(MESSAGE_ID_OTHERS,position));
@@ -378,5 +437,28 @@ public class MessageListActivity extends ActionBarActivity implements RemoveList
 			}.start();
 		}
 		//Toast.makeText(this, "delete item " + position, Toast.LENGTH_LONG).show();
+	}
+
+	@Override
+	public void onClick(View arg0) {
+		// TODO 自动生成的方法存根
+		switch(arg0.getId()){
+		case R.id.message_system_message:
+			mPublicIndicator.setVisibility(View.INVISIBLE);
+			mPublicTxt.setTextColor(0xFF000000);
+			mSystemIndicator.setVisibility(View.VISIBLE);
+			mSystemTxt.setTextColor(0xFFFF6600);
+			mPubSysState = 1;
+			mMessageAdapter.notifyDataSetChanged();
+			break;
+		case R.id.message_public_message:
+			mSystemIndicator.setVisibility(View.INVISIBLE);
+			mSystemTxt.setTextColor(0xFF000000);
+			mPublicIndicator.setVisibility(View.VISIBLE);
+			mPublicTxt.setTextColor(0xFFFF6600);
+			mPubSysState = 0;
+			mMessageAdapter.notifyDataSetChanged();
+			break;
+		}
 	}
 }
