@@ -100,6 +100,7 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
 				if("OK".equals(error)){
 					displayAd();
 				}else{
+					displayAd();
 					Toast.makeText(mActivity, "获取广告列表失败："+error, Toast.LENGTH_LONG).show();
 				}
 				break;
@@ -122,6 +123,12 @@ public class fragment_homepage extends Fragment implements OnItemClickListener{
             mViewContainer.add(view_item);
             //mPageAdapter.notifyDataSetChanged();
             //mViewPager.invalidate();
+        }
+        if(mBack.banner.size() == 0){
+        	View view_item = mInflater.inflate(R.layout.layout_page_item, null);
+            ImageView iv = (ImageView)view_item.findViewById(R.id.imageView1);
+            iv.setImageResource(mImageResource[0]);
+            mViewContainer.add(view_item);
         }
         mPageAdapter = new myPageAdapter();
         mViewPager.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,mViewPagerHeight));

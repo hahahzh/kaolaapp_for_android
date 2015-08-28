@@ -149,7 +149,7 @@ public class HTTPPost {
 	public static boolean getMyCollectList(NetworkData.MyCollectData data,NetworkData.MyCollectBack msgBack){
 		boolean success = false;
 		String postData = JsonHandler.createMyCollectString(data);
-		String back = HTTPBase.HTTPSend(NetworkData.URL_MEMBER_find, postData, HTTPBase.HTTP_TYPE_POST);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_MY_COLLECT, postData, HTTPBase.HTTP_TYPE_POST);
 		if(!TextUtils.isEmpty(back)){
 			success = JsonHandler.parseMyCollect(back, msgBack);
 		}else{
@@ -188,7 +188,7 @@ public class HTTPPost {
 	public static boolean FindMember(NetworkData.FindMemberData data,NetworkData.FindMemberBack msgBack){
 		boolean success = false;
 		String postData = JsonHandler.createFindMemberString(data);
-		String back = HTTPBase.HTTPSend(NetworkData.URL_MY_COLLECT, postData, HTTPBase.HTTP_TYPE_POST);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_MEMBER_find, postData, HTTPBase.HTTP_TYPE_POST);
 		if(!TextUtils.isEmpty(back)){
 			success = JsonHandler.parseFindMember(back, msgBack);
 		}else{
