@@ -36,6 +36,7 @@ public class MyActivity extends Fragment implements OnClickListener{
 	LinearLayout mMyIDAuthenLL;
 	LinearLayout mMyContractLL;
 	LinearLayout mMyMessageLL;
+	LinearLayout mPublicMessageLL;
 	LinearLayout mMyCardLL;
 	LinearLayout mMyAccountLL;
 	LinearLayout mMyPayLL;
@@ -58,6 +59,7 @@ public class MyActivity extends Fragment implements OnClickListener{
 		mMyIDAuthenLL = (LinearLayout)view.findViewById(R.id.my_id_cert_layout);
 		mMyContractLL = (LinearLayout)view.findViewById(R.id.my_contract_ll);
 		mMyMessageLL = (LinearLayout)view.findViewById(R.id.my_message_ll);
+		mPublicMessageLL = (LinearLayout)view.findViewById(R.id.my_public_message_ll);
 		mMyCardLL = (LinearLayout)view.findViewById(R.id.my_card_ll);
 		mMyAccountLL = (LinearLayout)view.findViewById(R.id.my_account_ll);
 		mMyPayLL = (LinearLayout)view.findViewById(R.id.my_pay_ll);
@@ -74,6 +76,7 @@ public class MyActivity extends Fragment implements OnClickListener{
 		mMyIDAuthenLL.setOnClickListener(this);
 		mMyContractLL.setOnClickListener(this);
 		mMyMessageLL.setOnClickListener(this);
+		mPublicMessageLL.setOnClickListener(this);
 		mMyCardLL.setOnClickListener(this);
 		mMyAccountLL.setOnClickListener(this);
 		mMyPayLL.setOnClickListener(this);
@@ -144,6 +147,11 @@ public class MyActivity extends Fragment implements OnClickListener{
 			startActivity(intent);
 			break;
 		case R.id.my_message_ll:
+			intent = new Intent(mActivity,MessageListActivity.class);
+			intent.putExtra("type", 1);
+			startActivity(intent);
+			break;
+		case R.id.my_public_message_ll:
 			intent = new Intent(mActivity,MessageListActivity.class);
 			intent.putExtra("type", 0);
 			startActivity(intent);
