@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:text="9.0"
             android:layout_weight="1"
-            android:id="@+id/labor_experience"
+            android:id="@+id/labor_atitude"
             android:gravity="center"/>
          
          <TextView 
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:text="9"
             android:layout_weight="1"
-            android:id="@+id/labor_atitude"
+            android:id="@+id/labor_experience"
             android:gravity="center"/>
 
          
