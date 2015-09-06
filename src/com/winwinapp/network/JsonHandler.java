@@ -1069,7 +1069,7 @@ public class JsonHandler {
 			int code = -1;
 			code = response.getInt("code");
 			back.code = code;
-			if(code == -1){
+			if(code == 0){
 				JSONObject data = response.getJSONObject("data");
 				JSONObject doc = data.getJSONObject("doc");
 				
