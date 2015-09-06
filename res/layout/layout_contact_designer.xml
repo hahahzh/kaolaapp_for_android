@@ -49,6 +49,7 @@
        android:layout_height="wrap_content"
        android:layout_marginTop="60dp"
        android:gravity="center"
+       android:id="@+id/contact_designer_nomore"
        android:text="没有更多数据啦!"/>
 
 </LinearLayout>

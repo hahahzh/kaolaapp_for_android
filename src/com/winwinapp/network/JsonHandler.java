@@ -380,7 +380,8 @@ public class JsonHandler {
 			code = response.getInt("code");
 			back.code = code;
 			if(code == 0){
-				JSONObject values = response.getJSONObject("items_val");
+				JSONObject data = response.getJSONObject("data");
+				JSONObject values = data.getJSONObject("items_val");
 				back.chug_num = values.getInt("chug_num");
 				back.chug_price = values.getInt("chug_price");
 				back.youyj_num = values.getInt("youyj_num");
@@ -418,11 +419,11 @@ public class JsonHandler {
 				back.kaig_num = values.getInt("kaig_num");
 				back.kaig_price = values.getInt("kaig_price");
 				
-				JSONObject data = response.getJSONObject("data");
-				back.base_price = data.getDouble("base_price");
-				back.access_price = data.getDouble("access_price");
-				back.worker_price = data.getDouble("worker_price");
-				back.final_price = data.getDouble("final_price");
+				JSONObject prices = data.getJSONObject("prices");
+				back.base_price = prices.getDouble("base_price");
+				back.access_price = prices.getDouble("access_price");
+				back.worker_price = prices.getDouble("worker_price");
+				back.final_price = prices.getDouble("final_price");
 				
 				success = true;
 			}else{
@@ -809,7 +810,7 @@ public class JsonHandler {
 				int total = Integer.parseInt(response.getString("total"));
 				back.total = total;
 				JSONArray array = response.getJSONArray("data");
-				for(int i=0;i<total;i++){
+				for(int i=0;i<array.length();i++){
 					JSONObject itemObject = array.getJSONObject(i);
 					NetworkData.PrivateMessageInfoItem item = NetworkData.getInstance().getNewPrivateMessageInfoItem();
 					item.id = itemObject.getString("id");

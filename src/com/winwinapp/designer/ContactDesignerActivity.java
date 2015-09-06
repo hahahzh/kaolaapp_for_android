@@ -41,8 +41,16 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 	String mTitle = null;
 	int mType;
 	NetworkData.FindMemberData mData = NetworkData.getInstance().getNewFindMemberData();
-	NetworkData.FindMemberBack mBack = NetworkData.getInstance().getNewFindMemberBack();
+	NetworkData.FindMemberBack mBack0 = NetworkData.getInstance().getNewFindMemberBack();
+	NetworkData.FindMemberBack mBack1 = NetworkData.getInstance().getNewFindMemberBack();
+	NetworkData.FindMemberBack mBack2 = NetworkData.getInstance().getNewFindMemberBack();
+	NetworkData.FindMemberBack mBack3 = NetworkData.getInstance().getNewFindMemberBack();
+	ArrayList<NetworkData.FindMemberItem> mList0 = new ArrayList<NetworkData.FindMemberItem>();
+	ArrayList<NetworkData.FindMemberItem> mList1 = new ArrayList<NetworkData.FindMemberItem>();
+	ArrayList<NetworkData.FindMemberItem> mList2 = new ArrayList<NetworkData.FindMemberItem>();
+	ArrayList<NetworkData.FindMemberItem> mList3 = new ArrayList<NetworkData.FindMemberItem>();
 	Drawable mDefaultAvatar;
+	TextView mNoMoreTxt;
 	
 	private Handler mHandler = new Handler(){
 		public void handleMessage(Message msg){
@@ -52,12 +60,10 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 				String error = (String)msg.obj;
 				if("OK".equals(error)){
 						mAdapter.notifyDataSetChanged();
-						if(mBack.memberInfo.size() <= 0){
-							Toast.makeText(ContactDesignerActivity.this, "获取列表成功，列表为空。", Toast.LENGTH_LONG).show();
-						}
 				}else{
 					Toast.makeText(ContactDesignerActivity.this, "获取列表失败："+error, Toast.LENGTH_LONG).show();
 				}
+				//mNoMoreTxt.setVisibility(View.VISIBLE);
 				break;
 			}
 		}
@@ -67,10 +73,12 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 		String mSort;
 		int mPage;
 		int mLimit;
-		public getListThread(String sort,int page,int limit){
+		int mTab = 0;
+		public getListThread(String sort,int page,int limit,int tab){
 			mSort = sort;
 			mPage = page;
 			mLimit = limit;
+			mTab = tab;
 		}
 		public void run(){
 			boolean success = false;
@@ -80,17 +88,37 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 			mData.page = 0;
 			mData.limit = mLimit;
 			mData.keyword = "";
+			NetworkData.FindMemberBack mBack;
+			switch(mTab){
+			case 0:
+				mBack = mBack0;
+				break;
+			case 1:
+				mBack = mBack1;
+				break;
+			case 2:
+				mBack = mBack2;
+				break;
+			case 3:
+				mBack = mBack3;
+				break;
+			default:
+				mBack = mBack0;
+				break;
+			}
 			mBack.memberInfo.clear();
 			success = HTTPPost.FindMember(mData, mBack);
 			Message msg = Message.obtain();
 			msg.what = 1;
 			if(success){
 				msg.obj = "OK";
-				if(mBack.total > 0){
-					for(int i=0;i<mBack.total;i++){
-						NetworkData.FindMemberItem item = mBack.memberInfo.get(i);
-						Bitmap bmp;
+				if(mBack.memberInfo.size() > 0){
+					int size = mBack.memberInfo.size();
+					for(int i=0;i<size;i++){
 						try {
+							NetworkData.FindMemberItem item = mBack.memberInfo.get(i);
+							Bitmap bmp;
+						
 							bmp = BitmapFactory.decodeStream(new URL(NetworkData.URL_SERVER+item.avatar).openStream());
 							Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp,mDefaultAvatar.getIntrinsicWidth(), mDefaultAvatar.getIntrinsicHeight(), true);
 							item.imgAvatar = thumbBmp;
@@ -100,7 +128,27 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 						} catch (IOException e) {
 							// TODO 自动生成的 catch 块
 							e.printStackTrace();
+						}catch(Exception e){
+							
 						}
+					}
+					switch(mTab){
+					case 0:
+						mList0.clear();
+						mList0.addAll(mBack.memberInfo);
+						break;
+					case 1:
+						mList1.clear();
+						mList1.addAll(mBack.memberInfo);
+						break;
+					case 2:
+						mList2.clear();
+						mList2.addAll(mBack.memberInfo);
+						break;
+					case 3:
+						mList3.clear();
+						mList3.addAll(mBack.memberInfo);
+						break;
 					}
 				}
 			}else{
@@ -113,11 +161,14 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_contact_designer);
 
+		mNoMoreTxt = (TextView)findViewById(R.id.contact_designer_nomore);
 		mType = getIntent().getIntExtra("type", fragment_homepage.TYPE_DESIGNER);
 		getTitleFromIntent(this.getIntent());
 		initActionBar();
 		initTabHost(this.getIntent());
 		initListView(this.getIntent());
+		
+		mNoMoreTxt.setVisibility(View.GONE);
 		mDefaultAvatar = getResources().getDrawable(R.drawable.avatar1);
 	}
 	
@@ -213,6 +264,24 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
+				NetworkData.FindMemberBack mBack;
+				switch(mTabHost.getCurrentTab()){
+				case 0:
+					mBack = mBack0;
+					break;
+				case 1:
+					mBack = mBack1;
+					break;
+				case 2:
+					mBack = mBack2;
+					break;
+				case 3:
+					mBack = mBack3;
+					break;
+				default:
+					mBack = mBack0;
+					break;
+				}
 				switch(mType){
 				case fragment_homepage.TYPE_DESIGNER:
 					// TODO 自动生成的方法存根
@@ -265,22 +334,34 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 		case 0:
 			//mAdapter.setArrayList(mArrayList);
 			mAdapter.notifyDataSetChanged();
-			new getListThread("rate",0,5);
+			if(mList0.size() == 0){
+				new getListThread("rate",0,5,current).start();
+				mNoMoreTxt.setVisibility(View.GONE);
+			}
 			break;
 		case 1:
 			//mAdapter.setArrayList(mArrayProject);
 			mAdapter.notifyDataSetChanged();
-			new getListThread("attud",0,5).start(); 
+			if(mList1.size() == 0){
+				new getListThread("attud",0,5,current).start(); 
+				mNoMoreTxt.setVisibility(View.GONE);
+			}
 			break;
 		case 2:
 			//mAdapter.setArrayList(mArraySoft);
 			mAdapter.notifyDataSetChanged();
-			new getListThread("case",0,5).start(); 
+			if(mList2.size() == 0){
+				new getListThread("case",0,5,current).start();
+				mNoMoreTxt.setVisibility(View.GONE);
+			}
 			break;
 		case 3:
 			//mAdapter.setArrayList(mArrayDesign);
 			mAdapter.notifyDataSetChanged();
-			new getListThread("work",0,5).start(); 
+			if(mList3.size() == 0){
+				new getListThread("work",0,5,current).start(); 
+				mNoMoreTxt.setVisibility(View.GONE);
+			}
 			break;
 		case 4:
 			//mAdapter.setArrayList(mArrayMateria);
@@ -298,7 +379,16 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 		@Override
 		public int getCount() {
 			// TODO 自动生成的方法存根
-			return mBack.memberInfo.size();
+			if(mTabHost.getCurrentTab() == 0){
+				return mList0.size();
+			}else if(mTabHost.getCurrentTab() == 1){
+				return mList1.size();
+			}else if(mTabHost.getCurrentTab() == 2){
+				return mList2.size();
+			}else{
+				return mList3.size();
+			}
+			
 		}
 
 		@Override
@@ -322,7 +412,20 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 			TextView caseNum = (TextView) arg1.findViewById(R.id.contact_designer_cases);
 			TextView rateAtt = (TextView) arg1.findViewById(R.id.contract_designer_RateAttu);
 			ImageView love = (ImageView)arg1.findViewById(R.id.contact_designer_heart);
-			NetworkData.FindMemberItem item = mBack.memberInfo.get(arg0);
+			ArrayList<NetworkData.FindMemberItem> items;
+			if(mTabHost.getCurrentTab() == 0){
+				items = mList0;
+			}else if(mTabHost.getCurrentTab() == 1){
+				items = mList1;
+			}else if(mTabHost.getCurrentTab() == 2){
+				items = mList2;
+			}else{
+				items = mList3;
+			}
+			if(arg0 >= items.size()){
+				return null;
+			}
+			NetworkData.FindMemberItem item = items.get(arg0);
 			name.setText(item.username);
 			if(item.imgAvatar != null){
 				avatar.setImageBitmap(item.imgAvatar);
