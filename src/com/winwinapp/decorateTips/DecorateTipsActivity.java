@@ -12,8 +12,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -21,9 +21,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TabHost;
-import android.widget.Toast;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.winwinapp.koala.R;
 import com.winwinapp.network.HTTPPost;
@@ -43,20 +43,97 @@ public class DecorateTipsActivity extends Activity  implements OnTabChangeListen
 
 	private int mType = 0;//0: request all bid list; 1: request user bid list(only for owner)
 	NetworkData.DecorateTipsData mData = NetworkData.getInstance().getDecorateTipsData();
-	NetworkData.DecorateTipsBack mBack = NetworkData.getInstance().getDecorateTipsBack();
-	
+	NetworkData.DecorateTipsBack mBack0 = NetworkData.getInstance().getDecorateTipsBack();
+	NetworkData.DecorateTipsBack mBack1 = NetworkData.getInstance().getDecorateTipsBack();
+	NetworkData.DecorateTipsBack mBack2 = NetworkData.getInstance().getDecorateTipsBack();
+	NetworkData.DecorateTipsBack mBack3 = NetworkData.getInstance().getDecorateTipsBack();
+	NetworkData.DecorateTipsBack mBack4 = NetworkData.getInstance().getDecorateTipsBack();
+	NetworkData.DecorateTipsBack mBack5 = NetworkData.getInstance().getDecorateTipsBack();
+	ArrayList<SubDecorateTips> mList0 = new ArrayList<SubDecorateTips>();
+	ArrayList<SubDecorateTips> mList1 = new ArrayList<SubDecorateTips>();
+	ArrayList<SubDecorateTips> mList2 = new ArrayList<SubDecorateTips>();
+	ArrayList<SubDecorateTips> mList3 = new ArrayList<SubDecorateTips>();
+	ArrayList<SubDecorateTips> mList4 = new ArrayList<SubDecorateTips>();
+	ArrayList<SubDecorateTips> mList5 = new ArrayList<SubDecorateTips>();
 	DecorateTipsAdapter mAdapter = new DecorateTipsAdapter();
 	
 	class MyThread extends Thread {  
 		public void run(){
+			int current = mTabHost.getCurrentTab();
 			boolean success = false;
-			success = HTTPPost.RequestDecorateTipList(mData, mBack);
+			
+			switch(current){
+			case 0:
+				success = HTTPPost.RequestDecorateTipList(mData, mBack0);
+				break;
+			case 1:
+				success = HTTPPost.RequestDecorateTipList(mData, mBack1);
+				break;
+			case 2:
+				success = HTTPPost.RequestDecorateTipList(mData, mBack2);
+				break;
+			case 3:
+				success = HTTPPost.RequestDecorateTipList(mData, mBack3);
+				break;
+			case 4:
+				success = HTTPPost.RequestDecorateTipList(mData, mBack4);
+				break;
+			case 5:
+				success = HTTPPost.RequestDecorateTipList(mData, mBack5);
+				break;
+			}
 			Message msg = Message.obtain();
 			msg.what = URL_INVALIDATE;
 			if(success){
 				msg.obj = "OK";
+				switch(current){
+				case 0:
+					mList0.clear();
+					mList0.addAll(mBack0.items.subDecorate);
+					break;
+				case 1:
+					mList1.clear();
+					mList1.addAll(mBack1.items.subDecorate);
+					break;
+				case 2:
+					mList2.clear();
+					mList2.addAll(mBack2.items.subDecorate);
+					break;
+				case 3:
+					mList3.clear();
+					mList3.addAll(mBack3.items.subDecorate);
+					break;
+				case 4:
+					mList4.clear();
+					mList4.addAll(mBack4.items.subDecorate);
+					break;
+				case 5:
+					mList5.clear();
+					mList5.addAll(mBack5.items.subDecorate);
+					break;
+				}
 			}else{
-				msg.obj = mBack.error;
+				
+				switch(current){
+				case 0:
+					msg.obj = mBack0.error;
+					break;
+				case 1:
+					msg.obj = mBack1.error;
+					break;
+				case 2:
+					msg.obj = mBack2.error;
+					break;
+				case 3:
+					msg.obj = mBack3.error;
+					break;
+				case 4:
+					msg.obj = mBack4.error;
+					break;
+				case 5:
+					msg.obj = mBack5.error;
+					break;
+				}
 			}
 			mHandler.sendMessage(msg);
 		}
@@ -98,8 +175,9 @@ public class DecorateTipsActivity extends Activity  implements OnTabChangeListen
 		initActionBar();
 		mInflater = LayoutInflater.from(this);
 		mListView = (ListView) this.findViewById(R.id.decorate_tips_list);
-		mListView.setAdapter(mAdapter);
 		initTabHost();
+		mListView.setAdapter(mAdapter);
+		
 		mListView.setOnItemClickListener(this);
 		new MyThread().start();
 	}
@@ -196,45 +274,57 @@ public class DecorateTipsActivity extends Activity  implements OnTabChangeListen
 		
 		switch(current){
 		case 0:
-			mData.cid = 0;
-			mData.page = 1;
-			mData.limit = 10;
-			new MyThread().start();
+			if(mList0.size() == 0){
+				mData.cid = 0;
+				mData.page = 1;
+				mData.limit = 10;
+				new MyThread().start();
+			}
 			mAdapter.notifyDataSetChanged();
 			break;
 		case 1:
-			mData.cid = 9;
-			mData.page = 1;
-			mData.limit = 10;
-			new MyThread().start();
+			if(mList1.size() == 0){
+				mData.cid = 9;
+				mData.page = 1;
+				mData.limit = 10;
+				new MyThread().start();
+			}
 			mAdapter.notifyDataSetChanged();
 			break;
 		case 2:
-			mData.cid = 10;
-			mData.page = 1;
-			mData.limit = 10;
-			new MyThread().start();
+			if(mList2.size() == 0){
+				mData.cid = 10;
+				mData.page = 1;
+				mData.limit = 10;
+				new MyThread().start();
+			}
 			mAdapter.notifyDataSetChanged();
 			break;
 		case 3:
-			mData.cid = 11;
-			mData.page = 1;
-			mData.limit = 10;
-			new MyThread().start();
+			if(mList3.size() == 0){
+				mData.cid = 11;
+				mData.page = 1;
+				mData.limit = 10;
+				new MyThread().start();
+			}
 			mAdapter.notifyDataSetChanged();
 			break;
 		case 4:
-			mData.cid = 12;
-			mData.page = 1;
-			mData.limit = 10;
-			new MyThread().start();
+			if(mList4.size() == 0){
+				mData.cid = 12;
+				mData.page = 1;
+				mData.limit = 10;
+				new MyThread().start();
+			}
 			mAdapter.notifyDataSetChanged();
 			break;
 		case 5:
-			mData.cid = 13;
-			mData.page = 1;
-			mData.limit = 10;
-			new MyThread().start();
+			if(mList5.size() == 0){
+				mData.cid = 13;
+				mData.page = 1;
+				mData.limit = 10;
+				new MyThread().start();
+			}
 			mAdapter.notifyDataSetChanged();
 			break;
 		}
@@ -252,7 +342,7 @@ public class DecorateTipsActivity extends Activity  implements OnTabChangeListen
 	public void onTabChanged(String arg0) {
 		// TODO 自动生成的方法存根
 		refreshTab();
-		new MyThread().start();
+//		new MyThread().start();
 		//mListView = (ListView) mTabHost.getCurrentView().findViewById(R.id.decorate_tips_list);
 		//mListView.setAdapter(new DecorateTipsAdapter(this,mArrayList));
 	}
@@ -264,7 +354,29 @@ public class DecorateTipsActivity extends Activity  implements OnTabChangeListen
 		// TODO 自动生成的方法存根
 		Intent intent = new Intent(DecorateTipsActivity.this,DecorateTipsDetailActivity.class);
 		intent.putExtra("type", mType);
-		intent.putExtra("doc_id", mBack.items.subDecorate.get(position).doc_id);
+		int current = mTabHost.getCurrentTab();
+		
+		switch(current){
+		case 0:
+			intent.putExtra("doc_id", mList0.get(position).doc_id);
+			break;
+		case 1:
+			intent.putExtra("doc_id", mList1.get(position).doc_id);
+			break;
+		case 2:
+			intent.putExtra("doc_id", mList2.get(position).doc_id);
+			break;
+		case 3:
+			intent.putExtra("doc_id", mList3.get(position).doc_id);
+			break;
+		case 4:
+			intent.putExtra("doc_id", mList4.get(position).doc_id);
+			break;
+		case 5:
+			intent.putExtra("doc_id", mList5.get(position).doc_id);
+			break;
+		}
+		
 		startActivity(intent);
 	}
 	
@@ -273,7 +385,23 @@ public class DecorateTipsActivity extends Activity  implements OnTabChangeListen
 		@Override
 		public int getCount() {
 			// TODO 自动生成的方法存根
-			return mBack.items.subDecorate.size();
+			int current = mTabHost.getCurrentTab();
+			
+			switch(current){
+			case 0:
+				return mBack0.items.subDecorate.size();
+			case 1:
+				return mBack1.items.subDecorate.size();
+			case 2:
+				return mBack2.items.subDecorate.size();
+			case 3:
+				return mBack3.items.subDecorate.size();
+			case 4:
+				return mBack4.items.subDecorate.size();
+			case 5:
+				return mBack5.items.subDecorate.size();
+			}
+			return 0;
 		}
 
 		@Override
@@ -292,7 +420,29 @@ public class DecorateTipsActivity extends Activity  implements OnTabChangeListen
 		public View getView(int position, View convertView, ViewGroup arg2) {
 			// TODO 自动生成的方法存根
 			convertView = mInflater.inflate(R.layout.layout_tips_items, null);
-			SubDecorateTips item = mBack.items.subDecorate.get(position);
+			SubDecorateTips item = null;
+			int current = mTabHost.getCurrentTab();
+			
+			switch(current){
+			case 0:
+				item = mList0.get(position);
+				break;
+			case 1:
+				item = mList1.get(position);
+				break;
+			case 2:
+				item = mList2.get(position);
+				break;
+			case 3:
+				item = mList3.get(position);
+				break;
+			case 4:
+				item = mList4.get(position);
+				break;
+			case 5:
+				item = mList5.get(position);
+				break;
+			}
 			
 			tipsViewHolder mHolder;
 			
