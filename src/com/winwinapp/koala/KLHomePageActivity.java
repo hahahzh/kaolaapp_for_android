@@ -94,7 +94,7 @@ public class KLHomePageActivity extends FragmentActivity implements LocationList
 			mLon = lon;
 		}
 		public void run(){
-			String city = HTTPGet.RequestCurrentCity(31.0f, 120.1f);
+			String city = HTTPGet.RequestCurrentCity(mLat, mLon);
 			if(city != null){
 				mApplication.saveLocationCity(city);
 				mHandler.sendEmptyMessage(1);

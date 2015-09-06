@@ -9,7 +9,7 @@ import android.text.TextUtils;
 public class HTTPGet {
 
 	private static final String BAIDU_GEO_URL = "http://api.map.baidu.com/geocoder?output=json&location=%s,%s&key=0BNeEgEHRwKxnVejDNB3emwi";
-	public static String RequestCurrentCity(float lat,float lon){
+	public static String RequestCurrentCity(double lat,double lon){
 		String city = null;
 		String url = String.format(Locale.ENGLISH, BAIDU_GEO_URL,lat,lon);
 		String back = HTTPBase.HTTPSendGet(url);
