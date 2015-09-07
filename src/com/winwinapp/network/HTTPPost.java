@@ -457,7 +457,7 @@ public class HTTPPost {
 	public static boolean ResetPWDSendCode(NetworkData.RegisterSendCodeData data,NetworkData.CommonBack msgBack){
 		boolean success = false;
 		String postData = JsonHandler.createResetPWDSendCodeString(data);
-		String back = HTTPBase.HTTPSend(NetworkData.URL_REGISTER_SEND_CODE, postData, HTTPBase.HTTP_TYPE_POST);
+		String back = HTTPBase.HTTPSend(NetworkData.URL_LOGIN_SEND_CODE, postData, HTTPBase.HTTP_TYPE_POST);
 		if(!TextUtils.isEmpty(back)){
 			success = JsonHandler.parseCommonBack(back, msgBack);
 		}else{

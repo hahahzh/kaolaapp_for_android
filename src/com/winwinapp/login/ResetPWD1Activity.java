@@ -138,7 +138,7 @@ public class ResetPWD1Activity extends ActionBarActivity {
 		public void run() {
 			boolean success = false;
 			mData.phone_mail = mailandphone;
-			success = HTTPPost.RegisterSendCode(mData, mBack);
+			success = HTTPPost.ResetPWDSendCode(mData, mBack);
 			Message msg = Message.obtain();
 			msg.what = REQUEST_CODE_BACK;
 			if(success){

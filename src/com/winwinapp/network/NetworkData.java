@@ -19,6 +19,7 @@ public class NetworkData {
 	public static String URL_REGISTER = URL_BASE_API + "/Register/index.html";
 	public static String URL_REGISTER_SEND_CODE = URL_BASE_API + "/Register/sendCode.html";
 	public static String URL_REGISTER_RESET_PWD = URL_BASE_API + "/Login/findPassword.html";
+	public static String URL_LOGIN_SEND_CODE = URL_BASE_API + "/Login/sendCode.html";
 	public static String URL_CHANGE_PWD = URL_BASE_API + "/Login/changePassword.html";
 	public static String URL_MEMBER_find = URL_BASE_API + "/Member/find.html";
 	public static String URL_MEMBER_DETAIL = URL_BASE_API + "/Member/detail.html";
