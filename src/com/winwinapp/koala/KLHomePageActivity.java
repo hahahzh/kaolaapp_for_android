@@ -72,6 +72,7 @@ public class KLHomePageActivity extends FragmentActivity implements LocationList
 		initActionBar();
 	}
 
+	boolean bLocationListener = false;
 	public void initLocationService(){
 		mLocationManager = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
 		Location locGps = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -82,6 +83,7 @@ public class KLHomePageActivity extends FragmentActivity implements LocationList
 		}else if(locNlp != null){
 			new GetCurrentCityThread(locNlp.getLatitude(),locNlp.getLongitude()).start();
 		}else{
+			bLocationListener = true;
 			mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, this);
 		}
 	}
@@ -396,6 +398,7 @@ public class KLHomePageActivity extends FragmentActivity implements LocationList
 		if(arg0 != null){
 			new GetCurrentCityThread(arg0.getLatitude(),arg0.getLongitude()).start();
 			mLocationManager.removeUpdates(this);
+			bLocationListener = false;
 		}
 	}
 
@@ -415,6 +418,16 @@ public class KLHomePageActivity extends FragmentActivity implements LocationList
 	public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
 		// TODO 自动生成的方法存根
 		
+	}
+
+	@Override
+	protected void onDestroy() {
+		// TODO 自动生成的方法存根
+		if(bLocationListener){
+			mLocationManager.removeUpdates(this);
+			bLocationListener = false;
+		}
+		super.onDestroy();
 	}
 
 }
