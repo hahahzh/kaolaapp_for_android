@@ -245,9 +245,12 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 		
 	}
 
+	boolean mNeedToRefresh = false;
 	public void onResume(){
 		super.onResume();
+		mNeedToRefresh = false;
 		mTabHost.setCurrentTab(1);
+		mNeedToRefresh = true;
 		mTabHost.setCurrentTab(0);
 	}
 	
@@ -330,6 +333,9 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
                 //ªÒ»°tabsÕº∆¨£ª
         }
 		
+		if(!mNeedToRefresh){
+			return;
+		}
 		switch(current){
 		case 0:
 			//mAdapter.setArrayList(mArrayList);
