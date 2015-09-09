@@ -81,19 +81,20 @@ public class SupriorActivity extends ActionBarActivity {
 	NetworkData.CommonBack mCommBack = NetworkData.getInstance().getCommonBack();
 	public class DelCollectThread extends Thread{
 		int uid =0;
-		boolean add;
+		boolean mAdd;
 		public DelCollectThread(String id,boolean add){
 			try{
-			uid = Integer.parseInt(id);
+				uid = Integer.parseInt(id);
 			}catch(Exception e){
 				uid = 0;
 			}
+			mAdd = add;
 		}
 		public void run(){
 			boolean success = false;
 			mDelData.uid = uid;
 			Message msg = Message.obtain();
-			if(add){
+			if(mAdd){
 				msg.what = 2;
 				success = HTTPPost.AddCollectList(mDelData, mCommBack);
 			}else{

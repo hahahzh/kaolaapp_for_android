@@ -219,7 +219,7 @@ public class MessageListActivity extends ActionBarActivity implements RemoveList
 								}
 								//mMessageItemArray.add(item);
 							}
-							
+							msg.obj = (Object)("OK");
 						}else{
 							msg.obj = mRequestPublicBack.error;
 							
