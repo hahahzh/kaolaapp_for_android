@@ -20,7 +20,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
         android:layout_alignParentTop="true"
-        android:id="@+id/designer_area_name"
+        android:id="@+id/designer_project_experience_item_area_name"
         android:text="杨浦小区"/>
     
     <TextView 
@@ -29,13 +29,14 @@
         android:layout_marginTop="5dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:id="@+id/designer_project_experience_item_date"
         android:text="2015/04/22"/>
     
     <ImageView 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/designer_point"
-        android:layout_below="@id/designer_area_name"
+        android:layout_below="@id/designer_project_experience_item_area_name"
         android:id="@+id/desinger_area_image"
         android:layout_marginTop="5dp"
         android:src="@drawable/blue_point"/>
@@ -43,8 +44,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
-        android:layout_below="@id/designer_area_name"
+        android:layout_below="@id/designer_project_experience_item_area_name"
         android:layout_toRightOf="@id/desinger_area_image"
+        android:id="@+id/designer_project_experience_item_area"
         android:text="80m2"/>
     
     <TextView 
@@ -90,7 +92,8 @@
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="30dp"
             android:id="@+id/designer_project_comment1"/>
-        
+     
+        <!--  
         <include layout="@layout/layout_project_experience_item_comment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -98,9 +101,11 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="30dp"
+            android:visibility="gone"
             android:id="@+id/designer_project_comment2"/>
+            -->
         
-        "
+        
     </RelativeLayout>
 
 </RelativeLayout>

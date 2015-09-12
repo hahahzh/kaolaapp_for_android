@@ -8,7 +8,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:focusable="true"
-    android:focusableInTouchMode="true" >
+    android:focusableInTouchMode="true"
+    android:id="@+id/superior_page_ll" >
     
     <FrameLayout
         android:id="@+id/superior_rl_layout"
@@ -117,7 +118,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white" >
+        android:background="@color/white" 
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
         <TableRow 
         android:layout_width="match_parent"
@@ -130,7 +133,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:drawableLeft="@drawable/certificate"
             android:textColor="#999999"
             android:id="@+id/superior_id_auth"
@@ -140,7 +143,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:drawableLeft="@drawable/certificate"
             android:id="@+id/superior_certi_auth"
             android:text="证书已认证"
@@ -193,6 +196,7 @@
             android:layout_weight="1"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
+            android:id="@+id/superior_project_num"
             android:text="项目经验(10)"/>
         <TextView 
             android:layout_width="wrap_content"
@@ -205,17 +209,30 @@
             android:textColor="#00FF00"/>
       </LinearLayout>
       
+    <ListView 
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@color/white"
+        android:id="@+id/superior_project_experience_list" />
+     <!--  
     <include 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/layout_project_experience_item"/>
+        layout="@layout/layout_project_experience_item"
+        android:id="@+id/designer_project_item1"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"/>
     
     <include
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         layout="@layout/layout_project_experience_item"
+        android:id="@+id/designer_project_item2"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:background="#FFFFFF" />
+        -->
 
 </LinearLayout>
 </ScrollView>

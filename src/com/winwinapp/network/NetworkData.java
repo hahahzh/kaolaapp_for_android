@@ -421,6 +421,21 @@ public class NetworkData {
 		public String attud_avg ;
 		public String case_num ;
 		public String introduce = null;
+		//项目经验部分
+		public ArrayList<ProjectExperienceItem> exps = new ArrayList<ProjectExperienceItem>();
+	}
+	
+	public ProjectExperienceItem getNewProjectExperienceItem(){
+		return new ProjectExperienceItem();
+	}
+	public class ProjectExperienceItem{
+		public String biotope_name;
+		public String datetime;
+		public String area;
+		public String rate;
+		public String atud;
+		public String name;//业主姓名
+		public String cmt;//业主评价
 	}
 	
 	public MyCollectData getNewMyCollectData(){

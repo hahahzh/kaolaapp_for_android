@@ -14,7 +14,7 @@ import com.winwinapp.util.RefreshableListView;
 
 public class DesignerProjectActivity extends ActionBarActivity {
 
-	ArrayList<DesignerProjectItem> mArrayList = new ArrayList<DesignerProjectItem>();
+	public static ArrayList<DesignerProjectItem> mArrayList = new ArrayList<DesignerProjectItem>();
 	
 	ListView mListView;
 	RefreshableListView mRefreshListView;
@@ -41,10 +41,10 @@ public class DesignerProjectActivity extends ActionBarActivity {
 	
 	public void initListView(){
 		mListView = (ListView)this.findViewById(R.id.refresh_list_view);
-		DesignerProjectItem item = new DesignerProjectItem();
-		mArrayList.add(item);
-		item = new DesignerProjectItem();
-		mArrayList.add(item);
+//		DesignerProjectItem item = new DesignerProjectItem();
+//		mArrayList.add(item);
+//		item = new DesignerProjectItem();
+//		mArrayList.add(item);
 		mListView.setAdapter(new DesignerProjectAdapter(this,mArrayList));
 	}
 	

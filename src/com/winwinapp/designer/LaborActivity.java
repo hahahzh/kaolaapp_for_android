@@ -3,6 +3,7 @@ package com.winwinapp.designer;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -15,6 +16,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +35,8 @@ public class LaborActivity extends ActionBarActivity {
 	ImageView mLove;
 	boolean bLove = false;
 	
+	TextView mProjectNum;
+	ListView mProjectList;
 	String mId;
 	ImageView avatar;
 	TextView mLocation;
@@ -156,6 +161,28 @@ public class LaborActivity extends ActionBarActivity {
 			mIDAuth.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.id_no), null, null, null);
 		}
 		mIntroduce.setText(mBack.introduce);
+		mProjectNum.setText("项目经验("+mBack.exps.size()+")");
+		if(mBack.exps.size() <= 0){
+			mTextView.setEnabled(false);
+			mTextView.setVisibility(View.GONE);
+		}else{
+			ArrayList<DesignerProjectItem> list = new ArrayList<DesignerProjectItem>();
+			int cnt = mBack.exps.size() >= 2? 2:mBack.exps.size();
+			for(int i=0;i<cnt;i++){
+				NetworkData.ProjectExperienceItem im = mBack.exps.get(i);
+				DesignerProjectItem item = new DesignerProjectItem();
+				item.mArea = im.area + "㎡";
+				item.mAreaName = im.biotope_name;
+				item.date = im.datetime;
+				item.mSkills = im.rate;
+				item.mService = im.atud;
+				item.mComment.mCommenterName = im.name;
+				item.mComment.mComments = im.cmt;
+				list.add(item);
+			}
+			mProjectList.setAdapter(new DesignerProjectAdapter(this,list));
+		}
+		mLL.setVisibility(View.VISIBLE);
 //		if("1".equals(mBack.certauth)){
 //			
 //		}else{
@@ -164,12 +191,15 @@ public class LaborActivity extends ActionBarActivity {
 //		}
 	}
 	
+	LinearLayout mLL;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_labor);
 
 		initActionBar();
 		
+		mLL = (LinearLayout)findViewById(R.id.labor_page_ll);
+		mLL.setVisibility(View.GONE);
 		avatar = (ImageView)findViewById(R.id.labor_avatar);
 		mLocation = (TextView)findViewById(R.id.labor_location);
 		mNameType = (TextView)findViewById(R.id.labor_name_type);
@@ -182,6 +212,10 @@ public class LaborActivity extends ActionBarActivity {
 		mId = getIntent().getStringExtra("id");
 		mDefaultAvatar = getResources().getDrawable(R.drawable.avatar1);
 		
+		new getMemberDetailThread().start();
+		
+		mProjectNum = (TextView)findViewById(R.id.labor_project_num);
+		mProjectList = (ListView)findViewById(R.id.labor_project_experience_list);
 		mTextView = (TextView)findViewById(R.id.labor_project_more);
 		
 		mTextView.setOnClickListener(new OnClickListener(){
@@ -190,6 +224,20 @@ public class LaborActivity extends ActionBarActivity {
 			public void onClick(View arg0) {
 				// TODO 自动生成的方法存根
 				Intent intent = new Intent(LaborActivity.this,DesignerProjectActivity.class);
+				DesignerProjectActivity.mArrayList.clear();
+				int cnt = mBack.exps.size();
+				for(int i=0;i<cnt;i++){
+					NetworkData.ProjectExperienceItem im = mBack.exps.get(i);
+					DesignerProjectItem item = new DesignerProjectItem();
+					item.mArea = im.area + "㎡";
+					item.mAreaName = im.biotope_name;
+					item.date = im.datetime;
+					item.mSkills = im.rate;
+					item.mService = im.atud;
+					item.mComment.mCommenterName = im.name;
+					item.mComment.mComments = im.cmt;
+					DesignerProjectActivity.mArrayList.add(item);
+				}
 				startActivity(intent);
 			}
 			
@@ -214,8 +262,6 @@ public class LaborActivity extends ActionBarActivity {
 		imageView.setImageResource(R.drawable.back);
 		setLeftView(imageView);
 		setTitle("工长");
-		
-		new getMemberDetailThread().start();
 		
 		this.setOnLeftClickListener(new OnClickListener(){
 

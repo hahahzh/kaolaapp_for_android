@@ -22,15 +22,17 @@ import com.winwinapp.about.FeedbackActivity;
 import com.winwinapp.bids.BidsPopupActivity;
 import com.winwinapp.bids.BidsPublishBids;
 import com.winwinapp.decorate.DecoratePriceActivity;
+import com.winwinapp.koala.ActionBarActivity;
+import com.winwinapp.koala.KLHomePageActivity;
 import com.winwinapp.koala.KoalaApplication;
 import com.winwinapp.koala.R;
 import com.winwinapp.koala.fragment_homepage;
 import com.winwinapp.network.HTTPPost;
 import com.winwinapp.network.NetworkData;
 
-public class SettingPageActivity extends Activity implements OnClickListener{
+public class SettingPageActivity extends ActionBarActivity implements OnClickListener{
 
-	private EditText edit_nickname;
+	private TextView edit_nickname;
 	private Button btn_submit;
 	private String nickname;
 	private LinearLayout layoutProcess;
@@ -64,6 +66,10 @@ public class SettingPageActivity extends Activity implements OnClickListener{
 				if("OK".equals(error)){
 					//refresh();
 					Toast.makeText(SettingPageActivity.this, "更新用户信息成功", Toast.LENGTH_LONG).show();
+					Intent intent = new Intent(SettingPageActivity.this,KLHomePageActivity.class);
+					intent.putExtra("page", 3);
+					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					startActivity(intent);
 				}else{
 					Toast.makeText(SettingPageActivity.this, "更新用户信息失败："+error, Toast.LENGTH_LONG).show();
 				}
@@ -74,12 +80,12 @@ public class SettingPageActivity extends Activity implements OnClickListener{
 	
 	public class UpdateAccountInfoThread extends Thread{
 		public void run(){
-			if(KoalaApplication.mUserType != fragment_homepage.TYPE_OWER){
+			//if(KoalaApplication.mUserType != fragment_homepage.TYPE_OWER){
 				mAccountInfo.city_id = location.getText().toString();
 				mAccountInfo.qq = qq.getText().toString();
 				mAccountInfo.introduce = introduce.getText().toString();
 				mAccountInfo.work_num = mExperience.getText().toString();
-			}
+			//}
 			boolean success = HTTPPost.ModifyAccountInfo(mAccountInfo, mBack);
 			Message msg = Message.obtain();
 			msg.what = 2;
@@ -108,7 +114,7 @@ public class SettingPageActivity extends Activity implements OnClickListener{
 	
 	public void refresh(){
 		edit_nickname.setText(mAccountInfo.username);
-		if(KoalaApplication.mUserType != fragment_homepage.TYPE_OWER){
+		//if(KoalaApplication.mUserType != fragment_homepage.TYPE_OWER){
 			qq.setText(mAccountInfo.qq);
 			for(NetworkData.RegionsItem item:mAccountInfo.provinces){
 				if(item.regions_id.equals(mAccountInfo.city_id)){
@@ -118,20 +124,40 @@ public class SettingPageActivity extends Activity implements OnClickListener{
 			}
 			mExperience.setText(mAccountInfo.work_num);
 			introduce.setText(mAccountInfo.introduce);
-		}
+		//}
 		mLL.setVisibility(View.VISIBLE);
 	}
+	
+	public void initActionBar(){
+		ImageView imageView = new ImageView(this);
+		imageView.setImageResource(R.drawable.back);
+		setLeftView(imageView);
+		setTitle("设置");
+		this.setOnLeftClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO 自动生成的方法存根
+				finish();
+			}
+			
+		});
+		
+	}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if(KoalaApplication.mUserType == fragment_homepage.TYPE_OWER){
-			setContentView(R.layout.layout_setting);
-			edit_nickname = (EditText)findViewById(R.id.setting_nickname_txt);
-			mLL = (LinearLayout)findViewById(R.id.setting_ll);
-			btn_submit = (Button)findViewById(R.id.setting_submit_btn);
-		}else{
+		initActionBar();
+//		if(KoalaApplication.mUserType == fragment_homepage.TYPE_OWER){
+//			setContentView(R.layout.layout_setting);
+//			edit_nickname = (TextView)findViewById(R.id.setting_nickname_txt);
+//			mLL = (LinearLayout)findViewById(R.id.setting_ll);
+//			btn_submit = (Button)findViewById(R.id.setting_submit_btn);
+//		}else
+		{
 			setContentView(R.layout.layout_setting_labor);
-			edit_nickname = (EditText)findViewById(R.id.setting_label_nickname_txt);
+			edit_nickname = (TextView)findViewById(R.id.setting_label_nickname_txt);
 			qq = (EditText)findViewById(R.id.setting_labor_qq);
 			location = (TextView)findViewById(R.id.setting_labor_city);
 			introduce = (EditText)findViewById(R.id.setting_labor_self_introduce);

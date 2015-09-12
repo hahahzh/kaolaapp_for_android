@@ -157,6 +157,28 @@ public class JsonHandler {
 				back.attud_avg = itemObject.getString("attud_avg");
 				back.case_num = itemObject.getString("case_num");
 				back.introduce = itemObject.getString("introduce");
+				//项目经验
+				try{
+					JSONArray projects = itemObject.getJSONArray("project");
+					if(null != projects && projects.length()>0){
+						int len = projects.length();
+						for(int i=0;i<len;i++){
+							JSONObject jItem = projects.getJSONObject(i);
+							NetworkData.ProjectExperienceItem item = NetworkData.getInstance().getNewProjectExperienceItem();
+							item.area = jItem.getString("area");
+							item.atud = jItem.getString("atud");
+							item.biotope_name = jItem.getString("biotope_name");
+							item.cmt = jItem.getString("cmt");
+							item.datetime = jItem.getString("datetime");
+							item.name = jItem.getString("name");
+							item.rate = jItem.getString("rate");
+							back.exps.add(item);
+						}
+					}
+				}catch(JSONException e){
+					
+				}
+				
 
 				success = true;
 			}else{

@@ -53,7 +53,7 @@
                 android:textSize="20sp" >
             </TextView>
 
-            <EditText
+            <TextView
                 android:id="@+id/setting_label_nickname_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -61,11 +61,7 @@
                 android:background="@null"
                 android:ems="10"
                 android:gravity="left|center"
-                android:inputType="textPersonName"
-                android:text="" >
-
-                <requestFocus />
-            </EditText>
+                android:text="" />
         </LinearLayout>
 
         <ImageView 
@@ -101,6 +97,7 @@
                   android:id="@+id/setting_labor_qq"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
+                  android:layout_weight="1"
                   android:background="@null"
                   android:gravity="left|center"
                   android:inputType="number"

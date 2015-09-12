@@ -29,7 +29,7 @@ public class DesignerProjectAdapter extends BaseAdapter {
 	@Override
 	public int getCount() {
 		// TODO 自动生成的方法存根
-		return mArrayList.size();
+		return mArrayList==null? 0:mArrayList.size();
 	}
 
 	@Override
@@ -47,7 +47,22 @@ public class DesignerProjectAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup arg2) {
 		// TODO 自动生成的方法存根
+		DesignerProjectItem item = mArrayList.get(position);
 		convertView = mInflater.inflate(R.layout.layout_project_experience_item, null);
+		TextView bioName = (TextView) convertView.findViewById(R.id.designer_project_experience_item_area_name);
+		TextView area = (TextView) convertView.findViewById(R.id.designer_project_experience_item_area);
+		TextView date = (TextView) convertView.findViewById(R.id.designer_project_experience_item_date);
+		TextView skill = (TextView) convertView.findViewById(R.id.designer_project_skill);
+		TextView service = (TextView) convertView.findViewById(R.id.designer_project_service);
+		TextView name = (TextView) convertView.findViewById(R.id.designer_project_comment_name);
+		TextView comment = (TextView) convertView.findViewById(R.id.designer_project_comment_content);
+		bioName.setText(item.mAreaName);
+		area.setText(item.mArea);
+		date.setText(item.date);
+		skill.setText("专业："+item.mSkills);
+		service.setText("服务："+item.mService);
+		name.setText(item.mComment.mCommenterName);
+		comment.setText(item.mComment.mComments);
 		
 		return convertView;
 	}

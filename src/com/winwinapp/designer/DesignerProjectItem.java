@@ -11,7 +11,10 @@ public class DesignerProjectItem {
 	String mSkills;
 	String mService;
 	ArrayList<comment> mComments = new ArrayList<comment>();
+	comment mComment = new comment();
 	Drawable mAvatar;
+	public String date;
+	
 	
 	public class comment{
 		Drawable mAvatar;
