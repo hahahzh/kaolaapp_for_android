@@ -223,6 +223,11 @@ public class BidsDistinctActivity extends ActionBarActivity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO 自动生成的方法存根
+				Intent intent = new Intent();
+				intent.putExtra("province", provinceAdapter.getItem(mProvince.getSelectedItemPosition()));
+				intent.putExtra("city", cityAdapter.getItem(mCity.getSelectedItemPosition()));
+				intent.putExtra("country", countryAdapter.getItem(mCountry.getSelectedItemPosition()));
+				BidsDistinctActivity.this.setResult(BidsPublishBids.ACTIVITY_RESQUEST_CODE_DISTINCT, intent);
 				finish();
 			}
 			
