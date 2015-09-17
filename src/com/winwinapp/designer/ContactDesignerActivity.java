@@ -81,80 +81,85 @@ public class ContactDesignerActivity extends ActionBarActivity implements TabHos
 			mTab = tab;
 		}
 		public void run(){
-			boolean success = false;
-			mData.type = mType;
-			mData.work_num = 0;
-			mData.sort = mSort;
-			mData.page = 0;
-			mData.limit = mLimit;
-			mData.keyword = "";
-			NetworkData.FindMemberBack mBack;
-			switch(mTab){
-			case 0:
-				mBack = mBack0;
-				break;
-			case 1:
-				mBack = mBack1;
-				break;
-			case 2:
-				mBack = mBack2;
-				break;
-			case 3:
-				mBack = mBack3;
-				break;
-			default:
-				mBack = mBack0;
-				break;
-			}
-			mBack.memberInfo.clear();
-			success = HTTPPost.FindMember(mData, mBack);
-			Message msg = Message.obtain();
-			msg.what = 1;
-			if(success){
-				msg.obj = "OK";
-				if(mBack.memberInfo.size() > 0){
-					int size = mBack.memberInfo.size();
-					for(int i=0;i<size;i++){
-						try {
-							NetworkData.FindMemberItem item = mBack.memberInfo.get(i);
-							Bitmap bmp;
-						
-							bmp = BitmapFactory.decodeStream(new URL(NetworkData.URL_SERVER+item.avatar).openStream());
-							Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp,mDefaultAvatar.getIntrinsicWidth(), mDefaultAvatar.getIntrinsicHeight(), true);
-							item.imgAvatar = thumbBmp;
-						} catch (MalformedURLException e) {
-							// TODO 自动生成的 catch 块
-							e.printStackTrace();
-						} catch (IOException e) {
-							// TODO 自动生成的 catch 块
-							e.printStackTrace();
-						}catch(Exception e){
+			
+			try{
+				boolean success = false;
+				mData.type = mType;
+				mData.work_num = 0;
+				mData.sort = mSort;
+				mData.page = 0;
+				mData.limit = mLimit;
+				mData.keyword = "";
+				NetworkData.FindMemberBack mBack;
+				switch(mTab){
+				case 0:
+					mBack = mBack0;
+					break;
+				case 1:
+					mBack = mBack1;
+					break;
+				case 2:
+					mBack = mBack2;
+					break;
+				case 3:
+					mBack = mBack3;
+					break;
+				default:
+					mBack = mBack0;
+					break;
+				}
+				mBack.memberInfo.clear();
+				success = HTTPPost.FindMember(mData, mBack);
+				Message msg = Message.obtain();
+				msg.what = 1;
+				if(success){
+					msg.obj = "OK";
+					if(mBack.memberInfo.size() > 0){
+						int size = mBack.memberInfo.size();
+						for(int i=0;i<size;i++){
+							try {
+								NetworkData.FindMemberItem item = mBack.memberInfo.get(i);
+								Bitmap bmp;
 							
+								bmp = BitmapFactory.decodeStream(new URL(NetworkData.URL_SERVER+item.avatar).openStream());
+								Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp,mDefaultAvatar.getIntrinsicWidth(), mDefaultAvatar.getIntrinsicHeight(), true);
+								item.imgAvatar = thumbBmp;
+							} catch (MalformedURLException e) {
+								// TODO 自动生成的 catch 块
+								e.printStackTrace();
+							} catch (IOException e) {
+								// TODO 自动生成的 catch 块
+								e.printStackTrace();
+							}catch(Exception e){
+								
+							}
+						}
+						switch(mTab){
+						case 0:
+							mList0.clear();
+							mList0.addAll(mBack.memberInfo);
+							break;
+						case 1:
+							mList1.clear();
+							mList1.addAll(mBack.memberInfo);
+							break;
+						case 2:
+							mList2.clear();
+							mList2.addAll(mBack.memberInfo);
+							break;
+						case 3:
+							mList3.clear();
+							mList3.addAll(mBack.memberInfo);
+							break;
 						}
 					}
-					switch(mTab){
-					case 0:
-						mList0.clear();
-						mList0.addAll(mBack.memberInfo);
-						break;
-					case 1:
-						mList1.clear();
-						mList1.addAll(mBack.memberInfo);
-						break;
-					case 2:
-						mList2.clear();
-						mList2.addAll(mBack.memberInfo);
-						break;
-					case 3:
-						mList3.clear();
-						mList3.addAll(mBack.memberInfo);
-						break;
-					}
+				}else{
+					msg.obj = mBack.error;
 				}
-			}else{
-				msg.obj = mBack.error;
+				mHandler.sendMessage(msg);
+			}catch(Exception e){
+				
 			}
-			mHandler.sendMessage(msg);
 		}
 	}
 	public void onCreate(Bundle savedInstanceState) {

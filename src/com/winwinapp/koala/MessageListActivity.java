@@ -12,6 +12,7 @@ import com.winwinapp.koala.SlideListView.RemoveDirection;
 import com.winwinapp.koala.SlideListView.RemoveListener;
 import com.winwinapp.network.HTTPPost;
 import com.winwinapp.network.NetworkData;
+import com.winwinapp.util.Utils;
 
 import android.content.Context;
 import android.content.Intent;
@@ -83,10 +84,14 @@ public class MessageListActivity extends ActionBarActivity implements RemoveList
 				if(type == 0){
 					intent.putExtra("msg_id", mRequestPublicBack.items.get(position).msg_id);
 					intent.putExtra("is_exist", mRequestPublicBack.items.get(position).is_exist);
+					KoalaChatActivity.mImageAvatar = null;
+					KoalaChatActivity.mStrName = "系统";
 				}else{
 					intent.putExtra("msg_id", mRequestPrivateBack.items.get(position).msg_id);
 					intent.putExtra("topic_id", mRequestPrivateBack.items.get(position).topic_id);
 					intent.putExtra("rec_id", mRequestPrivateBack.items.get(position).rec_id);
+					KoalaChatActivity.mImageAvatar = mMessageItemArray.get(position).avatar;
+					KoalaChatActivity.mStrName = mRequestPrivateBack.items.get(position).send_name+".设计师";
 				}
 				startActivity(intent);
 				break;
@@ -209,7 +214,7 @@ public class MessageListActivity extends ActionBarActivity implements RemoveList
 								MessageItem item = new MessageItem("张澈","设计师","2015-03-19",2,R.drawable.avatar1,"今天木板已经送到，明天工人来安装，请耐心等待");
 								item.mName = "系统消息";
 								item.mIdentify = fragment_homepage.getIdetifyStringFromID(Integer.parseInt(backItem.user_type));
-								item.mLastUpdateTime = backItem.send_time;
+								item.mLastUpdateTime = Utils.utcToData( backItem.send_time );
 								item.mSnippet = backItem.content;
 								item.type = backItem.type;
 								if("1".equals(item.type)){

@@ -30,6 +30,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class KoalaChatActivity extends ActionBarActivity implements OnClickListener {
@@ -90,9 +91,20 @@ public class KoalaChatActivity extends ActionBarActivity implements OnClickListe
 			}
 		}
 	};
+	ImageView mAvatar;
+	public static Bitmap mImageAvatar;
+	public static String mStrName;
+	TextView mName;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_chat_main);
+		
+		mAvatar = (ImageView)findViewById(R.id.chat_main_avatar);
+		mName = (TextView)findViewById(R.id.chat_main_name);
+		if(mImageAvatar != null){
+			mAvatar.setImageBitmap(mImageAvatar);
+		}
+		mName.setText(mStrName);
 
 		Intent intent = this.getIntent();
 		type = intent.getIntExtra("type", 0);

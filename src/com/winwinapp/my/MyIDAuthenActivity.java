@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.winwinapp.koala.ActionBarActivity;
 import com.winwinapp.koala.KLHomePageActivity;
+import com.winwinapp.koala.KoalaApplication;
 import com.winwinapp.koala.R;
 import com.winwinapp.network.HTTPPost;
 import com.winwinapp.network.NetworkData;
@@ -108,9 +109,11 @@ public class MyIDAuthenActivity extends ActionBarActivity implements OnClickList
         mPicWidth = options.outWidth;
         mPicHeight = options.outHeight;
         
-        mIDFrontPath = Utils.getPrivateFilePath(this) + "/" + "img_id_front.jpg";
-    	mIDBackPath = Utils.getPrivateFilePath(this) + "/" + "img_id_back.jpg";
-    	mCertPath = Utils.getPrivateFilePath(this) + "/" + "img_cert.jpg";
+        String path = Utils.getPrivateFilePath(this) + "/" + KoalaApplication.loginData.username;
+        Utils.makePath(path);
+        mIDFrontPath = path+ "/" + "img_id_front.jpg";
+    	mIDBackPath = path + "/" + "img_id_back.jpg";
+    	mCertPath = path + "/" + "img_cert.jpg";
 	}
 	
 	public void onResume(){

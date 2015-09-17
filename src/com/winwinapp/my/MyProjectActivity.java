@@ -94,9 +94,9 @@ public class MyProjectActivity extends ActionBarActivity implements OnItemClickL
 			  });
 		  builder.setPositiveButton("È·¶¨", new DialogInterface.OnClickListener(){
 			  public void onClick(DialogInterface dialoginterface, int i) {
-					Intent intent = new Intent(MyProjectActivity.this , SetDepositActivity.class);
-					intent.putExtra("bid", mBack.items.get(position).bid_id);
-					startActivity(intent);
+//					Intent intent = new Intent(MyProjectActivity.this , SetDepositActivity.class);
+//					intent.putExtra("bid", mBack.items.get(position).bid_id);
+//					startActivity(intent);
 		        }
 			  });
 		  builder.create().show();
@@ -210,7 +210,7 @@ public class MyProjectActivity extends ActionBarActivity implements OnItemClickL
 			Button mBtn_finish;
 			arg1 = mInflater.inflate(R.layout.layout_my_project_item, null);
 			mIndex = (TextView)arg1.findViewById(R.id.my_project_item_index);
-			mIndex.setText(""+position);
+			mIndex.setText(""+(position+1));
 			mBtn_set_date = (Button)arg1.findViewById(R.id.my_project_item_btn_set_date);
 			mBtn_set_date.setOnClickListener(new OnItemChildClickListener(INDEX_BUTTON_SSET_DATE,position));
 			mBioName = (TextView)arg1.findViewById(R.id.my_project_biotope_name);

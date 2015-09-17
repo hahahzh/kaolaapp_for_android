@@ -152,4 +152,10 @@ public class Utils {
     	return foo.format(time);
     }
     
+    public static void makePath(String path){
+    	File file = new File(path);
+    	if(!file.exists()){
+    		file.mkdirs();
+    	}
+    }
 }

@@ -27,7 +27,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SelectCityActivity extends ActionBarActivity implements TextWatcher {
+public class SelectCityActivity extends ActionBarActivity implements TextWatcher,OnClickListener {
 
 	private Context context_ = SelectCityActivity.this;
 	private static final int REFRESH = 1;
@@ -38,6 +38,9 @@ public class SelectCityActivity extends ActionBarActivity implements TextWatcher
 	List<CityItemInterface> contactList;
 	List<CityItemInterface> filterList;
 	TextView mLocationCity;
+	TextView mCommShanghai;
+	TextView mCommHangzhou;
+	TextView mCommSuzhou;
 	private static KoalaApplication mApp;
 
 	private Handler mHandler = new Handler(){
@@ -92,9 +95,18 @@ public class SelectCityActivity extends ActionBarActivity implements TextWatcher
 		mApp = (KoalaApplication) this.getApplication();
 		initActionBar();
 		mLocationCity = (TextView)findViewById(R.id.location_city_name);
+		mLocationCity.setText(KoalaApplication.mLocationCity);
+		
 
 		filterList = new ArrayList<CityItemInterface>();
 		listview = (CityListViewImpl) this.findViewById(R.id.listview);
+		mCommShanghai = (TextView)findViewById(R.id.common_city_shanghai);
+		mCommHangzhou = (TextView)findViewById(R.id.common_city_hangzhou);
+		mCommSuzhou = (TextView)findViewById(R.id.common_city_suzhou);
+		
+		mCommShanghai.setOnClickListener(this);
+		mCommHangzhou.setOnClickListener(this);
+		mCommSuzhou.setOnClickListener(this);
 
 		//searchBox = (EditText) findViewById(R.id.input_search_query);
 		//searchBox.addTextChangedListener(this);
@@ -225,6 +237,25 @@ public class SelectCityActivity extends ActionBarActivity implements TextWatcher
 				}
 			}
 
+		}
+	}
+
+	@Override
+	public void onClick(View arg0) {
+		// TODO 自动生成的方法存根
+		switch(arg0.getId()){
+		case R.id.common_city_hangzhou:
+			mLocationCity.setText("杭州");
+			mApp.saveLocationCity("杭州");
+			break;
+		case R.id.common_city_shanghai:
+			mLocationCity.setText("上海");
+			mApp.saveLocationCity("上海");
+			break;
+		case R.id.common_city_suzhou:
+			mLocationCity.setText("苏州");
+			mApp.saveLocationCity("苏州");
+			break;
 		}
 	}
 

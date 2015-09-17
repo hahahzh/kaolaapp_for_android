@@ -68,6 +68,8 @@ public class fragment_bid extends Fragment implements OnItemClickListener{
 		
 		if(KoalaApplication.mUserType == fragment_homepage.TYPE_OWER){
 			mType = 1;
+		}else{
+			mType = 0;
 		}
 		//initView(inflater,view);
 		
@@ -100,7 +102,7 @@ public class fragment_bid extends Fragment implements OnItemClickListener{
 			convertView = mInflater.inflate(R.layout.layout_bids_item, null);
 			NetworkData.BidListItem item = mBack.items.get(position);
 			TextView index = (TextView)convertView.findViewById(R.id.bid_item_index);
-			index.setText(""+position);
+			index.setText(""+(position+1));
 			
 			TextView biotope_name = (TextView)convertView.findViewById(R.id.bid_item_biotope_name);
 			biotope_name.setText(item.biotope_name);

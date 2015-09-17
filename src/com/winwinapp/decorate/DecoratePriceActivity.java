@@ -339,62 +339,105 @@ public class DecoratePriceActivity extends ActionBarActivity implements OnClickL
 	@Override
 	public void onAddSubChange(int id) {
 		// TODO 自动生成的方法存根
+		int prev = 0;
+		int current = 0;
+		Double base;
+		Double total;
+		base = Double.parseDouble(mBasePrice.getText().toString());
+		total = Double.parseDouble(mTotalPrice.getText().toString());
 		switch(id){
 		case R.id.decorate_num1:
+			prev = Integer.parseInt(mTotal1.getText().toString());
 			mTotal1.setText(mNumb1.getCurrentNumber()*Integer.parseInt(mPrice1.getText().toString())+"");
+			current = Integer.parseInt(mTotal1.getText().toString());	
 			break;
 		case R.id.decorate_num2:
+			prev = Integer.parseInt(mTotal2.getText().toString());
 			mTotal2.setText(mNumb2.getCurrentNumber()*Integer.parseInt(mPrice2.getText().toString())+"");
+			current = Integer.parseInt(mTotal2.getText().toString());
 			break;
 		case R.id.decorate_num3:
+			prev = Integer.parseInt(mTotal3.getText().toString());
 			mTotal3.setText(mNumb3.getCurrentNumber()*Integer.parseInt(mPrice3.getText().toString())+"");
+			current = Integer.parseInt(mTotal3.getText().toString());
 			break;
 		case R.id.decorate_num4:
+			prev = Integer.parseInt(mTotal4.getText().toString());
 			mTotal4.setText(mNumb4.getCurrentNumber()*Integer.parseInt(mPrice4.getText().toString())+"");
+			current = Integer.parseInt(mTotal4.getText().toString());
 			break;
 		case R.id.decorate_num5:
+			prev = Integer.parseInt(mTotal5.getText().toString());
 			mTotal5.setText(mNumb5.getCurrentNumber()*Integer.parseInt(mPrice5.getText().toString())+"");
+			current = Integer.parseInt(mTotal5.getText().toString());
 			break;
 		case R.id.decorate_num6:
+			prev = Integer.parseInt(mTotal6.getText().toString());
 			mTotal6.setText(mNumb6.getCurrentNumber()*Integer.parseInt(mPrice6.getText().toString())+"");
+			current = Integer.parseInt(mTotal6.getText().toString());
 			break;
 		case R.id.decorate_num7:
+			prev = Integer.parseInt(mTotal7.getText().toString());
 			mTotal7.setText(mNumb7.getCurrentNumber()*Integer.parseInt(mPrice7.getText().toString())+"");
+			current = Integer.parseInt(mTotal7.getText().toString());
 			break;
 		case R.id.decorate_num8:
+			prev = Integer.parseInt(mTotal8.getText().toString());
 			mTotal8.setText(mNumb8.getCurrentNumber()*Integer.parseInt(mPrice8.getText().toString())+"");
+			current = Integer.parseInt(mTotal8.getText().toString());
 			break;
 		case R.id.decorate_num9:
+			prev = Integer.parseInt(mTotal9.getText().toString());
 			mTotal9.setText(mNumb9.getCurrentNumber()*Integer.parseInt(mPrice9.getText().toString())+"");
+			current = Integer.parseInt(mTotal9.getText().toString());
 			break;
 		case R.id.decorate_num10:
+			prev = Integer.parseInt(mTotal10.getText().toString());
 			mTotal10.setText(mNumb10.getCurrentNumber()*Integer.parseInt(mPrice10.getText().toString())+"");
+			current = Integer.parseInt(mTotal10.getText().toString());
 			break;
 		case R.id.decorate_num11:
+			prev = Integer.parseInt(mTotal11.getText().toString());
 			mTotal11.setText(mNumb11.getCurrentNumber()*Integer.parseInt(mPrice11.getText().toString())+"");
+			current = Integer.parseInt(mTotal11.getText().toString());
 			break;
 		case R.id.decorate_num12:
+			prev = Integer.parseInt(mTotal12.getText().toString());
 			mTotal12.setText(mNumb12.getCurrentNumber()*Integer.parseInt(mPrice12.getText().toString())+"");
+			current = Integer.parseInt(mTotal12.getText().toString());
 			break;
 		case R.id.decorate_num13:
+			prev = Integer.parseInt(mTotal13.getText().toString());
 			mTotal13.setText(mNumb13.getCurrentNumber()*Integer.parseInt(mPrice13.getText().toString())+"");
+			current = Integer.parseInt(mTotal13.getText().toString());
 			break;
 		case R.id.decorate_num14:
+			prev = Integer.parseInt(mTotal14.getText().toString());
 			mTotal14.setText(mNumb14.getCurrentNumber()*Integer.parseInt(mPrice14.getText().toString())+"");
+			current = Integer.parseInt(mTotal14.getText().toString());
 			break;
 		case R.id.decorate_num15:
+			prev = Integer.parseInt(mTotal15.getText().toString());
 			mTotal15.setText(mNumb15.getCurrentNumber()*Integer.parseInt(mPrice15.getText().toString())+"");
+			current = Integer.parseInt(mTotal15.getText().toString());
 			break;
 		case R.id.decorate_num16:
+			prev = Integer.parseInt(mTotal16.getText().toString());
 			mTotal16.setText(mNumb16.getCurrentNumber()*Integer.parseInt(mPrice16.getText().toString())+"");
+			current = Integer.parseInt(mTotal16.getText().toString());
 			break;
 		case R.id.decorate_num17:
+			prev = Integer.parseInt(mTotal17.getText().toString());
 			mTotal17.setText(mNumb17.getCurrentNumber()*Integer.parseInt(mPrice17.getText().toString())+"");
+			current = Integer.parseInt(mTotal17.getText().toString());
 			break;
 		case R.id.decorate_num18:
+			prev = Integer.parseInt(mTotal18.getText().toString());
 			mTotal18.setText(mNumb18.getCurrentNumber()*Integer.parseInt(mPrice18.getText().toString())+"");
+			current = Integer.parseInt(mTotal18.getText().toString());
 			break;
-			
 		}
+		mBasePrice.setText(""+(base-prev+current));
+		mTotalPrice.setText(""+(total-prev+current));
 	}
 }

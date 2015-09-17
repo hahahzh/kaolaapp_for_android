@@ -71,6 +71,7 @@
 			        android:textSize="18sp"
         			android:textStyle="bold"
         			android:gravity="center"
+        			android:id="@+id/common_city_shanghai"
         			android:background="@drawable/rectangular_gray_min"
 			        android:text="上海"/>
 			    
@@ -86,6 +87,7 @@
 			        android:gravity="center"
 			        android:textSize="18sp"
         			android:textStyle="bold"
+        			android:id="@+id/common_city_hangzhou"
         			android:background="@drawable/rectangular_gray_min"
 			        android:text="杭州"/>
 			    
@@ -101,6 +103,7 @@
 			        android:gravity="center"
 			        android:textSize="18sp"
         			android:textStyle="bold"
+        			android:id="@+id/common_city_suzhou"
         			android:background="@drawable/rectangular_gray_min"
 			        android:text="苏州"/>
 		</LinearLayout>
